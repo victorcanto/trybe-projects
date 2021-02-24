@@ -90,30 +90,32 @@ table, th, td {
   padding: 7px;
 }
 #sobre_aprendizado p {
+  text-align: center;
   margin: 10px;
 }
 aside {
   text-align: center;
   font-style: italic;
 }
+aside h4 {
+  margin: 10px;
+}
 .lado-esquerdo {
   position: relative;
   width: 50%;
-  left: 5px;
 }
 .lado-direito {
   position: absolute;
   width: 40%;
-  right: 5px;
-  bottom: 150px;
+  bottom: 100px;
+  right: 15px
+  
 }
 #rodape {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  text-align: center;
-  width: 100%;
   background-color: rgb(6, 214, 160);
+  padding: 10px;
 }
 #rodape h4 {
   margin: 10px;
+  position: relative;
 }
