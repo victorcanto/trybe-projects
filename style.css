@@ -1,10 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 body {
   background-color: rgb(253, 251, 251);
+  font-family: 'Montserrat', sans-serif;
 }   
 header {
   position: fixed;
-  top: 0px;
+  width: 100%;
+  background-color: #2a9d8f;
+  text-align: center;
+  top: 0;
+  left: 0;
+}
+#titulo {
+  margin-top: 10px;
 }
 #minha_foto {
-  width: 300px;
+  margin-top: 100px;
+  border-radius: 50%;
+  margin-left: 15px;
+  border: 4px solid #264653 ;
+}
+.list-container {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+#licoes_a_aprender li {
+  list-style-type: none;
+  margin: 10px;
+}
+#principal {
+  font-size: 19px;
+  text-align: center;
+}
+article h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+#passagem_aprendizado {
+  text-align: center;
+  font-style: italic;
+}
+footer {
+  color: white;
+  margin-top: 20px;
+  background-color: #264653;
+  text-align: center;
+}
+footer li, a {
+  list-style-type: none;
+  color: #e9c46a;
+}
+footer h4 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 19px;
+}
+nav li {
+  display: inline-block;
+  margin-left:20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+nav li a {
+  color: #264653;
+  text-decoration: none;
+  font-size: 20px;
+}
+nav li a:hover {
+  color: #e9c46a;
+  text-shadow: 2px 2px 5px #264653;
+}
+aside img {
+  border: 2px solid #2a9d8f;
+  margin-bottom: 5px;
+}
+.container-principal {
+  position: relative;
+}
+.section-container {
+  vertical-align: middle;
+}
+.lado-esquerdo {
+  left: 15px;
+  position: relative;
+  width: 50% ;
+}
+.lado-direito {
+  position: absolute;
+  bottom: 40px;
+  right: 15px;
+  width: 40%;
 }
