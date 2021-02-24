@@ -1,19 +1,99 @@
 body {
+  position: relative;
   background-color: rgb(253, 251, 251);
-  font-family: 'Montserrat', sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 #cabecalho {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgb(155, 93, 229);
+  background-color: rgb(6,214, 160);
   width: 100%;
 }
 #titulo {
-  color: rgb(254, 228, 64);
+  color: rgb(7, 59, 76);
   text-align: center;
+  margin-bottom: 5px;
+}
+nav {
+  text-align: center;
+  margin-bottom: 10px;
+}
+nav a {
+  text-decoration: none;
+  margin-left: 10px;
+  color: rgb(17, 138, 178);
+  font-weight: bold;
+}
+nav a:hover {
+  color: rgb(255, 209, 102);
+  text-shadow: 1px 1px 3px black;
 }
 #minha_foto {
-  margin-top: 80px;
+  margin-top: 90px;
   border-radius: 50%;
+}
+#minha_foto:hover {
+  border: 2px solid rgb(17, 138, 178);
+}
+table {
+  color: rgb(255, 209, 102);
+  width: auto;
+  background-color: rgb(239, 71, 111);
+  padding: 10px;
+  border-collapse: collapse;
+}
+table td {
+  color: rgb(253, 251, 251);
+  text-align: center;
+  font-style: oblique;
+}
+table, th, td {
+  border: 1.5px solid rgb(7, 59, 76);
+  padding: 7px;
+}
+.container_lists {
+  font-size: 1.1em;
+}
+.container_lists h2 {
+  background-color: rgb(17, 138, 178);
+  color: rgb(6, 214, 160);
+}
+.list_custom {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: 1px;
+  line-height: 20px;
+  color: rgb(7, 59, 76);
+}
+#sobre_aprendizado {
+  font-size: 1.2em;
+}
+#sobre_aprendizado h3 {
+  text-align: center;
+  text-transform: uppercase;
+  background-color: rgb(255, 209, 102);
+  padding: 7px;
+}
+aside {
+  text-align: center;
+}
+.lado-esquerdo {
+  position: relative;
+  width: 50%;
+  left: 5px;
+}
+.lado-direito {
+  position: absolute;
+  width: 36%;
+  right: 5px;
+  top: 1110px;
+}
+#rodape {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  text-align: center;
+  width: 100%;
+  background-color: rgb(6, 214, 160);
+  bottom: 0;
+  left: 0;
 }
