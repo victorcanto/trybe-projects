@@ -1,83 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Primeiro Projeto</title>
-</head>
-<body>
-  <header id="cabecalho">
-    <h1 id="titulo">Primeiro Projeto HTML/CSS</h1>
-    <nav>
-      <a href="./index.html">Página Inicial</a>
-      <a href="#sobre_aprendizado">Sobre</a>
-      <a href="https://github.com/victorcanto">Meu GitHub</a>
-    </nav>
-  </header>
-  <img src="./assets/images/my_profile.jpg" alt="foto de Victor Canto" id="minha_foto" width="300px">
-  <table>
-    <tr>
-      <th>Nome</th>
-      <th>Idade</th>
-      <th>E-mail</th>
-      <th>Instituição de ensino</th>
-    </tr>
-    <tr>
-      <td>Victor Canto</td>
-      <td>21 anos</td>
-      <td><a href="mailto:iamvictorcanto@gmail.com">iamvictorcanto@gmail.com</a></td>
-      <td>Trybe</td>
-    </tr>
-  </table>
-  <div class="container_lists">
-    <h2>Lições Aprendidas</h2>
-    <ol id="licoes_aprendidas" class="list_custom">
-      <li>Unix</li>
-      <li>Bash</li>
-      <li>Shell Script</li>
-      <li>Funcionamento da internet</li>
-      <li>Git</li>
-      <li>GitHub</li>
-      <li>Html</li>
-      <li>Html Semantico</li>
-      <li>Css</li>
-      <li>Lógica de Programação</li>
-    </ol>
-    <h2>Lições que ainda vou aprender</h2>
-    <ul id="licoes_a_aprender" class="list_custom">
-      <li>JavaScript ES6</li>
-      <li>Testes Unitários</li>
-      <li>Responsividade</li>
-      <li>Testes automatizados com Jest</li>
-      <li>JavaScript Promises</li>
-      <li>Forms</li>
-      <li>Flexbox</li>
-      <li>Manipulação do DOM</li>
-      <li>Eventos</li>
-      <li>web Storage</li>
-    </ul>
-  </div>
-  <div id="container_left_right">
-    <article id="sobre_aprendizado" class="lado-esquerdo">
-      <h3>Sobre meu aprendizado</h3>
-      <p>Já estou me adaptando a metodologia de ensino da Trybe, que é justamente a metodologia ativa, ou seja, os estudantes são os próprios protagonistas do seu aprendizado. Diferente de uma instituição de ensino tradicional no Brasil e também no exterior, e "aprende" de forma passiva o conhecimento passado pelo professor. <br> <br> Logo, com a metodologia oferecida pela Trybe, estou aprendendo a aprender novamente. Com muita mão na massa, entendendo o conteúdo de programação atráves da prática constante, e também, aprendendo as soft skills mais importantes.</p>
-    </article>
-    <section class="lado-direito">
-      <aside>
-        <img src="./assets/images/terminal_unix.png" alt="foto do terminal" width="200px">
-        <h4>"Comecei a usar o terminal do Unix com frequência após aprender com a Trybe. Muito eficiente."</h4>
-      </aside>
-    </section>
-  </div>
-  <footer id="rodape">
-    <nav>
-      <h4>Página desenvolvida por Victor Canto</h4>
-      <a href="https://www.w3schools.com/" target="_blank">w3schools</a>
-      <a href="https://www.betrybe.com/" target="_blank">Trybe</a>
-      <a href="https://developer.mozilla.org/" target="_blank">Mozilla</a>
-    </nav>
-  </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Primeiro Projeto</title>
+  </head>
+
+  <body>
+    <header id="cabecalho">
+      <h1 id="titulo">Primeiro Projeto HTML/CSS</h1>
+      <nav>
+        <a href="./index.html">Página Inicial</a>
+        <a href="#sobre_aprendizado">Sobre</a>
+        <a href="https://github.com/victorcanto">Meu GitHub</a>
+      </nav>
+    </header>
+    <img
+      src="./assets/images/my_profile.jpg"
+      alt="foto de Victor Canto"
+      id="minha_foto"
+      width="300px"
+    />
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>E-mail</th>
+        <th>Instituição de ensino</th>
+      </tr>
+      <tr>
+        <td>Victor Canto</td>
+        <td>21 anos</td>
+        <td>
+          <a href="mailto:iamvictorcanto@gmail.com">iamvictorcanto@gmail.com</a>
+        </td>
+        <td>Trybe</td>
+      </tr>
+    </table>
+    <div class="container_lists">
+      <h2>Lições Aprendidas</h2>
+      <ol id="licoes_aprendidas" class="list_custom">
+        <li>Unix</li>
+        <li>Bash</li>
+        <li>Shell Script</li>
+        <li>Funcionamento da internet</li>
+        <li>Git</li>
+        <li>GitHub</li>
+        <li>Html</li>
+        <li>Html Semantico</li>
+        <li>Css</li>
+        <li>Lógica de Programação</li>
+      </ol>
+      <h2>Lições que ainda vou aprender</h2>
+      <ul id="licoes_a_aprender" class="list_custom">
+        <li>JavaScript ES6</li>
+        <li>Testes Unitários</li>
+        <li>Responsividade</li>
+        <li>Testes automatizados com Jest</li>
+        <li>JavaScript Promises</li>
+        <li>Forms</li>
+        <li>Flexbox</li>
+        <li>Manipulação do DOM</li>
+        <li>Eventos</li>
+        <li>web Storage</li>
+      </ul>
+    </div>
+    <div id="container_left_right">
+      <article id="sobre_aprendizado" class="lado-esquerdo">
+        <h3>Sobre meu aprendizado</h3>
+        <p>
+          Já estou me adaptando a metodologia de ensino da Trybe, que é
+          justamente a metodologia ativa, ou seja, os estudantes são os próprios
+          protagonistas do seu aprendizado. Diferente de uma instituição de
+          ensino tradicional no Brasil e também no exterior, e "aprende" de
+          forma passiva o conhecimento passado pelo professor. <br />
+          <br />
+          Logo, com a metodologia oferecida pela Trybe, estou aprendendo a
+          aprender novamente. Com muita mão na massa, entendendo o conteúdo de
+          programação atráves da prática constante, e também, aprendendo as soft
+          skills mais importantes.
+        </p>
+      </article>
+      <section class="lado-direito">
+        <aside>
+          <img
+            src="./assets/images/terminal_unix.png"
+            alt="foto do terminal"
+            width="200px"
+          />
+          <h4>
+            "Comecei a usar o terminal do Unix com frequência após aprender com
+            a Trybe. Muito eficiente."
+          </h4>
+        </aside>
+      </section>
+    </div>
+    <footer id="rodape">
+      <nav>
+        <h4>Página desenvolvida por Victor Canto</h4>
+        <a href="https://www.w3schools.com/" target="_blank">w3schools</a>
+        <a href="https://www.betrybe.com/" target="_blank">Trybe</a>
+        <a href="https://developer.mozilla.org/" target="_blank">Mozilla</a>
+      </nav>
+    </footer>
+  </body>
 </html>

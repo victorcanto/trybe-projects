@@ -67,7 +67,7 @@ table {
 table td {
   color: rgb(253, 251, 251);
   text-align: center;
-  font-style: oblique;
+  text-transform: uppercase;
   border: 1.5px solid rgb(7, 59, 76);
   padding: 7px;
 }
@@ -122,23 +122,24 @@ aside h4 {
 }
 
 #container_left_right {
+  display: inline-block;
   padding-top: 20px;
 }
 
 .lado-esquerdo {
-  display: inline-block;
+  float: left;
   width: 50%;
 }
 
 .lado-direito {
   float: right;
-  width: 40%;
+  width: 42%;
 }
 
 #rodape {
+  width: 100%;
   background-color: rgb(6, 214, 160);
   padding: 10px;
-  width: 100%;
 }
 
 #rodape h4 {
