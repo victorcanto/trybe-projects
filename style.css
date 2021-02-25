@@ -3,37 +3,44 @@
   padding: 0;
   border: 0;
 }
+
 body {
   background-color: rgb(253, 251, 251);
   font-family: Helvetica, sans-serif;
 }
+
 #cabecalho {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgb(6,214, 160);
+  background-color: rgb(6, 214, 160);
   width: 100%;
   z-index: 1;
 }
+
 #titulo {
   color: rgb(7, 59, 76);
   text-align: center;
   margin-bottom: 5px;
 }
+
 nav {
   text-align: center;
   margin-bottom: 10px;
 }
+
 nav a {
   text-decoration: none;
   margin-left: 10px;
   color: rgb(17, 138, 178);
-  font-weight: bold;
+  font-weight: 600;
 }
+
 nav a:hover {
   color: rgb(255, 209, 102);
   text-shadow: 1px 1px 3px black;
 }
+
 #minha_foto {
   position: relative;
   margin-left: 20px;
@@ -41,80 +48,99 @@ nav a:hover {
   margin-bottom: 20px;
   border-radius: 50%;
 }
+
 #minha_foto:hover {
   border: 2px solid rgb(17, 138, 178);
 }
+
 table {
   position: absolute;
   top: 195px;
-  left:400px;
+  left: 400px;
   color: rgb(255, 209, 102);
   background-color: rgb(239, 71, 111);
   padding: 10px;
   border-collapse: collapse;
   font-size: 1.1em;
 }
+
 table td {
   color: rgb(253, 251, 251);
   text-align: center;
   font-style: oblique;
-}
-table, th, td {
   border: 1.5px solid rgb(7, 59, 76);
   padding: 7px;
 }
+
+table th {
+  border: 1.5px solid rgb(7, 59, 76);
+  padding: 7px;
+}
+
 .container_lists {
   font-size: 1.1em;
 }
+
 .container_lists h2 {
   color: rgb(6, 214, 160);
-  margin-left: 20px;
   margin: 5px;
+  margin-left: 20px;
 }
+
 .list_custom {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-left: 70px;
   letter-spacing: 1px;
   line-height: 20px;
   color: rgb(7, 59, 76);
 }
+
 #sobre_aprendizado {
   margin: 15px;
   font-size: 1.2em;
 }
+
 #sobre_aprendizado h3 {
   text-align: center;
   text-transform: uppercase;
   background-color: rgb(255, 209, 102);
   padding: 7px;
 }
+
 #sobre_aprendizado p {
   text-align: center;
   margin: 10px;
 }
+
 aside {
   text-align: center;
   font-style: italic;
 }
+
 aside h4 {
   margin: 10px;
 }
+
 #container_left_right {
   padding-top: 20px;
 }
+
 .lado-esquerdo {
   display: inline-block;
   width: 50%;
 }
+
 .lado-direito {
   float: right;
   width: 40%;
 }
+
 #rodape {
   background-color: rgb(6, 214, 160);
   padding: 10px;
   width: 100%;
 }
+
 #rodape h4 {
   margin: 10px;
 }
