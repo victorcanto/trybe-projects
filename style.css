@@ -122,6 +122,8 @@ aside h4 {
 }
 
 #container {
+  margin: auto;
+  margin-left: 10px;
   position: relative;
   bottom: 5px;
   display: inline-block;
@@ -135,8 +137,8 @@ aside h4 {
 
 .lado-direito {
   position: absolute;
-  bottom: 50px;
-  right: 0;
+  bottom: 30px;
+  right: 1px;
   display: inline-block;
   width: 42%;
 }
