@@ -4,7 +4,6 @@
   border: 0;
 }
 body {
-  position: relative;
   background-color: rgb(253, 251, 251);
   font-family: Helvetica, sans-serif;
 }
@@ -100,22 +99,22 @@ aside {
 aside h4 {
   margin: 10px;
 }
+#container_left_right {
+  padding-top: 20px;
+}
 .lado-esquerdo {
-  position: relative;
+  display: inline-block;
   width: 50%;
 }
 .lado-direito {
-  position: absolute;
+  float: right;
   width: 40%;
-  bottom: 100px;
-  right: 15px
-  
 }
 #rodape {
   background-color: rgb(6, 214, 160);
   padding: 10px;
+  width: 100%;
 }
 #rodape h4 {
   margin: 10px;
-  position: relative;
 }
