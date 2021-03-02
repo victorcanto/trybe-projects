@@ -149,10 +149,10 @@ Para garantir a qualidade do seu código de forma a tê-lo mais legível, de mai
 
 ```bash
 npm run lint
-npm run lint:styles
+npm run lint
 ```
 
-⚠ **NESTE PROJETO O STYLELINT NÃO SERÁ AVALIADO. VOCÊ PODE RODAR O TESTE LOCALMENTE E FAZER AS CORREÇÕES SE DESEJAR!** ⚠
+⚠ **NESTE PROJETO O ESLINT NÃO SERÁ AVALIADO. VOCÊ PODE RODAR O TESTE LOCALMENTE E FAZER AS CORREÇÕES SE DESEJAR!** ⚠
 
 ---
 
