@@ -58,12 +58,32 @@ console.log(footballPoints(1, 2));
 console.log(footballPoints(0, 0));
 
 // Desafio 6 - NÃO CONSEGUI SOLUCIONAR
-function highestCount(arrNumbers) {}
+function highestCount(arrNumbers) {
+  let maxNumbers = arrNumbers[0];
+  let repeatCounter = 0;
+  // Fiz esse loop for/in para percorrer o array e encontrar os maiores números
+  for (let index in arrNumbers) {
+    if (arrNumbers[index] > maxNumbers) {
+      maxNumbers = arrNumbers[index];
+    }
+  }
+  // Segundo loop for/in para verificar quantas vezes o(s) numero(s) maiores se repetem
+  for (let index in arrNumbers) {
+    if (arrNumbers[index] === maxNumbers) {
+      repeatCounter += 1;
+    }
+  }
+  console.log(repeatCounter);
+}
+// Desafio 6 - Teste
+highestCount([9, 1, 2, 3, 9, 5, 7]);
+highestCount([0, 4, 4, 4, 9, 2, 1]);
+highestCount([0, 0, 0]);
 
 // Desafio 7 Ok
 function catAndMouse(mouse, cat1, cat2) {
-  let cat1Position = mouse - cat1;
-  let cat2Position = mouse - cat2;
+  let cat1Position = Math.abs(mouse - cat1);
+  let cat2Position = Math.abs(mouse - cat2);
   if (cat1Position > cat2Position) {
     return 'cat1';
   }
@@ -76,14 +96,3 @@ function catAndMouse(mouse, cat1, cat2) {
 console.log(catAndMouse(10, 3, 2));
 console.log(catAndMouse(10, 6, 12));
 console.log(catAndMouse(10, 3, 3));
-
-// Desafio 8 - NÃO CONSEGUI SOLUCIONAR
-function fizzBuzz(arrFB) {}
-
-// Desafio 9 - NÃO CONSEGUI SOLUCIONAR
-function encode(strCode) {
-  // seu códgio aqui
-}
-function decode() {
-  // seu código aqui
-}
