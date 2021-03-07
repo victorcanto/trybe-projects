@@ -75,12 +75,12 @@ function highestCount(arrNumbers) {
       repeatCounter += 1;
     }
   }
-  console.log(repeatCounter);
+  return repeatCounter;
 }
 // Desafio 6 - Teste ok
-highestCount([9, 1, 2, 3, 9, 5, 7]);
-highestCount([0, 4, 4, 4, 9, 2, 1]);
-highestCount([0, 0, 0]);
+console.log(highestCount([9, 1, 2, 3, 9, 5, 7]));
+console.log(highestCount([0, 4, 4, 4, 9, 2, 1]));
+console.log(highestCount([0, 0, 0]));
 
 // Desafio 7 Ok
 function catAndMouse(mouse, cat1, cat2) {
@@ -114,12 +114,12 @@ function fizzBuzz(arrFB) {
       arrFB[index] = newArrFB.push('bug!');
     }
   }
-  console.log(newArrFB);
+  return newArrFB;
 }
 // Desafio 8 - Teste ok
-fizzBuzz([2, 15, 7, 9, 45]);
-fizzBuzz([7, 9]);
-fizzBuzz([9, 25]);
+console.log(fizzBuzz([2, 15, 7, 9, 45]));
+console.log(fizzBuzz([7, 9]));
+console.log(fizzBuzz([9, 25]));
 
 // Desafio 9
 function encode(strCode) {
@@ -145,10 +145,10 @@ function encode(strCode) {
       encoded += strCode[index];
     }
   }
-  console.log(encoded);
+  return encoded;
 }
 // Teste encode
-encode('hi there!');
+console.log(encode('hi there!'));
 
 function decode(strDecode) {
   let decoded = '';
@@ -173,7 +173,7 @@ function decode(strDecode) {
       decoded += strDecode[index];
     }
   }
-  console.log(decoded);
+  return decoded;
 }
 // Teste decode
-decode('h3 th2r2!');
+console.log(decode('h3 th2r2!'));

@@ -12,10 +12,10 @@ function techList(arrTechList, name) {
       name,
     });
   }
-  console.log(listOfTechs);
+  return listOfTechs;
 }
 // Desafio 10 - Teste
-techList(['React', 'Jest', 'HTML', 'CSS', 'JavaScript'], 'Lucas');
+console.log(techList(['React', 'Jest', 'HTML', 'CSS', 'JavaScript'], 'Lucas'));
 
 // Desafio 11
 function generatePhoneNumber() {
