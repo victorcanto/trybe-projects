@@ -57,7 +57,9 @@ console.log(footballPoints(14, 8));
 console.log(footballPoints(1, 2));
 console.log(footballPoints(0, 0));
 
-// Desafio 6 - NÃO CONSEGUI SOLUCIONAR
+// Desafio 6 - ok
+// Link do vídeo sobre linguagem C que me ajudou a resolver este desafio: https://youtu.be/pkJXwPvselI
+
 function highestCount(arrNumbers) {
   let maxNumbers = arrNumbers[0];
   let repeatCounter = 0;
@@ -75,7 +77,7 @@ function highestCount(arrNumbers) {
   }
   console.log(repeatCounter);
 }
-// Desafio 6 - Teste
+// Desafio 6 - Teste ok
 highestCount([9, 1, 2, 3, 9, 5, 7]);
 highestCount([0, 4, 4, 4, 9, 2, 1]);
 highestCount([0, 0, 0]);
@@ -96,3 +98,33 @@ function catAndMouse(mouse, cat1, cat2) {
 console.log(catAndMouse(10, 3, 2));
 console.log(catAndMouse(10, 6, 12));
 console.log(catAndMouse(10, 3, 3));
+
+// Desafio 8 ok
+function fizzBuzz(arrFB) {
+  let newArrFB = [];
+
+  for (let index in arrFB) {
+    if (arrFB[index] % 3 === 0 && arrFB[index] % 5 === 0) {
+      arrFB[index] = newArrFB.push('fizzBuzz');
+    } else if (arrFB[index] % 3 === 0) {
+      arrFB[index] = newArrFB.push('fizz');
+    } else if (arrFB[index] % 5 === 0) {
+      arrFB[index] = newArrFB.push('buzz');
+    } else {
+      arrFB[index] = newArrFB.push('bug!');
+    }
+  }
+  console.log(newArrFB);
+}
+// Desafio 8 - Teste ok
+fizzBuzz([2, 15, 7, 9, 45]);
+fizzBuzz([7, 9]);
+fizzBuzz([9, 25]);
+
+// Desafio 9
+function encode(strCode) {
+  // seu códgio aqui
+}
+function decode(strDecode) {
+  // seu código aqui
+}
