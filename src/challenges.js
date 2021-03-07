@@ -123,8 +123,57 @@ fizzBuzz([9, 25]);
 
 // Desafio 9
 function encode(strCode) {
-  // seu códgio aqui
+  let encoded = '';
+  for (let index = 0; index < strCode.length; index += 1) {
+    switch (true) {
+    case strCode[index] === 'a':
+      encoded += 1;
+      break;
+    case strCode[index] === 'e':
+      encoded += 2;
+      break;
+    case strCode[index] === 'i':
+      encoded += 3;
+      break;
+    case strCode[index] === 'o':
+      encoded += 4;
+      break;
+    case strCode[index] === 'u':
+      encoded += 5;
+      break;
+    default:
+      encoded += strCode[index];
+    }
+  }
+  console.log(encoded);
 }
+// Teste encode
+encode('hi there!');
+
 function decode(strDecode) {
-  // seu código aqui
+  let decoded = '';
+  for (let index = 0; index < strDecode.length; index += 1) {
+    switch (true) {
+    case strDecode[index] === '1':
+      decoded += 'a';
+      break;
+    case strDecode[index] === '2':
+      decoded += 'e';
+      break;
+    case strDecode[index] === '3':
+      decoded += 'i';
+      break;
+    case strDecode[index] === '4':
+      decoded += 'o';
+      break;
+    case strDecode[index] === '5':
+      decoded += 'u';
+      break;
+    default:
+      decoded += strDecode[index];
+    }
+  }
+  console.log(decoded);
 }
+// Teste decode
+decode('h3 th2r2!');
