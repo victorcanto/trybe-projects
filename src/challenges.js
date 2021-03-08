@@ -87,12 +87,12 @@ function catAndMouse(mouse, cat1, cat2) {
   let cat1Position = Math.abs(mouse - cat1);
   let cat2Position = Math.abs(mouse - cat2);
   if (cat1Position > cat2Position) {
-    return 'cat1';
+    return 'cat2';
   }
   if (cat1Position === cat2Position) {
     return 'os gatos trombam e o rato foge';
   }
-  return 'cat2';
+  return 'cat1';
 }
 // Desafio 7 - Teste ok
 console.log(catAndMouse(10, 3, 2));
