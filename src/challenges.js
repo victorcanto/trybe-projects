@@ -177,3 +177,16 @@ function decode(strDecode) {
 }
 // Teste decode
 console.log(decode('h3 th2r2!'));
+
+module.exports = {
+  calcArea,
+  catAndMouse,
+  compareTrue,
+  concatName,
+  decode,
+  encode,
+  fizzBuzz,
+  footballPoints,
+  highestCount,
+  splitSentence,
+};
