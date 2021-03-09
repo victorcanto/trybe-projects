@@ -1,3 +1,5 @@
+const { TestScheduler } = require('@jest/core');
+
 // Desafio 10
 function techList(arrTechList, name) {
   if (arrTechList.length === 0) {
@@ -25,29 +27,31 @@ function generatePhoneNumber(arrNumbers) {
   }
   for (let index = 0; index < arrNumbers.length; index += 1) {
     let repeatCounter = 0;
-    for (
-      let indexRepeatCounter = 0;
-      indexRepeatCounter < arrNumbers.length;
-      indexRepeatCounter += 1
-    ) {
+    for (let indexRepeatCounter = 0; indexRepeatCounter < arrNumbers.length; indexRepeatCounter += 1) {
       if (arrNumbers[index] === arrNumbers[indexRepeatCounter]) {
         repeatCounter += 1;
       }
       if (arrNumbers[indexRepeatCounter] < 0 || arrNumbers[indexRepeatCounter] > 9 || repeatCounter >= 3) {
         return 'não é possível gerar um número de telefone com esses valores';
-      } else {
-        phoneNumber = `(${arrNumbers[0]}${arrNumbers[1]}) ${arrNumbers[2]}${arrNumbers[3]}${arrNumbers[4]}${arrNumbers[5]}${arrNumbers[6]}-${arrNumbers[7]}${arrNumbers[8]}${arrNumbers[9]}${arrNumbers[10]}`;
       }
+      phoneNumber = `(${arrNumbers[0]}${arrNumbers[1]}) ${arrNumbers[2]}${arrNumbers[3]}${arrNumbers[4]}${arrNumbers[5]}${arrNumbers[6]}-${arrNumbers[7]}${arrNumbers[8]}${arrNumbers[9]}${arrNumbers[10]}`;
     }
   }
   return phoneNumber;
 }
 // Desafio 11 - Teste
 console.log(generatePhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1]));
+
 // Desafio 12
-function triangleCheck() {
-  // seu código aqui
+function triangleCheck(lineA, lineB, lineC) {
+  if (lineA < (lineB + lineC) && lineA > Math.abs(lineB - lineC) && lineB < (lineA + lineC) && lineB > Math.abs(lineA - lineC) && lineC < (lineA + lineB) && lineC > Math.abs(lineA - lineB)) {
+    return true;
+  }
+  return false;
 }
+// Desafio 12 - Teste
+console.log(triangleCheck(10, 14, 8)); // true
+console.log(triangleCheck(10, 2, 8)); // false
 
 // Desafio 13
 function hydrate() {
