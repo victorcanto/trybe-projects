@@ -1,5 +1,3 @@
-const { TestScheduler } = require('@jest/core');
-
 // Desafio 10
 function techList(arrTechList, name) {
   if (arrTechList.length === 0) {
@@ -7,7 +5,6 @@ function techList(arrTechList, name) {
   }
   let listOfTechs = [];
   arrTechList.sort();
-
   for (let index in arrTechList) {
     listOfTechs.push({
       tech: arrTechList[index],
@@ -44,7 +41,7 @@ console.log(generatePhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1]));
 
 // Desafio 12
 function triangleCheck(lineA, lineB, lineC) {
-  if (lineA < (lineB + lineC) && lineA > Math.abs(lineB - lineC) && lineB < (lineA + lineC) && lineB > Math.abs(lineA - lineC) && lineC < (lineA + lineB) && lineC > Math.abs(lineA - lineB)) {
+  if (lineA < lineB + lineC && lineA > Math.abs(lineB - lineC) && lineB < lineA + lineC && lineB > Math.abs(lineA - lineC) && lineC < lineA + lineB && lineC > Math.abs(lineA - lineB)) {
     return true;
   }
   return false;
