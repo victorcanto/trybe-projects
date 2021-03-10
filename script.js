@@ -19,6 +19,7 @@ function selectColor() {
 }
 selectColor();
 
+// // Resolução do requesito 8 em andamento...
 // function changePixelColor() {
 //   pixels.forEach((pixel) => {
 //     pixel.addEventListener('click', (_event) => {
@@ -32,7 +33,7 @@ function clearBoard() {
   const clearBtn = document.getElementById('clear-board');
   clearBtn.addEventListener('click', (_event) => {
     for (let index = 0; index < pixels.length; index += 1) {
-      pixels[index].style.backgroundColor = 'white';
+      pixels[index].style.background = 'white';
     }
   });
 }
