@@ -1,5 +1,3 @@
-/* eslint-disable sonarjs/cognitive-complexity */
-/* eslint-disable no-param-reassign */
 window.onload = function start() {
   const defaultColor = document.querySelector('.black');
   defaultColor.classList.add('selected');
@@ -19,7 +17,6 @@ function selectColor() {
   });
 }
 selectColor();
-// Conclusão do requesito 8 em andamento...
 function changePixelColor() {
   pixels.forEach((pixel) => {
     pixel.addEventListener('click', (event) => {
