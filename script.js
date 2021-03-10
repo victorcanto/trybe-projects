@@ -3,6 +3,8 @@ window.onload = function start() {
   defaultColor.classList.add('selected');
 };
 const colorsPalette = document.querySelectorAll('.color');
+const pixels = document.querySelectorAll('.pixel');
+// const arrColors = ['black', 'red', 'yellow', 'green'];
 // Resolvi o problema usando essa ref: https://flaviocopes.com/how-to-add-event-listener-multiple-elements-javascript/
 function selectColor() {
   colorsPalette.forEach((color) => {
@@ -16,3 +18,22 @@ function selectColor() {
   });
 }
 selectColor();
+
+// function changePixelColor() {
+//   pixels.forEach((pixel) => {
+//     pixel.addEventListener('click', (_event) => {
+//       pixel.style.backgroundColor = 'black';
+//     });
+//   });
+// }
+// changePixelColor();
+
+function clearBoard() {
+  const clearBtn = document.getElementById('clear-board');
+  clearBtn.addEventListener('click', (_event) => {
+    for (let index = 0; index < pixels.length; index += 1) {
+      pixels[index].style.backgroundColor = 'white';
+    }
+  });
+}
+clearBoard();
