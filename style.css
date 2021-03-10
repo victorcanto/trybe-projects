@@ -4,15 +4,18 @@
 } */
 
 body {
-  background-color: cadetblue;
+  background-color: rgb(79, 0, 98);
   position: relative;
+}
+
+#title {
+  color: white;
 }
 
 .color {
   display: table-cell;
   width: 50px;
   height: 50px;
-  background-color: red;
   border: 1px solid black;
 }
 
