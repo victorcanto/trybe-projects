@@ -4,14 +4,14 @@ window.onload = function start() {
 };
 const colorsPalette = document.querySelectorAll('.color');
 const pixels = document.querySelectorAll('.pixel');
+
 // Resolvi o problema usando essa ref: https://flaviocopes.com/how-to-add-event-listener-multiple-elements-javascript/
 function selectColor() {
   colorsPalette.forEach((color) => {
     color.addEventListener('click', (_event) => {
-      colorsPalette[0].classList.remove('selected');
-      colorsPalette[1].classList.remove('selected');
-      colorsPalette[2].classList.remove('selected');
-      colorsPalette[3].classList.remove('selected');
+      for (let index = 0; index < colorsPalette.length; index += 1) {
+        colorsPalette[index].classList.remove('selected');
+      }
       color.classList.add('selected');
     });
   });
@@ -23,7 +23,7 @@ selectColor();
 //   // const cssProp = window.getComputedStyle(selected).getPropertyValue('background-color');
 //   pixels.forEach((pixel) => {
 //     pixel.addEventListener('click', (_event) => {
-//       pixel.style.backgroundColor = 'black';
+//       pixel.style.backgroundColor = 'black'; // Para testar requesito 9
 //     });
 //   });
 // }
