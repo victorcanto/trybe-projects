@@ -18,22 +18,24 @@ function selectColor() {
 }
 selectColor();
 // Conclusão do requesito 8 em andamento...
-// function changePixelColor() {
+function changePixelColor() {
 //   // const selected = document.querySelector('.selected');
 //   // const cssProp = window.getComputedStyle(selected).getPropertyValue('background-color');
-//   pixels.forEach((pixel) => {
-//     pixel.addEventListener('click', (_event) => {
-//       pixel.style.backgroundColor = 'black'; // Para testar requesito 9
-//     });
-//   });
-// }
-// changePixelColor();
+  pixels.forEach((pixel) => {
+    pixel.addEventListener('click', (_event) => {
+      pixel.style.backgroundColor = 'black'; // Para testar requesito 9
+    });
+  });
+}
+changePixelColor();
 
 function clearBoard() {
   const clearBtn = document.getElementById('clear-board');
   clearBtn.addEventListener('click', (_event) => {
     for (let index = 0; index < pixels.length; index += 1) {
-      pixels[index].style.backgroundColor = 'white';
+      if (pixels[index].style.backgroundColor !== 'rgb(255, 255, 255))') {
+        pixels[index].style.backgroundColor = 'rgb(255, 255, 255)';
+      }
       colorsPalette.forEach((color) => {
         if (color.classList.contains('selected')) {
           color.classList.remove('selected');
