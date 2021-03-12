@@ -8,9 +8,24 @@ createTaskBtn.addEventListener('click', () => {
     taskListItem.innerHTML = newTask.value;
     taskList.appendChild(taskListItem);
   }
-  function clearEntry() {
-    newTask.value = '';
-  }
   addNewTask();
   clearEntry();
+  changeItemBackground();
 });
+
+function clearEntry() {
+  newTask.value = '';
+}
+// clearEntry();
+
+function changeItemBackground() {
+  const tasks = document.querySelectorAll('li');
+  tasks.forEach((task) => {
+    task.addEventListener('click', (event) => {
+      for (let index = 0; index < tasks.length; index += 1) {
+        tasks[index].style.backgroundColor = 'transparent';
+      }
+      event.target.style.backgroundColor = 'rgb(128,128,128)';
+    });
+  });
+}
