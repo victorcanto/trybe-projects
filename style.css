@@ -38,5 +38,9 @@
 
 .right-content form {
   display: flex;
+  flex-direction: column;
 }
 
+.name {
+  display: flex;
+}
