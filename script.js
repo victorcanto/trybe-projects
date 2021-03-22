@@ -20,17 +20,17 @@ function validateForm() {
   }
 }
 
-const registerFacebook = document.querySelector('#facebook-register'); 
+const registerFacebook = document.querySelector('#facebook-register');
 registerFacebook.addEventListener('click', validateForm);
 
 function gender() {
   const genderOther = document.querySelector('.other');
   genderOther.addEventListener('click', () => {
-      const newInput = document.createElement('input');
-      newInput.type = 'text';
-      newInput.name = 'gender-custom';
-      newInput.placeholder = 'Gênero';
-      document.querySelector('.gender').appendChild(newInput);
-    });
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.name = 'gender-custom';
+    newInput.placeholder = 'Gênero';
+    document.querySelector('.gender').appendChild(newInput);
+  });
 }
 gender();
