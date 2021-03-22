@@ -23,13 +23,22 @@ function validateForm() {
 const registerFacebook = document.querySelector('#facebook-register');
 registerFacebook.addEventListener('click', validateForm);
 
-// function gender() {
-//   const genderOther = document.getElementById('other');
-//   genderOther.addEventListener('click', () => {
-//     const newInput = document.createElement('input');
-//     newInput.type = 'text';
-//     newInput.name = 'gender-custom';
-//     newInput.placeholder = 'Gênero';
-//     genderOther.classList.toggle('selected');
-// }
-// gender();
+function gender() {
+  const genderOther = document.getElementById('other');
+  const genderDiv = document.querySelector('.gender');
+  genderOther.addEventListener('click', () => {
+    const newInputSelected = document.querySelectorAll('.gender-other');
+    for (let index = 0; index < newInputSelected.length; index += 1) {
+      if (newInputSelected[index].classList.contains('gender-other')) {
+        newInputSelected[index].remove();
+      }
+    }
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.className = 'gender-other';
+    newInput.name = 'gender-custom';
+    newInput.placeholder = 'Gênero';
+    genderDiv.appendChild(newInput);
+  });
+}
+gender();
