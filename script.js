@@ -19,16 +19,18 @@ function validateForm() {
     }
   }
 }
-document.querySelector('#facebook-register').addEventListener('click', validateForm);
+
+const registerFacebook = document.querySelector('#facebook-register'); 
+registerFacebook.addEventListener('click', validateForm);
 
 function gender() {
   const genderOther = document.querySelector('.other');
-  genderOther.addEventListener('click', function createInput() {
-    const newInput = document.createElement('input');
-    newInput.type = 'text';
-    newInput.name = 'gender-custom';
-    newInput.placeholder = 'Gênero';
-    document.querySelector('.gender').appendChild(newInput);
-  });
+  genderOther.addEventListener('click', () => {
+      const newInput = document.createElement('input');
+      newInput.type = 'text';
+      newInput.name = 'gender-custom';
+      newInput.placeholder = 'Gênero';
+      document.querySelector('.gender').appendChild(newInput);
+    });
 }
 gender();
