@@ -7,5 +7,9 @@
 .top-bar {
   display: flex;
   background-color: rgb(66, 103, 178);
-  padding: 15px;
+  justify-content: space-between;
+}
+
+.facebook-login {
+  display: flex;
 }
