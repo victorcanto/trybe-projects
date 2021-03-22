@@ -44,3 +44,8 @@
 .name {
   display: flex;
 }
+
+.date-birth {
+  display: flex;
+  flex-direction: column;
+}
