@@ -12,6 +12,7 @@
 
 .facebook-login {
   display: flex;
+  align-self: center;
 }
 
 .form-group {
@@ -45,7 +46,8 @@
   display: flex;
 }
 
-.date-birth {
+.birth-date {
   display: flex;
   flex-direction: column;
 }
+

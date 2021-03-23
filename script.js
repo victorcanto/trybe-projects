@@ -1,44 +1,76 @@
-const buttonLogin = document.getElementById('button-login');
+const loginBtn = document.getElementById('button-login');
 const emailAndPhone = document.getElementById('user-email-phone');
+const registerBtn = document.getElementById('facebook-register');
 
 function alertValueLogin() {
   const emailAndPhoneValue = emailAndPhone.value;
   alert(emailAndPhoneValue);
 }
-buttonLogin.addEventListener('click', alertValueLogin);
+loginBtn.addEventListener('click', alertValueLogin);
 
 function validateForm() {
-  const input = document.querySelectorAll('.right-content input');
-  for (let index = 0; index < input.length; index += 1) {
-    const inputsForm = input[index].value;
-    if (inputsForm === '') {
-      const validate = document.querySelector('.new-account-form');
-      const message = document.createElement('div');
-      message.innerHTML = `${input[index].name}Campos inválidos`;
-      validate.appendChild(message);
+  const entries = document.querySelectorAll('.right-content input');
+  for (let index = 0; index < entries.length; index += 1) {
+    const formEntries = entries[index].value;
+    if (formEntries.length === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function validateRadios() {
+  const radios = document.getElementsByName('gender');
+  for (let index = 0; index < radios.length; index += 1) {
+    if (!radios[index].checked) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkForm(e) {
+  e.preventDefault();
+  const invalidFieldMessage = document.querySelectorAll('.invalid-message');
+  for (let index = 0; index < invalidFieldMessage.length; index += 1) {
+    if (invalidFieldMessage[index].classList.contains('invalid-message')) {
+      invalidFieldMessage[index].remove();
+    }
+  }
+  const newAccount = document.querySelector('.new-account-form');
+  if (!validateForm() && !validateRadios()) {
+    const emptyInputMessage = document.createElement('div');
+    emptyInputMessage.innerHTML = 'Campos inválidos';
+    emptyInputMessage.className = 'invalid-message';
+    newAccount.appendChild(emptyInputMessage);
+  }
+}
+registerBtn.addEventListener('click', checkForm);
+
+function addNewGender() {
+  const genderDiv = document.querySelector('.gender');
+  const newGenderSelected = document.querySelectorAll('.gender-other');
+  for (let index = 0; index < newGenderSelected.length; index += 1) {
+    newGenderSelected[index].remove();
+  }
+  const newGender = document.createElement('input');
+  newGender.type = 'text';
+  newGender.className = 'gender-other';
+  newGender.name = 'gender-custom';
+  newGender.placeholder = 'Gênero';
+  genderDiv.appendChild(newGender);
+}
+
+function removeNewGender() {
+  const inputOther = document.querySelectorAll('.gender-other');
+  for (let index = 0; index < inputOther.length; index += 1) {
+    if (inputOther[index].classList.contains('gender-other')) {
+      inputOther[index].remove();
     }
   }
 }
 
-const registerFacebook = document.querySelector('#facebook-register');
-registerFacebook.addEventListener('click', validateForm);
-
-function gender() {
-  const genderOther = document.getElementById('other');
-  const genderDiv = document.querySelector('.gender');
-  genderOther.addEventListener('click', () => {
-    const newInputSelected = document.querySelectorAll('.gender-other');
-    for (let index = 0; index < newInputSelected.length; index += 1) {
-      if (newInputSelected[index].classList.contains('gender-other')) {
-        newInputSelected[index].remove();
-      }
-    }
-    const newInput = document.createElement('input');
-    newInput.type = 'text';
-    newInput.className = 'gender-other';
-    newInput.name = 'gender-custom';
-    newInput.placeholder = 'Gênero';
-    genderDiv.appendChild(newInput);
-  });
-}
-gender();
+window.onload = function enableFunctions() {
+  addNewGender();
+  removeNewGender();
+};
