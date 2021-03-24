@@ -18,6 +18,7 @@ function validateForm() {
   }
   return true;
 }
+validateForm();
 
 function validateRadios() {
   const radios = document.getElementsByName('gender');
@@ -28,9 +29,9 @@ function validateRadios() {
   }
   return true;
 }
+validateRadios();
 
-function checkForm(e) {
-  e.preventDefault();
+function checkForm() {
   const invalidFieldMessage = document.querySelectorAll('.invalid-message');
   for (let index = 0; index < invalidFieldMessage.length; index += 1) {
     if (invalidFieldMessage[index].classList.contains('invalid-message')) {
@@ -43,9 +44,11 @@ function checkForm(e) {
     emptyInputMessage.innerHTML = 'Campos inválidos';
     emptyInputMessage.className = 'invalid-message';
     newAccount.appendChild(emptyInputMessage);
+    return false;
   }
+  return true;
 }
-registerBtn.addEventListener('click', checkForm);
+// registerBtn.addEventListener('click', checkForm);
 
 function addNewGender() {
   const genderDiv = document.querySelector('.gender');
@@ -69,8 +72,41 @@ function removeNewGender() {
     }
   }
 }
+// source: https://rozolin.blogspot.com/2013/07/como-pegar-o-valor-do-radio-selecionado.html?m=1
+function getRadioValue() {
+  const radios = document.getElementsByName('gender');
+  for (let index = 0; index < radios.length; index += 1) {
+    if (radios[index].checked) {
+      return radios[index].value;
+    }
+  }
+  return null;
+}
+getRadioValue();
 
 window.onload = function enableFunctions() {
   addNewGender();
   removeNewGender();
 };
+
+function removeRightContent(e) {
+  e.preventDefault();
+  if (checkForm() === true) {
+    const rContent = document.querySelector('.right-content');
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
+    const email = document.getElementById('email').value;
+    const birthDate = document.getElementById('birthdate').value;
+    const genderValue = getRadioValue();
+    rContent.innerHTML = `Olá, ${firstname} ${lastname}.
+    <br>
+     ${email}
+     <br>
+     ${birthDate}
+     <br>
+     ${genderValue}`;
+    return true;
+  }
+  return false;
+}
+registerBtn.addEventListener('click', removeRightContent);
