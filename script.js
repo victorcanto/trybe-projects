@@ -50,7 +50,7 @@ function checkForm() {
       invalidFieldMessage[index].remove();
     }
   }
-  const newAccount = document.querySelector('.new-account-form');
+  const newAccount = document.getElementById('form2');
   if (!validateForm() && !validateRadios()) {
     const emptyInputMessage = document.createElement('div');
     emptyInputMessage.innerHTML = 'Campos inválidos';
@@ -88,16 +88,13 @@ function removeRightContent(e) {
   e.preventDefault();
   if (checkForm() === true) {
     const rContent = document.querySelector('.right-content');
-    const firstname = document.getElementById('firstname').value;
-    const lastname = document.getElementById('lastname').value;
-    const email = document.getElementById('email').value;
-    const birthDate = document.getElementById('birthdate').value;
+    const form2 = document.getElementById('form2');
     const genderValue = getRadioValue();
-    rContent.innerHTML = `Olá, ${firstname} ${lastname}.
+    rContent.innerHTML = `Olá, ${form2.firstname.value} ${form2.lastname.value}
     <br>
-     ${email}
+     ${form2.phone_email.value}
      <br>
-     ${birthDate}
+     ${form2.birthdate.value}
      <br>
      ${genderValue}`;
     return true;
