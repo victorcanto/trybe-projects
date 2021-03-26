@@ -24,12 +24,8 @@ const average = (arr) => {
     n = arr.length;
     result = Math.round(sum / n);
   }
-  if (sum % 2 === 1 && n % 2 === 0) {
-    return undefined;
-  }
-  if (arr === [""]) {
-    return undefined;
-  }
+  sum % 2 === 1 && n % 2 === 0 ? undefined : result;
+  arr === [""] ? undefined : result;
   return result;
 };
 
