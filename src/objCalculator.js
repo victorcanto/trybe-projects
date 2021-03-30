@@ -12,6 +12,5 @@ const calculator = {
     return int1 - int2;
   },
 };
-console.log(calculator.div(5, 2))
 
 module.exports = calculator;
