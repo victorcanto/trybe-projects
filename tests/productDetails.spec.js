@@ -1,8 +1,8 @@
 /* eslint-disable max-len*/
 /* eslint-disable no-unused-vars */
 
-const assert = require('assert');
-const productDetails = require('../src/productDetails');
+const assert = require("assert");
+const productDetails = require("../src/productDetails");
 
 /*
   Dadas duas strings que representam nomes de produtos, retorne um array contendo dois objetos com os detalhes dos respectivos produtos.
@@ -31,14 +31,14 @@ const productDetails = require('../src/productDetails');
   OBS: Lembre-se que você não precisa se preocupar com o describe e o it por enquanto, isso será aprendido posteriormente.
 */
 
-describe('#productDetails', () => {
-  it('tests the function has the correct behaviour', () => {
-    assert.fail();
-    // ESCREVA SEUS TESTES ABAIXO:
-    // Teste que o retorno da função é um array.
-    // Teste que o array retornado pela função contém dois itens dentro.
-    // Teste que os dois itens dentro do array retornado pela função são objetos.
-    // Teste que os dois objetos são diferentes entre si.
-    // (Difícil) Teste que os dois productIds terminam com 123.
+describe("#productDetails", () => {
+  const p1 = productDetails()[0].name;
+  const p2 = productDetails()[1].name;
+  it("tests the function has the correct behaviour", () => {
+    assert.strictEqual(typeof productDetails(), 'object');
+    assert.strictEqual(productDetails().length, 2);
+    assert.strictEqual(typeof productDetails()[0] === 'object' && typeof productDetails()[1] === 'object', true);
+    assert.strictEqual(productDetails()[0] !== productDetails()[1], true);
+    assert.strictEqual(productDetails(p1, p2)[0].details.productId === `${p1}123`  && productDetails()[1].details.productId === `${p2}123`, true);
   });
 });
