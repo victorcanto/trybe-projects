@@ -1,8 +1,3 @@
-/* eslint-disable no-var */
-/* eslint-disable block-scoped-var */
-/* eslint-disable no-redeclare */
-/* eslint-disable vars-on-top */
-
 /*
   A função myCounter possui dois loops aninhados que inserem valores dentro de um array.
   Como podemos perceber, eles vão adicionando valores ao array até sua condição de parada.
