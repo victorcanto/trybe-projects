@@ -37,8 +37,16 @@ describe('#productDetails', () => {
   it('tests the function has the correct behaviour', () => {
     assert.strictEqual(typeof productDetails(), 'object');
     assert.strictEqual(productDetails().length, 2);
-    assert.strictEqual(typeof productDetails()[0] === 'object' && typeof productDetails()[1] === 'object', true);
+    assert.strictEqual(
+      typeof productDetails()[0] === 'object'
+        && typeof productDetails()[1] === 'object',
+      true,
+    );
     assert.strictEqual(productDetails()[0] !== productDetails()[1], true);
-    assert.strictEqual(productDetails(p1, p2)[0].details.productId === `${p1}123` && productDetails()[1].details.productId === `${p2}123`, true);
+    assert.strictEqual(
+      productDetails(p1, p2)[0].details.productId === `${p1}123`
+        && productDetails()[1].details.productId === `${p2}123`,
+      true,
+    );
   });
 });
