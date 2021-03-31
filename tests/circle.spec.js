@@ -28,8 +28,8 @@ describe('#circle', () => {
     assert.strictEqual(typeof circle(1), 'object');
     assert.strictEqual(Object.entries(circle(1)).length, 3);
     assert.strictEqual(circle(), undefined);
-    assert.strictEqual(Object.values(circle(2))[2], '13');
-    assert.strictEqual(Object.values(circle(3))[1], '28');
-    assert.deepStrictEqual(circle(3), { area: '28', circumference: '19', radius: 3 });
+    assert.strictEqual(Object.values(circle(2))[2], 2 * 3.14 * 2);
+    assert.strictEqual(parseFloat(Object.values(circle(3))[1].toPrecision(4)), 3.14 * 3 ** 2);
+    assert.deepStrictEqual(circle(3), { radius: 3, area: 3.14 * 3 * 3, circumference: 18.84 });
   });
 });
