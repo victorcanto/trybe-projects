@@ -60,42 +60,51 @@ function animalCount(species) {
   return animalFound.residents.length;
 }
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // seu código aqui
+}
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function animalMap(options) {
+  // seu código aqui
+}
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // seu código aqui
+}
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  const manager = data.employees.find(({ id: managerId }) => managerId === id);
+  const identifiedAnimal = data.animals.find(
+    ({ id: animalId }) => animalId === manager.responsibleFor[0],
+  );
+  const oldAnimalAge = identifiedAnimal.residents.reduce(
+    (acc, { age }) => (acc > age ? acc : age),
+    0,
+  );
+  const animalObj = identifiedAnimal.residents.find(({ age }) => age === oldAnimalAge);
+  return [animalObj.name, animalObj.sex, animalObj.age];
+}
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function increasePrices(percentage) {
+  // seu código aqui
+}
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function employeeCoverage(idOrName) {
+  // seu código aqui
+}
 
 module.exports = {
-  // entryCalculator,
-  // schedule,
+  entryCalculator,
+  schedule,
   animalCount,
-  // animalMap,
+  animalMap,
   animalsByIds,
   employeeByName,
-  // employeeCoverage,
+  employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
-  // oldestFromFirstSpecies,
-  // increasePrices,
+  oldestFromFirstSpecies,
+  increasePrices,
   createEmployee,
 };
