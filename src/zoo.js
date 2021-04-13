@@ -69,13 +69,13 @@ function entryCalculator(entrants) {
   return sumOfTotalPrice;
 }
 
-function animalMap(options) {
-  // seu código aqui
-}
+// function animalMap(options) {
+//   // seu código aqui
+// }
 
 // Funcoes auxiliares da funcao schedule()
 
-const readableSchedule = (dayName) => {
+const readableSchedule = () => {
   const { hours } = data;
   const arrHours = Object.entries(hours);
   return arrHours
@@ -130,18 +130,18 @@ function increasePrices(percentage) {
   return data.prices;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// function employeeCoverage(idOrName) {
+//   // seu código aqui
+// }
 
 module.exports = {
   entryCalculator,
   schedule,
   animalCount,
-  animalMap,
+  // animalMap,
   animalsByIds,
   employeeByName,
-  employeeCoverage,
+  // employeeCoverage,
   addEmployee,
   isManager,
   animalsOlderThan,
