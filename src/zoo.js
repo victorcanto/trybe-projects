@@ -73,8 +73,37 @@ function animalMap(options) {
   // seu código aqui
 }
 
+// Funcoes auxiliares da funcao schedule()
+
+const readableSchedule = (dayName) => {
+  const { hours } = data;
+  const arrHours = Object.entries(hours);
+  return arrHours
+    .reduce((acc, [key, value]) => {
+      acc[key] = value.open !== 0
+        ? `Open from ${value.open}am until ${value.close - 12}pm`
+        : 'CLOSED';
+      return acc;
+    }, {});
+};
+
+const getDayAndTime = (dayName) => {
+  const { hours } = data;
+  const arrHours = Object.entries(hours);
+  if (dayName !== 'Monday') {
+    return arrHours.reduce((acc, [key, value]) => {
+      if (key === dayName) {
+        acc[dayName] = `Open from ${value.open}am until ${value.close - 12}pm`;
+      }
+      return acc;
+    }, {});
+  }
+  return { [dayName]: 'CLOSED' };
+};
+
 function schedule(dayName) {
-  // seu código aqui
+  if (!dayName) return readableSchedule();
+  return getDayAndTime(dayName);
 }
 
 function oldestFromFirstSpecies(id) {
