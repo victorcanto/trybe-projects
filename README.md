@@ -78,7 +78,7 @@ Seu projeto deve ter o comportamento parecido com o do gif abaixo quando finaliz
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd sd-010-a-project-shopping-cart`
 2. Instale as dependências
-  * npm install
+  * `npm install`
 3. Crie uma branch a partir da branch `master`
   * Verifique que você está na branch `master`
     * Exemplo: `git branch`
