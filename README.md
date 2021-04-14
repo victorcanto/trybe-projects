@@ -191,7 +191,7 @@ Você deve utilizar o _endpoint_:
 ```javascript
 "https://api.mercadolibre.com/sites/MLB/search?q=$QUERY"
 ```
-onde `$QUERY` deve ser o valor da sua busca. Para este trabalho, a busca deve ser **obrigatóriamente** o termo `computador`.
+onde `$QUERY` deve ser o valor da sua busca. Para este trabalho, a busca deve ser **obrigatoriamente** o termo `computador`.
 
 O retorno desse _endpoint_ será algo no formato `json`. Por exemplo, se for pesquisado "computador":
 ```json
