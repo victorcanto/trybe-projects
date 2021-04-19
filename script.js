@@ -62,7 +62,16 @@ function cartItemClickListener(e) {
   e.target.remove();
 }
 
-// const addCartPrice = async (price) => {
+const saveShoppingCart = () => {
+  const cartItems = document.querySelector('ol.cart__items');
+  localStorage.setItem('cart', cartItems.innerHTML);
+};
+
+const loadShoppingCart = () => {
+  const cartItems = document.querySelector('.cart__items');
+    cartItems.innerHTML = localStorage.getItem('cart');
+};
+// const addCartPrice = () => {
 
 // };
 
@@ -87,6 +96,7 @@ const addElementToCart = async (e) => {
   
   const cartItems = document.querySelector('.cart__items');
   cartItems.appendChild(cartElement);
+  saveShoppingCart();
 };
 
 const onClickItem = () => {
@@ -120,4 +130,5 @@ window.onload = function onload() {
   addElementToItems('computer').then(() => onClickItem());
   onClickEmptyCart();
   addLoadingMessage();
+  loadShoppingCart();
 };
