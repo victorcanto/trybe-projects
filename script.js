@@ -3,6 +3,7 @@ const fetchProductList = async (productName) => {
     `https://api.mercadolibre.com/sites/MLB/search?q=${productName}`,
   );
   const data = await response.json();
+  document.querySelector('.loading').remove();
   return data.results;
 };
 
@@ -107,7 +108,16 @@ const onClickEmptyCart = () => {
   clearCartBtn.addEventListener('click', clearShoppingCart);
 };
 
+const addLoadingMessage = () => {
+  const container = document.querySelector('.container');
+  const loadingMessage = document.createElement('section');
+  loadingMessage.innerHTML = 'loading...';
+  loadingMessage.className = 'loading';
+  container.appendChild(loadingMessage);
+};
+
 window.onload = function onload() {
   addElementToItems('computer').then(() => onClickItem());
   onClickEmptyCart();
+  addLoadingMessage();
 };
