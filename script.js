@@ -58,27 +58,6 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
-function cartItemClickListener(e) {
-  e.target.remove();
-}
-
-const saveShoppingCart = () => {
-  const cartItems = document.querySelector('ol.cart__items');
-  localStorage.setItem('cart', cartItems.innerHTML);
-};
-
-const loadShoppingCart = () => {
-  const cartItems = document.querySelector('.cart__items');
-    cartItems.innerHTML = localStorage.getItem('cart');
-};
-
-const createElementTotalPrice = () => {
-  const cart = document.querySelector('.cart');
-  const span = document.createElement('span');
-  span.className = 'total-price';
-  cart.appendChild(span);
-};
-
 const addCartPrice = async () => {
   const totalPrice = document.querySelector('.total-price');
   const cartItems = await document.querySelectorAll('.cart__item');
@@ -86,10 +65,28 @@ const addCartPrice = async () => {
   cartItems.forEach((item) => {
   //  ref: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/split
     const itemSplit = item.innerHTML.split('$')[1];
-    console.log(itemSplit);
     total += parseFloat(itemSplit);
   });
   totalPrice.innerHTML = total;
+};
+
+function cartItemClickListener(e) {
+  e.target.remove();
+  addCartPrice();
+}
+
+const saveShoppingCart = async () => {
+  const cartItems = document.querySelector('ol.cart__items');
+  await localStorage.setItem('cart', cartItems.innerHTML);
+  const totalPrice = await document.querySelector('span.total-price');
+  await localStorage.setItem('price', totalPrice.innerHTML);
+};
+
+const loadShoppingCart = async () => {
+  const cartItems = document.querySelector('.cart__items');
+    cartItems.innerHTML = await localStorage.getItem('cart');
+  const totalPrice = await document.querySelector('span.total-price');
+    totalPrice.innerHTML = await localStorage.getItem('price');
 };
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -152,5 +149,4 @@ window.onload = function onload() {
   onClickEmptyCart();
   addLoadingMessage();
   loadShoppingCart();
-  createElementTotalPrice();
 };
