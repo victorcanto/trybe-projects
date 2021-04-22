@@ -51,9 +51,20 @@ console.log(triangleCheck(10, 14, 8)); // true
 console.log(triangleCheck(10, 2, 8)); // false
 
 // Desafio 13
-function hydrate() {
-  // seu código aqui
+function hydrate(string) {
+  // source : https://www.horadecodar.com.br/2020/10/14/como-obter-apenas-os-numeros-de-uma-string-em-javascript/
+  const numbers = string
+    .replace(/[^0-9]/g, '')
+    .split('')
+    // eslint-disable-next-line radix
+    .map((number) => parseInt(number))
+    .reduce((acc, number) => acc + number);
+  if (numbers === 1) return `${numbers} copo de água`;
+  return `${numbers} copos de água`;
 }
+// Desafio 13 - Teste
+console.log(hydrate('1 cerveja'));
+console.log(hydrate('"1 cachaça, 5 cervejas e 1 copo de vinho"'));
 
 module.exports = {
   generatePhoneNumber,
