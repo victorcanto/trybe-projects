@@ -113,7 +113,11 @@ describe('Shopping Cart Project', () => {
         .last()
         .should('have.text', `SKU: ${results[last].id} | NAME: ${results[last].title} | PRICE: $${results[last].price}`)
   
-      cy.reload()
+      cy.reload({
+        onBeforeLoad(win) {
+          win.fetch = fetchMock;
+        },
+      });
       cy.get(CART_ITEMS)
         .children()
         .first()
