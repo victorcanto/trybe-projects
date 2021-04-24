@@ -1,5 +1,7 @@
 const mockFunctions = require('../src/mockFunctions');
 
+jest.mock('../src/mockFunctions');
+
 /*
 Criamos uma série de funções com eficiência duvidosa.
 Elas estão no arquivo 'src/mockFunctions.js'.
@@ -15,7 +17,19 @@ ATENÇÃO!!! Edite apenas este arquivo. Não altere os arquivos da pasta 'src'.
 */
 
 describe('verifica as funções e os mocks', () => {
-  // Crie suas mock functions aqui
+// source: https://jestjs.io/docs/mock-functions#mock-implementations
+// source: http://devfuria.com.br/logica-de-programacao/recursividade-fatorial/
+  const factorial = (n) => {
+    if (n === 0) return 1;
+    return n * factorial(n - 1);
+  };
+
+  mockFunctions.add.mockImplementation((a, b) => a + b);
+  mockFunctions.subtract.mockImplementation((a, b) => a - b);
+  mockFunctions.multiply.mockImplementation((a, b) => a * b);
+  mockFunctions.divide.mockImplementation((a, b) => a / b);
+  mockFunctions.power.mockImplementation((a, b) => a ** b);
+  mockFunctions.factorial.mockImplementation((n) => factorial(n));
 
   test('testa função add', () => {
     expect(mockFunctions.add(1, 2)).toEqual(3);
