@@ -11,6 +11,7 @@ ATENÇÃO!!! Edite apenas este arquivo. Não altere os arquivos da pasta 'src'.
 */
 
 describe('o retorno do telefonema', () => {
+  // source: https://jestjs.io/pt-BR/docs/asynchronous
   test('atende', async () => expect(answerPhone(true)).resolves.toBe('Oi!'));
   test('ocupado', async () =>
     expect(answerPhone(false)).rejects.toThrow(
