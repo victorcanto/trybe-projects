@@ -29,8 +29,9 @@ class MovieLibrary extends React.Component {
   }
 
   onBookmarkedChange({ target }) {
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
-      bookmarkedOnly: target.value,
+      bookmarkedOnly: value,
     });
   }
 
@@ -41,12 +42,26 @@ class MovieLibrary extends React.Component {
   }
 
   onClick(currentState) {
-    const { movies } = this.state;
-    movies.push(currentState);
+    this.setState((prevState) => ({
+      movies: [...prevState.movies, currentState],
+    }));
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    let { movies } = this.state;
+
+    if (bookmarkedOnly) {
+      movies = movies.filter((movie) => movie.bookmarked === true);
+    }
+    if (selectedGenre.length > 0) {
+      movies = movies.filter((movie) => movie.genre === selectedGenre);
+    }
+    if (searchText.length > 0) {
+      movies = movies.filter((movie) => movie.title.includes(searchText)
+        || movie.subtitle.includes(searchText)
+        || movie.storyline.includes(searchText));
+    }
     return (
       <div>
         <SearchBar
