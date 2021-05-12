@@ -21,13 +21,8 @@ class RatingImput extends React.Component {
 }
 
 RatingImput.propTypes = {
-  rating: PropTypes.number,
-  handleChange: PropTypes.func,
-};
-
-RatingImput.defaultProps = {
-  rating: 0,
-  handleChange: PropTypes.func,
+  rating: PropTypes.number.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default RatingImput;

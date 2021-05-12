@@ -21,13 +21,8 @@ class Image extends React.Component {
 }
 
 Image.propTypes = {
-  imagePath: PropTypes.string,
-  handleChange: PropTypes.func,
-};
-
-Image.defaultProps = {
-  imagePath: '',
-  handleChange: PropTypes.func,
+  imagePath: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default Image;

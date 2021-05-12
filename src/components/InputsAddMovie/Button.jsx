@@ -6,6 +6,7 @@ class Button extends React.Component {
     const { handleDataAndClearFields } = this.props;
     return (
       <button
+        className="add_movie_btn"
         type="submit"
         data-testid="send-button"
         onClick={ handleDataAndClearFields }
@@ -17,11 +18,7 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-  handleDataAndClearFields: PropTypes.func,
-};
-
-Button.defaultProps = {
-  handleDataAndClearFields: PropTypes.func,
+  handleDataAndClearFields: PropTypes.func.isRequired,
 };
 
 export default Button;
