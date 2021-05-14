@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CategoryFilter from '../components/CategoryFilter';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import CategoryFilter from '../components/CategoryFilter';
 import carrinho from './carrinho.png';
 
 class Main extends Component {
