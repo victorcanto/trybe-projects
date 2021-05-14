@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import CategoryFilter from '../components/CategoryFilter';
 
 class Main extends Component {
   render() {
     return (
       <div>
+        <CategoryFilter/>
         <form>
           <input type="text" />
         </form>
