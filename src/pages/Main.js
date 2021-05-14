@@ -5,7 +5,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <CategoryFilter/>
+        <CategoryFilter />
         <form>
           <input type="text" />
         </form>
