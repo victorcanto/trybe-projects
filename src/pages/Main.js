@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import carrinho from './carrinho.png';
 import ListItems from '../components/ListItems';
 import * as api from '../services/api';
 
@@ -56,9 +58,14 @@ export default class Main extends Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
+        <Link data-testid="shopping-cart-button" to="/shopping-cart">
+          <img src={ carrinho } alt="carrinho" />
+        </Link>
         <ListItems list={ list } />
       </div>
 
     );
   }
 }
+
+export default Main;
