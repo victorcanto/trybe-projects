@@ -4,7 +4,7 @@ import carrinho from './carrinho.png';
 import ListItems from '../components/ListItems';
 import * as api from '../services/api';
 
-export default class Main extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
 
