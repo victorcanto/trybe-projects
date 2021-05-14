@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import CategoryFilter from '../components/CategoryFilter';
 import carrinho from './carrinho.png';
 import ListItems from '../components/ListItems';
 import * as api from '../services/api';
@@ -38,6 +39,7 @@ class Main extends Component {
     console.log(list);
     return (
       <div>
+        <CategoryFilter />
         <form>
           <input
             data-testid="query-input"
