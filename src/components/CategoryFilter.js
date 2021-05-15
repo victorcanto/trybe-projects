@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import * as api from '../services/api';
+
 
 class CategoryFilter extends Component {
   constructor() {
     super();
     this.state = { categoryList: [] };
+    this.onclick = this.onclick.bind(this);
   }
 
   componentDidMount() {
@@ -17,17 +18,22 @@ class CategoryFilter extends Component {
     this.setState({ categoryList: dataCategories });
   }
 
+  onclick(id) {
+    const { fetchAPI } = this.props;
+    fetchAPI(id);
+  }
+
   render() {
     const { categoryList } = this.state;
     return (
-      <aside>
-        <nav>
+      <nav>
+        <ul>
           { categoryList
             .map(({ name, id }) => (
-              <Link to={ `./category/${name}` } data-testid="category" key={ id }>{ name }</Link>
+              <li onClick={ () => this.onclick(id) } data-testid="category" key={ id }>{ name }</li>
             )) }
-        </nav>
-      </aside>
+        </ul>
+      </nav>
     );
   }
 }

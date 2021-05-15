@@ -8,9 +8,6 @@ import * as api from '../services/api';
 class Main extends Component {
   constructor(props) {
     super(props);
-
-    // const { category } = this.props;
-
     this.state = {
       category: '',
       input: '',
@@ -19,7 +16,12 @@ class Main extends Component {
     this.changeState = this.changeState.bind(this);
   }
 
-  fetchAPI = async () => {
+  componentDidMount() {
+    this.fetchAPI();
+  }
+
+  fetchAPI = async (id = '') => {
+    this.setState({ category: id })
     const { category, input } = this.state;
     const response = await api.getProductsFromCategoryAndQuery(category, input);
     this.setState({
@@ -35,11 +37,9 @@ class Main extends Component {
 
   render() {
     const { input, list } = this.state;
-
-    console.log(list);
     return (
       <div>
-        <CategoryFilter />
+        <CategoryFilter fetchAPI={ this.fetchAPI } />
         <form>
           <input
             data-testid="query-input"
