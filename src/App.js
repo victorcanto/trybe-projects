@@ -9,6 +9,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={ Main } />
+        <Route path="/category/:" render={ (props) => <Main { ...props } /> } />
         <Route exact path="/shopping-cart" component={ ShoppingCart } />
       </Switch>
     </Router>

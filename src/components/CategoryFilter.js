@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import * as api from '../services/api';
 
 class CategoryFilter extends Component {
@@ -20,10 +21,12 @@ class CategoryFilter extends Component {
     const { categoryList } = this.state;
     return (
       <aside>
-        <ul>
+        <nav>
           { categoryList
-            .map(({ name, id }) => <li data-testid="category" key={ id }>{ name }</li>) }
-        </ul>
+            .map(({ name, id }) => (
+              <Link to={ `./category/${name}` } data-testid="category" key={ id }>{ name }</Link>
+            )) }
+        </nav>
       </aside>
     );
   }
