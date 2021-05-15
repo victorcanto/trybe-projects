@@ -21,7 +21,7 @@ class Main extends Component {
   }
 
   fetchAPI = async (id = '') => {
-    this.setState({ category: id })
+    this.setState({ category: id });
     const { category, input } = this.state;
     const response = await api.getProductsFromCategoryAndQuery(category, input);
     this.setState({

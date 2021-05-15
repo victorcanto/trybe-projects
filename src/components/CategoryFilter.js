@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
-
 
 class CategoryFilter extends Component {
   constructor() {
@@ -13,14 +13,14 @@ class CategoryFilter extends Component {
     this.fetchCategoryList();
   }
 
-  async fetchCategoryList() {
-    const dataCategories = await api.getCategories();
-    this.setState({ categoryList: dataCategories });
-  }
-
   onclick(id) {
     const { fetchAPI } = this.props;
     fetchAPI(id);
+  }
+
+  async fetchCategoryList() {
+    const dataCategories = await api.getCategories();
+    this.setState({ categoryList: dataCategories });
   }
 
   render() {
@@ -30,12 +30,21 @@ class CategoryFilter extends Component {
         <ul>
           { categoryList
             .map(({ name, id }) => (
-              <li onClick={ () => this.onclick(id) } data-testid="category" key={ id }>{ name }</li>
+              <button
+                type="button"
+                onClick={ () => this.onclick(id) }
+                data-testid="category"
+                key={ id }
+              >
+                { name }
+              </button>
             )) }
         </ul>
       </nav>
     );
   }
 }
+
+CategoryFilter.propTypes = { fetchAPI: PropTypes.func.isRequired };
 
 export default CategoryFilter;
