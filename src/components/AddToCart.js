@@ -8,8 +8,15 @@ export default class AddToCart extends Component {
   }
 
   addItem = () => {
+    let cart = [];
     const { item } = this.props;
-    localStorage.setItem('item', item.title);
+    if (localStorage.getItem('item') !== null) {
+      cart = JSON.parse(localStorage.getItem('item'));
+      cart.push(item);
+    } else {
+      cart.push(item);
+    }
+    localStorage.setItem('item', JSON.stringify(cart));
   }
 
   render() {
