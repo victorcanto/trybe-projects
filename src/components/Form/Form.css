@@ -1,0 +1,30 @@
+.rating{
+  display: flex;
+}
+
+.email-rating {
+  display: flex;
+}
+
+.star-input {
+  opacity: 0;
+}
+
+.star-font {
+  display: block;
+  cursor: pointer;
+  width: 100px;
+  height: 50px;
+  font-size: 30px;
+  transition: 0.3s;
+}
+
+.star-font:hover{
+  color: gold;
+  text-shadow: 0 0 0 10px black;
+}
+
+.star-input:checked ~ .star-font {
+  color: gold;
+}
+

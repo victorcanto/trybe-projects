@@ -4,6 +4,7 @@ import CategoryFilter from '../components/CategoryFilter';
 import carrinho from './carrinho.png';
 import ListItems from '../components/ListItems';
 import * as api from '../services/api';
+import Form from '../components/Form/Form';
 
 class Main extends Component {
   constructor(props) {
@@ -68,6 +69,7 @@ class Main extends Component {
           <img src={ carrinho } alt="carrinho" />
         </Link>
         <ListItems list={ list } />
+        <Form />
       </div>
 
     );
