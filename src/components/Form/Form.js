@@ -56,21 +56,20 @@ const Form = () => {
         </button>
       </form>
       <div className="content-container">
-        {starContent.map((elem) => (
-          <p key={ elem }>
-            (
-            {elem}
-            )
-            {elem === '1' ? 'estrela' : 'estrelas' }
-          </p>
-        ))}
-        {emailContent.map((elem) => (
+        {emailContent.map((elem, index) => (
           <div key={ elem }>
             <p>{elem}</p>
+            <p>
+              (
+              {starContent[index]}
+              )
+              {starContent[index] === '1' ? 'estrela' : 'estrelas' }
+              {starContent[index]}
+            </p>
           </div>
         ))}
-        {textContent.map((elem2) => (
-          <p key={ elem2 }>{elem2}</p>
+        {textContent.map((elem) => (
+          <p key={ elem }>{elem}</p>
         ))}
       </div>
     </>
