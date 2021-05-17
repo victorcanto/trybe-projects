@@ -6,14 +6,14 @@ class CategoryFilter extends Component {
   constructor() {
     super();
     this.state = { categoryList: [] };
-    this.onclick = this.onclick.bind(this);
+    this.sendId = this.sendId.bind(this);
   }
 
   componentDidMount() {
     this.fetchCategoryList();
   }
 
-  onclick(id) {
+  sendId(id) {
     const { fetchAPI } = this.props;
     fetchAPI(id);
   }
@@ -27,19 +27,17 @@ class CategoryFilter extends Component {
     const { categoryList } = this.state;
     return (
       <nav>
-        <ul>
-          { categoryList
-            .map(({ name, id }) => (
-              <button
-                type="button"
-                onClick={ () => this.onclick(id) }
-                data-testid="category"
-                key={ id }
-              >
-                { name }
-              </button>
-            )) }
-        </ul>
+        <aside>
+          {categoryList.map(({ name, id }) => (
+            <option
+              onClick={ () => this.sendId(id) }
+              data-testid="category"
+              key={ id }
+            >
+              {name}
+            </option>
+          ))}
+        </aside>
       </nav>
     );
   }

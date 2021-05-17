@@ -14,18 +14,21 @@ class Main extends Component {
       list: [],
     };
     this.changeState = this.changeState.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchAPI();
+  handleSubmit(e) {
+    e.preventDefault();
   }
 
-  fetchAPI = async (id = '') => {
-    this.setState({ category: id });
-    const { category, input } = this.state;
+  fetchAPI = async (id) => {
+    let { category } = this.state;
+    category = id;
+    const { input } = this.state;
     const response = await api.getProductsFromCategoryAndQuery(category, input);
     this.setState({
       list: response.results,
+      category,
     });
   }
 
@@ -39,8 +42,9 @@ class Main extends Component {
     const { input, list } = this.state;
     return (
       <div>
+        {/* --> Explicar para galera sobre as mudanças no componente CategoryFilter */}
         <CategoryFilter fetchAPI={ this.fetchAPI } />
-        <form>
+        <form onSubmit={ this.handleSubmit }>
           <input
             data-testid="query-input"
             type="text"
@@ -48,7 +52,7 @@ class Main extends Component {
             onChange={ this.changeState }
           />
           <button
-            type="button"
+            type="submit"
             data-testid="query-button"
             onClick={ this.fetchAPI }
           >
