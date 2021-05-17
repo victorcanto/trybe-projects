@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import AddToCart from './AddToCart';
 
 class ProductCard extends Component {
   render() {
@@ -10,6 +11,7 @@ class ProductCard extends Component {
         <h4>{ item.title }</h4>
         <img src={ item.thumbnail } alt="imágem do produto" />
         <p>{ item.price }</p>
+        <AddToCart item={ item } />
       </div>
 
     );
