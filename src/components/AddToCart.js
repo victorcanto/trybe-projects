@@ -20,10 +20,11 @@ export default class AddToCart extends Component {
   }
 
   render() {
+    const { classId } = this.props;
     return (
       <button
         type="button"
-        data-testid="product-add-to-cart"
+        data-testid={ classId }
         onClick={ () => this.addItem() }
       >
         Adicionar ao Carrinho
@@ -34,4 +35,5 @@ export default class AddToCart extends Component {
 
 AddToCart.propTypes = {
   item: PropTypes.objectOf(PropTypes.any).isRequired,
+  classId: PropTypes.string.isRequired,
 };

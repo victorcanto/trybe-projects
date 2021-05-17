@@ -19,7 +19,7 @@ class ProductCard extends Component {
             <p>{ item.price }</p>
           </div>
         </Link>
-        <AddToCart item={ item } />
+        <AddToCart item={ item } classId="product-add-to-cart" />
       </div>
     );
   }
