@@ -67,7 +67,12 @@ const Form = () => {
           </label>
           <Rating setStarCount={ saveStar } />
         </div>
-        <textarea onBlur={ saveText } className="text-area" id="text-area" />
+        <textarea
+          onBlur={ saveText }
+          className="text-area"
+          id="text-area"
+          data-testid="product-detail-evaluation"
+        />
         <button
           type="button"
           onClick={ sendEmail }
