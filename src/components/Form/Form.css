@@ -1,4 +1,4 @@
-.rating{
+.rating {
   display: flex;
 }
 
@@ -11,15 +11,15 @@
 }
 
 .star-font {
-  display: block;
   cursor: pointer;
-  width: 100px;
-  height: 50px;
+  display: block;
   font-size: 30px;
+  height: 50px;
   transition: 0.3s;
+  width: 100px;
 }
 
-.star-font:hover , .prev-star{
+.star-font:hover, .prev-star {
   color: gold;
 }
 
@@ -32,17 +32,17 @@
 }
 
 .stars {
-  font-size: 30px;
   color: gold;
+  font-size: 30px;
   text-shadow: 1px 1px 0 black;
 }
 
 .comment {
-  width: 300px;
-  height: auto;
   background-color: rgb(216, 216, 216);
+  height: auto;
+  width: 300px;
 }
 
-#text-area, .text-area {
+.text-area {
   word-wrap: break-word;
 }
