@@ -22,14 +22,34 @@ const Form = () => {
   };
 
   const saveText = (e) => setText([...text, e.target.value]);
+  const saveTextEmpty = () => (
+    setText([...text, document.getElementById('text-area').value])
+  );
 
   const saveStar = (id) => setStar([...star, id]);
 
+  const checkTextElem = () => {
+    const textElem = document.getElementById('text-area');
+    if (textElem.value === '') {
+      saveTextEmpty();
+    }
+  };
+
   const sendEmail = () => {
+    const textElem = document.getElementById('text-area');
     sendEmailContent([...email]);
+    checkTextElem();
     document.getElementById('email').value = '';
-    document.getElementById('text-area').value = '';
+    textElem.value = '';
     sendText();
+  };
+
+  const starsComment = (stars) => {
+    const array = [];
+    for (let index = 1; index <= stars; index += 1) {
+      array.push('★');
+    }
+    return <span className="stars">{array}</span>;
   };
 
   return (
@@ -47,7 +67,7 @@ const Form = () => {
           </label>
           <Rating setStarCount={ saveStar } />
         </div>
-        <textarea onBlur={ saveText } id="text-area" />
+        <textarea onBlur={ saveText } className="text-area" id="text-area" />
         <button
           type="button"
           onClick={ sendEmail }
@@ -57,20 +77,15 @@ const Form = () => {
       </form>
       <div className="content-container">
         {emailContent.map((elem, index) => (
-          <div key={ elem }>
+          <div key={ elem } className="comment">
             <p>{elem}</p>
             <p>
-              (
-              {starContent[index]}
-              )
-              {starContent[index] === '1' ? 'estrela' : 'estrelas' }
-              {starContent[index]}
+              {starsComment(starContent[index])}
             </p>
+            <p className="text-area">{textContent[index]}</p>
           </div>
         ))}
-        {textContent.map((elem) => (
-          <p key={ elem }>{elem}</p>
-        ))}
+
       </div>
     </>
   );

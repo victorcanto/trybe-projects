@@ -19,12 +19,30 @@
   transition: 0.3s;
 }
 
-.star-font:hover{
+.star-font:hover , .prev-star{
   color: gold;
-  text-shadow: 0 0 0 10px black;
+}
+
+.prev-star {
+  text-shadow: 5px 10px 50px rgb(214, 1, 1);
 }
 
 .star-input:checked ~ .star-font {
   color: gold;
 }
 
+.stars {
+  font-size: 30px;
+  color: gold;
+  text-shadow: 1px 1px 0 black;
+}
+
+.comment {
+  width: 300px;
+  height: auto;
+  background-color: rgb(216, 216, 216);
+}
+
+#text-area, .text-area {
+  word-wrap: break-word;
+}

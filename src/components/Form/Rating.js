@@ -4,7 +4,27 @@ import PropTypes from 'prop-types';
 import './Form.css';
 
 const Rating = (props) => {
-  const checkStart = (e) => props.setStarCount(e.target.id[4]);
+  const light = (id) => {
+    const stars = document.querySelectorAll('.star-font');
+    for (let i = 0; i < id - 1; i += 1) {
+      stars[i].classList.add('prev-star');
+    }
+  };
+
+  const off = () => {
+    const stars = document.querySelectorAll('.star-font');
+    for (let i = 0; i < stars.length; i += 1) {
+      stars[i].classList.remove('prev-star');
+    }
+  };
+
+  const checkStart = (e) => {
+    let id = 0;
+    props.setStarCount(e.target.id[4]);
+    id = parseInt(e.target.id[4], 10);
+    off();
+    light(id);
+  };
 
   return (
     <div className="rating">
