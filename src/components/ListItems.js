@@ -9,7 +9,9 @@ class ListItems extends Component {
     return (
       <div>
         {list.length === 0 ? <span>Nenhum produto foi encontrado</span>
-          : list.map((item) => <ProductCard item={ item } key={ item.id } />) }
+          : list.map((item) => (
+            <ProductCard item={ item } itemId={ item.id } key={ item.id } />
+          )) }
       </div>
 
     );

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AddToCart from '../components/AddToCart';
+import Form from '../components/Form/Form';
+import '../components/Form/Form.css';
 
 class ProductDetails extends Component {
   render() {
-    const { location: { itemCard } } = this.props;
+    const { location: { itemCard, itemId } } = this.props;
     const { title, price, thumbnail } = itemCard;
     return (
       <div>
@@ -29,6 +31,7 @@ class ProductDetails extends Component {
             </ul>
           </div>
         </div>
+        <Form itemId={ itemId } />
       </div>
     );
   }
@@ -41,6 +44,7 @@ ProductDetails.propTypes = {
       price: PropTypes.number.isRequired,
       thumbnail: PropTypes.string.isRequired,
     }).isRequired,
+    itemId: PropTypes.string.isRequired,
   }).isRequired,
 };
 export default ProductDetails;
