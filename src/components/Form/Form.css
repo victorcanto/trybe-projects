@@ -1,0 +1,48 @@
+.rating {
+  display: flex;
+}
+
+.email-rating {
+  display: flex;
+}
+
+.star-input {
+  opacity: 0;
+}
+
+.star-font {
+  cursor: pointer;
+  display: block;
+  font-size: 30px;
+  height: 50px;
+  transition: 0.3s;
+  width: 100px;
+}
+
+.star-font:hover, .prev-star {
+  color: gold;
+}
+
+.prev-star {
+  text-shadow: 5px 10px 50px rgb(214, 1, 1);
+}
+
+.star-input:checked ~ .star-font {
+  color: gold;
+}
+
+.stars {
+  color: gold;
+  font-size: 30px;
+  text-shadow: 1px 1px 0 black;
+}
+
+.comment {
+  background-color: rgb(216, 216, 216);
+  height: auto;
+  width: 300px;
+}
+
+.text-area {
+  word-wrap: break-word;
+}

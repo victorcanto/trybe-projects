@@ -5,13 +5,13 @@ import AddToCart from './AddToCart';
 
 class ProductCard extends Component {
   render() {
-    const { item } = this.props;
+    const { item, itemId } = this.props;
 
     return (
       <div>
         <Link
           data-testid="product-detail-link"
-          to={ { pathname: '/product-details', itemCard: item } }
+          to={ { pathname: '/product-details', itemCard: item, itemId } }
         >
           <div data-testid="product">
             <h4>{ item.title }</h4>
@@ -27,6 +27,7 @@ class ProductCard extends Component {
 
 ProductCard.propTypes = {
   item: PropTypes.objectOf(PropTypes.any).isRequired,
+  itemId: PropTypes.string.isRequired,
 };
 
 export default ProductCard;
