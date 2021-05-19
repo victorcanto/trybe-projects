@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ShowAddToCart extends Component {
   constructor(props) {
@@ -17,6 +18,12 @@ class ShowAddToCart extends Component {
       cart,
       values,
     };
+  }
+
+  componentWillUnmount() {
+    const { qtdeProduct, values } = this.state;
+    localStorage.setItem('qtd', JSON.stringify(qtdeProduct));
+    localStorage.setItem('totValue', JSON.stringify(values));
   }
 
   addValueByQuantify(index) {
@@ -126,7 +133,9 @@ class ShowAddToCart extends Component {
       <div>
         {this.renderCart()}
         {this.addTotalCartValue()}
-        <button type="submit">Finalizar compra</button>
+        <Link to="/checkout">
+          <button data-testid="checkout-products" type="submit">Finalizar compra</button>
+        </Link>
       </div>
     );
   }
