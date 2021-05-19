@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class ShowAddToCart extends Component {
   constructor(props) {
@@ -12,18 +12,21 @@ class ShowAddToCart extends Component {
       qtdeProduct = [...qtdeProduct, 1];
       values = [...values, cart[index].price];
     }
+    this.itemValues = this.itemValues.bind(this);
 
     this.state = {
       qtdeProduct,
       cart,
       values,
+      redirect: false,
     };
   }
 
-  componentWillUnmount() {
+  itemValues() {
     const { qtdeProduct, values } = this.state;
     localStorage.setItem('qtd', JSON.stringify(qtdeProduct));
     localStorage.setItem('totValue', JSON.stringify(values));
+    this.setState({ redirect: true });
   }
 
   addValueByQuantify(index) {
@@ -98,7 +101,6 @@ class ShowAddToCart extends Component {
 
   renderCart() {
     const { qtdeProduct, cart } = this.state;
-    console.log(cart[0]);
     return cart.map((item, index) => (
       <div key={ index }>
         <button type="button" onClick={ () => this.removeProduct(index) }>X</button>
@@ -129,13 +131,19 @@ class ShowAddToCart extends Component {
   }
 
   render() {
+    const { redirect } = this.state;
     return (
       <div>
         {this.renderCart()}
         {this.addTotalCartValue()}
-        <Link to="/checkout">
-          <button data-testid="checkout-products" type="submit">Finalizar compra</button>
-        </Link>
+        <button
+          onClick={ () => this.itemValues() }
+          data-testid="checkout-products"
+          type="submit"
+        >
+          Finalizar compra
+        </button>
+        { redirect && <Redirect to="/checkout" /> }
       </div>
     );
   }
