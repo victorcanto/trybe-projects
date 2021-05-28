@@ -1,24 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './utils';
+import renderWithRouter from './renderWithRouter';
+import { getPokemon, getLocationByPokemon, getMapByPokemon } from './utils';
 import App from '../App';
-import pokemons from '../data';
-
-const getPokemon = (pokemonID) => {
-  const int = parseInt(pokemonID, 10);
-  return pokemons.find(({ id }) => id === int);
-};
-
-const getLocationByPokemon = (pokemonID) => {
-  const pokemon = getPokemon(pokemonID);
-  return pokemon.foundAt.map(({ location }) => location);
-};
-
-const getMapByPokemon = (pokemonID) => {
-  const pokemon = getPokemon(pokemonID);
-  return pokemon.foundAt.map(({ map }) => map);
-};
 
 test('Detailed information about the selected Pokémon is shown on the screen.', () => {
   const { history } = renderWithRouter(<App />);

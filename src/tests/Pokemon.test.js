@@ -1,14 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './utils';
+import renderWithRouter from './renderWithRouter';
+import { getPokemon } from './utils';
 import App from '../App';
-import pokemons from '../data';
-
-const getPokemon = (pokemonID) => {
-  const int = parseInt(pokemonID, 10);
-  return pokemons.find(({ id }) => id === int);
-};
 
 test('The card is rendered with the information of a certain Pokémon', () => {
   renderWithRouter(<App />);

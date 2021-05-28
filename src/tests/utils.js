@@ -1,14 +1,16 @@
-import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { render } from '@testing-library/react';
+import pokemons from '../data';
 
-// source: https://app.betrybe.com/course/front-end/testes-automatizados-com-react-testing-library/rtl-testando-react-router/
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return ({
-    ...render(<Router history={ history }>{component}</Router>), history,
-  });
+export const getPokemon = (pokemonID) => {
+  const int = parseInt(pokemonID, 10);
+  return pokemons.find(({ id }) => id === int);
 };
 
-export default renderWithRouter;
+export const getLocationByPokemon = (pokemonID) => {
+  const pokemon = getPokemon(pokemonID);
+  return pokemon.foundAt.map(({ location }) => location);
+};
+
+export const getMapByPokemon = (pokemonID) => {
+  const pokemon = getPokemon(pokemonID);
+  return pokemon.foundAt.map(({ map }) => map);
+};
