@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddExpenseForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.renderCurrencyOptions = this.renderCurrencyOptions.bind(this);
+  }
+
+  renderCurrencyOptions(currencies) {
+    const array = currencies;
+    // source: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array
+    array.splice(1, 1); // remove USDT
+    return array.map(([currency]) => <option key={ currency }>{currency}</option>);
+  }
+
   render() {
+    const { currencies } = this.props;
     return (
       <form>
         <label htmlFor="expense-amount">
@@ -15,7 +30,7 @@ class AddExpenseForm extends Component {
         <label htmlFor="expense-currency">
           Moeda
           <select name="expense-currency" id="expense-currency">
-            <option value="brl">BRL</option>
+            {currencies.length !== 0 && this.renderCurrencyOptions(currencies)}
           </select>
         </label>
         <label htmlFor="payment-method">
@@ -42,3 +57,7 @@ class AddExpenseForm extends Component {
 }
 
 export default AddExpenseForm;
+
+AddExpenseForm.propTypes = {
+  currencies: PropTypes.arrayOf(PropTypes.array).isRequired,
+};

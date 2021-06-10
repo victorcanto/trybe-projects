@@ -1,8 +1,22 @@
-import USER_EMAIL from './actionTypes';
+import { USER_EMAIL, REQUEST_COINS, RECEIVE_COINS } from './actionTypes';
 
-const userAction = (payload) => ({
+export const userAction = (payload) => ({
   type: USER_EMAIL,
   payload,
 });
 
-export default userAction;
+export const requestCoins = () => ({
+  type: REQUEST_COINS,
+});
+
+export const receiveCoins = (payload) => ({
+  type: RECEIVE_COINS,
+  payload,
+});
+
+export const fetchCoins = () => (dispatch) => {
+  dispatch(requestCoins());
+  return fetch('https://economia.awesomeapi.com.br/json/all')
+    .then((res) => res.json())
+    .then((coins) => dispatch(receiveCoins(coins)));
+};
