@@ -7,7 +7,14 @@ export default class Value extends Component {
     return (
       <label htmlFor="expense-amount">
         Valor
-        <input type="text" id="expense-amount" name="value" value={ value } onChange={ handleInputChange } />
+        <input
+          type="text"
+          id="expense-amount"
+          name="value"
+          value={ value }
+          onChange={ handleInputChange }
+        />
+
       </label>
     );
   }
