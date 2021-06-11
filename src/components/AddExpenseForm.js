@@ -11,6 +11,7 @@ class AddExpenseForm extends Component {
     super(props);
 
     this.renderCurrencyOptions = this.renderCurrencyOptions.bind(this);
+    this.filterCurrencies = this.filterCurrencies.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
 
     this.state = {
@@ -31,11 +32,13 @@ class AddExpenseForm extends Component {
     });
   }
 
+  filterCurrencies(currencies) {
+    return currencies.filter((currency) => currency !== 'USDT');
+  }
+
   renderCurrencyOptions(currencies) {
-    const array = currencies;
-    // source: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array
-    array.splice(1, 1); // remove USDT
-    return array.map(([currency]) => <option key={ currency }>{currency}</option>);
+    const array = this.filterCurrencies(currencies);
+    return array.map((currency) => <option key={ currency }>{currency}</option>);
   }
 
   render() {
@@ -64,5 +67,5 @@ class AddExpenseForm extends Component {
 export default AddExpenseForm;
 
 AddExpenseForm.propTypes = {
-  currencies: PropTypes.arrayOf(PropTypes.array).isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

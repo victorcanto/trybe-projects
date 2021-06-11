@@ -11,7 +11,7 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   case REQUEST_COINS:
     return { ...state, isFetching: true };
   case RECEIVE_COINS:
-    return { ...state, currencies: Object.entries(action.payload), isFetching: false };
+    return { ...state, currencies: Object.keys(action.payload), isFetching: false };
   default:
     return state;
   }

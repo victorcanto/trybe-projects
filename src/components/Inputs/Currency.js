@@ -13,7 +13,7 @@ export default class Currency extends Component {
           value={ currency }
           onChange={ handleInputChange }
         >
-          {currencies.length !== 0 && renderCurrencyOptions(currencies)}
+          {renderCurrencyOptions(currencies)}
         </select>
       </label>
     );
