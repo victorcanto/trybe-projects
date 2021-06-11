@@ -1,4 +1,5 @@
-import { USER_EMAIL, REQUEST_COINS, RECEIVE_COINS } from './actionTypes';
+import { USER_EMAIL, REQUEST_COINS, RECEIVE_COINS,
+  ADD_EXPENSE } from './actionTypes';
 
 export const userAction = (payload) => ({
   type: USER_EMAIL,
@@ -11,6 +12,11 @@ export const requestCoins = () => ({
 
 export const receiveCoins = (payload) => ({
   type: RECEIVE_COINS,
+  payload,
+});
+
+export const addExpense = (payload) => ({
+  type: ADD_EXPENSE,
   payload,
 });
 

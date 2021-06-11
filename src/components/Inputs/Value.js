@@ -8,7 +8,7 @@ export default class Value extends Component {
       <label htmlFor="expense-amount">
         Valor
         <input
-          type="text"
+          type="number"
           id="expense-amount"
           name="value"
           value={ value }
