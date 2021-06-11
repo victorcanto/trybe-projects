@@ -1,11 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Value from './Inputs/Value';
+import Description from './Inputs/Description';
+import Currency from './Inputs/Currency';
+import Payment from './Inputs/Payment';
+import Tag from './Inputs/Tag';
 
 class AddExpenseForm extends Component {
   constructor(props) {
     super(props);
 
     this.renderCurrencyOptions = this.renderCurrencyOptions.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+
+    this.state = {
+      id: 0,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    };
+  }
+
+  handleInputChange({ target }) {
+    const { name, value } = target;
+
+    this.setState({
+      [name]: value,
+    });
   }
 
   renderCurrencyOptions(currencies) {
@@ -17,40 +40,22 @@ class AddExpenseForm extends Component {
 
   render() {
     const { currencies } = this.props;
+    const { value, description, currency, method, tag } = this.state;
     return (
       <form>
-        <label htmlFor="expense-amount">
-          Valor
-          <input type="text" id="expense-amount" />
-        </label>
-        <label htmlFor="expense-description">
-          Descrição
-          <input type="text" id="expense-description" />
-        </label>
-        <label htmlFor="expense-currency">
-          Moeda
-          <select name="expense-currency" id="expense-currency">
-            {currencies.length !== 0 && this.renderCurrencyOptions(currencies)}
-          </select>
-        </label>
-        <label htmlFor="payment-method">
-          Método de pagamento
-          <select name="payment-method" id="payment-method">
-            <option value="cash">Dinheiro</option>
-            <option value="credit">Cartão de crédito</option>
-            <option value="debit">Cartão de débito</option>
-          </select>
-        </label>
-        <label htmlFor="select-tag">
-          Tag
-          <select name="select-tag" id="select-tag">
-            <option value="food">Alimentação</option>
-            <option value="fun">Lazer</option>
-            <option value="work">Trabalho</option>
-            <option value="transport">Transporte</option>
-            <option value="health">Saúde</option>
-          </select>
-        </label>
+        <Value value={ value } handleInputChange={ this.handleInputChange } />
+        <Description
+          description={ description }
+          handleInputChange={ this.handleInputChange }
+        />
+        <Currency
+          currencies={ currencies }
+          renderCurrencyOptions={ this.renderCurrencyOptions }
+          currency={ currency }
+          handleInputChange={ this.handleInputChange }
+        />
+        <Payment method={ method } handleInputChange={ this.handleInputChange } />
+        <Tag tag={ tag } handleInputChange={ this.handleInputChange } />
       </form>
     );
   }
