@@ -37,7 +37,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
-  currencies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   isFetching: PropTypes.bool.isRequired,
   fetchCoinsProp: PropTypes.func.isRequired,
 };

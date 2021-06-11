@@ -21,7 +21,7 @@ export default class Currency extends Component {
 }
 
 Currency.propTypes = {
-  currencies: PropTypes.arrayOf(PropTypes.array).isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   renderCurrencyOptions: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
