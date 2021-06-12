@@ -1,5 +1,6 @@
 import { USER_EMAIL, REQUEST_COINS, RECEIVE_COINS,
-  ADD_EXPENSE } from './actionTypes';
+  ADD_EXPENSE,
+  DELETE_EXPENSE } from './actionTypes';
 
 export const userAction = (payload) => ({
   type: USER_EMAIL,
@@ -17,6 +18,11 @@ export const receiveCoins = (payload) => ({
 
 export const addExpense = (payload) => ({
   type: ADD_EXPENSE,
+  payload,
+});
+
+export const deleteExpense = (payload) => ({
+  type: DELETE_EXPENSE,
   payload,
 });
 

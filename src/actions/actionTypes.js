@@ -3,3 +3,4 @@ export const REQUEST_COINS = 'REQUEST_COINS';
 export const RECEIVE_COINS = 'RECEIVE_COINS';
 
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';

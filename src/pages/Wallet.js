@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AddExpenseForm from '../components/AddExpenseForm';
-import { fetchCoins } from '../actions/index';
+import { fetchCoins, deleteExpense } from '../actions/index';
 import Header from '../components/Header';
 import ExpenseTable from '../components/ExpenseTable';
 
@@ -30,6 +30,7 @@ class Wallet extends React.Component {
   }
 
   expenseInfo({ id, value, description, currency, method, tag, exchangeRates }) {
+    const { deleleProp } = this.props;
     return (
       <tr key={ id }>
         <td>{description}</td>
@@ -40,6 +41,15 @@ class Wallet extends React.Component {
         <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
         <td>{(value * exchangeRates[currency].ask).toFixed(2)}</td>
         <td>Real</td>
+        <td>
+          <button
+            type="button"
+            data-testid="delete-btn"
+            onClick={ () => deleleProp(id) }
+          >
+            Excluir
+          </button>
+        </td>
       </tr>
     );
   }
@@ -75,6 +85,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCoinsProp: () => dispatch(fetchCoins()),
+  deleleProp: (id) => dispatch(deleteExpense(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
@@ -85,4 +96,5 @@ Wallet.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   fetchCoinsProp: PropTypes.func.isRequired,
+  deleleProp: PropTypes.func.isRequired,
 };

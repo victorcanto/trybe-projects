@@ -1,4 +1,5 @@
-import { REQUEST_COINS, RECEIVE_COINS, ADD_EXPENSE } from '../actions/actionTypes';
+import { REQUEST_COINS, RECEIVE_COINS,
+  ADD_EXPENSE, DELETE_EXPENSE } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   isFetching: false,
@@ -14,6 +15,11 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return { ...state, currencies: Object.keys(action.payload), isFetching: false };
   case ADD_EXPENSE:
     return { ...state, expenses: [...state.expenses, action.payload] };
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      expenses: [...state.expenses.filter(({ id }) => id !== action.payload)],
+    };
   default:
     return state;
   }
