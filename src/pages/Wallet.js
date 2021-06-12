@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import AddExpenseForm from '../components/AddExpenseForm';
 import { fetchCoins } from '../actions/index';
 import Header from '../components/Header';
+import ExpenseTable from '../components/ExpenseTable';
 
 class Wallet extends React.Component {
   constructor() {
@@ -11,6 +12,8 @@ class Wallet extends React.Component {
 
     this.addTotalValue = this.addTotalValue.bind(this);
     this.sum = this.sum.bind(this);
+    this.addExpenseToTable = this.addExpenseToTable.bind(this);
+    this.expenseInfo = this.expenseInfo.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +29,26 @@ class Wallet extends React.Component {
     return expenses.reduce(this.sum, 0);
   }
 
+  expenseInfo({ id, value, description, currency, method, tag, exchangeRates }) {
+    return (
+      <tr key={ id }>
+        <td>{description}</td>
+        <td>{tag}</td>
+        <td>{method}</td>
+        <td>{value}</td>
+        <td>{(exchangeRates[currency].name).split('/')[0]}</td>
+        <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
+        <td>{(value * exchangeRates[currency].ask).toFixed(2)}</td>
+        <td>Real</td>
+      </tr>
+    );
+  }
+
+  addExpenseToTable() {
+    const { expenses } = this.props;
+    return expenses.map(this.expenseInfo);
+  }
+
   render() {
     const loading = <span>Buscando moedas...</span>;
     const { email, currencies, isFetching, expenses } = this.props;
@@ -37,6 +60,7 @@ class Wallet extends React.Component {
           addTotalValue={ this.addTotalValue }
         />
         {isFetching ? loading : <AddExpenseForm currencies={ currencies } /> }
+        <ExpenseTable addExpenseToTable={ this.addExpenseToTable } />
       </>
     );
   }
