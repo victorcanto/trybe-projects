@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginAction } from '../Redux/actions/';
+import { loginAction } from '../Redux/actions';
 
 const API = 'https://opentdb.com/api_token.php?command=request';
 
@@ -32,7 +32,7 @@ class Login extends React.Component {
   }
 
   handleClick() {
-    const { login } = this.props; 
+    const { login } = this.props;
     this.saveLocalStorage();
     login(this.state);
   }
@@ -91,5 +91,9 @@ class Login extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   login: (state) => (dispatch(loginAction(state))),
 });
+
+Login.propTypes = {
+  login: PropTypes.func,
+}.isRequired;
 
 export default connect(null, mapDispatchToProps)(Login);
