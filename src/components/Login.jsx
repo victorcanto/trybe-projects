@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+const API = 'https://opentdb.com/api_token.php?command=request';
 
 class Login extends React.Component {
   constructor() {
@@ -8,10 +11,26 @@ class Login extends React.Component {
       name: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target: { name, value } }) {
     this.setState({ [name]: value });
+  }
+
+  async fetchApi() {
+    const response = await fetch(API);
+    const data = await response.json();
+    return data;
+  }
+
+  async saveLocalStorage() {
+    const { token } = await this.fetchApi();
+    localStorage.setItem('token', token);
+  }
+
+  handleClick() {
+    this.saveLocalStorage();
   }
 
   render() {
@@ -40,13 +59,17 @@ class Login extends React.Component {
             value={ email }
           />
         </label>
-        <button
-          type="button"
-          data-testid="btn-play"
-          disabled={ !(email && name) }
-        >
-          Jogar
-        </button>
+        <Link to="/game">
+          <button
+            type="button"
+            data-testid="btn-play"
+            disabled={ !(email && name) }
+            onClick={ this.handleClick }
+          >
+            Jogar
+          </button>
+        </Link>
+
       </form>
     );
   }
