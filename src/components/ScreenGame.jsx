@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ScreenGame extends React.Component {
   render() {
     return (
-      <h1>Game</h1>
+      <div>
+        <h1>oi</h1>
+      </div>
     );
   }
 }
