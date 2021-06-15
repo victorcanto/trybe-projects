@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { loginAction } from '../Redux/actions';
 
 const API = 'https://opentdb.com/api_token.php?command=request';
 
@@ -30,49 +33,68 @@ class Login extends React.Component {
   }
 
   handleClick() {
+    const { login } = this.props;
     this.saveLocalStorage();
+    login(this.state);
   }
 
   render() {
     const { name, email } = this.state;
     return (
-      <form>
-        <label htmlFor="name">
-          Nome:
-          <input
-            type="text"
-            name="name"
-            id="name"
-            data-testid="input-player-name"
-            onChange={ this.handleChange }
-            value={ name }
-          />
-        </label>
-        <label htmlFor="Email">
-          Email:
-          <input
-            type="email"
-            name="email"
-            id="email"
-            data-testid="input-gravatar-email"
-            onChange={ this.handleChange }
-            value={ email }
-          />
-        </label>
-        <Link to="/game">
+      <div>
+        <form>
+          <label htmlFor="name">
+            Nome:
+            <input
+              type="text"
+              name="name"
+              id="name"
+              data-testid="input-player-name"
+              onChange={ this.handleChange }
+              value={ name }
+            />
+          </label>
+          <label htmlFor="Email">
+            Email:
+            <input
+              type="email"
+              name="email"
+              id="email"
+              data-testid="input-gravatar-email"
+              onChange={ this.handleChange }
+              value={ email }
+            />
+          </label>
+          <Link to="/game">
+            <button
+              type="button"
+              data-testid="btn-play"
+              disabled={ !(email && name) }
+              onClick={ this.handleClick }
+            >
+              Jogar
+            </button>
+          </Link>
+        </form>
+        <Link to="/settings">
           <button
             type="button"
-            data-testid="btn-play"
-            disabled={ !(email && name) }
-            onClick={ this.handleClick }
+            data-testid="btn-settings"
           >
-            Jogar
+            Settings
           </button>
         </Link>
-
-      </form>
+      </div>
     );
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  login: (state) => (dispatch(loginAction(state))),
+});
+
+Login.propTypes = {
+  login: PropTypes.func,
+}.isRequired;
+
+export default connect(null, mapDispatchToProps)(Login);

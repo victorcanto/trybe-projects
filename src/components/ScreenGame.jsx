@@ -1,9 +1,13 @@
 import React from 'react';
+import Header from './Header';
 
 class ScreenGame extends React.Component {
   render() {
     return (
-      <h1>Game</h1>
+      <div>
+        <Header />
+        <h1>oi</h1>
+      </div>
     );
   }
 }
