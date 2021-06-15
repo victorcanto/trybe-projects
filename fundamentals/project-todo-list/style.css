@@ -1,0 +1,11 @@
+body {
+  background-color: #7fc8f8;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+form {
+  display: inline;
+}
