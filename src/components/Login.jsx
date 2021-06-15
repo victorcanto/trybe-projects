@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginAction } from '../Redux/actions';
-
-const API = 'https://opentdb.com/api_token.php?command=request';
+import { saveQuestionsThunk, loginActionThunk } from '../Redux/actions';
+import { fetchToken } from '../services/Api';
 
 class Login extends React.Component {
   constructor() {
@@ -21,21 +20,18 @@ class Login extends React.Component {
     this.setState({ [name]: value });
   }
 
-  async fetchApi() {
-    const response = await fetch(API);
-    const data = await response.json();
-    return data;
-  }
-
   async saveLocalStorage() {
-    const { token } = await this.fetchApi();
+    const { token } = await fetchToken();
     localStorage.setItem('token', token);
   }
 
   handleClick() {
-    const { login } = this.props;
+    const { login, save } = this.props;
     this.saveLocalStorage();
     login(this.state);
+    const DEFAULT_AMOUNT = 5;
+    const { token } = this.props;
+    save(DEFAULT_AMOUNT, token);
   }
 
   render() {
@@ -77,10 +73,7 @@ class Login extends React.Component {
           </Link>
         </form>
         <Link to="/settings">
-          <button
-            type="button"
-            data-testid="btn-settings"
-          >
+          <button type="button" data-testid="btn-settings">
             Settings
           </button>
         </Link>
@@ -89,12 +82,17 @@ class Login extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  token: state.loginReducer.token,
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  login: (state) => (dispatch(loginAction(state))),
+  login: (state) => dispatch(loginActionThunk(state)),
+  save: (amount, token) => dispatch(saveQuestionsThunk(amount, token)),
 });
 
 Login.propTypes = {
   login: PropTypes.func,
 }.isRequired;
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
