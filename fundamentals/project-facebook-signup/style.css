@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: rgb(240, 242, 245);
+}
+
+.top-bar {
+  display: flex;
+  background-color: rgb(66, 103, 178);
+  justify-content: space-between;
+}
+
+.facebook-login {
+  color: white;
+  display: flex;
+  align-self: center;
+}
+
+#firstname,
+#lastname,
+#phone_email,
+#new_password,
+#birthdate {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #dadde1;
+  box-sizing: border-box;
+  padding: 16px;
+  position: relative;
+  width: 368px;
+}
+
+#button-login {
+  background: #4267b2;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  text-align: center;
+  height: auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control {
+  align-self: flex-end;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.left-content {
+  width: 800px;
+}
+
+.right-content {
+  width: 300px;
+}
+
+.right-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  display: flex;
+}
+
+.birth-date {
+  display: flex;
+  flex-direction: column;
+}
+
+#facebook-register {
+  background-color: #00a400;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 18px;
+  height: 36px;
+  padding: 0 32px;
+}
+
+#facebook-register:hover {
+  background: linear-gradient(#79bc64, #578843);
+}

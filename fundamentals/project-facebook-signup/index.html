@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Facebook Signup Project</title>
+  </head>
+  <body>
+    <header>
+      <nav class="top-bar">
+        <img
+          class="facebook-logo"
+          src="imgs/facebook-logo.png"
+          alt="logo do facebook"
+        />
+        <form class="facebook-login" id="form1">
+          <div class="form-group">
+            <label id="user-email-phone-label" for="user-email-phone"
+              >Email ou telefone</label
+            >
+            <input type="text" name="facebook-login" id="user-email-phone" />
+          </div>
+          <div class="form-group">
+            <label id="user-password-label" for="user-password">Senha</label>
+            <input type="password" name="senha" id="user-password" />
+          </div>
+          <div class="form-control">
+            <button id="button-login">Entrar</button>
+          </div>
+        </form>
+      </nav>
+    </header>
+    <main class="main-content">
+      <div class="left-content">
+        <p id="facebook-slogan">
+          O Facebook ajuda você a se conectar e compartilhar com as pessoas que
+          fazem parte da sua vida.
+        </p>
+        <img
+          src="imgs/networking.png"
+          alt="facebook networking"
+          id="facebook-networking"
+        />
+      </div>
+      <div class="right-content">
+        <h1>Abra uma conta</h1>
+        <p class="quick-easy">É rápido e fácil.</p>
+        <form class="facebook-signup" id="form2">
+          <div class="name">
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
+              placeholder="Nome"
+            />
+            <input
+              type="text"
+              name="lastname"
+              id="lastname"
+              placeholder="Sobrenome"
+            />
+          </div>
+          <div class="phone-email">
+            <input
+              type="text"
+              name="phone_email"
+              id="phone_email"
+              placeholder="Celular ou email"
+            />
+          </div>
+          <div class="new-password">
+            <input type="password" id="new_password" name="password" placeholder="Nova senha" />
+          </div>
+          <div class="birth-date">
+            <label id="label-birthdate" for="birthdate"
+              >Data de nascimento</label
+            >
+            <input
+              type="text"
+              name="birthdate"
+              id="birthdate"
+              placeholder="dd/mm/aaaa"
+            />
+          </div>
+          <div class="gender">
+            <label id="label-gender">Gênero</label>
+            <div class="container-gender">
+              <input
+                onclick="removeNewGender()"
+                type="radio"
+                name="gender"
+                id="female"
+                value="Feminino"
+              />
+              <label for="female">Feminino</label>
+              <input
+                onclick="removeNewGender()"
+                type="radio"
+                name="gender"
+                id="male"
+                value="Masculino"
+              />
+              <label for="male">Masculino</label>
+              <input
+                onclick="addNewGender()"
+                type="radio"
+                name="gender"
+                id="other"
+                value="Personalizado"
+              />
+              <label for="other">Personalizado</label>
+            </div>
+          </div>
+          <button type="submit" id="facebook-register">Cadastre-se</button>
+        </form>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
