@@ -3,8 +3,7 @@ import { fetchTrivia, fetchToken } from '../../services/Api';
 export const LOGIN = 'LOGIN';
 export const SAVE_QUESTIONS_SUCCESS = 'SAVE_QUESTIONS_SUCCESS';
 export const SAVE_QUESTIONS_ERROR = 'SAVE_QUESTIONS_ERROR';
-
-export const SAVE_TOKEN = 'SAVE_';
+export const SUM_SCORE = 'SUM_SCORE';
 
 export const loginAction = (payload) => ({
   type: LOGIN,
@@ -34,3 +33,8 @@ export const loginActionThunk = (payload) => async (dispatch) => {
   const { token } = await fetchToken();
   dispatch(loginAction({ ...payload, token }));
 };
+
+export const sumScore = (payload) => ({
+  type: SUM_SCORE,
+  payload,
+});

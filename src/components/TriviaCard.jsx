@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/triviaCard.css';
+import { connect } from 'react-redux';
+import { sumScore } from '../Redux/actions';
+
+const correctAnswer = 'correct-answer';
 
 class TriviaCard extends Component {
   constructor() {
@@ -22,11 +26,11 @@ class TriviaCard extends Component {
 
   componentDidUpdate(prevProps) {
     const wrongAnswers = document.querySelectorAll('.wrong-answers');
-    const correctAnswer = document.getElementById('correct-answer');
+    const elCorrectAnswer = document.getElementById(correctAnswer);
     wrongAnswers.forEach((button) => {
       button.classList.remove('incorrect');
     });
-    correctAnswer.classList.remove('correct');
+    elCorrectAnswer.classList.remove('correct');
 
     if (prevProps !== this.props) {
       this.resetTimer();
@@ -63,13 +67,20 @@ class TriviaCard extends Component {
     clearInterval(this.timer);
   }
 
-  verifyAnswers() {
+  verifyAnswers(event) {
     const wrongAnswers = document.querySelectorAll('.wrong-answers');
-    const correctAnswer = document.getElementById('correct-answer');
-    correctAnswer.classList.add('correct');
+    const elCorrectAnswer = document.getElementById(correctAnswer);
+    elCorrectAnswer.classList.add('correct');
     wrongAnswers.forEach((button) => {
       button.classList.add('incorrect');
     });
+
+    if (event.target.id === elCorrectAnswer) {
+      const { seconds } = this.state;
+      const { saveScore, result: { difficulty } } = this.props;
+
+      saveScore({ seconds, difficulty });
+    }
   }
 
   render() {
@@ -77,7 +88,7 @@ class TriviaCard extends Component {
       result: {
         category,
         question,
-        correct_answer: correctAnswer,
+        correct_answer: elCorrectAnswer,
         incorrect_answers: incorrectAnswers,
       },
     } = this.props;
@@ -95,7 +106,7 @@ class TriviaCard extends Component {
           onClick={ (e) => this.verifyAnswers(e) }
           disabled={ seconds === 0 }
         >
-          {correctAnswer}
+          {elCorrectAnswer}
         </button>
         {incorrectAnswers.map((answer, index) => (
           <button
@@ -115,10 +126,15 @@ class TriviaCard extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  saveScore: (seconds) => (dispatch(sumScore(seconds))),
+});
+
 TriviaCard.propTypes = {
   result: PropTypes.shape({
     category: PropTypes.string,
     question: PropTypes.string,
   }),
 }.isRequired;
-export default TriviaCard;
+
+export default connect(null, mapDispatchToProps)(TriviaCard);

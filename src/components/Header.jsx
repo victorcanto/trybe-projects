@@ -24,7 +24,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { name } = this.props;
+    const { name, score } = this.props;
     const { emailHash } = this.state;
     return (
       <header>
@@ -34,7 +34,7 @@ class Header extends React.Component {
           src={ `https://www.gravatar.com/avatar/${emailHash}` }
         />
         <p data-testid="header-player-name">{name}</p>
-        <p data-testid="header-score">{0}</p>
+        <p data-testid="header-score">{score}</p>
       </header>
     );
   }
@@ -43,6 +43,7 @@ class Header extends React.Component {
 const mapStateToProps = (state) => ({
   name: state.loginReducer.name,
   email: state.loginReducer.email,
+  score: state.scoreReducer.score,
 });
 
 Header.propTypes = {
