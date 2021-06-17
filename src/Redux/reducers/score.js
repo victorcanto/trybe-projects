@@ -1,7 +1,8 @@
-import { SUM_SCORE } from '../actions';
+import { SUM_SCORE, CLICKED_ANSWER } from '../actions';
 
 const INITIAL_STATE = {
   total: 0,
+  clicked: false,
 };
 
 const calcScore = (payload) => {
@@ -35,6 +36,11 @@ const scoreReducer = (state = INITIAL_STATE, action) => {
       total: state.total + score,
     };
   }
+  case CLICKED_ANSWER:
+    return {
+      ...state,
+      clicked: true,
+    };
   default:
     return state;
   }

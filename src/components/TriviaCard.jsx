@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/triviaCard.css';
 import { connect } from 'react-redux';
-import { sumScore } from '../Redux/actions';
+import { sumScore, clickedAnswer } from '../Redux/actions';
 
 const correctAnswer = 'correct-answer';
 
@@ -78,6 +78,7 @@ class TriviaCard extends Component {
   }
 
   verifyAnswers(event) {
+    const { clicked } = this.props;
     const wrongAnswers = document.querySelectorAll('.wrong-answers');
     const elCorrectAnswer = document.getElementById(correctAnswer);
     elCorrectAnswer.classList.add('correct');
@@ -92,9 +93,7 @@ class TriviaCard extends Component {
       saveScore({ seconds, difficulty });
     }
 
-    this.setState({
-      clicked: true,
-    });
+    clicked();
   }
 
   render() {
@@ -142,6 +141,7 @@ class TriviaCard extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   saveScore: (seconds) => (dispatch(sumScore(seconds))),
+  clicked: () => dispatch(clickedAnswer()),
 });
 
 TriviaCard.propTypes = {

@@ -13,22 +13,30 @@ class ScreenGame extends React.Component {
     };
   }
 
+  renderNextBtn() {
+    return (
+      <button
+        data-testid="btn-next"
+        type="button"
+        onClick={ () => this.setState((prevState) => ({
+          index: prevState.index + 1,
+        })) }
+      >
+        Proximo
+      </button>
+    );
+  }
+
   render() {
     const { index } = this.state;
-    const { results } = this.props;
+    const { results, clicked } = this.props;
     return (
       <div>
         <Header />
-        {results.length > 0 && <TriviaCard result={ results[index] } />}
-        <button
-          data-testid="btn-next"
-          type="button"
-          onClick={ () => this.setState((prevState) => ({
-            index: prevState.index + 1,
-          })) }
-        >
-          Proximo
-        </button>
+        {results.length > 0 && <TriviaCard
+          result={ results[index] }
+        />}
+        { clicked && this.renderNextBtn() }
       </div>
     );
   }
@@ -36,10 +44,12 @@ class ScreenGame extends React.Component {
 
 const mapStateToProps = (state) => ({
   results: state.saveQuestions.questions,
+  clicked: state.scoreReducer.clicked,
 });
 
 export default connect(mapStateToProps)(ScreenGame);
 
 ScreenGame.propTypes = {
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  clicked: PropTypes.bool.isRequired,
 };
