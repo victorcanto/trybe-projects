@@ -12,12 +12,14 @@ class TriviaCard extends Component {
 
     this.state = {
       seconds: 30,
+      clicked: false,
     };
 
     this.decrement = this.decrement.bind(this);
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
+    this.updateClicked = this.updateClicked.bind(this);
   }
 
   componentDidMount() {
@@ -25,18 +27,26 @@ class TriviaCard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const wrongAnswers = document.querySelectorAll('.wrong-answers');
-    const elCorrectAnswer = document.getElementById(correctAnswer);
-    wrongAnswers.forEach((button) => {
-      button.classList.remove('incorrect');
-    });
-    elCorrectAnswer.classList.remove('correct');
-
     if (prevProps !== this.props) {
+      const wrongAnswers = document.querySelectorAll('.wrong-answers');
+      const elCorrectAnswer = document.getElementById(correctAnswer);
+      wrongAnswers.forEach((button) => {
+        button.classList.remove('incorrect');
+      });
+      elCorrectAnswer.classList.remove('correct');
+
       this.resetTimer();
       this.stopTimer();
       this.startTimer();
+
+      this.updateClicked();
     }
+  }
+
+  updateClicked() {
+    this.setState({
+      clicked: false,
+    });
   }
 
   resetTimer() {
@@ -75,12 +85,16 @@ class TriviaCard extends Component {
       button.classList.add('incorrect');
     });
 
-    if (event.target.id === elCorrectAnswer) {
+    if (event.target.id === correctAnswer) {
       const { seconds } = this.state;
       const { saveScore, result: { difficulty } } = this.props;
 
       saveScore({ seconds, difficulty });
     }
+
+    this.setState({
+      clicked: true,
+    });
   }
 
   render() {
@@ -92,7 +106,7 @@ class TriviaCard extends Component {
         incorrect_answers: incorrectAnswers,
       },
     } = this.props;
-    const { seconds } = this.state;
+    const { seconds, clicked } = this.state;
 
     return (
       <div>
@@ -104,7 +118,7 @@ class TriviaCard extends Component {
           id="correct-answer"
           data-testid="correct-answer"
           onClick={ (e) => this.verifyAnswers(e) }
-          disabled={ seconds === 0 }
+          disabled={ seconds === 0 || clicked }
         >
           {elCorrectAnswer}
         </button>
@@ -115,7 +129,7 @@ class TriviaCard extends Component {
             data-testid={ `wrong-answer-${index}` }
             key={ answer }
             onClick={ (e) => this.verifyAnswers(e) }
-            disabled={ seconds === 0 }
+            disabled={ seconds === 0 || clicked }
           >
             {answer}
           </button>

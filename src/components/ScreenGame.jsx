@@ -21,6 +21,7 @@ class ScreenGame extends React.Component {
         <Header />
         {results.length > 0 && <TriviaCard result={ results[index] } />}
         <button
+          data-testid="btn-next"
           type="button"
           onClick={ () => this.setState((prevState) => ({
             index: prevState.index + 1,

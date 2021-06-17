@@ -24,7 +24,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { name, score } = this.props;
+    const { name, score = 0 } = this.props;
     const { emailHash } = this.state;
     return (
       <header>
@@ -43,7 +43,7 @@ class Header extends React.Component {
 const mapStateToProps = (state) => ({
   name: state.loginReducer.name,
   email: state.loginReducer.email,
-  score: state.scoreReducer.score,
+  score: state.scoreReducer.total,
 });
 
 Header.propTypes = {
