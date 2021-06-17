@@ -9,5 +9,6 @@ export async function fetchToken() {
 export async function fetchTrivia(amount, token) {
   const response = await fetch(`https://opentdb.com/api.php?amount=${amount}&token=${token}`);
   const data = await response.json();
+  console.log(data);
   return data.results;
 }

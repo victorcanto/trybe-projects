@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/triviaCard.css';
+import { connect } from 'react-redux';
+import { sumScore } from '../Redux/actions';
+
+const correctAnswer = 'correct-answer';
 
 class TriviaCard extends Component {
   constructor() {
@@ -8,12 +12,14 @@ class TriviaCard extends Component {
 
     this.state = {
       seconds: 30,
+      clicked: false,
     };
 
     this.decrement = this.decrement.bind(this);
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
+    this.updateClicked = this.updateClicked.bind(this);
   }
 
   componentDidMount() {
@@ -21,18 +27,26 @@ class TriviaCard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const wrongAnswers = document.querySelectorAll('.wrong-answers');
-    const correctAnswer = document.getElementById('correct-answer');
-    wrongAnswers.forEach((button) => {
-      button.classList.remove('incorrect');
-    });
-    correctAnswer.classList.remove('correct');
-
     if (prevProps !== this.props) {
+      const wrongAnswers = document.querySelectorAll('.wrong-answers');
+      const elCorrectAnswer = document.getElementById(correctAnswer);
+      wrongAnswers.forEach((button) => {
+        button.classList.remove('incorrect');
+      });
+      elCorrectAnswer.classList.remove('correct');
+
       this.resetTimer();
       this.stopTimer();
       this.startTimer();
+
+      this.updateClicked();
     }
+  }
+
+  updateClicked() {
+    this.setState({
+      clicked: false,
+    });
   }
 
   resetTimer() {
@@ -63,12 +77,23 @@ class TriviaCard extends Component {
     clearInterval(this.timer);
   }
 
-  verifyAnswers() {
+  verifyAnswers(event) {
     const wrongAnswers = document.querySelectorAll('.wrong-answers');
-    const correctAnswer = document.getElementById('correct-answer');
-    correctAnswer.classList.add('correct');
+    const elCorrectAnswer = document.getElementById(correctAnswer);
+    elCorrectAnswer.classList.add('correct');
     wrongAnswers.forEach((button) => {
       button.classList.add('incorrect');
+    });
+
+    if (event.target.id === correctAnswer) {
+      const { seconds } = this.state;
+      const { saveScore, result: { difficulty } } = this.props;
+
+      saveScore({ seconds, difficulty });
+    }
+
+    this.setState({
+      clicked: true,
     });
   }
 
@@ -77,11 +102,11 @@ class TriviaCard extends Component {
       result: {
         category,
         question,
-        correct_answer: correctAnswer,
+        correct_answer: elCorrectAnswer,
         incorrect_answers: incorrectAnswers,
       },
     } = this.props;
-    const { seconds } = this.state;
+    const { seconds, clicked } = this.state;
 
     return (
       <div>
@@ -93,9 +118,9 @@ class TriviaCard extends Component {
           id="correct-answer"
           data-testid="correct-answer"
           onClick={ (e) => this.verifyAnswers(e) }
-          disabled={ seconds === 0 }
+          disabled={ seconds === 0 || clicked }
         >
-          {correctAnswer}
+          {elCorrectAnswer}
         </button>
         {incorrectAnswers.map((answer, index) => (
           <button
@@ -104,7 +129,7 @@ class TriviaCard extends Component {
             data-testid={ `wrong-answer-${index}` }
             key={ answer }
             onClick={ (e) => this.verifyAnswers(e) }
-            disabled={ seconds === 0 }
+            disabled={ seconds === 0 || clicked }
           >
             {answer}
           </button>
@@ -115,10 +140,15 @@ class TriviaCard extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  saveScore: (seconds) => (dispatch(sumScore(seconds))),
+});
+
 TriviaCard.propTypes = {
   result: PropTypes.shape({
     category: PropTypes.string,
     question: PropTypes.string,
   }),
 }.isRequired;
-export default TriviaCard;
+
+export default connect(null, mapDispatchToProps)(TriviaCard);
