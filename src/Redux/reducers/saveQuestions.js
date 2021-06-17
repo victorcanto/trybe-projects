@@ -1,6 +1,8 @@
-import { SAVE_QUESTIONS_SUCCESS, SAVE_QUESTIONS_ERROR } from '../actions/index';
+import { SAVE_QUESTIONS_SUCCESS, SAVE_QUESTIONS_ERROR,
+  NEXT_INDEX } from '../actions/index';
 
 const INITIAL_STATE = {
+  index: 0,
   questions: [],
   error: null,
 };
@@ -18,6 +20,12 @@ const saveQuestionsReducer = (state = INITIAL_STATE, action) => {
       ...state,
       error: action.payload,
     };
+
+  case NEXT_INDEX: {
+    return {
+      ...state, index: state.index + 1,
+    };
+  }
 
   default:
     return state;

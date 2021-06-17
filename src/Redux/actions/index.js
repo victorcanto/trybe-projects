@@ -4,6 +4,7 @@ export const LOGIN = 'LOGIN';
 export const SAVE_QUESTIONS_SUCCESS = 'SAVE_QUESTIONS_SUCCESS';
 export const SAVE_QUESTIONS_ERROR = 'SAVE_QUESTIONS_ERROR';
 export const SUM_SCORE = 'SUM_SCORE';
+export const NEXT_INDEX = 'NEXT_INDEX';
 
 export const loginAction = (payload) => ({
   type: LOGIN,
@@ -18,6 +19,10 @@ const saveQuestionsSuccess = (payload) => ({
 const saveQuestionsError = (payload) => ({
   type: SAVE_QUESTIONS_ERROR,
   payload,
+});
+
+export const nextIndexAction = () => ({
+  type: NEXT_INDEX,
 });
 
 export const saveQuestionsThunk = (amount, token) => async (dispatch) => {
