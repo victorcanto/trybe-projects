@@ -78,6 +78,8 @@ class TriviaCard extends Component {
   }
 
   verifyAnswers(event) {
+    const { verifyClicked } = this.props;
+    verifyClicked();
     const wrongAnswers = document.querySelectorAll('.wrong-answers');
     const elCorrectAnswer = document.getElementById(correctAnswer);
     elCorrectAnswer.classList.add('correct');

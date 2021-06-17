@@ -8,27 +8,39 @@ class ScreenGame extends React.Component {
   constructor() {
     super();
 
+    this.verifyClicked = this.verifyClicked.bind(this);
+
     this.state = {
       index: 0,
+      clicked: false,
     };
   }
 
+  verifyClicked() {
+    this.setState({ clicked: true });
+  }
+
   render() {
-    const { index } = this.state;
+    const { index, clicked } = this.state;
     const { results } = this.props;
     return (
       <div>
         <Header />
-        {results.length > 0 && <TriviaCard result={ results[index] } />}
-        <button
-          data-testid="btn-next"
-          type="button"
-          onClick={ () => this.setState((prevState) => ({
-            index: prevState.index + 1,
-          })) }
-        >
-          Proximo
-        </button>
+        {results.length > 0 && <TriviaCard
+          verifyClicked={ this.verifyClicked }
+          result={ results[index] }
+        />}
+        {clicked && (
+          <button
+            data-testid="btn-next"
+            type="button"
+            onClick={ () => this.setState((prevState) => ({
+              index: prevState.index + 1,
+            })) }
+          >
+            Proximo
+          </button>
+        )}
       </div>
     );
   }
