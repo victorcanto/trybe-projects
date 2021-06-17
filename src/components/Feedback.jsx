@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-// const lessThanThree = 'Podia ser melhor...';
-// const moreThanThree = 'Mandou bem!';
-// const { player: { assertions } } = JSON.parse(localStorage.getItem('state'))
+import Header from './Header';
 
 class Feedback extends Component {
   render() {
+    const lessThanThree = <span data-testid="feedback-text">Podia ser melhor...</span>;
+    const moreThanThree = <span data-testid="feedback-text">Mandou bem!</span>;
+    const { player: { assertions } } = JSON.parse(localStorage.getItem('state'));
+    const numberAssertions = 3;
     return (
       <div>
-        {/* <h1 data-testid="feedback-text">Tela de Feedback</h1>
-        {assertions < 3 ? moreThanThree : lessThanThree} */}
+        <Header />
+        <h1>Tela de Feedback</h1>
+        {assertions < numberAssertions ? lessThanThree : moreThanThree}
       </div>
     );
   }
 }
 
-export default connect()(Feedback);
+export default Feedback;
