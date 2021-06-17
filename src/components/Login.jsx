@@ -46,8 +46,8 @@ class Login extends React.Component {
               name="name"
               id="name"
               data-testid="input-player-name"
-              onChange={this.handleChange}
-              value={name}
+              onChange={ this.handleChange }
+              value={ name }
             />
           </label>
           <label htmlFor="Email">
@@ -57,16 +57,16 @@ class Login extends React.Component {
               name="email"
               id="email"
               data-testid="input-gravatar-email"
-              onChange={this.handleChange}
-              value={email}
+              onChange={ this.handleChange }
+              value={ email }
             />
           </label>
           <Link to="/game">
             <button
               type="button"
               data-testid="btn-play"
-              disabled={!(email && name)}
-              onClick={this.handleClick}
+              disabled={ !(email && name) }
+              onClick={ this.handleClick }
             >
               Jogar
             </button>
