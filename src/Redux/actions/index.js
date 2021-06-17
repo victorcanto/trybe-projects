@@ -1,4 +1,4 @@
-import { fetchTrivia, fetchToken } from '../../services/Api';
+import { fetchTrivia } from '../../services/Api';
 
 export const LOGIN = 'LOGIN';
 export const SAVE_QUESTIONS_SUCCESS = 'SAVE_QUESTIONS_SUCCESS';
@@ -35,8 +35,7 @@ export const saveQuestionsThunk = (amount, token) => async (dispatch) => {
 };
 
 export const loginActionThunk = (payload) => async (dispatch) => {
-  const { token } = await fetchToken();
-  dispatch(loginAction({ ...payload, token }));
+  dispatch(loginAction(payload));
 };
 
 export const sumScore = (payload) => ({
