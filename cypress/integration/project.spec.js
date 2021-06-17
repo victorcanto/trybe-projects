@@ -40,7 +40,7 @@ const BUTTON_PLAY_AGAIN_SELECTOR = '[data-testid="btn-play-again"]';
 
 
 // login
-/*
+
 describe('1 - [TELA DE LOGIN] Crie a tela de login, onde a pessoa que joga deve preencher as informações para iniciar um jogo', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
@@ -171,7 +171,7 @@ describe('6 - [TELA DE JOGO] Desenvolva o jogo onde só deve ser possível escol
     cy.get(CORRECT_ALTERNATIVE_SELECTOR).should('have.length', 1);
   });
 });
-*/
+
 describe('7 - [TELA DE JOGO] Desenvolva o estilo que, ao clicar em uma resposta, a correta deve ficar verde e as incorretas, vermelhas', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
@@ -209,7 +209,7 @@ describe('7 - [TELA DE JOGO] Desenvolva o estilo que, ao clicar em uma resposta,
     cy.get(WRONG_ALTERNATIVES_SELECTOR).should('have.css', 'border-width', '3px');
   });
 });
-/*
+
 describe('8 - [TELA DE JOGO] Desenvolva um timer onde a pessoa que joga tem 30 segundos para responder', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
@@ -229,7 +229,7 @@ describe('8 - [TELA DE JOGO] Desenvolva um timer onde a pessoa que joga tem 30 s
     cy.get(CORRECT_ALTERNATIVE_SELECTOR).should('be.disabled');
   });
 });
-*/
+
 describe('9 - [TELA DE JOGO] Crie o placar com as seguintes características:', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
