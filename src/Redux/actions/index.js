@@ -4,7 +4,6 @@ export const LOGIN = 'LOGIN';
 export const SAVE_QUESTIONS_SUCCESS = 'SAVE_QUESTIONS_SUCCESS';
 export const SAVE_QUESTIONS_ERROR = 'SAVE_QUESTIONS_ERROR';
 export const SUM_SCORE = 'SUM_SCORE';
-export const CLICKED_ANSWER = 'CLICKED_ANSWER';
 
 export const loginAction = (payload) => ({
   type: LOGIN,
@@ -38,8 +37,4 @@ export const loginActionThunk = (payload) => async (dispatch) => {
 export const sumScore = (payload) => ({
   type: SUM_SCORE,
   payload,
-});
-
-export const clickedAnswer = () => ({
-  type: CLICKED_ANSWER,
 });
