@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/triviaCard.css';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { sumScore } from '../Redux/actions';
 
 const correctAnswer = 'correct-answer';
+const questionLength = 5;
 
 class TriviaCard extends Component {
   constructor() {
@@ -27,6 +29,8 @@ class TriviaCard extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { questionIndex } = this.props;
+    if (questionIndex === questionLength) return;
     if (prevProps !== this.props) {
       const wrongAnswers = document.querySelectorAll('.wrong-answers');
       const elCorrectAnswer = document.getElementById(correctAnswer);
@@ -68,9 +72,7 @@ class TriviaCard extends Component {
 
   startTimer() {
     const interval = 1000;
-    this.timer = setInterval(
-      this.decrement, interval,
-    );
+    this.timer = setInterval(this.decrement, interval);
   }
 
   stopTimer() {
@@ -78,6 +80,8 @@ class TriviaCard extends Component {
   }
 
   verifyAnswers(event) {
+    const { verifyClicked } = this.props;
+    verifyClicked();
     const wrongAnswers = document.querySelectorAll('.wrong-answers');
     const elCorrectAnswer = document.getElementById(correctAnswer);
     elCorrectAnswer.classList.add('correct');
@@ -87,7 +91,10 @@ class TriviaCard extends Component {
 
     if (event.target.id === correctAnswer) {
       const { seconds } = this.state;
-      const { saveScore, result: { difficulty } } = this.props;
+      const {
+        saveScore,
+        result: { difficulty },
+      } = this.props;
 
       saveScore({ seconds, difficulty });
     }
@@ -98,6 +105,8 @@ class TriviaCard extends Component {
   }
 
   render() {
+    const { questionIndex } = this.props;
+    if (questionIndex === questionLength) return <Redirect to="/feedback" />;
     const {
       result: {
         category,
@@ -140,8 +149,12 @@ class TriviaCard extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  questionIndex: state.saveQuestions.index,
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  saveScore: (seconds) => (dispatch(sumScore(seconds))),
+  saveScore: (seconds) => dispatch(sumScore(seconds)),
 });
 
 TriviaCard.propTypes = {
@@ -151,4 +164,4 @@ TriviaCard.propTypes = {
   }),
 }.isRequired;
 
-export default connect(null, mapDispatchToProps)(TriviaCard);
+export default connect(mapStateToProps, mapDispatchToProps)(TriviaCard);

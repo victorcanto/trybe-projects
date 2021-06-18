@@ -23,14 +23,14 @@ class Login extends React.Component {
   async saveLocalStorage() {
     const { token } = await fetchToken();
     localStorage.setItem('token', token);
+    return token;
   }
 
-  handleClick() {
+  async handleClick() {
     const { login, save } = this.props;
-    this.saveLocalStorage();
-    login(this.state);
+    const token = await this.saveLocalStorage();
+    login({ ...this.state, token });
     const DEFAULT_AMOUNT = 5;
-    const { token } = this.props;
     save(DEFAULT_AMOUNT, token);
   }
 
