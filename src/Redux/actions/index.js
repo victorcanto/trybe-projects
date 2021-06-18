@@ -6,6 +6,9 @@ export const SAVE_QUESTIONS_ERROR = 'SAVE_QUESTIONS_ERROR';
 export const SUM_SCORE = 'SUM_SCORE';
 export const NEXT_INDEX = 'NEXT_INDEX';
 export const SET_PICTURE_PATH = 'SET_PICTURE_PATH';
+export const RESET_QUESTIONS_REDUCER = 'RESET_QUESTIONS_REDUCER';
+export const RESET_LOGIN_REDUCER = 'RESET_LOGIN_REDUCER';
+export const RESET_SCORE = 'RESET_SCORE';
 
 export const loginAction = (payload) => ({
   type: LOGIN,
@@ -47,4 +50,16 @@ export const sumScore = (payload) => ({
 export const setPicturePath = (payload) => ({
   type: SET_PICTURE_PATH,
   payload,
+});
+
+export const resetQuestions = () => ({
+  type: RESET_QUESTIONS_REDUCER,
+});
+
+export const resetLogin = () => ({
+  type: RESET_LOGIN_REDUCER,
+});
+
+export const resetScore = () => ({
+  type: RESET_SCORE,
 });

@@ -1,4 +1,4 @@
-import { SUM_SCORE } from '../actions';
+import { SUM_SCORE, RESET_SCORE } from '../actions';
 
 const INITIAL_STATE = {
   total: 0,
@@ -35,6 +35,11 @@ const scoreReducer = (state = INITIAL_STATE, action) => {
       total: state.total + score,
     };
   }
+  case RESET_SCORE:
+    return {
+      ...state,
+      total: 0,
+    };
   default:
     return state;
   }

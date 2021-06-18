@@ -1,4 +1,4 @@
-import { LOGIN, SET_PICTURE_PATH } from '../actions';
+import { LOGIN, SET_PICTURE_PATH, RESET_LOGIN_REDUCER } from '../actions';
 
 const INITIAL_STATE = {
   email: '',
@@ -8,14 +8,15 @@ const INITIAL_STATE = {
 };
 
 const saveLocalStorage = ({ name, email }) => {
-  const object = { player: {
+  const stateObject = { player: {
     name,
     gravatarEmail: email,
     assertions: 0,
     score: 0,
   } };
-
-  localStorage.setItem('state', JSON.stringify(object));
+  const rankingArray = JSON.parse(localStorage.getItem('ranking')) || [];
+  localStorage.setItem('state', JSON.stringify(stateObject));
+  localStorage.setItem('ranking', JSON.stringify(rankingArray));
 };
 
 const loginReducer = (state = INITIAL_STATE, action) => {
@@ -31,6 +32,14 @@ const loginReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       picturePath: action.payload,
+    };
+  case RESET_LOGIN_REDUCER:
+    return {
+      ...state,
+      name: '',
+      email: '',
+      token: '',
+      picturePath: '',
     };
   default:
     return state;
