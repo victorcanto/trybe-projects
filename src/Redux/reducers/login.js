@@ -1,9 +1,10 @@
-import { LOGIN } from '../actions';
+import { LOGIN, SET_PICTURE_PATH } from '../actions';
 
 const INITIAL_STATE = {
   email: '',
   name: '',
   token: '',
+  picturePath: '',
 };
 
 const saveLocalStorage = ({ name, email }) => {
@@ -26,6 +27,11 @@ const loginReducer = (state = INITIAL_STATE, action) => {
       ...action.payload,
     };
   }
+  case SET_PICTURE_PATH:
+    return {
+      ...state,
+      picturePath: action.payload,
+    };
   default:
     return state;
   }

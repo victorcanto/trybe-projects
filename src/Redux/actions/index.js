@@ -5,6 +5,7 @@ export const SAVE_QUESTIONS_SUCCESS = 'SAVE_QUESTIONS_SUCCESS';
 export const SAVE_QUESTIONS_ERROR = 'SAVE_QUESTIONS_ERROR';
 export const SUM_SCORE = 'SUM_SCORE';
 export const NEXT_INDEX = 'NEXT_INDEX';
+export const SET_PICTURE_PATH = 'SET_PICTURE_PATH';
 
 export const loginAction = (payload) => ({
   type: LOGIN,
@@ -40,5 +41,10 @@ export const loginActionThunk = (payload) => async (dispatch) => {
 
 export const sumScore = (payload) => ({
   type: SUM_SCORE,
+  payload,
+});
+
+export const setPicturePath = (payload) => ({
+  type: SET_PICTURE_PATH,
   payload,
 });
