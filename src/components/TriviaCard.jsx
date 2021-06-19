@@ -42,8 +42,10 @@ class TriviaCard extends Component {
       this.resetTimer();
       this.stopTimer();
       this.startTimer();
-
       this.updateClicked();
+
+      const { verifyClicked } = this.props;
+      verifyClicked(false);
     }
   }
 
@@ -81,7 +83,7 @@ class TriviaCard extends Component {
 
   verifyAnswers(event) {
     const { verifyClicked } = this.props;
-    verifyClicked();
+    verifyClicked(true);
     const wrongAnswers = document.querySelectorAll('.wrong-answers');
     const elCorrectAnswer = document.getElementById(correctAnswer);
     elCorrectAnswer.classList.add('correct');

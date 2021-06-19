@@ -16,8 +16,8 @@ class ScreenGame extends React.Component {
     };
   }
 
-  verifyClicked() {
-    this.setState({ clicked: true });
+  verifyClicked(boolean) {
+    this.setState({ clicked: boolean });
   }
 
   render() {
