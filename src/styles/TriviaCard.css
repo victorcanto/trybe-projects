@@ -1,0 +1,43 @@
+.correct {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.incorrect {
+  border: 3px solid red;
+}
+
+.card_container {
+  background-color: #49c6e5;
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica , sans-serif;
+}
+
+.card_container h1, h2, p {
+  align-self: center;
+}
+
+.card_container h1 {
+  color: #fffbfa;
+}
+
+.card_container h2 {
+  font-style: italic;
+}
+
+.card_container p {
+  font-size: 16px;
+}
+
+.card_container button {
+  align-self: center;
+  background-color: #fffbfa;
+  border-radius: 8px;
+  margin-top: 5px;
+  padding: 10px 0;
+  width: 40%;
+}
+
+.timer_alert {
+  color: red;
+}

@@ -4,15 +4,18 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import TriviaCard from './TriviaCard';
 import { nextIndexAction } from '../Redux/actions';
+import '../styles/ScreenGame.css';
 
 class ScreenGame extends React.Component {
   constructor() {
     super();
 
     this.verifyClicked = this.verifyClicked.bind(this);
+    this.verifySeconds = this.verifySeconds.bind(this);
 
     this.state = {
       clicked: false,
+      conditionTime: false,
     };
   }
 
@@ -20,23 +23,36 @@ class ScreenGame extends React.Component {
     this.setState({ clicked: boolean });
   }
 
+  verifySeconds(boolean) {
+    this.setState({ conditionTime: boolean });
+  }
+
   render() {
-    const { clicked } = this.state;
+    const { clicked, conditionTime } = this.state;
     const { results, index, next } = this.props;
     return (
-      <div>
+      <div className="game_container">
         <Header />
         {results.length > 0 && (
           <TriviaCard
+            verifySeconds={ this.verifySeconds }
             verifyClicked={ this.verifyClicked }
             result={ results[index] }
           />
         )}
-        {clicked && (
-          <button data-testid="btn-next" type="button" onClick={ () => next() }>
-            Proximo
-          </button>
-        )}
+        <div className="game_btn_next_container">
+          {(clicked || conditionTime) && (
+            <button
+              className="game_btn_next"
+              data-testid="btn-next"
+              type="button"
+              onClick={ () => next() }
+            >
+              Próxima pergunta
+            </button>
+          )}
+        </div>
+
       </div>
     );
   }
