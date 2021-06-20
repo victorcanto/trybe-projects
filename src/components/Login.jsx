@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FiSettings } from 'react-icons/fi';
 import { saveQuestionsThunk, loginActionThunk } from '../Redux/actions';
 import { fetchToken } from '../services/Api';
+import '../styles/login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -37,30 +39,36 @@ class Login extends React.Component {
   render() {
     const { name, email } = this.state;
     return (
-      <div>
-        <form>
-          <label htmlFor="name">
-            Nome:
-            <input
-              type="text"
-              name="name"
-              id="name"
-              data-testid="input-player-name"
-              onChange={ this.handleChange }
-              value={ name }
-            />
-          </label>
-          <label htmlFor="Email">
-            Email:
-            <input
-              type="email"
-              name="email"
-              id="email"
-              data-testid="input-gravatar-email"
-              onChange={ this.handleChange }
-              value={ email }
-            />
-          </label>
+      <form>
+        <div className="login-inputs-container">
+          <div className="login-inputs">
+            <label htmlFor="name">
+              Nome:
+              <input
+                type="text"
+                name="name"
+                id="name"
+                data-testid="input-player-name"
+                onChange={ this.handleChange }
+                value={ name }
+              />
+            </label>
+          </div>
+          <div className="login-inputs">
+            <label htmlFor="Email">
+              Email:
+              <input
+                type="email"
+                name="email"
+                id="email"
+                data-testid="input-gravatar-email"
+                onChange={ this.handleChange }
+                value={ email }
+              />
+            </label>
+          </div>
+        </div>
+        <div className="login-buttons-container">
           <Link to="/game">
             <button
               type="button"
@@ -71,13 +79,11 @@ class Login extends React.Component {
               Jogar
             </button>
           </Link>
-        </form>
-        <Link to="/settings">
-          <button type="button" data-testid="btn-settings">
-            Settings
-          </button>
-        </Link>
-      </div>
+          <Link id="a-settings" to="/settings">
+            <FiSettings className="btn-settings" data-testid="btn-settings" />
+          </Link>
+        </div>
+      </form>
     );
   }
 }
