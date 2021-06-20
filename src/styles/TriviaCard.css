@@ -7,7 +7,6 @@
 }
 
 .card_container {
-  background-color: #49c6e5;
   display: flex;
   flex-direction: column;
   font-family: Helvetica , sans-serif;
@@ -19,10 +18,12 @@
 
 .card_container h1 {
   color: #fffbfa;
+  margin-bottom: 0.8rem;
 }
 
 .card_container h2 {
   font-style: italic;
+  margin-bottom: 0.5rem;
 }
 
 .card_container p {
@@ -40,4 +41,5 @@
 
 .timer_alert {
   color: red;
+  margin-top: 0.6rem;
 }
