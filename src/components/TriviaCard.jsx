@@ -109,7 +109,6 @@ class TriviaCard extends Component {
 
   renderTimer(seconds) {
     const { verifySeconds } = this.props;
-    console.log(this.props);
     if (seconds !== 0) {
       verifySeconds(false);
       return (<p>{`Faltam ${seconds} segundos ⌛`}</p>);
