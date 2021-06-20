@@ -6,12 +6,10 @@
 
 form {
   align-items: center;
-  background: linear-gradient(90deg, #48c5e5 0%, #53defd 100%);
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  opacity: 0.8;
   width: 100vw;
 }
 
@@ -37,7 +35,7 @@ form .login-inputs-container .login-inputs input {
 }
 
 form .login-inputs-container .login-inputs input:hover {
-  background-color: #49c6e5;
+  background-color: #8bd7d2;
 }
 
 form .login-buttons-container {

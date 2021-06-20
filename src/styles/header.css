@@ -1,0 +1,31 @@
+header {
+  align-items: center;
+  background-color: #fffbfa;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  padding: 1rem 2rem;
+}
+
+header .left-container img {
+  border-radius: 10px;
+  width: 50px;
+}
+
+header .center-container p {
+  font-size: 2rem;
+}
+
+header .right-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header .right-container p {
+  font-size: 1.2rem;
+}
+
+header .right-container p:first-child {
+  margin-bottom: 0.6rem;
+}

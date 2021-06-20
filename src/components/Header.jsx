@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
 import { setPicturePath } from '../Redux/actions';
+import '../styles/header.css';
 
 class Header extends React.Component {
   constructor() {
@@ -32,13 +33,20 @@ class Header extends React.Component {
     const { emailHash } = this.state;
     return (
       <header>
-        <img
-          data-testid="header-profile-picture"
-          alt="Avatar-do-usuario"
-          src={ `https://www.gravatar.com/avatar/${emailHash}` }
-        />
-        <p data-testid="header-player-name">{name}</p>
-        <p data-testid="header-score">{score}</p>
+        <div className="left-container">
+          <img
+            data-testid="header-profile-picture"
+            alt="Avatar-do-usuario"
+            src={ `https://www.gravatar.com/avatar/${emailHash}` }
+          />
+        </div>
+        <div className="center-container">
+          <p><b>TRIVIA GAME</b></p>
+        </div>
+        <div className="right-container">
+          <p data-testid="header-player-name">{name}</p>
+          <p data-testid="header-score">{score}</p>
+        </div>
       </header>
     );
   }
