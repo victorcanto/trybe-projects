@@ -45,7 +45,7 @@ class Header extends React.Component {
         </div>
         <div className="right-container">
           <p data-testid="header-player-name">{name}</p>
-          <p data-testid="header-score">{`Score: ${score}`}</p>
+          <p data-testid="header-score">{score}</p>
         </div>
       </header>
     );
