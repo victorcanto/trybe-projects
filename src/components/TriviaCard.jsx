@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/triviaCard.css';
+import '../styles/TriviaCard.css';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { sumScore } from '../Redux/actions';
@@ -22,6 +22,7 @@ class TriviaCard extends Component {
     this.stopTimer = this.stopTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
     this.updateClicked = this.updateClicked.bind(this);
+    this.renderTimer = this.renderTimer.bind(this);
   }
 
   componentDidMount() {
@@ -106,6 +107,17 @@ class TriviaCard extends Component {
     });
   }
 
+  renderTimer(seconds) {
+    const { verifySeconds } = this.props;
+    console.log(this.props);
+    if (seconds !== 0) {
+      verifySeconds(false);
+      return (<p>{`Faltam ${seconds} segundos ⌛`}</p>);
+    }
+    verifySeconds(true);
+    return (<p className="timer_alert">Seu tempo acabou &#128533;</p>);
+  }
+
   render() {
     const { questionIndex } = this.props;
     if (questionIndex === questionLength) return <Redirect to="/feedback" />;
@@ -120,7 +132,7 @@ class TriviaCard extends Component {
     const { seconds, clicked } = this.state;
 
     return (
-      <div>
+      <div className="card_container">
         <h1 data-testid="question-category">{category}</h1>
         <h2 data-testid="question-text">{question}</h2>
         <button
@@ -145,7 +157,8 @@ class TriviaCard extends Component {
             {answer}
           </button>
         ))}
-        <p>{seconds}</p>
+
+        {this.renderTimer(seconds)}
       </div>
     );
   }
