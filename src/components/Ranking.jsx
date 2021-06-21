@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { resetQuestions, resetLogin, resetScore } from '../Redux/actions';
+import '../styles/ranking.css';
 
 class Ranking extends React.Component {
   constructor() {
@@ -34,12 +35,14 @@ class Ranking extends React.Component {
     const { ranking } = this.state;
     return (
       <>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        <table>
+        <div className="title-ranking">
+          <h1 data-testid="ranking-title">Ranking</h1>
+        </div>
+        <table className="table-players">
           <thead>
             <tr>
               <th>Imagem</th>
-              <th>Nome</th>
+              <th className="title-name">Nome</th>
               <th>Pontuação</th>
             </tr>
           </thead>
@@ -58,6 +61,7 @@ class Ranking extends React.Component {
             onClick={ () => this.resetState() }
             type="button"
             data-testid="btn-go-home"
+            className="back-btn"
           >
             Voltar
           </button>
