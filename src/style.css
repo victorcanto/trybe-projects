@@ -2,3 +2,13 @@
   margin: 0;
   padding: 0;
 }
+
+#meme-image {
+  position: absolute;
+  z-index: 0;
+}
+
+#meme-text {
+  position: absolute;
+  z-index: 1;
+}
