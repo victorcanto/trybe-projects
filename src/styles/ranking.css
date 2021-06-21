@@ -1,29 +1,47 @@
 .title-ranking {
   align-items: center;
-  background-color: #fffbfa;
+  background-color: #001219;
+  color: white;
   display: flex;
   font-size: 1.2rem;
   justify-content: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 3rem;
   padding: 1rem 2rem;
 }
 
 .table-players {
+  background-color: #fffbfa;
   border-collapse: collapse;
+  border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  margin: 25px 0;
-  min-width: 400px;
+  margin: 5rem auto 2rem;
+  min-width: 40%;
+  text-align: center;
 }
 
-.title-name {
-  display: inline;
+.table-players img {
+  width: 40px;
+}
+
+.table-players th {
+  font-size: 1.3rem;
+  padding: 1.5rem;
 }
 
 .back-btn {
-  background-color: #fffbfa;
-  border: none;
-  color: #49c6e5;
+  background-color: #00bd9d;
+  border: 1px solid #0b0e07;
+  border-radius: 10px;
+  color: #fffbfa;
   cursor: pointer;
-  font-size: 1.1rem;
-  text-decoration: underline;
+  font-family: Helvetica , sans-serif;
+  font-size: 20px;
+  padding: 1rem 0.5rem;
+  text-decoration: none;
+}
+
+.ranking-btn-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

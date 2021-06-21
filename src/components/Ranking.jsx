@@ -42,7 +42,7 @@ class Ranking extends React.Component {
           <thead>
             <tr>
               <th>Imagem</th>
-              <th className="title-name">Nome</th>
+              <th>Nome</th>
               <th>Pontuação</th>
             </tr>
           </thead>
@@ -56,16 +56,18 @@ class Ranking extends React.Component {
             ))}
           </tbody>
         </table>
-        <Link to="/">
-          <button
-            onClick={ () => this.resetState() }
-            type="button"
-            data-testid="btn-go-home"
-            className="back-btn"
-          >
-            Voltar
-          </button>
-        </Link>
+        <div className="ranking-btn-container">
+          <Link to="/">
+            <button
+              onClick={ () => this.resetState() }
+              type="button"
+              data-testid="btn-go-home"
+              className="back-btn"
+            >
+              Jogar Novamente
+            </button>
+          </Link>
+        </div>
       </>
     );
   }
