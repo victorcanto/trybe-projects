@@ -7,40 +7,68 @@
 }
 
 .card_container {
+  background-color: #fffbfa;
+  border-radius: 10px;
+  box-shadow: 5px 10px #49c6e5;
   display: flex;
   flex-direction: column;
   font-family: Helvetica , sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+  width: 1024px;
 }
 
 .card_container h1, h2, p {
-  align-self: center;
   text-align: center;
 }
 
 .card_container h1 {
-  color: #fffbfa;
+  color: #00bd9d;
   margin-bottom: 0.8rem;
 }
 
 .card_container h2 {
+  color: #001219;
   font-style: italic;
   margin-bottom: 0.5rem;
 }
 
 .card_container p {
-  font-size: 16px;
+  color: #001219;
+  font-size: 18px;
+  margin-top: 15px;
 }
 
 .card_container button {
   align-self: center;
-  background-color: #fffbfa;
-  border-radius: 8px;
-  margin-top: 5px;
+  background-color: #49c6e5;
+  border-radius: 10px;
+  color: #fffbfa;
+  font-size: 1.1rem;
+  margin-top: 8px;
   padding: 10px 0;
   width: 40%;
 }
 
+.card_container button:hover {
+  background-color: #54defd;
+  color: #001219;
+  font-weight: 600;
+}
+
 .timer_alert {
+  align-self: center;
   color: red;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
   margin-top: 0.6rem;
+}
+
+.alarm_clock {
+  align-self: center;
+  height: 30px;
+  margin-top: 5px;
+  width: 30px;
 }
