@@ -5,4 +5,4 @@ function handleChangeMemeText(e) {
    return elMemeText.textContent = e.target.value;
 }
 
-elTextInput.addEventListener('keyup', handleChangeMemeText);
+elTextInput.addEventListener('input', handleChangeMemeText);
