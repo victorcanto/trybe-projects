@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../styles/TriviaCard.css';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { FcAlarmClock } from 'react-icons/fc';
 import { sumScore } from '../Redux/actions';
 
 const correctAnswer = 'correct-answer';
@@ -111,10 +112,14 @@ class TriviaCard extends Component {
     const { verifySeconds } = this.props;
     if (seconds !== 0) {
       verifySeconds(false);
-      return (<p>{`Faltam ${seconds} segundos ⌛`}</p>);
+      return (<p>{`Tempo restante: ${seconds}s`}</p>);
     }
     verifySeconds(true);
-    return (<p className="timer_alert">Seu tempo acabou &#128533;</p>);
+    return (
+      <div className="timer_alert">
+        Seu tempo acabou...
+        <FcAlarmClock className="alarm_clock" />
+      </div>);
   }
 
   render() {
