@@ -4,11 +4,26 @@
 }
 
 #meme-image {
+  height: 100%;
   position: absolute;
+  width: 100%;
   z-index: 0;
 }
 
 #meme-text {
+  bottom: 50px;
+  color: white;
+  font-size: 30px;
   position: absolute;
+  text-shadow: 5px 5px 5px black;
+  text-transform: uppercase;
   z-index: 1;
+}
+
+#meme-image-container {
+  background-color: white;
+  border: 1px solid black;
+  height: 450px;
+  position: absolute;
+  width: 450px;
 }
