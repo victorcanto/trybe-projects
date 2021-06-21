@@ -1,6 +1,6 @@
 header {
   align-items: center;
-  background-color: #fffbfa;
+  background-color: #001219;
   display: flex;
   justify-content: space-between;
   margin-bottom: 3rem;
@@ -13,6 +13,7 @@ header .left-container img {
 }
 
 header .center-container p {
+  color: white;
   font-size: 2rem;
 }
 
@@ -23,6 +24,7 @@ header .right-container {
 }
 
 header .right-container p {
+  color: white;
   font-size: 1.2rem;
 }
 
