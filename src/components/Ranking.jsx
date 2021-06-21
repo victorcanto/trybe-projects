@@ -64,7 +64,7 @@ class Ranking extends React.Component {
               data-testid="btn-go-home"
               className="back-btn"
             >
-              Voltar
+              Jogar Novamente
             </button>
           </Link>
         </div>
