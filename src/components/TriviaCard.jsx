@@ -132,8 +132,8 @@ class TriviaCard extends Component {
 
     return (
       <div className="card_container">
-        <h1 data-testid="question-category">{category}</h1>
-        <h2 data-testid="question-text">{question}</h2>
+        <h1 data-testid="question-category">{window.atob(category)}</h1>
+        <h2 data-testid="question-text">{window.atob(question)}</h2>
         <button
           className="questions-buttons"
           type="button"
@@ -142,7 +142,7 @@ class TriviaCard extends Component {
           onClick={ (e) => this.verifyAnswers(e) }
           disabled={ seconds === 0 || clicked }
         >
-          {elCorrectAnswer}
+          {window.atob(elCorrectAnswer)}
         </button>
         {incorrectAnswers.map((answer, index) => (
           <button
@@ -153,7 +153,7 @@ class TriviaCard extends Component {
             onClick={ (e) => this.verifyAnswers(e) }
             disabled={ seconds === 0 || clicked }
           >
-            {answer}
+            {window.atob(answer)}
           </button>
         ))}
 
