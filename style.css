@@ -1,0 +1,26 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.balls-container {
+  display: flex;
+  margin-top: 15px;
+}
+
+.ball {
+  border-radius: 50%;
+  height: 80px;
+  margin: 0 8px;
+  width: 80px;
+}
+
+.answer-container {
+  margin: 30px 0;
+}
+
+.score-container {
+  margin: 10px 0;
+}
+
