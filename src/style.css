@@ -22,8 +22,54 @@
 
 #meme-image-container {
   background-color: white;
-  border: 1px solid black;
   height: 450px;
-  position: absolute;
+  position: relative;
   width: 450px;
+}
+
+.border-styles {
+  margin: 30px 5px;
+}
+
+.border-styles p {
+  margin: 10px 5px;
+}
+
+.border-styles button {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 5px;
+  padding: 10px;
+  text-shadow: 2px 2px 2px black;
+  text-transform: uppercase;
+}
+
+.default-border {
+  border: 1px solid black;
+}
+
+.fire , #fire {
+  border: 3px dashed red;
+  color: white;
+}
+
+.water , #water {
+  border: 5px double blue;
+  color: white;
+}
+
+.earth , #earth {
+  border: 6px groove green;
+  color: white;
+}
+
+.memes-ready {
+  margin: 30px 5px;
+}
+
+.memes-ready img {
+  border: 1px solid black;
+  height: 50px;
+  margin: 10px 5px;
+  width: 50px;
 }

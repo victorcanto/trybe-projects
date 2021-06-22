@@ -9,16 +9,33 @@
   </head>
   <body>
     <div class="container">
-      <form>
-        <label for="text-input">Texto</label>
-        <input type="text" id="text-input" maxlength="60" />
-        <label for="meme-insert">Foto</label>
-        <input type="file" name="meme-insert" id="meme-insert" />
-      </form>
-      <div id="meme-image-container">
-        <img src="" alt="meme" id="meme-image">
-        <div id="meme-text"></div>
-      </div>
+      <header>
+          <form id="form">
+            <label for="text-input">Texto</label>
+            <input type="text" id="text-input" maxlength="60" />
+            <label for="meme-insert">Foto</label>
+            <input type="file" name="meme-insert" id="meme-insert" />
+          </form>
+      </header>
+      <main>
+        <section id="meme-image-container" class="default-border">
+          <img src="" alt="meme" id="meme-image">
+          <div id="meme-text"></div>
+        </section>
+        <section class="border-styles">
+          <p>Estilos customizados</p>
+            <button type="button" id="fire">Fire</button>
+            <button type="button" id="water">Water</button>
+            <button type="button" id="earth">Earth</button>
+        </section>
+        <section class="memes-ready">
+          <p>Memes Pré-Prontos</p>
+          <img src="./imgs/meme1.png" alt="meme1" id="meme-1">
+          <img src="./imgs/meme2.png" alt="meme2" id="meme-2">
+          <img src="./imgs/meme3.png" alt="meme3" id="meme-3">
+          <img src="./imgs/meme4.png" alt="meme4" id="meme-4">
+        </section>
+      </main>
     </div>
     <script src="./script.js"></script>
   </body>
