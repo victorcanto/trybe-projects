@@ -14,8 +14,9 @@ header {
   background-color: rgb(38 , 70 , 83);
   color: rgb(237 , 246 , 249);
   display: flex;
-  justify-content: center;
-  padding: 20px;
+  font-size: 1.3em;
+  justify-content: space-between;
+  padding: 25px;
 }
 
 main {
@@ -108,7 +109,7 @@ footer {
   color: rgb(237 , 246 , 249);
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 25px;
 }
 
 footer a {
