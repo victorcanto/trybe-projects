@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from './AppContext';
-
-const API_URL = 'https://swapi-trybe.herokuapp.com/api/planets/';
+import fetchApi from '../services/api';
 
 function Provider({ children }) {
   const [name, setName] = useState('');
@@ -13,9 +12,8 @@ function Provider({ children }) {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    async function fetchApi() {
-      const response = await fetch(API_URL);
-      const { results } = await response.json();
+    async function requestPlanets() {
+      const results = await fetchApi();
       try {
         setData(results);
       } catch (err) {
@@ -23,7 +21,7 @@ function Provider({ children }) {
       }
     }
 
-    fetchApi();
+    requestPlanets();
   }, []);
 
   const contextValue = {
