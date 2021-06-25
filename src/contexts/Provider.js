@@ -32,6 +32,12 @@ function Provider({ children }) {
       setComparison,
       setValue,
     },
+    states: {
+      name,
+      column,
+      comparison,
+      value,
+    },
     data,
     error,
     filters: {
