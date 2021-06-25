@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import AppContext from '../contexts/AppContext';
+import filterPlanetsByName from '../filters/PlanetFilters';
+import PlanetName from './Form/PlanetName';
 
 function Table() {
-  const { data } = useContext(AppContext);
+  const { states: { name }, data } = useContext(AppContext);
 
   function filterHeaders() {
     if (data.length) {
@@ -19,8 +21,14 @@ function Table() {
     );
   }
 
+  const planetFilteredByName = filterPlanetsByName(data, name);
+
   function renderData() {
-    return data.map((obj, index) => (
+    let filteredData = data;
+    if (name.length) {
+      filteredData = planetFilteredByName;
+    }
+    return filteredData.map((obj, index) => (
       <tr key={ index }>
         <td>{obj.name}</td>
         <td>{obj.rotation_period}</td>
@@ -35,13 +43,15 @@ function Table() {
         <td>{obj.created}</td>
         <td>{obj.edited}</td>
         <td>{obj.url}</td>
-
       </tr>
     ));
   }
 
   return (
     <div>
+      <form onSubmit={ (e) => e.preventDefault() }>
+        <PlanetName />
+      </form>
       <table>
         <thead>{renderHeaders()}</thead>
         <tbody>{renderData()}</tbody>
