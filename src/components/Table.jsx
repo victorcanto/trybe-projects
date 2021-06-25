@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import AppContext from '../contexts/AppContext';
-import filterPlanetsByName from '../filters/PlanetFilters';
+import { filterPlanetsByName, filterPlanetsByValues } from '../filters/PlanetFilters';
 import PlanetName from './Form/PlanetName';
+import PlanetSelects from './Form/PlanetSelects';
 
 function Table() {
-  const { states: { name }, data } = useContext(AppContext);
+  const {
+    states: { data, mutableData, name, column, comparison, value },
+    sets: { setMutableData } } = useContext(AppContext);
 
   function filterHeaders() {
     if (data.length) {
@@ -21,13 +24,18 @@ function Table() {
     );
   }
 
-  const planetFilteredByName = filterPlanetsByName(data, name);
+  let filteredData = mutableData;
+
+  function renderFilteredDataByValue() {
+    const filteredDataByValue = filterPlanetsByValues(data, column, comparison, value);
+    setMutableData(filteredDataByValue);
+  }
 
   function renderData() {
-    let filteredData = data;
     if (name.length) {
-      filteredData = planetFilteredByName;
+      filteredData = filterPlanetsByName(data, name);
     }
+
     return filteredData.map((obj, index) => (
       <tr key={ index }>
         <td>{obj.name}</td>
@@ -51,6 +59,14 @@ function Table() {
     <div>
       <form onSubmit={ (e) => e.preventDefault() }>
         <PlanetName />
+        <PlanetSelects />
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={ renderFilteredDataByValue }
+        >
+          Filtrar
+        </button>
       </form>
       <table>
         <thead>{renderHeaders()}</thead>

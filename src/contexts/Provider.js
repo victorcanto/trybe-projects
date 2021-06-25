@@ -5,10 +5,11 @@ import fetchApi from '../services/api';
 
 function Provider({ children }) {
   const [name, setName] = useState('');
-  const [column, setColumn] = useState('');
-  const [comparison, setComparison] = useState('');
+  const [column, setColumn] = useState('population');
+  const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState('');
   const [data, setData] = useState([]);
+  const [mutableData, setMutableData] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -16,6 +17,7 @@ function Provider({ children }) {
       const results = await fetchApi();
       try {
         setData(results);
+        setMutableData(results);
       } catch (err) {
         setError(err);
       }
@@ -27,29 +29,27 @@ function Provider({ children }) {
   const contextValue = {
     sets: {
       setData,
+      setMutableData,
       setName,
       setColumn,
       setComparison,
       setValue,
     },
     states: {
+      data,
+      mutableData,
       name,
       column,
       comparison,
       value,
+      error,
     },
-    data,
-    error,
+
     filters: {
       filterByName: {
         name,
       },
       filterByNumericValues: [
-        {
-          column,
-          comparison,
-          value,
-        },
         {
           column,
           comparison,
