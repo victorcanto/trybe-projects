@@ -1,6 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../../contexts/AppContext';
 
+const defaultColumns = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 let arrColumns = [
   'population',
   'orbital_period',
@@ -32,6 +40,10 @@ function PlanetSelect() {
       setOptions(arrColumns);
     }
     filterOptions();
+
+    return () => {
+      setOptions(defaultColumns);
+    };
   }, [filterByNumericValues]);
 
   function renderColumnOptions() {
