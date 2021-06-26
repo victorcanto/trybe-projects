@@ -1,14 +1,45 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../../contexts/AppContext';
+
+let arrColumns = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
 
 function PlanetSelect() {
   const { states: { column, comparison, value },
-    sets: { setColumn, setComparison, setValue } } = useContext(AppContext);
+    sets: { setColumn, setComparison, setValue },
+    filters: { filterByNumericValues } } = useContext(AppContext);
+
+  const [options, setOptions] = useState(arrColumns);
 
   function checkValue({ target }) {
     const valueToNumber = target.value.replace(/\D/g, '');
     setValue(valueToNumber);
   }
+
+  useEffect(() => {
+    let idx = 0;
+    const toRemove = filterByNumericValues.map((el) => el.column);
+    for (let i = 0; i < toRemove.length; i += 1) {
+      idx = i;
+    }
+    function filterOptions() {
+      arrColumns = arrColumns.filter((el) => el !== toRemove[idx]);
+      setOptions(arrColumns);
+    }
+    filterOptions();
+  }, [filterByNumericValues]);
+
+  function renderColumnOptions() {
+    return options.map((el) => (
+      <option key={ el } value={ el }>{el}</option>
+    ));
+  }
+
   return (
     <>
       <label htmlFor="column-input">
@@ -19,11 +50,7 @@ function PlanetSelect() {
           onChange={ (e) => setColumn(e.target.value) }
           value={ column }
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {renderColumnOptions()}
         </select>
       </label>
       <label htmlFor="comparison-input">

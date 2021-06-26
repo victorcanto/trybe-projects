@@ -11,6 +11,7 @@ function Provider({ children }) {
   const [data, setData] = useState([]);
   const [mutableData, setMutableData] = useState([]);
   const [error, setError] = useState('');
+  const [filterByNumericValues, setFilter] = useState([]);
 
   useEffect(() => {
     async function requestPlanets() {
@@ -34,6 +35,7 @@ function Provider({ children }) {
       setColumn,
       setComparison,
       setValue,
+      setFilter,
     },
     states: {
       data,
@@ -49,13 +51,7 @@ function Provider({ children }) {
       filterByName: {
         name,
       },
-      filterByNumericValues: [
-        {
-          column,
-          comparison,
-          value,
-        },
-      ],
+      filterByNumericValues,
     },
   };
 

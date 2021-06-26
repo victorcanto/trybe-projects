@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
 import AppContext from '../contexts/AppContext';
 import { filterPlanetsByName, filterPlanetsByValues } from '../filters/PlanetFilters';
+import Filter from './Filter';
+import PlanetButton from './Form/PlanetButton';
 import PlanetName from './Form/PlanetName';
 import PlanetSelects from './Form/PlanetSelects';
 
 function Table() {
   const {
-    states: { data, mutableData, name, column, comparison, value },
-    sets: { setMutableData } } = useContext(AppContext);
+    states: { data, mutableData, name, column, comparison, value, error },
+    sets: { setMutableData, setFilter },
+    filters: { filterByNumericValues } } = useContext(AppContext);
 
   function filterHeaders() {
     if (data.length) {
@@ -24,11 +27,16 @@ function Table() {
     );
   }
 
+  function addFilterByNumericValues() {
+    setFilter([...filterByNumericValues, { column, comparison, value }]);
+  }
+
   let filteredData = mutableData;
 
   function renderFilteredDataByValue() {
     const filteredDataByValue = filterPlanetsByValues(data, column, comparison, value);
     setMutableData(filteredDataByValue);
+    addFilterByNumericValues();
   }
 
   function renderData() {
@@ -55,22 +63,24 @@ function Table() {
     ));
   }
 
+  const errorMessage = <h1>{error}</h1>;
+
   return (
     <div>
       <form onSubmit={ (e) => e.preventDefault() }>
         <PlanetName />
         <PlanetSelects />
-        <button
-          type="button"
-          data-testid="button-filter"
-          onClick={ renderFilteredDataByValue }
-        >
-          Filtrar
-        </button>
+        <PlanetButton
+          filterBtn={ renderFilteredDataByValue }
+          value={ value }
+        />
       </form>
+      <div>
+        <Filter />
+      </div>
       <table>
         <thead>{renderHeaders()}</thead>
-        <tbody>{renderData()}</tbody>
+        <tbody>{error.length ? errorMessage : renderData() }</tbody>
       </table>
     </div>
   );
