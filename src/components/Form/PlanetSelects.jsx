@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../contexts/AppContext';
 
-let arrColumns = [
+const arrColumns = [
   'population',
   'orbital_period',
   'diameter',
@@ -11,8 +11,7 @@ let arrColumns = [
 
 function PlanetSelect() {
   const { states: { column, comparison, value },
-    sets: { setColumn, setComparison, setValue },
-    filters: { filterByNumericValues } } = useContext(AppContext);
+    sets: { setColumn, setComparison, setValue } } = useContext(AppContext);
 
   function checkValue({ target }) {
     const valueToNumber = target.value.replace(/\D/g, '');
@@ -20,12 +19,12 @@ function PlanetSelect() {
   }
 
   function renderColumnOptions() {
-    let idx = 0;
-    const toRemove = filterByNumericValues.map((el) => el.column);
-    for (let i = 0; i < toRemove.length; i += 1) {
-      idx = i;
-    }
-    arrColumns = arrColumns.filter((el) => el !== toRemove[idx]);
+    // let idx = 0;
+    // const toRemove = filterByNumericValues.map((el) => el.column);
+    // for (let i = 0; i < toRemove.length; i += 1) {
+    //   idx = i;
+    // }
+    // arrColumns = arrColumns.filter((el) => el !== toRemove[idx]);
 
     return arrColumns.map((el) => (
       <option key={ el } value={ el }>{el}</option>
