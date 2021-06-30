@@ -3,6 +3,7 @@ import MainCard from '../../components/MainCard';
 import useCategories from '../../hooks/useCategories';
 import useRecipes from '../../hooks/useRecipes';
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
+import Header from '../../components/Header/Header';
 
 const dataForDrinkApi = {
   domain: 'thecocktaildb',
@@ -72,6 +73,7 @@ function DrinkScreen() {
 
   return (
     <div>
+      <Header title="Bebidas" icon="true" currentPage="Drink" />
       {renderFilters()}
       {renderCards()}
     </div>
