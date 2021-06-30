@@ -1,34 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { fetchRecipes, fetchCategories } from '../../services/MainScreenAPI';
+import React, { } from 'react';
 import MainCard from './MainCard';
+import useCategories from '../../hooks/useCategories';
+import useRecipes from '../../hooks/useRecipes';
 
-const DRINK_DOMAIN = 'thecocktaildb';
-const drinks = 'drinks';
-const QTD_RECIPES = 12;
-const QTD_CATEGORIES = 5;
+const dataForDrinkApi = {
+  domain: 'thecocktaildb',
+  name: 'drinks',
+  qtdC: 5,
+  qtdR: 12,
+};
 
 function DrinkScreen() {
-  const [data, setData] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  async function requestRecipes() {
-    const res = await fetchRecipes(drinks, DRINK_DOMAIN, QTD_RECIPES);
-    setData(res);
-  }
-
-  async function requestCategories() {
-    const res = await fetchCategories(drinks, DRINK_DOMAIN, QTD_CATEGORIES);
-    setCategories(res);
-  }
-
-  useEffect(() => {
-    requestRecipes();
-    requestCategories();
-  }, []);
+  const recipes = useRecipes(dataForDrinkApi);
+  const categories = useCategories(dataForDrinkApi);
 
   function renderCards() {
-    if (data.length) {
-      return data.map(({ strDrink, strDrinkThumb }, index) => (<MainCard
+    if (recipes.length) {
+      return recipes.map(({ strDrink, strDrinkThumb }, index) => (<MainCard
         key={ index }
         name={ strDrink }
         thumb={ strDrinkThumb }
@@ -48,8 +36,6 @@ function DrinkScreen() {
         </button>));
     }
   }
-
-  console.log(categories);
 
   return (
     <div>

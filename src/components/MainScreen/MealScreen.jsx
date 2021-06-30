@@ -1,34 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { fetchRecipes, fetchCategories } from '../../services/MainScreenAPI';
+import React, { } from 'react';
+import useCategories from '../../hooks/useCategories';
+import useRecipes from '../../hooks/useRecipes';
 import MainCard from './MainCard';
 
-const MEAL_DOMAIN = 'themealdb';
-const meals = 'meals';
-const QTD_RECIPES = 12;
-const QTD_CATEGORIES = 5;
+const dataForMealApi = {
+  domain: 'themealdb',
+  name: 'meals',
+  qtdC: 5,
+  qtdR: 12,
+};
 
 function MealScreen() {
-  const [data, setData] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  async function requestRecipes() {
-    const res = await fetchRecipes(meals, MEAL_DOMAIN, QTD_RECIPES);
-    setData(res);
-  }
-
-  async function requestCategories() {
-    const res = await fetchCategories(meals, MEAL_DOMAIN, QTD_CATEGORIES);
-    setCategories(res);
-  }
-
-  useEffect(() => {
-    requestRecipes();
-    requestCategories();
-  }, []);
+  const recipes = useRecipes(dataForMealApi);
+  const categories = useCategories(dataForMealApi);
 
   function renderCards() {
-    if (data.length) {
-      return data.map(({ strMeal, strMealThumb }, index) => (<MainCard
+    if (recipes.length) {
+      return recipes.map(({ strMeal, strMealThumb }, index) => (<MainCard
         key={ index }
         name={ strMeal }
         thumb={ strMealThumb }
@@ -42,14 +30,12 @@ function MealScreen() {
         <button
           type="button"
           key={ strCategory }
-          data-testid={ `${strCategory}-category-filter` }
+          recipes-testid={ `${strCategory}-category-filter` }
         >
           {strCategory}
         </button>));
     }
   }
-
-  console.log(categories);
 
   return (
     <div>
