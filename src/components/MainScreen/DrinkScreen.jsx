@@ -1,7 +1,8 @@
-import React, { } from 'react';
+import React, { useState } from 'react';
 import MainCard from './MainCard';
 import useCategories from '../../hooks/useCategories';
 import useRecipes from '../../hooks/useRecipes';
+import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
 const dataForDrinkApi = {
   domain: 'thecocktaildb',
@@ -13,27 +14,50 @@ const dataForDrinkApi = {
 function DrinkScreen() {
   const recipes = useRecipes(dataForDrinkApi);
   const categories = useCategories(dataForDrinkApi);
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
+
+  async function getRecipesByCategory(target) {
+    const { name, domain, qtdR } = dataForDrinkApi;
+    const categoryName = target.textContent;
+    const data = await fetchRecipesByCategory(name, categoryName, domain, qtdR);
+    return data;
+  }
+
+  async function renderRecipesByCategory({ target }) {
+    if (target.textContent === 'All') setFilteredRecipes(recipes);
+    else {
+      setFilteredRecipes(await getRecipesByCategory(target));
+    }
+  }
 
   function renderCards() {
-    if (recipes.length) {
-      return recipes.map(({ strDrink, strDrinkThumb }, index) => (<MainCard
-        key={ index }
-        name={ strDrink }
-        thumb={ strDrinkThumb }
-      />));
-    }
+    let arr = recipes;
+    if (filteredRecipes.length !== 0) arr = filteredRecipes;
+
+    return arr.map(({ idDrink, strDrink, strDrinkThumb }, index) => (<MainCard
+      key={ index }
+      id={ idDrink }
+      name={ strDrink }
+      thumb={ strDrinkThumb }
+    />));
   }
 
   function renderFilters() {
     if (categories.length) {
-      return categories.map(({ strCategory }) => (
-        <button
-          type="button"
-          key={ strCategory }
-          data-testid={ `${strCategory}-category-filter` }
-        >
-          {strCategory}
-        </button>));
+      return (
+        <div>
+          <button type="button" onClick={ renderRecipesByCategory }>All</button>
+          {categories.map(({ strCategory }) => (
+            <button
+              type="button"
+              key={ strCategory }
+              data-testid={ `${strCategory}-category-filter` }
+              onClick={ renderRecipesByCategory }
+            >
+              {strCategory}
+            </button>))}
+        </div>
+      );
     }
   }
 
