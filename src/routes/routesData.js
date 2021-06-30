@@ -1,4 +1,7 @@
 import Login from '../pages/Login';
+import MealScreen from '../pages/MainScreen/MealScreen';
+import DrinkScreen from '../pages/MainScreen/DrinkScreen';
+import DetailScreen from '../pages/DetailScreen/DetailScreen';
 
 // component should be the page
 const routes = [
@@ -7,26 +10,26 @@ const routes = [
     exact: true,
     component: Login,
   },
-  // {
-  //   path: '/comidas',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/bebidas',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/comidas/:id-receita',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/bebidas/:id-receita',
-  //   exact: true,
-  //   component: '',
-  // },
+  {
+    path: '/comidas',
+    exact: true,
+    component: MealScreen,
+  },
+  {
+    path: '/bebidas',
+    exact: true,
+    component: DrinkScreen,
+  },
+  {
+    path: '/comidas/:id-receita',
+    exact: true,
+    component: DetailScreen,
+  },
+  {
+    path: '/bebidas/:id-receita',
+    exact: true,
+    component: DetailScreen,
+  },
   // {
   //   path: '/comidas/:id-receita/in-progress',
   //   exact: true,
