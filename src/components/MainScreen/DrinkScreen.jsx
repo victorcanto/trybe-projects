@@ -24,7 +24,8 @@ function DrinkScreen() {
   }
 
   async function renderRecipesByCategory({ target }) {
-    if (target.textContent === 'All') setFilteredRecipes(recipes);
+    if (target.textContent === 'All'
+    || !target.classList.toggle('select')) setFilteredRecipes(recipes);
     else {
       setFilteredRecipes(await getRecipesByCategory(target));
     }
@@ -36,6 +37,7 @@ function DrinkScreen() {
 
     return arr.map(({ idDrink, strDrink, strDrinkThumb }, index) => (<MainCard
       key={ index }
+      index={ index }
       id={ idDrink }
       name={ strDrink }
       thumb={ strDrinkThumb }
@@ -46,9 +48,16 @@ function DrinkScreen() {
     if (categories.length) {
       return (
         <div>
-          <button type="button" onClick={ renderRecipesByCategory }>All</button>
+          <button
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ renderRecipesByCategory }
+          >
+            All
+          </button>
           {categories.map(({ strCategory }) => (
             <button
+              className="btn-filter"
               type="button"
               key={ strCategory }
               data-testid={ `${strCategory}-category-filter` }
