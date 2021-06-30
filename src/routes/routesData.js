@@ -1,7 +1,7 @@
 import Login from '../pages/Login';
-import MealScreen from '../pages/MainScreen/MealScreen';
-import DrinkScreen from '../pages/MainScreen/DrinkScreen';
-import DetailScreen from '../pages/DetailScreen/DetailScreen';
+import MealScreen from '../pages/MealScreen';
+import DrinkScreen from '../pages/DrinkScreen';
+import DetailScreen from '../pages/DetailScreen';
 
 // component should be the page
 const routes = [

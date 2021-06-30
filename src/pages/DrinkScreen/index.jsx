@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import MainCard from '../../components/MainCard';
 import useCategories from '../../hooks/useCategories';
 import useRecipes from '../../hooks/useRecipes';
+import MainCard from '../../components/MainCard';
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
 const dataForDrinkApi = {
