@@ -4,6 +4,7 @@ import useCategories from '../../hooks/useCategories';
 import useRecipes from '../../hooks/useRecipes';
 import Footer from '../../components/Footer';
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
+import Header from '../../components/Header/Header';
 
 const dataForDrinkApi = {
   domain: 'thecocktaildb',
@@ -73,6 +74,7 @@ function DrinkScreen() {
 
   return (
     <div>
+      <Header title="Bebidas" icon="true" currentPage="Drink" />
       {renderFilters()}
       {renderCards()}
       <Footer />
