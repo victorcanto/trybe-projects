@@ -21,22 +21,22 @@ const routes = [
     component: DrinkScreen,
   },
   {
-    path: '/comidas/:id-receita',
+    path: '/comidas/:id',
     exact: true,
     component: DetailScreen,
   },
   {
-    path: '/bebidas/:id-receita',
+    path: '/bebidas/:id',
     exact: true,
     component: DetailScreen,
   },
   // {
-  //   path: '/comidas/:id-receita/in-progress',
+  //   path: '/comidas/:id/in-progress',
   //   exact: true,
   //   component: '',
   // },
   // {
-  //   path: '/bebidas/:id-receita/in-progress',
+  //   path: '/bebidas/:id/in-progress',
   //   exact: true,
   //   component: '',
   // },
