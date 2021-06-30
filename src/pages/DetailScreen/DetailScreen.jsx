@@ -1,8 +1,10 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 function DetailScreen() {
+  const { id } = useParams();
   return (
-    <div>Tela de Detalhes</div>
+    <div>{id}</div>
   );
 }
 
