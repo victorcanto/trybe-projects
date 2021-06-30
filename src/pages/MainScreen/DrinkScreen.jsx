@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MainCard from '../../components/MainCard';
 import useCategories from '../../hooks/useCategories';
 import useRecipes from '../../hooks/useRecipes';
+import Footer from '../../components/Footer';
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
 const dataForDrinkApi = {
@@ -74,6 +75,7 @@ function DrinkScreen() {
     <div>
       {renderFilters()}
       {renderCards()}
+      <Footer />
     </div>
   );
 }
