@@ -16,15 +16,18 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Cliclado');
-    // history.push('/');
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('user', JSON.stringify({ email: userEmail }));
+
+    history.push('/comidas');
   };
 
   useEffect(() => {
     const regex = /\S+@\S+\.\S+/;
     const minimumLength = 6;
     const isEmailValid = regex.test(userEmail);
-    const isPwdValid = userPwd.length >= minimumLength;
+    const isPwdValid = userPwd.length > minimumLength;
 
     setIsValidated(isEmailValid && isPwdValid);
   }, [userEmail, userPwd]);
