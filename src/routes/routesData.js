@@ -1,4 +1,5 @@
 import Login from '../pages/Login';
+<<<<<<< HEAD
 import MealScreen from '../pages/MainScreen/MealScreen';
 import DrinkScreen from '../pages/MainScreen/DrinkScreen';
 import DetailScreen from '../pages/DetailScreen/DetailScreen';
@@ -9,6 +10,11 @@ import ExploreIngredientsFood from '../pages/Explorer/Food/Ingredients';
 import ExploreIngredientsDrink from '../pages/Explorer/Drink/Ingredients';
 import FoodOrigins from '../pages/Explorer/Food/Origin';
 import Profile from '../pages/Profile';
+=======
+import MealScreen from '../pages/MealScreen';
+import DrinkScreen from '../pages/DrinkScreen';
+import DetailScreen from '../pages/DetailScreen';
+>>>>>>> main-group-13
 
 // component should be the page
 const routes = [
@@ -28,22 +34,22 @@ const routes = [
     component: DrinkScreen,
   },
   {
-    path: '/comidas/:id-receita',
+    path: '/comidas/:id',
     exact: true,
     component: DetailScreen,
   },
   {
-    path: '/bebidas/:id-receita',
+    path: '/bebidas/:id',
     exact: true,
     component: DetailScreen,
   },
   // {
-  //   path: '/comidas/:id-receita/in-progress',
+  //   path: '/comidas/:id/in-progress',
   //   exact: true,
   //   component: '',
   // },
   // {
-  //   path: '/bebidas/:id-receita/in-progress',
+  //   path: '/bebidas/:id/in-progress',
   //   exact: true,
   //   component: '',
   // },
