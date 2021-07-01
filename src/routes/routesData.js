@@ -1,4 +1,14 @@
 import Login from '../pages/Login';
+import MealScreen from '../pages/MealScreen';
+import DrinkScreen from '../pages/DrinkScreen';
+import DetailScreen from '../pages/DetailScreen';
+import Explorer from '../pages/Explorer';
+import ExploreFoods from '../pages/Explorer/Food';
+import ExploreDrinks from '../pages/Explorer/Drink';
+import ExploreIngredientsFood from '../pages/Explorer/Food/Ingredients';
+import ExploreIngredientsDrink from '../pages/Explorer/Drink/Ingredients';
+import FoodOrigins from '../pages/Explorer/Food/Origin';
+import Profile from '../pages/Profile';
 
 // component should be the page
 const routes = [
@@ -7,71 +17,71 @@ const routes = [
     exact: true,
     component: Login,
   },
+  {
+    path: '/comidas',
+    exact: true,
+    component: MealScreen,
+  },
+  {
+    path: '/bebidas',
+    exact: true,
+    component: DrinkScreen,
+  },
+  {
+    path: '/comidas/:id',
+    exact: true,
+    component: DetailScreen,
+  },
+  {
+    path: '/bebidas/:id',
+    exact: true,
+    component: DetailScreen,
+  },
   // {
-  //   path: '/comidas',
+  //   path: '/comidas/:id/in-progress',
   //   exact: true,
   //   component: '',
   // },
   // {
-  //   path: '/bebidas',
+  //   path: '/bebidas/:id/in-progress',
   //   exact: true,
   //   component: '',
   // },
-  // {
-  //   path: '/comidas/:id-receita',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/bebidas/:id-receita',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/comidas/:id-receita/in-progress',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/bebidas/:id-receita/in-progress',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/explorar',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/explorar/comidas',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/explorar/bebidas',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/explorar/comidas/ingredientes',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/explorar/bebidas/ingredientes',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/explorar/comidas/area',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/perfil',
-  //   exact: true,
-  //   component: '',
-  // },
+  {
+    path: '/explorar',
+    exact: true,
+    component: Explorer,
+  },
+  {
+    path: '/explorar/comidas',
+    exact: true,
+    component: ExploreFoods,
+  },
+  {
+    path: '/explorar/bebidas',
+    exact: true,
+    component: ExploreDrinks,
+  },
+  {
+    path: '/explorar/comidas/ingredientes',
+    exact: true,
+    component: ExploreIngredientsFood,
+  },
+  {
+    path: '/explorar/bebidas/ingredientes',
+    exact: true,
+    component: ExploreIngredientsDrink,
+  },
+  {
+    path: '/explorar/comidas/area',
+    exact: true,
+    component: FoodOrigins,
+  },
+  {
+    path: '/perfil',
+    exact: true,
+    component: Profile,
+  },
   // {
   //   path: '/receitas-feitas',
   //   exact: true,
