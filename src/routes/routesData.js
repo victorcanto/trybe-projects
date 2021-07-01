@@ -1,8 +1,7 @@
 import Login from '../pages/Login';
-<<<<<<< HEAD
-import MealScreen from '../pages/MainScreen/MealScreen';
-import DrinkScreen from '../pages/MainScreen/DrinkScreen';
-import DetailScreen from '../pages/DetailScreen/DetailScreen';
+import MealScreen from '../pages/MealScreen';
+import DrinkScreen from '../pages/DrinkScreen';
+import DetailScreen from '../pages/DetailScreen';
 import Explorer from '../pages/Explorer';
 import ExploreFoods from '../pages/Explorer/Food';
 import ExploreDrinks from '../pages/Explorer/Drink';
@@ -10,11 +9,6 @@ import ExploreIngredientsFood from '../pages/Explorer/Food/Ingredients';
 import ExploreIngredientsDrink from '../pages/Explorer/Drink/Ingredients';
 import FoodOrigins from '../pages/Explorer/Food/Origin';
 import Profile from '../pages/Profile';
-=======
-import MealScreen from '../pages/MealScreen';
-import DrinkScreen from '../pages/DrinkScreen';
-import DetailScreen from '../pages/DetailScreen';
->>>>>>> main-group-13
 
 // component should be the page
 const routes = [

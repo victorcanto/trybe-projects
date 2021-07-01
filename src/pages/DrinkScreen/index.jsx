@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import useCategories from '../../hooks/useCategories';
 import useRecipes from '../../hooks/useRecipes';
-import Footer from '../../components/Footer';
 import MainCard from '../../components/MainCard';
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer';
 
 const dataForDrinkApi = {
   domain: 'thecocktaildb',
