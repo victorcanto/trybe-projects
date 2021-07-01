@@ -1,7 +1,7 @@
 import Login from '../pages/Login';
-import MealScreen from '../pages/MainScreen/MealScreen';
-import DrinkScreen from '../pages/MainScreen/DrinkScreen';
-import DetailScreen from '../pages/DetailScreen/DetailScreen';
+import MealScreen from '../pages/MealScreen';
+import DrinkScreen from '../pages/DrinkScreen';
+import DetailScreen from '../pages/DetailScreen';
 
 // component should be the page
 const routes = [
@@ -21,22 +21,22 @@ const routes = [
     component: DrinkScreen,
   },
   {
-    path: '/comidas/:id-receita',
+    path: '/comidas/:id',
     exact: true,
     component: DetailScreen,
   },
   {
-    path: '/bebidas/:id-receita',
+    path: '/bebidas/:id',
     exact: true,
     component: DetailScreen,
   },
   // {
-  //   path: '/comidas/:id-receita/in-progress',
+  //   path: '/comidas/:id/in-progress',
   //   exact: true,
   //   component: '',
   // },
   // {
-  //   path: '/bebidas/:id-receita/in-progress',
+  //   path: '/bebidas/:id/in-progress',
   //   exact: true,
   //   component: '',
   // },
