@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import useCategories from '../../hooks/useCategories';
 import useRecipes from '../../hooks/useRecipes';
-<<<<<<< HEAD:src/pages/MainScreen/DrinkScreen.jsx
 import Footer from '../../components/Footer';
-=======
 import MainCard from '../../components/MainCard';
->>>>>>> main-group-13:src/pages/DrinkScreen/index.jsx
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 import Header from '../../components/Header/Header';
 
