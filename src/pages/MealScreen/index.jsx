@@ -47,7 +47,7 @@ function MealScreen() {
     if (!loadedCategories.includes(currentCategory) && currentCategory !== 'all') {
       getRecipesByCategory();
     } else setIsLoading(false);
-  }, [currentCategory, setFoodRecipesByCategory]);
+  }, [currentCategory]);
 
   async function renderRecipesByCategory({ target }) {
     const category = target.textContent.toLowerCase();
@@ -63,7 +63,10 @@ function MealScreen() {
 
     if (currentCategory !== 'all' && !isLoading) {
       recipes = foodRecipesByCategory[currentCategory];
+      console.log('recipes');
     }
+
+    console.log(foodRecipesByCategory);
 
     return recipes.map(({ idMeal, strMeal, strMealThumb }, index) => (
       <MainCard
