@@ -60,12 +60,12 @@ function DetailScreen() {
 
   function filterIngredients([key, value]) {
     return key.includes('strIngredient')
-      && (!!value && value.trim() !== 0);
+      && (value);
   }
 
   function filterMeasures([key, value]) {
     return key.includes('strMeasure')
-      && (!!value && value.length !== 1);
+      && (!!value && value !== ' ');
   }
 
   function createArrOfIngredientsAndMeasures() {
