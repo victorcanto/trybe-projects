@@ -5,7 +5,7 @@ function RecommendedCard(props) {
   const { category, index, name, thumb } = props;
   return (
     <div data-testid={ `${index}-recomendation-card` }>
-      <img src={ thumb } alt={ name } width="50%" />
+      <img src={ thumb } alt={ name } />
       <p>{category}</p>
       <h3 data-testid={ `${index}-recomendation-title` }>{name}</h3>
     </div>
