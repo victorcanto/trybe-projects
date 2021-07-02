@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import useCategories from '../../hooks/useCategories';
-import useRecipes from '../../hooks/useRecipes';
-import MainCard from '../../components/MainCard';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useContext } from 'react';
+import FoodContext from '../../context/Foods/FoodContext';
+
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
+
+import Loading from '../../components/Loading';
 import Header from '../../components/Header/Header';
+import MainCard from '../../components/MainCard';
 import Footer from '../../components/Footer';
 
 const dataForMealApi = {
@@ -14,36 +17,63 @@ const dataForMealApi = {
 };
 
 function MealScreen() {
-  const recipes = useRecipes(dataForMealApi);
-  const categories = useCategories(dataForMealApi);
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const {
+    categories,
+    foodRecipes,
+    foodRecipesByCategory,
+    setFoodRecipesByCategory,
+    isLoading,
+    setIsLoading,
+  } = useContext(FoodContext);
 
-  async function getRecipesByCategory(target) {
-    const { name, domain, qtdR } = dataForMealApi;
-    const categoryName = target.textContent;
-    const data = await fetchRecipesByCategory(name, categoryName, domain, qtdR);
-    return data;
-  }
+  const [currentCategory, setCurrentCategory] = useState('all');
+
+  useEffect(() => {
+    const loadedCategories = Object.keys(foodRecipesByCategory);
+    const getRecipesByCategory = async () => {
+      try {
+        const { name, domain, qtdR } = dataForMealApi;
+        const data = await fetchRecipesByCategory(name, currentCategory, domain, qtdR);
+        setFoodRecipesByCategory((prev) => ({
+          ...prev,
+          [currentCategory]: data,
+        }));
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (!loadedCategories.includes(currentCategory) && currentCategory !== 'all') {
+      getRecipesByCategory();
+    } else setIsLoading(false);
+  }, [currentCategory, setFoodRecipesByCategory]);
 
   async function renderRecipesByCategory({ target }) {
-    if (target.textContent === 'All'
-    || !target.classList.toggle('select')) setFilteredRecipes(recipes);
-    else {
-      setFilteredRecipes(await getRecipesByCategory(target));
-    }
+    const category = target.textContent.toLowerCase();
+
+    if (category === currentCategory) return setCurrentCategory('all');
+
+    setIsLoading(true);
+    setCurrentCategory(category);
   }
 
   function renderCards() {
-    let arr = recipes;
-    if (filteredRecipes.length !== 0) arr = filteredRecipes;
+    let recipes = foodRecipes;
 
-    return arr.map(({ idMeal, strMeal, strMealThumb }, index) => (<MainCard
-      key={ index }
-      index={ index }
-      id={ idMeal }
-      name={ strMeal }
-      thumb={ strMealThumb }
-    />));
+    if (currentCategory !== 'all' && !isLoading) {
+      recipes = foodRecipesByCategory[currentCategory];
+    }
+
+    return recipes.map(({ idMeal, strMeal, strMealThumb }, index) => (
+      <MainCard
+        key={ index }
+        index={ index }
+        id={ idMeal }
+        name={ strMeal }
+        thumb={ strMealThumb }
+      />
+    ));
   }
 
   function renderFilters() {
@@ -76,7 +106,7 @@ function MealScreen() {
     <div>
       <Header title="Comidas" icon="true" currentPage="Foods" />
       {renderFilters()}
-      {renderCards()}
+      {isLoading ? <Loading /> : renderCards()}
       <Footer />
     </div>
   );
