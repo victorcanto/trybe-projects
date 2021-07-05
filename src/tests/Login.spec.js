@@ -17,4 +17,18 @@ describe('Testing the Login page', () => {
 
     expect(emailInput).toBeInTheDocument();
   });
+
+  test('should has an password input', () => {
+    renderWithRouter(<Login />);
+    const emailInput = screen.getByTestId('password-input');
+
+    expect(emailInput).toBeInTheDocument();
+  });
+
+  test('should has an password input', () => {
+    renderWithRouter(<Login />);
+    const emailInput = screen.getByTestId('login-submit-btn');
+
+    expect(emailInput).toBeInTheDocument();
+  });
 });

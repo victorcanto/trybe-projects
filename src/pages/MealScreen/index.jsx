@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import useCategories from '../../hooks/useCategories';
 import useRecipes from '../../hooks/useRecipes';
 import MainCard from '../../components/MainCard';
-import Header from '../../components/Header/Header';
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer';
 
 const dataForMealApi = {
   domain: 'themealdb',
@@ -76,6 +77,7 @@ function MealScreen() {
       <Header title="Comidas" icon="true" currentPage="Foods" />
       {renderFilters()}
       {renderCards()}
+      <Footer />
     </div>
   );
 }
