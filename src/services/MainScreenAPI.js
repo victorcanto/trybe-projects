@@ -18,5 +18,8 @@ export async function fetchRecipesByCategory(key, category, domain, qtd) {
   );
   const data = await response.json();
   const results = data[key].slice(0, qtd);
+
+  if (data.meals === null) throw new Error('Meals don\'t found');
+
   return results;
 }
