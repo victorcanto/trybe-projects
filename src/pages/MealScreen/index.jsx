@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 
 const dataForMealApi = {
   domain: 'themealdb',
-  name: 'meals',
+  key: 'meals',
   qtdC: 5,
   qtdR: 12,
 };

@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 
 const dataForDrinkApi = {
   domain: 'thecocktaildb',
-  name: 'drinks',
+  key: 'drinks',
   qtdC: 5,
   qtdR: 12,
 };
