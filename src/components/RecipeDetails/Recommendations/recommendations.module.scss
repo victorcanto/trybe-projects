@@ -1,0 +1,19 @@
+.recommendedCards {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+
+  div {
+    background-color: rgb(221, 214, 214);
+    display: flex;
+    flex-flow: wrap column;
+    height: 172px;
+    margin: 10px;
+    width: 161px;
+
+    img {
+      height: 115px;
+      width: 161px;
+    }
+  }
+}
