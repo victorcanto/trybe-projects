@@ -19,9 +19,9 @@ function DrinkScreen() {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   async function getRecipesByCategory(target) {
-    const { name, domain, qtdR } = dataForDrinkApi;
+    const { key, domain, qtdR } = dataForDrinkApi;
     const categoryName = target.textContent;
-    const data = await fetchRecipesByCategory(name, categoryName, domain, qtdR);
+    const data = await fetchRecipesByCategory(key, categoryName, domain, qtdR);
     return data;
   }
 
