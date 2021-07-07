@@ -11,7 +11,7 @@ import Footer from '../../components/Footer';
 
 const dataForMealApi = {
   domain: 'themealdb',
-  name: 'meals',
+  key: 'meals',
   qtdC: 5,
   qtdR: 12,
 };
@@ -32,8 +32,8 @@ function MealScreen() {
     const loadedCategories = Object.keys(foodRecipesByCategory);
     const getRecipesByCategory = async () => {
       try {
-        const { name, domain, qtdR } = dataForMealApi;
-        const data = await fetchRecipesByCategory(name, currentCategory, domain, qtdR);
+        const { key, domain, qtdR } = dataForMealApi;
+        const data = await fetchRecipesByCategory(key, currentCategory, domain, qtdR);
         setFoodRecipesByCategory((prev) => ({
           ...prev,
           [currentCategory]: data,
