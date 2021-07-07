@@ -5,14 +5,21 @@ import styles from './buttons.module.scss';
 function InteractiveButtons() {
   const { pathname } = useLocation();
   const [isCopy, setIsCopy] = useState(false);
-  // const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  function favoriteToggle() {
+    setIsFavorite(!isFavorite);
+  }
 
   function copyToClipBoard() {
     const ONE_SECOND = 1000;
     setIsCopy(true);
     setTimeout(() => setIsCopy(false), ONE_SECOND);
-    return navigator.clipboard.writeText(`http://localhost:3000/${pathname}`);
+    return navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
   }
+
+  let favoriteColor = styles.whiteHeartIcon;
+  if (isFavorite) favoriteColor = styles.blackHeartIcon;
 
   return (
     <div>
@@ -29,7 +36,8 @@ function InteractiveButtons() {
         <button
           type="button"
           id="favorite-btn"
-          className={ styles.whiteHeartIcon }
+          className={ favoriteColor }
+          onClick={ favoriteToggle }
           data-testid="favorite-btn"
         >
           {' '}
