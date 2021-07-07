@@ -22,7 +22,7 @@ function ExploreFoods() {
       <a href="/explorar/comidas/area">
         <h2 data-testid="explore-by-area">Por Local de Origem</h2>
       </a>
-      <a href={ `/explorar/comidas/${idMeal}` }>
+      <a href={ `/comidas/${idMeal}` }>
         <h2 data-testid="explore-surprise">Me Surpreenda!</h2>
       </a>
       <Footer />
