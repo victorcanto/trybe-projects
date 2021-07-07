@@ -7,7 +7,7 @@ function Recommendations({ recipes, name, category }) {
   return (
     <div>
       <h2>Recommended</h2>
-      <div className={ styles.Cardss }>
+      <div className={ styles.recommendations }>
         {recipes.map((recipe, index) => (
           <Cards
             index={ index }
