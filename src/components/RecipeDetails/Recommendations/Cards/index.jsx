@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function RecommendedCard(props) {
+function Cards(props) {
   const { category, index, name, thumb } = props;
   return (
     <div data-testid={ `${index}-recomendation-card` }>
@@ -12,9 +12,9 @@ function RecommendedCard(props) {
   );
 }
 
-export default RecommendedCard;
+export default Cards;
 
-RecommendedCard.propTypes = {
+Cards.propTypes = {
   category: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,

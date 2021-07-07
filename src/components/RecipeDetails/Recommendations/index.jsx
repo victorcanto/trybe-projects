@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RecommendedCard from '../../RecommendedCard';
+import Cards from './Cards';
 import styles from './recommendations.module.scss';
 
 function Recommendations({ recipes, name, category }) {
   return (
     <div>
       <h2>Recommended</h2>
-      <div className={ styles.recommendedCards }>
+      <div className={ styles.Cardss }>
         {recipes.map((recipe, index) => (
-          <RecommendedCard
+          <Cards
             index={ index }
             key={ index }
             category={ recipe[category] }
