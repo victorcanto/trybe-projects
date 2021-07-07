@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-import React, { useContext, useEffect } from 'react';
-=======
 import React, { } from 'react';
->>>>>>> 97ada00bdb5f526d0f337a3455824b24b6b7d61d
 import { useLocation, useParams } from 'react-router-dom';
 import useRecipeDetails from '../../hooks/useRecipeDetails';
 import '../../styles/global.scss';
 import c from './constants';
 import useRecipes from '../../hooks/useRecipes';
-<<<<<<< HEAD
-import Context from '../../context/DetailScreen/DetailContext';
-=======
 // import Context from '../../context/DetailScreen/DetailContext';
->>>>>>> 97ada00bdb5f526d0f337a3455824b24b6b7d61d
 import BasicInfo from '../../components/RecipeDetails/BasicInfo';
 import InteractiveButtons from '../../components/RecipeDetails/InteractiveButtons';
 import Ingredients from '../../components/RecipeDetails/Ingredients';
@@ -67,24 +59,8 @@ function DetailScreen() {
     qtdR: 6,
   };
 
-<<<<<<< HEAD
-  const DATA_DETAILS = useRecipeDetails(API_INFO_DETAILS);
-  const DATA_RECOMMENDED = useRecipes(API_INFO_RECOMMENDED);
-
-  const {
-    recipeDetails,
-    setRecipeDetails,
-    recommendedRecipes,
-    setRecommendedRecipes } = useContext(Context);
-
-  useEffect(() => {
-    setRecipeDetails(DATA_DETAILS);
-    setRecommendedRecipes(DATA_RECOMMENDED);
-  }, [DATA_DETAILS, DATA_RECOMMENDED, setRecipeDetails, setRecommendedRecipes]);
-=======
   const recipeDetails = useRecipeDetails(API_INFO_DETAILS);
   const recommendedRecipes = useRecipes(API_INFO_RECOMMENDED);
->>>>>>> 97ada00bdb5f526d0f337a3455824b24b6b7d61d
 
   function renderDetails() {
     return (
@@ -110,11 +86,7 @@ function DetailScreen() {
 
   return (
     <div>
-<<<<<<< HEAD
-      {(recipeDetails && recommendedRecipes) && renderDetails()}
-=======
       {renderDetails()}
->>>>>>> 97ada00bdb5f526d0f337a3455824b24b6b7d61d
     </div>
 
   );
