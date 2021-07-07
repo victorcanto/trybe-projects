@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import useRecipeDetails from '../../hooks/useRecipeDetails';
 import '../../styles/global.scss';
 import c from './constants';
 import useRecipes from '../../hooks/useRecipes';
-// import Context from '../../context/DetailScreen/DetailContext';
+import Context from '../../context/DetailScreen/DetailContext';
 import BasicInfo from '../../components/RecipeDetails/BasicInfo';
 import InteractiveButtons from '../../components/RecipeDetails/InteractiveButtons';
 import Ingredients from '../../components/RecipeDetails/Ingredients';
@@ -40,7 +40,7 @@ function DetailScreen() {
     },
   };
 
-  const dataForRecipeApi = {
+  const API_INFO_DETAILS = {
     id,
     key: data[split].key,
     domain: data[split].domain,
@@ -53,33 +53,53 @@ function DetailScreen() {
     categoryRecommend: data[split].categoryRecommend,
   };
 
-  const dataForRecommendedApi = {
+  const API_INFO_RECOMMENDED = {
     key: data[split].keyRecommend,
     domain: data[split].domainRecommend,
     qtdR: 6,
   };
 
-  const recipeDetails = useRecipeDetails(dataForRecipeApi);
-  const recipes = useRecipes(dataForRecommendedApi);
+  const DATA_DETAILS = useRecipeDetails(API_INFO_DETAILS);
+  const DATA_RECOMMENDED = useRecipes(API_INFO_RECOMMENDED);
+
+  const {
+    recipeDetails,
+    setRecipeDetails,
+    recommendedRecipes,
+    setRecommendedRecipes } = useContext(Context);
+
+  useEffect(() => {
+    setRecipeDetails(DATA_DETAILS);
+    setRecommendedRecipes(DATA_RECOMMENDED);
+  }, [DATA_DETAILS, DATA_RECOMMENDED, setRecipeDetails, setRecommendedRecipes]);
+
+  function renderDetails() {
+    return (
+      <>
+        <BasicInfo
+          recipeDetails={ recipeDetails }
+          name={ type.name }
+          category={ type.category }
+        />
+        <InteractiveButtons />
+        <Ingredients recipeDetails={ recipeDetails } />
+        <Instructions recipeDetails={ recipeDetails } />
+        <VideoRecipe recipeDetails={ recipeDetails } name={ type.name } />
+        <Recommendations
+          recipes={ recommendedRecipes }
+          name={ type.nameRecommend }
+          category={ type.categoryRecommend }
+        />
+        <StartRecipe />
+      </>
+    );
+  }
 
   return (
-    <>
-      <BasicInfo
-        recipeDetails={ recipeDetails }
-        name={ type.name }
-        category={ type.category }
-      />
-      <InteractiveButtons />
-      <Ingredients recipeDetails={ recipeDetails } />
-      <Instructions recipeDetails={ recipeDetails } />
-      <VideoRecipe recipeDetails={ recipeDetails } name={ type.name } />
-      <Recommendations
-        recipes={ recipes }
-        name={ type.nameRecommend }
-        category={ type.categoryRecommend }
-      />
-      <StartRecipe />
-    </>
+    <div>
+      {(recipeDetails && recommendedRecipes) && renderDetails()}
+    </div>
+
   );
 }
 
