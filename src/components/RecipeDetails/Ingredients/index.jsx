@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import DetailContext from '../../../context/DetailScreen/DetailContext';
 
-function Ingredients(props) {
-  const { recipeDetails } = props;
+function Ingredients() {
+  const { recipeDetails } = useContext(DetailContext);
 
   function filterIngredients([key, value]) {
     return key.includes('strIngredient')
@@ -45,7 +45,3 @@ function Ingredients(props) {
 }
 
 export default Ingredients;
-
-Ingredients.propTypes = {
-  recipeDetails: PropTypes.objectOf(PropTypes.string).isRequired,
-};
