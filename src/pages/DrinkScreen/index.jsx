@@ -14,7 +14,7 @@ const dataForDrinkApi = {
 };
 
 function DrinkScreen() {
-  const recipes = useRecipes(dataForDrinkApi);
+  const [recipes] = useRecipes(dataForDrinkApi);
   const categories = useCategories(dataForDrinkApi);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 

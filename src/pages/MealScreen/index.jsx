@@ -14,7 +14,7 @@ const dataForMealApi = {
 };
 
 function MealScreen() {
-  const recipes = useRecipes(dataForMealApi);
+  const [recipes] = useRecipes(dataForMealApi);
   const categories = useCategories(dataForMealApi);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
