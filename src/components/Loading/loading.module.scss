@@ -1,0 +1,30 @@
+@keyframes loading {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.container h2 {
+  color: #969696;
+}
+
+.animation {
+  animation: loading 2.5s linear infinite;
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 2rem 1rem;
+  position: relative;
+}
