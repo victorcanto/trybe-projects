@@ -20,9 +20,6 @@ function ExploreDrinks() {
       <a href="/explorar/bebidas/ingredientes">
         <h2 data-testid="explore-by-ingredient">Por Ingredientes</h2>
       </a>
-      <a href="/explorar/bebidas/area">
-        <h2 data-testid="explore-by-area">Por Local de Origem</h2>
-      </a>
       <a href={ `/bebidas/${idDrink}` }>
         <h2 data-testid="explore-surprise">Me Surpreenda!</h2>
       </a>
