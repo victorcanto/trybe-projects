@@ -17,18 +17,6 @@ const dataForMealApi = {
 };
 
 function MealScreen() {
-<<<<<<< HEAD
-  const [recipes] = useRecipes(dataForMealApi);
-  const categories = useCategories(dataForMealApi);
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
-
-  async function getRecipesByCategory(target) {
-    const { key, domain, qtdR } = dataForMealApi;
-    const categoryName = target.textContent;
-    const data = await fetchRecipesByCategory(key, categoryName, domain, qtdR);
-    return data;
-  }
-=======
   const {
     categories,
     foodRecipes,
@@ -44,8 +32,8 @@ function MealScreen() {
     const loadedCategories = Object.keys(foodRecipesByCategory);
     const getRecipesByCategory = async () => {
       try {
-        const { name, domain, qtdR } = dataForMealApi;
-        const data = await fetchRecipesByCategory(name, currentCategory, domain, qtdR);
+        const { key, domain, qtdR } = dataForMealApi;
+        const data = await fetchRecipesByCategory(key, currentCategory, domain, qtdR);
         setFoodRecipesByCategory((prev) => ({
           ...prev,
           [currentCategory]: data,
@@ -60,7 +48,6 @@ function MealScreen() {
       getRecipesByCategory();
     } else setIsLoading(false);
   }, [currentCategory]);
->>>>>>> main-group-13-ContextApi
 
   async function renderRecipesByCategory({ target }) {
     const category = target.textContent.toLowerCase();
