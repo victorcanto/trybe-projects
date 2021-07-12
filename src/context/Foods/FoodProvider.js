@@ -22,6 +22,8 @@ function FoodProvider({ children }) {
     setIsLoading(isFetching);
   }, [isFetching]);
 
+  console.log(foodRecipesByCategory);
+
   return (
     <Context.Provider
       value={ {

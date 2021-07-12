@@ -26,7 +26,7 @@ function MealScreen() {
     setIsLoading,
   } = useContext(FoodContext);
 
-  const [currentCategory, setCurrentCategory] = useState('all');
+  const [currentCategory, setCurrentCategory] = useState('All');
 
   useEffect(() => {
     const loadedCategories = Object.keys(foodRecipesByCategory);
@@ -44,15 +44,20 @@ function MealScreen() {
       }
     };
 
-    if (!loadedCategories.includes(currentCategory) && currentCategory !== 'all') {
+    if (!loadedCategories.includes(currentCategory) && currentCategory !== 'All') {
       getRecipesByCategory();
-    } else setIsLoading(false);
+    }
   }, [currentCategory]);
 
   async function renderRecipesByCategory({ target }) {
-    const category = target.textContent.toLowerCase();
+    const category = target.textContent;
+    const loadedCategories = Object.keys(foodRecipesByCategory);
 
-    if (category === currentCategory) return setCurrentCategory('all');
+    if (category === currentCategory) return setCurrentCategory('All');
+
+    if (loadedCategories.includes(category) || category === 'All') {
+      return setCurrentCategory(category);
+    }
 
     setIsLoading(true);
     setCurrentCategory(category);
@@ -61,12 +66,9 @@ function MealScreen() {
   function renderCards() {
     let recipes = foodRecipes;
 
-    if (currentCategory !== 'all' && !isLoading) {
+    if (currentCategory !== 'All' && !isLoading) {
       recipes = foodRecipesByCategory[currentCategory];
-      console.log('recipes');
     }
-
-    console.log(foodRecipesByCategory);
 
     return recipes.map(({ idMeal, strMeal, strMealThumb }, index) => (
       <MainCard
