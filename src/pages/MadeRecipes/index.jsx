@@ -57,7 +57,7 @@ function MadeRecipes() {
     }
   }
 
-  function mapMadeRecipes() {
+  function renderMadeRecipeCards() {
     return filteredRecipes.map((recipe, index) => (
       <div className={ styles.madeRecipesCard } key={ index }>
         <Link to={ `${recipe.type}/${recipe.id}` }>
@@ -66,11 +66,15 @@ function MadeRecipes() {
             src={ recipe.img }
             alt={ recipe.name }
           />
-          <p data-testid={ `${index}-horizontal-top-text` }>{recipe.category}</p>
-
-          <h3 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h3>
-          <p data-testid={ `${index}-horizontal-done-date` } />
         </Link>
+        <div>
+          <p data-testid={ `${index}-horizontal-top-text` }>{recipe.category}</p>
+          <Link to={ `${recipe.type}/${recipe.id}` }>
+            <h3 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h3>
+          </Link>
+
+          <p data-testid={ `${index}-horizontal-done-date` } />
+        </div>
         <div>
           <button
             type="button"
@@ -82,8 +86,11 @@ function MadeRecipes() {
           </button>
         </div>
 
-        {isCopy && <span>Link copiado!</span>}
-        <p data-testid={ `${index}-${recipe.tags}-horizontal-tag` } />
+        <p
+          data-testid={ `${index}-${recipe.tags}-horizontal-tag` }
+        >
+          {recipe.tags !== 'null' && recipe.tags }
+        </p>
       </div>
     ));
   }
@@ -114,8 +121,9 @@ function MadeRecipes() {
             Drinks
           </button>
         </div>
+        {isCopy && <span>Link copiado!</span>}
         <div>
-          {mapMadeRecipes()}
+          {renderMadeRecipeCards()}
         </div>
       </div>
     );
