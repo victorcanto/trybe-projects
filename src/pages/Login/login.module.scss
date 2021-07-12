@@ -5,11 +5,15 @@
   height: 100vh;
   justify-content: center;
 
+  .logo {
+    height: 200px;
+  }
+
   button {
     align-items: center;
-    background-color: #eb8002;
+    background-color: var(--primary);
     border-radius: 10px;
-    color: white;
+    box-shadow: 0 5px 10px var(--border);
     display: flex;
     font-size: 1.3rem;
     font-weight: 700;

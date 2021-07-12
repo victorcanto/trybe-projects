@@ -7,7 +7,7 @@ function Loading() {
   return (
     <main className={ styles.container }>
       <div className={ styles.animation }>
-        <BiCookie color="#eb8002" size="4rem" />
+        <BiCookie color="#faae2b" size="4rem" />
       </div>
       <h2>LOADING...</h2>
     </main>
