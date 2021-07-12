@@ -8,20 +8,20 @@ import Footer from '../../components/Footer';
 
 const dataForDrinkApi = {
   domain: 'thecocktaildb',
-  name: 'drinks',
+  key: 'drinks',
   qtdC: 5,
   qtdR: 12,
 };
 
 function DrinkScreen() {
-  const recipes = useRecipes(dataForDrinkApi);
+  const [recipes] = useRecipes(dataForDrinkApi);
   const categories = useCategories(dataForDrinkApi);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   async function getRecipesByCategory(target) {
-    const { name, domain, qtdR } = dataForDrinkApi;
+    const { key, domain, qtdR } = dataForDrinkApi;
     const categoryName = target.textContent;
-    const data = await fetchRecipesByCategory(name, categoryName, domain, qtdR);
+    const data = await fetchRecipesByCategory(key, categoryName, domain, qtdR);
     return data;
   }
 

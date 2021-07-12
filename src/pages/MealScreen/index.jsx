@@ -8,20 +8,20 @@ import Footer from '../../components/Footer';
 
 const dataForMealApi = {
   domain: 'themealdb',
-  name: 'meals',
+  key: 'meals',
   qtdC: 5,
   qtdR: 12,
 };
 
 function MealScreen() {
-  const recipes = useRecipes(dataForMealApi);
+  const [recipes] = useRecipes(dataForMealApi);
   const categories = useCategories(dataForMealApi);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   async function getRecipesByCategory(target) {
-    const { name, domain, qtdR } = dataForMealApi;
+    const { key, domain, qtdR } = dataForMealApi;
     const categoryName = target.textContent;
-    const data = await fetchRecipesByCategory(name, categoryName, domain, qtdR);
+    const data = await fetchRecipesByCategory(key, categoryName, domain, qtdR);
     return data;
   }
 
