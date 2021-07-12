@@ -15,10 +15,10 @@
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-}
 
-.container h2 {
-  color: #969696;
+  h2 {
+    color: var(--header);
+  }
 }
 
 .animation {

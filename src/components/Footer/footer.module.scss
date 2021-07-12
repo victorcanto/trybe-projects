@@ -1,10 +1,10 @@
 .footer {
-    display: flex;
-    position: fixed;
-    justify-content: space-around;
-    bottom: 0;
-    width: 100%;
-    background-color: grey;
-    padding-top: 2%;
-    padding-bottom: 2%;
+  background-color: grey;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  position: fixed;
+  width: 100%;
 }

@@ -1,3 +1,20 @@
+:root {
+
+  --main: #f2f7f5;
+
+  --primary: #faae2b;
+
+  --secondary: #ffa8ba;
+
+  --header: #00473e;
+
+  --paragraph: #475d5b;
+
+  --border: #00332c;
+
+  --aside: #fa5246;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,7 +22,7 @@
 }
 
 body {
-  background: #292929;
+  background: var(--main);
   font-family: sans-serif;
   font-size: 14px;
 }
@@ -16,15 +33,16 @@ a {
 }
 
 input, textarea, select, button {
-  border: none;
+  border: 1px solid var(--border);
   outline: none;
 }
 
 button {
+  color: var(--header);
   cursor: pointer;
 
   &:disabled {
-    background-color: #535353;
+    background-color: grey;
     cursor: not-allowed;
     opacity: 0.6;
   }

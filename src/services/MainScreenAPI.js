@@ -18,5 +18,24 @@ export async function fetchRecipesByCategory(key, category, domain, qtd) {
   );
   const data = await response.json();
   const results = data[key].slice(0, qtd);
+
+  if (data.meals === null) throw new Error('Meals don\'t found');
+
   return results;
+}
+
+export async function fetchRandomApiFood() {
+  const response = await fetch(
+    'https://www.themealdb.com/api/json/v1/1/random.php',
+  );
+  const { meals } = await response.json();
+  return meals[0];
+}
+
+export async function fetchRandomApiDrink() {
+  const response = await fetch(
+    'https://www.thecocktaildb.com/api/json/v1/1/random.php',
+  );
+  const { drinks } = await response.json();
+  return drinks[0];
 }
