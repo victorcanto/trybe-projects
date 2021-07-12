@@ -82,29 +82,27 @@ function MealScreen() {
   }
 
   function renderFilters() {
-    if (categories.length) {
-      return (
-        <div>
+    return (
+      <div>
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ renderRecipesByCategory }
+        >
+          All
+        </button>
+        {categories.map(({ strCategory }) => (
           <button
+            className="btn-filter"
             type="button"
-            data-testid="All-category-filter"
+            key={ strCategory }
+            data-testid={ `${strCategory}-category-filter` }
             onClick={ renderRecipesByCategory }
           >
-            All
-          </button>
-          {categories.map(({ strCategory }) => (
-            <button
-              className="btn-filter"
-              type="button"
-              key={ strCategory }
-              data-testid={ `${strCategory}-category-filter` }
-              onClick={ renderRecipesByCategory }
-            >
-              {strCategory}
-            </button>))}
-        </div>
-      );
-    }
+            {strCategory}
+          </button>))}
+      </div>
+    );
   }
 
   return (
