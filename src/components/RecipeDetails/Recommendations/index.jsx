@@ -6,12 +6,17 @@ import DetailContext from '../../../context/DetailScreen/DetailContext';
 
 function Recommendations({ name, category }) {
   const { recommendedRecipes } = useContext(DetailContext);
+  let path = '/comidas';
+  if (name === 'Drink') path = '/bebidas';
+
   return (
     <div>
       <h2>Recommended</h2>
       <div className={ styles.recommendations }>
         {recommendedRecipes.map((recipe, index) => (
           <Cards
+            id={ recipe[`id${name}`] }
+            path={ path }
             index={ index }
             key={ index }
             category={ recipe[category] }
