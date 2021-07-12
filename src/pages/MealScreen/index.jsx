@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
-import FoodContext from '../../context/Foods/FoodContext';
+import FoodContext from '../../context/Food/FoodContext';
 
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
