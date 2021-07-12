@@ -18,10 +18,10 @@ function VideoRecipe(props) {
 
   const urlYT = getUrlYt();
 
-  return (
-    <div>
+  const renderVideo = () => (
+    <>
       <h2>Video</h2>
-      {name === Meal && <iframe
+      <iframe
         data-testid="video"
         width="100%"
         height="215"
@@ -35,7 +35,13 @@ function VideoRecipe(props) {
           gyroscope;
           picture-in-picture"
         allowFullScreen
-      />}
+      />
+    </>
+  );
+
+  return (
+    <div>
+      {name === Meal && renderVideo()}
     </div>
   );
 }
