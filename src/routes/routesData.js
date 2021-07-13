@@ -82,16 +82,16 @@ const routes = [
     exact: true,
     component: Profile,
   },
-  // {
-  //   path: '/receitas-feitas',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/receitas-favoritas',
-  //   exact: true,
-  //   component: '',
-  // },
+  {
+    path: '/receitas-feitas',
+    exact: true,
+    component: '',
+  },
+  {
+    path: '/receitas-favoritas',
+    exact: true,
+    component: '',
+  },
 ];
 
 export default routes;
