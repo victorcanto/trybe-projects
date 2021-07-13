@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import DetailContext from '../../../context/DetailScreen/DetailContext';
+import DetailContext from '../../../context/DetailProvider/DetailContext';
 
 function Instructions() {
   const { recipeDetails } = useContext(DetailContext);

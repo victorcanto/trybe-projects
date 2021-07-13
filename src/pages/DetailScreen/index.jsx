@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import DetailContext from '../../context/DetailProvider/DetailContext';
+
+import data from '../../helpers/apiData';
 import '../../styles/global.scss';
-import c from './constants';
+
 import Loading from '../../components/Loading';
-import DetailContext from '../../context/DetailScreen/DetailContext';
 import BasicInfo from '../../components/RecipeDetails/BasicInfo';
 import InteractiveButtons from '../../components/RecipeDetails/InteractiveButtons';
 import Ingredients from '../../components/RecipeDetails/Ingredients';
@@ -23,28 +25,6 @@ function DetailScreen() {
   const { id } = useParams();
   const { pathname } = useLocation();
   const foodOrDrink = pathname.split('/')[1];
-  const data = {
-    comidas: {
-      key: c.meals,
-      domain: c.themealdb,
-      name: c.Meal,
-      category: c.strCategory,
-      keyRecommend: c.drinks,
-      domainRecommend: c.thecocktaildb,
-      nameRecommend: c.Drink,
-      categoryRecommend: c.strAlcoholic,
-    },
-    bebidas: {
-      key: c.drinks,
-      domain: c.thecocktaildb,
-      name: c.Drink,
-      category: c.strAlcoholic,
-      keyRecommend: c.meals,
-      domainRecommend: c.themealdb,
-      nameRecommend: c.Meal,
-      categoryRecommend: c.strCategory,
-    },
-  };
 
   const API_INFO_DETAILS = {
     id,

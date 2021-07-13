@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import fetchRecipeById from '../services/DetailScreenAPI';
+import fetchRecipeById from '../services/recipesApi';
 
 function useRecipeDetails({ id, key, domain }) {
   const [recipeDetails, setRecipeDetails] = useState([]);

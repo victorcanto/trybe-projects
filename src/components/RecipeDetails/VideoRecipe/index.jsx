@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import c from '../../../pages/DetailScreen/constants';
-import DetailContext from '../../../context/DetailScreen/DetailContext';
+import data from '../../../helpers/apiData';
+import DetailContext from '../../../context/DetailProvider/DetailContext';
 
-const { Meal } = c;
+const { Meal } = data;
 
 function VideoRecipe(props) {
   const { name } = props;

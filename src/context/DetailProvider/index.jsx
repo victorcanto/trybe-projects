@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { node } from 'prop-types';
 
+import data from '../../helpers/apiData';
+
 import Context from './DetailContext';
 import useRecipes from '../../hooks/useRecipes';
 import useRecipeDetails from '../../hooks/useRecipeDetails';
@@ -18,10 +20,11 @@ const API_INFO_DETAILS = {
 };
 
 function DetailProvider({ children }) {
+  const { comidas: { domain, key } } = data;
   const [infoDetails, setInfoDetails] = useState(API_INFO_DETAILS);
   const [infoRecommended, setInfoRecommended] = useState(API_INFO_RECOMMENDED);
   const [recipeDetails, isFetchingDetails] = useRecipeDetails(infoDetails);
-  const [recommendedRecipes, isFetchingRecommended] = useRecipes(infoRecommended);
+  const [recommendedRecipes, isFetchingRecommended] = useRecipes(domain, key);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

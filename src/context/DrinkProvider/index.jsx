@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { node } from 'prop-types';
 
-import Context from './FoodContext';
+import data from '../../helpers/apiData';
+
+import Context from './DrinkContext';
 import useRecipes from '../../hooks/useRecipes';
 import useCategories from '../../hooks/useCategories';
 
-const API_INFO = {
-  domain: 'themealdb',
-  key: 'meals',
-  qtdC: 5,
-  qtdR: 12,
-};
-
-function FoodProvider({ children }) {
-  const [foodRecipes, isFetching] = useRecipes(API_INFO);
-  const categories = useCategories(API_INFO);
-  const [foodRecipesByCategory, setFoodRecipesByCategory] = useState({});
+function DrinkProvider({ children }) {
+  const { bebidas: { domain, key } } = data;
+  const [drinkRecipes, isFetching] = useRecipes(domain, key);
+  const categories = useCategories(domain, key);
+  const [drinkRecipesByCategory, setDrinkRecipesByCategory] = useState({});
   const [isLoading, setIsLoading] = useState(isFetching);
 
   useEffect(() => {
@@ -26,9 +22,9 @@ function FoodProvider({ children }) {
     <Context.Provider
       value={ {
         categories,
-        foodRecipes,
-        foodRecipesByCategory,
-        setFoodRecipesByCategory,
+        drinkRecipes,
+        drinkRecipesByCategory,
+        setDrinkRecipesByCategory,
         isLoading,
         setIsLoading,
       } }
@@ -38,8 +34,8 @@ function FoodProvider({ children }) {
   );
 }
 
-FoodProvider.propTypes = {
+DrinkProvider.propTypes = {
   children: node.isRequired,
 };
 
-export default FoodProvider;
+export default DrinkProvider;

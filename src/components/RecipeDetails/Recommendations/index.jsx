@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Cards from './Cards';
 import styles from './recommendations.module.scss';
-import DetailContext from '../../../context/DetailScreen/DetailContext';
+import DetailContext from '../../../context/DetailProvider/DetailContext';
 
 function Recommendations({ name, category }) {
   const { recommendedRecipes } = useContext(DetailContext);

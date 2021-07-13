@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
-import DrinkContext from '../../context/Drink/DrinkContext';
+import DrinkContext from '../../context/DrinkProvider/DrinkContext';
 
-import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
+import { fetchRecipesByCategory } from '../../services/recipesApi';
 
 import Loading from '../../components/Loading';
 import Header from '../../components/Header/Header';
