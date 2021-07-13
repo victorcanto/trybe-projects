@@ -25,6 +25,7 @@ function MealScreen() {
     isLoading,
     setIsLoading,
   } = useContext(FoodContext);
+  console.log(foodRecipes);
 
   const [currentCategory, setCurrentCategory] = useState('all');
 

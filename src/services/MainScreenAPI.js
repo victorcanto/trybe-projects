@@ -12,6 +12,14 @@ export async function fetchCategories(key, domain, qtd) {
   return results;
 }
 
+export async function fetchIngredient({ key, domain }) {
+  const response = await fetch(`https://www.${domain}.com/api/json/v1/1/list.php?i=list`);
+  const data = await response.json();
+  const qtd = 12;
+  const results = data[key].slice(0, qtd);
+  return results;
+}
+
 export async function fetchRecipesByCategory(key, category, domain, qtd) {
   const response = await fetch(
     `https://www.${domain}.com/api/json/v1/1/filter.php?c=${category}`,
