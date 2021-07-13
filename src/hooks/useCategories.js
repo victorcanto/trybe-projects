@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { fetchCategories } from '../services/MainScreenAPI';
 
-function useCategories({ name, domain, qtdC }) {
+function useCategories({ key, domain, qtdC }) {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     async function requestCategories() {
-      const res = await fetchCategories(name, domain, qtdC);
+      const res = await fetchCategories(key, domain, qtdC);
       setCategories(res);
     }
     requestCategories();
-  }, [name, domain, qtdC]);
+  }, [key, domain, qtdC]);
 
   return categories;
 }

@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import { fetchRecipes } from '../services/MainScreenAPI';
 
-function useRecipes({ name, domain, qtdR }) {
+function useRecipes({ key, domain, qtdR }) {
   const [recipes, setRecipes] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     async function requestRecipes() {
-      const res = await fetchRecipes(name, domain, qtdR);
+      const res = await fetchRecipes(key, domain, qtdR);
       setRecipes(res);
+      setIsFetching(false);
     }
     requestRecipes();
-  }, [name, domain, qtdR]);
+  }, [key, domain, qtdR]);
 
-  return recipes;
+  return [recipes, isFetching];
 }
 
 export default useRecipes;

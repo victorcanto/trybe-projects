@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 
+import Logo from '../../images/tryFoods.png';
+
 import styles from './login.module.scss';
 
 function Login() {
@@ -35,6 +37,7 @@ function Login() {
   return (
     <main className={ styles.container }>
       {/* <Logo /> */}
+      <img src={ Logo } alt="Try Foods" className={ styles.logo } />
 
       <form className={ styles.loginSection }>
         <label htmlFor="email-input" className={ styles.userInput }>
@@ -54,7 +57,7 @@ function Login() {
             data-testid="password-input"
             value={ userPwd }
             onChange={ (event) => handleChange(event, setUserPwd) }
-            type="text"
+            type="password"
             placeholder="Password"
           />
         </label>
