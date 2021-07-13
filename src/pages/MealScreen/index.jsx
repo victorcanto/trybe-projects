@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import FoodContext from '../../context/Food/FoodContext';
+import Categories from './components/Categories';
 
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
@@ -24,6 +26,7 @@ function MealScreen() {
     setFoodRecipesByCategory,
     isLoading,
     setIsLoading,
+    foodApi,
   } = useContext(FoodContext);
 
   const [currentCategory, setCurrentCategory] = useState('All');
@@ -65,7 +68,14 @@ function MealScreen() {
 
   function renderCards() {
     let recipes = foodRecipes;
+    const { meals } = foodApi;
 
+    if (meals) {
+      recipes = meals;
+      if (meals.length === 1) {
+        return <Redirect to={ `/comidas/${meals[0].idMeal}` } />;
+      }
+    }
     if (currentCategory !== 'All' && !isLoading) {
       recipes = foodRecipesByCategory[currentCategory];
     }
@@ -81,34 +91,13 @@ function MealScreen() {
     ));
   }
 
-  function renderFilters() {
-    return (
-      <div>
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ renderRecipesByCategory }
-        >
-          All
-        </button>
-        {categories.map(({ strCategory }) => (
-          <button
-            className="btn-filter"
-            type="button"
-            key={ strCategory }
-            data-testid={ `${strCategory}-category-filter` }
-            onClick={ renderRecipesByCategory }
-          >
-            {strCategory}
-          </button>))}
-      </div>
-    );
-  }
-
   return (
     <div>
       <Header title="Comidas" icon="true" currentPage="Foods" />
-      {renderFilters()}
+      <Categories
+        categories={ categories }
+        renderRecipesByCategory={ renderRecipesByCategory }
+      />
       {isLoading ? <Loading /> : renderCards()}
       <Footer />
     </div>
