@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
 import FoodContext from '../../context/Food/FoodContext';
+import Categories from './components/Categories';
+import RenderCards from './components/RenderCards';
 
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
 import Loading from '../../components/Loading';
 import Header from '../../components/Header/Header';
-import MainCard from '../../components/MainCard';
 import Footer from '../../components/Footer';
 
 const dataForMealApi = {
@@ -19,11 +20,12 @@ const dataForMealApi = {
 function MealScreen() {
   const {
     categories,
-    foodRecipes,
     foodRecipesByCategory,
+    foodRecipes,
     setFoodRecipesByCategory,
     isLoading,
     setIsLoading,
+    foodApi,
   } = useContext(FoodContext);
 
   const [currentCategory, setCurrentCategory] = useState('All');
@@ -62,54 +64,20 @@ function MealScreen() {
     setIsLoading(true);
     setCurrentCategory(category);
   }
-
-  function renderCards() {
-    let recipes = foodRecipes;
-
-    if (currentCategory !== 'All' && !isLoading) {
-      recipes = foodRecipesByCategory[currentCategory];
-    }
-
-    return recipes.map(({ idMeal, strMeal, strMealThumb }, index) => (
-      <MainCard
-        key={ index }
-        index={ index }
-        id={ idMeal }
-        name={ strMeal }
-        thumb={ strMealThumb }
-      />
-    ));
-  }
-
-  function renderFilters() {
-    return (
-      <div>
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ renderRecipesByCategory }
-        >
-          All
-        </button>
-        {categories.map(({ strCategory }) => (
-          <button
-            className="btn-filter"
-            type="button"
-            key={ strCategory }
-            data-testid={ `${strCategory}-category-filter` }
-            onClick={ renderRecipesByCategory }
-          >
-            {strCategory}
-          </button>))}
-      </div>
-    );
-  }
-
   return (
     <div>
       <Header title="Comidas" icon="true" currentPage="Foods" />
-      {renderFilters()}
-      {isLoading ? <Loading /> : renderCards()}
+      <Categories
+        categories={ categories }
+        renderRecipesByCategory={ renderRecipesByCategory }
+      />
+      {isLoading ? <Loading /> : <RenderCards
+        currentCategory={ currentCategory }
+        foodRecipes={ foodRecipes }
+        foodRecipesByCategory={ foodRecipesByCategory }
+        isLoading={ isLoading }
+        foodApi={ foodApi }
+      />}
       <Footer />
     </div>
   );
