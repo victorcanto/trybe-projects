@@ -88,3 +88,10 @@ export const filterCategory = async (query, currentPage) => {
   const result = await api.json();
   return result;
 };
+
+export async function fetchArea() {
+  const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+  const response = await fetch(URL);
+  const data = await response.json();
+  return data.meals;
+}
