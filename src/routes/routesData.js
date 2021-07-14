@@ -92,6 +92,7 @@ const routes = [
     path: '/receitas-favoritas',
     exact: true,
     component: FavoriteScreen,
+
   },
 ];
 
