@@ -43,8 +43,6 @@ function FavoriteScreen() {
           <Link to={ `${recipe.type}s/${recipe.id}` }>
             <h3 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h3>
           </Link>
-
-          <p data-testid={ `${index}-horizontal-done-date` } />
         </div>
         <div>
           <button
