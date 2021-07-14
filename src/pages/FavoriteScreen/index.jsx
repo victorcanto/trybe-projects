@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
+import FilterButtons from './components/FilterButtons';
 import styles from './favorite.module.scss';
+import shareIcon from '../../images/shareIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function FavoriteScreen() {
   const FAVORITE_RECIPES = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -9,31 +12,17 @@ function FavoriteScreen() {
   const [isCopy, setIsCopy] = useState(false);
 
   function copyToClipBoard({ type, id }) {
-    const path = `${type}/${id}`;
+    const path = `${type}s/${id}`;
     const FIVE_SECONDS = 5000;
     setIsCopy(true);
     setTimeout(() => setIsCopy(false), FIVE_SECONDS);
     return navigator.clipboard.writeText(`http://localhost:3000/${path}`);
   }
 
-  function filterRecipes(filter) {
-    const filtered = FAVORITE_RECIPES.filter(({ type }) => type === filter);
-    setFilteredRecipes(filtered);
-  }
-
-  function handleFilterButtons({ target }) {
-    const content = target.textContent;
-    switch (content) {
-    case 'Food':
-      filterRecipes('comida');
-      break;
-    case 'Drinks':
-      filterRecipes('bebida');
-      break;
-    default:
-      setFilteredRecipes(FAVORITE_RECIPES);
-      break;
-    }
+  function removeRecipeFromLS(recipeId) {
+    const recipeRemoved = filteredRecipes.filter(({ id }) => recipeId !== id);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(recipeRemoved));
+    setFilteredRecipes(recipeRemoved);
   }
 
   function renderFavoriteRecipesCard() {
@@ -47,7 +36,10 @@ function FavoriteScreen() {
           />
         </Link>
         <div>
-          <p data-testid={ `${index}-horizontal-top-text` }>{recipe.category}</p>
+          <p data-testid={ `${index}-horizontal-top-text` }>
+            {recipe.type === 'comida'
+              ? `${recipe.area} - ${recipe.category}` : recipe.alcoholicOrNot}
+          </p>
           <Link to={ `${recipe.type}s/${recipe.id}` }>
             <h3 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h3>
           </Link>
@@ -56,10 +48,21 @@ function FavoriteScreen() {
         </div>
         <div>
           <button
+            src={ shareIcon }
             type="button"
             className={ styles.shareButton }
             onClick={ () => copyToClipBoard(recipe) }
             data-testid={ `${index}-horizontal-share-btn` }
+
+          >
+            {' '}
+          </button>
+          <button
+            src={ blackHeartIcon }
+            type="button"
+            className={ styles.favoriteButton }
+            onClick={ () => removeRecipeFromLS(recipe.id) }
+            data-testid={ `${index}-horizontal-favorite-btn` }
           >
             {' '}
           </button>
@@ -77,32 +80,13 @@ function FavoriteScreen() {
   function renderFavoriteRecipes() {
     return (
       <div className={ styles.favoriteRecipes }>
-        <div>
-          <button
-            type="button"
-            data-testid="filter-by-all-btn"
-            onClick={ handleFilterButtons }
-          >
-            All
-          </button>
-          <button
-            type="button"
-            data-testid="filter-by-food-btn"
-            onClick={ handleFilterButtons }
-          >
-            Food
-          </button>
-          <button
-            type="button"
-            data-testid="filter-by-drink-btn"
-            onClick={ handleFilterButtons }
-          >
-            Drinks
-          </button>
-        </div>
+        <FilterButtons
+          recipes={ FAVORITE_RECIPES }
+          setFilteredRecipes={ setFilteredRecipes }
+        />
         {isCopy && <span>Link copiado!</span>}
         <div>
-          {renderFavoriteRecipesCard()}
+          {filteredRecipes && renderFavoriteRecipesCard()}
         </div>
       </div>
     );
@@ -110,7 +94,7 @@ function FavoriteScreen() {
 
   return (
     <>
-      <Header title="Receitas feitas" icon="false" currentPage="" />
+      <Header title="Receitas Favoritas" icon="false" currentPage="" />
       {renderFavoriteRecipes()}
     </>
   );
