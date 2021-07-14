@@ -13,7 +13,6 @@ function useRecipes({ key, domain, qtdR }) {
     }
     requestRecipes();
   }, [key, domain, qtdR]);
-
   return [recipes, isFetching];
 }
 

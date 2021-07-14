@@ -55,3 +55,31 @@ header {
   padding: 10px 15px;
   width: 100%;
 }
+
+#search-container {
+  input {
+    height: 25px;
+    border-radius: 8px;
+    background: #fefefe;
+    width: 99%;
+    margin: 5px;
+  }
+
+  button {
+    height: 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    background: #835afd;
+    color: #FFF;
+    padding: 0 32px;
+  }
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    label {
+      align-items: center;
+    }
+  }
+}

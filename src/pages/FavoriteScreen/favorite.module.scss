@@ -1,0 +1,39 @@
+// CSS Tela de receitas favoritas
+.favoriteRecipes {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin: 10px;
+  }
+}
+
+.favoriteRecipesCard {
+  background-color: white;
+  display: flex;
+  height: 143px;
+  margin-bottom: 10px;
+  width: 330px;
+
+  img {
+    width: 143px;
+  }
+}
+
+.shareButton {
+  background-color: transparent;
+  background-image: url('../../images/shareIcon.svg');
+  background-size: cover;
+  height: 20px;
+  margin-right: 5px;
+  width: 20px;
+}
+
+.favoriteButton {
+  background-color: transparent;
+  background-image: url('../../images/blackHeartIcon.svg');
+  background-size: cover;
+  height: 20px;
+  margin-right: 5px;
+  width: 20px;
+}

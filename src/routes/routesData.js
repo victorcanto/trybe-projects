@@ -9,6 +9,7 @@ import ExploreIngredientsFood from '../pages/Explorer/Food/Ingredients';
 import ExploreIngredientsDrink from '../pages/Explorer/Drink/Ingredients';
 import FoodOrigins from '../pages/Explorer/Food/Origin';
 import Profile from '../pages/Profile';
+import FavoriteScreen from '../pages/FavoriteScreen';
 
 // component should be the page
 const routes = [
@@ -82,15 +83,16 @@ const routes = [
     exact: true,
     component: Profile,
   },
-  {
-    path: '/receitas-feitas',
-    exact: true,
-    component: '',
-  },
+  // {
+  //   path: '/receitas-feitas',
+  //   exact: true,
+  //   component: '',
+  // },
   {
     path: '/receitas-favoritas',
     exact: true,
-    component: '',
+    component: FavoriteScreen,
+
   },
 ];
 
