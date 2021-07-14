@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import c from '../../../pages/DetailScreen/constants';
+import DetailContext from '../../../context/DetailScreen/DetailContext';
+
+const { Meal } = c;
 
 function VideoRecipe(props) {
-  const { name, recipeDetails } = props;
+  const { name } = props;
+  const { recipeDetails } = useContext(DetailContext);
 
   function getUrlYt() {
     const { strYoutube } = recipeDetails;
@@ -14,10 +18,10 @@ function VideoRecipe(props) {
 
   const urlYT = getUrlYt();
 
-  return (
-    <div>
+  const renderVideo = () => (
+    <>
       <h2>Video</h2>
-      {name === c.Meal && <iframe
+      <iframe
         data-testid="video"
         width="100%"
         height="215"
@@ -31,7 +35,13 @@ function VideoRecipe(props) {
           gyroscope;
           picture-in-picture"
         allowFullScreen
-      />}
+      />
+    </>
+  );
+
+  return (
+    <div>
+      {name === Meal && renderVideo()}
     </div>
   );
 }
@@ -40,7 +50,6 @@ export default VideoRecipe;
 
 VideoRecipe.propTypes = {
   name: PropTypes.string.isRequired,
-  recipeDetails: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 // Code Reference

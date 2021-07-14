@@ -1,17 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import DetailContext from '../../../context/DetailScreen/DetailContext';
 
-function Instructions({ recipeDetails: r }) {
+function Instructions() {
+  const { recipeDetails } = useContext(DetailContext);
   return (
     <div>
       <h2>Instructions</h2>
-      <p data-testid="instructions">{r.strInstructions}</p>
+      <p data-testid="instructions">{recipeDetails.strInstructions}</p>
     </div>
   );
 }
 
 export default Instructions;
-
-Instructions.propTypes = {
-  recipeDetails: PropTypes.objectOf(PropTypes.string).isRequired,
-};

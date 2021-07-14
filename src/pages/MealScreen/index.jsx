@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
-import FoodContext from '../../context/Foods/FoodContext';
+import { Redirect } from 'react-router-dom';
+import FoodContext from '../../context/Food/FoodContext';
+import Categories from './components/Categories';
 
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
@@ -24,10 +26,11 @@ function MealScreen() {
     setFoodRecipesByCategory,
     isLoading,
     setIsLoading,
+    foodApi,
   } = useContext(FoodContext);
   console.log(foodRecipes);
 
-  const [currentCategory, setCurrentCategory] = useState('all');
+  const [currentCategory, setCurrentCategory] = useState('All');
 
   useEffect(() => {
     const loadedCategories = Object.keys(foodRecipesByCategory);
@@ -45,15 +48,20 @@ function MealScreen() {
       }
     };
 
-    if (!loadedCategories.includes(currentCategory) && currentCategory !== 'all') {
+    if (!loadedCategories.includes(currentCategory) && currentCategory !== 'All') {
       getRecipesByCategory();
-    } else setIsLoading(false);
+    }
   }, [currentCategory]);
 
   async function renderRecipesByCategory({ target }) {
-    const category = target.textContent.toLowerCase();
+    const category = target.textContent;
+    const loadedCategories = Object.keys(foodRecipesByCategory);
 
-    if (category === currentCategory) return setCurrentCategory('all');
+    if (category === currentCategory) return setCurrentCategory('All');
+
+    if (loadedCategories.includes(category) || category === 'All') {
+      return setCurrentCategory(category);
+    }
 
     setIsLoading(true);
     setCurrentCategory(category);
@@ -61,13 +69,17 @@ function MealScreen() {
 
   function renderCards() {
     let recipes = foodRecipes;
+    const { meals } = foodApi;
 
-    if (currentCategory !== 'all' && !isLoading) {
-      recipes = foodRecipesByCategory[currentCategory];
-      console.log('recipes');
+    if (meals) {
+      recipes = meals;
+      if (meals.length === 1) {
+        return <Redirect to={ `/comidas/${meals[0].idMeal}` } />;
+      }
     }
-
-    console.log(foodRecipesByCategory);
+    if (currentCategory !== 'All' && !isLoading) {
+      recipes = foodRecipesByCategory[currentCategory];
+    }
 
     return recipes.map(({ idMeal, strMeal, strMealThumb }, index) => (
       <MainCard
@@ -80,36 +92,13 @@ function MealScreen() {
     ));
   }
 
-  function renderFilters() {
-    if (categories.length) {
-      return (
-        <div>
-          <button
-            type="button"
-            data-testid="All-category-filter"
-            onClick={ renderRecipesByCategory }
-          >
-            All
-          </button>
-          {categories.map(({ strCategory }) => (
-            <button
-              className="btn-filter"
-              type="button"
-              key={ strCategory }
-              data-testid={ `${strCategory}-category-filter` }
-              onClick={ renderRecipesByCategory }
-            >
-              {strCategory}
-            </button>))}
-        </div>
-      );
-    }
-  }
-
   return (
     <div>
       <Header title="Comidas" icon="true" currentPage="Foods" />
-      {renderFilters()}
+      <Categories
+        categories={ categories }
+        renderRecipesByCategory={ renderRecipesByCategory }
+      />
       {isLoading ? <Loading /> : renderCards()}
       <Footer />
     </div>

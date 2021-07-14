@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Cards from './Cards';
 import styles from './recommendations.module.scss';
+import DetailContext from '../../../context/DetailScreen/DetailContext';
 
-function Recommendations({ recipes, name, category }) {
+function Recommendations({ name, category }) {
+  const { recommendedRecipes } = useContext(DetailContext);
   return (
     <div>
       <h2>Recommended</h2>
       <div className={ styles.recommendations }>
-        {recipes.map((recipe, index) => (
+        {recommendedRecipes.map((recipe, index) => (
           <Cards
             index={ index }
             key={ index }
@@ -26,5 +28,4 @@ export default Recommendations;
 Recommendations.propTypes = {
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

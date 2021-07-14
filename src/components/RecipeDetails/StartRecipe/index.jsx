@@ -6,7 +6,7 @@ function StartRecipe() {
   const { pathname } = useLocation();
   const [isStarted, setIsStarted] = useState(false);
   // const [isDone, setIsDone] = useState(false);
-  const isDone = false; // Temporario
+  const isDone = false; // TEMP
 
   function renderStartRecipeBtn(msgStatus) {
     return (
