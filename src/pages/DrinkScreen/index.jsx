@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
-import useCategories from '../../hooks/useCategories';
-import useRecipes from '../../hooks/useRecipes';
-import MainCard from '../../components/MainCard';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useContext } from 'react';
+import DrinkContext from '../../context/Drink/DrinkContext';
+import Categories from './components/Categories';
+import RenderCards from './components/RenderCards';
+
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
+
+import Loading from '../../components/Loading';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer';
 
@@ -14,69 +18,67 @@ const dataForDrinkApi = {
 };
 
 function DrinkScreen() {
-  const [recipes] = useRecipes(dataForDrinkApi);
-  const categories = useCategories(dataForDrinkApi);
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const {
+    categories,
+    drinkRecipes,
+    drinkRecipesByCategory,
+    setDrinkRecipesByCategory,
+    isLoading,
+    setIsLoading,
+    drinkApi,
+  } = useContext(DrinkContext);
 
-  async function getRecipesByCategory(target) {
-    const { key, domain, qtdR } = dataForDrinkApi;
-    const categoryName = target.textContent;
-    const data = await fetchRecipesByCategory(key, categoryName, domain, qtdR);
-    return data;
-  }
+  const [currentCategory, setCurrentCategory] = useState('All');
+
+  useEffect(() => {
+    const loadedCategories = Object.keys(drinkRecipesByCategory);
+    const getRecipesByCategory = async () => {
+      try {
+        const { key, domain, qtdR } = dataForDrinkApi;
+        const data = await fetchRecipesByCategory(key, currentCategory, domain, qtdR);
+        setDrinkRecipesByCategory((prev) => ({
+          ...prev,
+          [currentCategory]: data,
+        }));
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (!loadedCategories.includes(currentCategory) && currentCategory !== 'All') {
+      getRecipesByCategory();
+    }
+  }, [currentCategory]);
 
   async function renderRecipesByCategory({ target }) {
-    if (target.textContent === 'All'
-    || !target.classList.toggle('select')) setFilteredRecipes(recipes);
-    else {
-      setFilteredRecipes(await getRecipesByCategory(target));
+    const category = target.textContent;
+    const loadedCategories = Object.keys(drinkRecipesByCategory);
+
+    if (category === currentCategory) return setCurrentCategory('All');
+
+    if (loadedCategories.includes(category) || category === 'All') {
+      return (setCurrentCategory(category));
     }
-  }
 
-  function renderCards() {
-    let arr = recipes;
-    if (filteredRecipes.length !== 0) arr = filteredRecipes;
-
-    return arr.map(({ idDrink, strDrink, strDrinkThumb }, index) => (<MainCard
-      key={ index }
-      index={ index }
-      id={ idDrink }
-      name={ strDrink }
-      thumb={ strDrinkThumb }
-    />));
-  }
-
-  function renderFilters() {
-    if (categories.length) {
-      return (
-        <div>
-          <button
-            type="button"
-            data-testid="All-category-filter"
-            onClick={ renderRecipesByCategory }
-          >
-            All
-          </button>
-          {categories.map(({ strCategory }) => (
-            <button
-              className="btn-filter"
-              type="button"
-              key={ strCategory }
-              data-testid={ `${strCategory}-category-filter` }
-              onClick={ renderRecipesByCategory }
-            >
-              {strCategory}
-            </button>))}
-        </div>
-      );
-    }
+    setIsLoading(true);
+    setCurrentCategory(category);
   }
 
   return (
     <div>
       <Header title="Bebidas" icon="true" currentPage="Drink" />
-      {renderFilters()}
-      {renderCards()}
+      <Categories
+        categories={ categories }
+        renderRecipesByCategory={ renderRecipesByCategory }
+      />
+      {isLoading ? <Loading /> : <RenderCards
+        currentCategory={ currentCategory }
+        drinkRecipes={ drinkRecipes }
+        drinkRecipesByCategory={ drinkRecipesByCategory }
+        isLoading={ isLoading }
+        drinkApi={ drinkApi }
+      />}
       <Footer />
     </div>
   );
