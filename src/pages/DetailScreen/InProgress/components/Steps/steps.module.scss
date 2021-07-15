@@ -1,0 +1,18 @@
+.steps {
+  border-radius: 40px;
+  box-shadow: inset 2px 2px 0 var(--secondary) , inset -2px -2px 0 var(--secondary);
+  // background-color: #ECECEC;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 1rem;
+
+  label {
+    display: flex;
+    margin: 0.5rem;
+
+    input {
+      margin-right: 0.5rem;
+    }
+  }
+}

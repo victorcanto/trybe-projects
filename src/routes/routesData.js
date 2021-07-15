@@ -2,6 +2,7 @@ import Login from '../pages/Login';
 import MealScreen from '../pages/MealScreen';
 import DrinkScreen from '../pages/DrinkScreen';
 import DetailScreen from '../pages/DetailScreen';
+import InProgress from '../pages/DetailScreen/InProgress';
 import Explorer from '../pages/Explorer';
 import ExploreFoods from '../pages/Explorer/Food';
 import ExploreDrinks from '../pages/Explorer/Drink';
@@ -37,16 +38,16 @@ const routes = [
     exact: true,
     component: DetailScreen,
   },
-  // {
-  //   path: '/comidas/:id/in-progress',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/bebidas/:id/in-progress',
-  //   exact: true,
-  //   component: '',
-  // },
+  {
+    path: '/comidas/:id/in-progress',
+    exact: true,
+    component: InProgress,
+  },
+  {
+    path: '/bebidas/:id/in-progress',
+    exact: true,
+    component: InProgress,
+  },
   {
     path: '/explorar',
     exact: true,
