@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { bool, func, string } from 'prop-types';
 
-function Checkbox({ keyValue, value, isAlreadyChecked, handleProgress }) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  // useEffect(() => {
-  //   setIsChecked(isAlreadyChecked);
-  // });
-
+function Checkbox({ keyValue, value, handleProgress, isChecked }) {
   const handleChange = ({ target: { name, checked } }) => {
-    // setIsChecked(checked);
     handleProgress(name, checked);
   };
 
@@ -30,7 +23,7 @@ function Checkbox({ keyValue, value, isAlreadyChecked, handleProgress }) {
 Checkbox.propTypes = {
   keyValue: string.isRequired,
   value: string.isRequired,
-  isAlreadyChecked: bool.isRequired,
+  isChecked: bool.isRequired,
   handleProgress: func.isRequired,
 };
 
