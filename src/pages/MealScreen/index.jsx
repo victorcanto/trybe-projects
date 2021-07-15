@@ -1,21 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
-import FoodContext from '../../context/Food/FoodContext';
 import Categories from './components/Categories';
 import RenderCards from './components/RenderCards';
+import FoodContext from '../../context/FoodProvider/FoodContext';
 
-import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
-
+import data from '../../helpers/apiData';
+import { fetchRecipesByCategory } from '../../services/recipesApi';
 import Loading from '../../components/Loading';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer';
 
-const dataForMealApi = {
-  domain: 'themealdb',
-  key: 'meals',
-  qtdC: 5,
-  qtdR: 12,
-};
+const { comidas: { domain, key } } = data;
 
 function MealScreen() {
   const {
@@ -34,11 +29,10 @@ function MealScreen() {
     const loadedCategories = Object.keys(foodRecipesByCategory);
     const getRecipesByCategory = async () => {
       try {
-        const { key, domain, qtdR } = dataForMealApi;
-        const data = await fetchRecipesByCategory(key, currentCategory, domain, qtdR);
+        const apiResponse = await fetchRecipesByCategory(domain, key, currentCategory);
         setFoodRecipesByCategory((prev) => ({
           ...prev,
-          [currentCategory]: data,
+          [currentCategory]: apiResponse,
         }));
         setIsLoading(false);
       } catch (error) {
@@ -51,7 +45,7 @@ function MealScreen() {
     }
   }, [currentCategory]);
 
-  async function renderRecipesByCategory({ target }) {
+  function renderRecipesByCategory({ target }) {
     const category = target.textContent;
     const loadedCategories = Object.keys(foodRecipesByCategory);
 

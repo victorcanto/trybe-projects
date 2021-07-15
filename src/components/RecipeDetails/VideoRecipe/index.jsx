@@ -1,16 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import c from '../../../pages/DetailScreen/constants';
-import DetailContext from '../../../context/DetailScreen/DetailContext';
+import data from '../../../helpers/apiData';
 
-const { Meal } = c;
+const { Meal } = data;
 
 function VideoRecipe(props) {
-  const { name } = props;
-  const { recipeDetails } = useContext(DetailContext);
+  const { name, recipe } = props;
 
   function getUrlYt() {
-    const { strYoutube } = recipeDetails;
+    const { strYoutube } = recipe;
     if (strYoutube) {
       return strYoutube.split('v=')[1];
     }
@@ -50,6 +48,7 @@ export default VideoRecipe;
 
 VideoRecipe.propTypes = {
   name: PropTypes.string.isRequired,
+  recipe: PropTypes.node.isRequired,
 };
 
 // Code Reference

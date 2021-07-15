@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import DetailContext from '../../../context/DetailScreen/DetailContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function Ingredients() {
-  const { recipeDetails } = useContext(DetailContext);
+function Ingredients(props) {
+  const { recipe } = props;
 
   function filterIngredients([key, value]) {
     return key.includes('strIngredient')
@@ -15,7 +15,7 @@ function Ingredients() {
   }
 
   function createArrOfIngredientsAndMeasures() {
-    const entries = Object.entries(recipeDetails);
+    const entries = Object.entries(recipe);
     const ingredients = entries.filter(filterIngredients)
       .map((el) => el[1]);
     const measures = entries.filter(filterMeasures)
@@ -45,3 +45,7 @@ function Ingredients() {
 }
 
 export default Ingredients;
+
+Ingredients.propTypes = {
+  recipe: PropTypes.node.isRequired,
+};

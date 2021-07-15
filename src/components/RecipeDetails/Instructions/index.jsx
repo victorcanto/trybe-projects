@@ -1,14 +1,18 @@
-import React, { useContext } from 'react';
-import DetailContext from '../../../context/DetailScreen/DetailContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function Instructions() {
-  const { recipeDetails } = useContext(DetailContext);
+function Instructions(props) {
+  const { recipe: { strInstructions } } = props;
   return (
     <div>
       <h2>Instructions</h2>
-      <p data-testid="instructions">{recipeDetails.strInstructions}</p>
+      <p data-testid="instructions">{strInstructions}</p>
     </div>
   );
 }
 
 export default Instructions;
+
+Instructions.propTypes = {
+  recipe: PropTypes.node.isRequired,
+};

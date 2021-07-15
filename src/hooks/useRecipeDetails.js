@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
-import fetchRecipeById from '../services/DetailScreenAPI';
+import fetchRecipeById from '../services/recipesApi';
 
-function useRecipeDetails({ id, key, domain }) {
+function useRecipeDetails(domain, key, id) {
   const [recipeDetails, setRecipeDetails] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     async function requestRecipe() {
-      const res = await fetchRecipeById(id, key, domain);
+      const res = await fetchRecipeById(domain, key, id);
       setRecipeDetails(res[0]);
       setIsFetching(false);
     }
     requestRecipe();
-  }, [domain, id, key]);
+  }, [domain, key, id]);
 
   return [recipeDetails, isFetching];
 }

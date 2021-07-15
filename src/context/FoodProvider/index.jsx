@@ -7,20 +7,16 @@ import {
   filterCategory,
 } from '../../services/MainScreenAPI';
 
+import data from '../../helpers/apiData';
+
 import Context from './FoodContext';
 import useRecipes from '../../hooks/useRecipes';
 import useCategories from '../../hooks/useCategories';
 
-const API_INFO = {
-  domain: 'themealdb',
-  key: 'meals',
-  qtdC: 5,
-  qtdR: 12,
-};
-
 function FoodProvider({ children }) {
-  const [foodRecipes, isFetching] = useRecipes(API_INFO);
-  const categories = useCategories(API_INFO);
+  const { comidas: { domain, key } } = data;
+  const [foodRecipes, isFetching] = useRecipes(domain, key);
+  const categories = useCategories(domain, key);
   const [foodRecipesByCategory, setFoodRecipesByCategory] = useState({});
   const [isLoading, setIsLoading] = useState(isFetching);
 
