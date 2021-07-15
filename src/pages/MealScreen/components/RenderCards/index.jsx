@@ -13,6 +13,7 @@ export default function RenderCards(props) {
 
   let recipes = foodRecipes;
   const { meals } = foodApi;
+  console.log(meals);
   if (meals) {
     recipes = meals;
     if (meals.length === 1) {
@@ -21,6 +22,9 @@ export default function RenderCards(props) {
   }
   if (currentCategory !== 'All' && !isLoading) {
     recipes = foodRecipesByCategory[currentCategory];
+  }
+  if (meals === null) {
+    alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
 
   return recipes.map(({ idMeal, strMeal, strMealThumb }, index) => (

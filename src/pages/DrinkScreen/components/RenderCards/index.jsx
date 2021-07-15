@@ -22,6 +22,9 @@ export default function RenderCards(props) {
   if (currentCategory !== 'All' && !isLoading) {
     recipes = drinkRecipesByCategory[currentCategory];
   }
+  if (drinks === null) {
+    alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  }
 
   return recipes.map(({ idDrink, strDrink, strDrinkThumb }, index) => (
     <MainCard
