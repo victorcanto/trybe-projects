@@ -3,12 +3,12 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import FoodContext from '../../context/Food/FoodContext';
 import Categories from './components/Categories';
+import RenderCards from './components/RenderCards';
 
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
 import Loading from '../../components/Loading';
 import Header from '../../components/Header/Header';
-import MainCard from '../../components/MainCard';
 import Footer from '../../components/Footer';
 
 const dataForMealApi = {
@@ -21,8 +21,8 @@ const dataForMealApi = {
 function MealScreen() {
   const {
     categories,
-    foodRecipes,
     foodRecipesByCategory,
+    foodRecipes,
     setFoodRecipesByCategory,
     isLoading,
     setIsLoading,
@@ -65,32 +65,6 @@ function MealScreen() {
     setIsLoading(true);
     setCurrentCategory(category);
   }
-
-  function renderCards() {
-    let recipes = foodRecipes;
-    const { meals } = foodApi;
-
-    if (meals) {
-      recipes = meals;
-      if (meals.length === 1) {
-        return <Redirect to={ `/comidas/${meals[0].idMeal}` } />;
-      }
-    }
-    if (currentCategory !== 'All' && !isLoading) {
-      recipes = foodRecipesByCategory[currentCategory];
-    }
-
-    return recipes.map(({ idMeal, strMeal, strMealThumb }, index) => (
-      <MainCard
-        key={ index }
-        index={ index }
-        id={ idMeal }
-        name={ strMeal }
-        thumb={ strMealThumb }
-      />
-    ));
-  }
-
   return (
     <div>
       <Header title="Comidas" icon="true" currentPage="Foods" />
@@ -98,7 +72,13 @@ function MealScreen() {
         categories={ categories }
         renderRecipesByCategory={ renderRecipesByCategory }
       />
-      {isLoading ? <Loading /> : renderCards()}
+      {isLoading ? <Loading /> : <RenderCards
+        currentCategory={ currentCategory }
+        foodRecipes={ foodRecipes }
+        foodRecipesByCategory={ foodRecipesByCategory }
+        isLoading={ isLoading }
+        foodApi={ foodApi }
+      />}
       <Footer />
     </div>
   );
