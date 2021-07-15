@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from 'react';
 import DrinkContext from '../../context/Drink/DrinkContext';
+import Categories from './components/Categories';
+import RenderCards from './components/RenderCards';
 
 import { fetchRecipesByCategory } from '../../services/MainScreenAPI';
 
 import Loading from '../../components/Loading';
 import Header from '../../components/Header/Header';
-import MainCard from '../../components/MainCard';
 import Footer from '../../components/Footer';
 
 const dataForDrinkApi = {
@@ -24,6 +25,7 @@ function DrinkScreen() {
     setDrinkRecipesByCategory,
     isLoading,
     setIsLoading,
+    drinkApi,
   } = useContext(DrinkContext);
 
   const [currentCategory, setCurrentCategory] = useState('All');
@@ -63,53 +65,20 @@ function DrinkScreen() {
     setCurrentCategory(category);
   }
 
-  function renderCards() {
-    let recipes = drinkRecipes;
-
-    if (currentCategory !== 'All' && !isLoading) {
-      recipes = drinkRecipesByCategory[currentCategory];
-    }
-
-    return recipes.map(({ idDrink, strDrink, strDrinkThumb }, index) => (
-      <MainCard
-        key={ index }
-        index={ index }
-        id={ idDrink }
-        name={ strDrink }
-        thumb={ strDrinkThumb }
-      />
-    ));
-  }
-
-  function renderFilters() {
-    return (
-      <div>
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ renderRecipesByCategory }
-        >
-          All
-        </button>
-        {categories.map(({ strCategory }) => (
-          <button
-            className="btn-filter"
-            type="button"
-            key={ strCategory }
-            data-testid={ `${strCategory}-category-filter` }
-            onClick={ renderRecipesByCategory }
-          >
-            {strCategory}
-          </button>))}
-      </div>
-    );
-  }
-
   return (
     <div>
       <Header title="Bebidas" icon="true" currentPage="Drink" />
-      {renderFilters()}
-      {isLoading ? <Loading /> : renderCards()}
+      <Categories
+        categories={ categories }
+        renderRecipesByCategory={ renderRecipesByCategory }
+      />
+      {isLoading ? <Loading /> : <RenderCards
+        currentCategory={ currentCategory }
+        drinkRecipes={ drinkRecipes }
+        drinkRecipesByCategory={ drinkRecipesByCategory }
+        isLoading={ isLoading }
+        drinkApi={ drinkApi }
+      />}
       <Footer />
     </div>
   );

@@ -54,7 +54,6 @@ function FoodProvider({ children }) {
     }
     connect();
   }, [key, value]);
-  console.log(filterFood);
 
   useEffect(() => {
     setIsLoading(isFetching);

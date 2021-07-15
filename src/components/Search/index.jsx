@@ -41,7 +41,6 @@ function Search({ currentPage }) {
       value: inputSearch,
     });
   }
-  console.log(setInputChange);
 
   return (
     <div id="search-container">
