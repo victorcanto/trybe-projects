@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { fetchRecipes } from '../services/recipesApi';
 
-function useRecipes(domain, key) {
-  const RECIPES_AMOUNT = 12;
+function useRecipes(domain, key, amount) {
+  const DEFAULT_AMOUNT = 12;
+  const RECIPES_AMOUNT = amount || DEFAULT_AMOUNT;
   const [recipes, setRecipes] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
 

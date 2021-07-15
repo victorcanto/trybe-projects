@@ -25,7 +25,7 @@ export async function fetchRecipesByCategory(domain, key, category) {
   return results;
 }
 
-export default async function fetchRecipeById(id, key, domain) {
+export default async function fetchRecipeById(domain, key, id) {
   const response = await fetch(
     `https://www.${domain}.com/api/json/v1/1/lookup.php?i=${id}`,
   );
