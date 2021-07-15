@@ -5,7 +5,7 @@ import {
   filterIngredient,
   filterName,
   filterCategory,
-} from '../../services/MainScreenAPI';
+} from '../../services/recipesApi';
 
 import data from '../../helpers/apiData';
 
@@ -14,9 +14,9 @@ import useRecipes from '../../hooks/useRecipes';
 import useCategories from '../../hooks/useCategories';
 
 function FoodProvider({ children }) {
-  const { comidas: { domain, key } } = data;
-  const [foodRecipes, isFetching] = useRecipes(domain, key);
-  const categories = useCategories(domain, key);
+  const { comidas: { domain, key: keyName } } = data;
+  const [foodRecipes, isFetching] = useRecipes(domain, keyName);
+  const categories = useCategories(domain, keyName);
   const [foodRecipesByCategory, setFoodRecipesByCategory] = useState({});
   const [isLoading, setIsLoading] = useState(isFetching);
 
