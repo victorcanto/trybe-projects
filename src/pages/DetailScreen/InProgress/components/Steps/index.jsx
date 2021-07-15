@@ -8,38 +8,29 @@ import Checkbox from '../Checkbox';
 
 function Steps({ recipe, origin }) {
   const { id } = useParams();
-  const [stepsInProgress, setStepsInProgress] = useState([]);
   const pathType = origin === 'comidas' ? 'meals' : 'cocktails';
-  const [isChecked, setIsChecked] = useState(false);
+  // https://github.com/tryber/sd-010-a-project-recipes-app/blob/main-group-15/src/hooks/useRecipeProgress.js
+  // Primeiramente não estava funcionando o requisito 50 e pudemos ter uma luz de lógica a partir desse pull request na função isChecked
+  const inProgressStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  let storagedId = [];
+  if (inProgressStorage) {
+    storagedId = inProgressStorage[pathType][id] || [];
+  }
+  const [stepsInProgress, setStepsInProgress] = useState(storagedId);
 
   useEffect(() => {
-    const inProgressStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    let storagedId = [];
-    if (inProgressStorage) {
-      storagedId = inProgressStorage[pathType][id];
-    }
-    const isUpdated = stepsInProgress.every(
-      (ingredient, index) => ingredient === storagedId[index],
-    );
+    let inProgressStoraged = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
-    if (isUpdated && !stepsInProgress.length && storagedId.length) {
-      return setStepsInProgress(storagedId);
-    }
-  }, []);
-
-  useEffect(() => {
-    let inProgressStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-
-    if (!inProgressStorage) {
-      inProgressStorage = {
+    if (!inProgressStoraged) {
+      inProgressStoraged = {
         cocktails: {},
         meals: {},
       };
     }
 
-    inProgressStorage[pathType][id] = stepsInProgress;
+    inProgressStoraged[pathType][id] = stepsInProgress;
 
-    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressStorage));
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressStoraged));
   }, [stepsInProgress]);
 
   const handleProgress = (name, checked) => {
@@ -71,15 +62,15 @@ function Steps({ recipe, origin }) {
       <h2>Ingredients</h2>
       <ul className={ styles.steps }>
         {arrResult.map(([key, value], index) => {
-          const alreadyChecked = stepsInProgress.includes(key);
+          const isChecked = stepsInProgress.includes(key);
+          console.log(stepsInProgress);
           return (
             <li
               key={ index }
               data-testid={ `${index}-ingredient-step` }
             >
               <Checkbox
-                // isChecked={ isChecked }
-                isAlreadyChecked={ alreadyChecked }
+                isChecked={ isChecked }
                 handleProgress={ handleProgress }
                 value={ value }
                 keyValue={ key }
