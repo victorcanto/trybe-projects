@@ -1,7 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import DetailContext from '../../context/DetailProvider/DetailContext';
+// import DetailContext from '../../context/DetailProvider/DetailContext';
 
+import useRecipes from '../../hooks/useRecipes';
+import useRecipeDetails from '../../hooks/useRecipeDetails';
 import data from '../../helpers/apiData';
 import '../../styles/global.scss';
 
@@ -15,28 +17,25 @@ import Recommendations from '../../components/RecipeDetails/Recommendations';
 import StartRecipe from '../../components/RecipeDetails/StartRecipe';
 
 function DetailScreen() {
-  const {
-    setInfoDetails,
-    setInfoRecommended,
-    recipeDetails,
-    isLoading,
-  } = useContext(DetailContext);
+  // const {
+  //   setInfoDetails,
+  //   setInfoRecommended,
+  //   recipeDetails,
+  //   isLoading,
+  // } = useContext(DetailContext);
 
   const { id } = useParams();
   const { pathname } = useLocation();
   const foodOrDrink = pathname.split('/')[1];
+  const { domain, key } = data[foodOrDrink];
+  const { domainRecommend, keyRecommend } = data[foodOrDrink];
 
-  const API_INFO_DETAILS = {
-    id,
-    key: data[foodOrDrink].key,
-    domain: data[foodOrDrink].domain,
-  };
-
-  const API_INFO_RECOMMENDED = {
-    key: data[foodOrDrink].keyRecommend,
-    domain: data[foodOrDrink].domainRecommend,
-    qtdR: 6,
-  };
+  const [isLoading, setIsLoading] = useState(true);
+  const [recipeDetails, isFetchingDetails] = useRecipeDetails(domain, key, id);
+  const [
+    recommendedRecipes,
+    isFetchingRecommended,
+  ] = useRecipes(domainRecommend, keyRecommend);
 
   const type = {
     name: data[foodOrDrink].name,
@@ -45,14 +44,10 @@ function DetailScreen() {
     categoryRecommend: data[foodOrDrink].categoryRecommend,
   };
 
-  // const recipeDetails = useRecipeDetails(API_INFO_DETAILS);
-  // const recommendedRecipes = useRecipes(API_INFO_RECOMMENDED);
-
   useEffect(() => {
-    setInfoDetails(API_INFO_DETAILS);
-    setInfoRecommended(API_INFO_RECOMMENDED);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setIsLoading(isFetchingDetails && isFetchingRecommended);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFetchingDetails, isFetchingRecommended]);
 
   function handleStorage() {
     let duplicated = false;
@@ -98,14 +93,16 @@ function DetailScreen() {
         <BasicInfo
           name={ type.name }
           category={ type.category }
+          recipe={ recipeDetails }
         />
         <InteractiveButtons handleStorage={ handleStorage } id={ id } />
-        <Ingredients />
-        <Instructions name={ type.name } />
-        <VideoRecipe name={ type.name } />
+        <Ingredients recipe={ recipeDetails } />
+        <Instructions name={ type.name } recipe={ recipeDetails } />
+        <VideoRecipe name={ type.name } recipe={ recipeDetails } />
         <Recommendations
           name={ type.nameRecommend }
           category={ type.categoryRecommend }
+          recommendedRecipes={ recommendedRecipes }
         />
         <StartRecipe />
       </>

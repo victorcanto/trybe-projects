@@ -1,20 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import DetailContext from '../../../context/DetailProvider/DetailContext';
 
 function BasicInfo(props) {
-  const { category, name } = props;
-  const { recipeDetails } = useContext(DetailContext);
+  const { category, name, recipe } = props;
+
   return (
     <div>
       <img
         data-testid="recipe-photo"
-        src={ recipeDetails[`str${name}Thumb`] }
-        alt={ recipeDetails[`str${name}`] }
+        src={ recipe[`str${name}Thumb`] }
+        alt={ recipe[`str${name}`] }
         width="100%"
       />
-      <h1 data-testid="recipe-title">{recipeDetails[`str${name}`]}</h1>
-      <p data-testid="recipe-category">{recipeDetails[category]}</p>
+      <h1 data-testid="recipe-title">{recipe[`str${name}`]}</h1>
+      <p data-testid="recipe-category">{recipe[category]}</p>
     </div>
   );
 }
@@ -24,4 +23,5 @@ export default BasicInfo;
 BasicInfo.propTypes = {
   category: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  recipe: PropTypes.node.isRequired,
 };

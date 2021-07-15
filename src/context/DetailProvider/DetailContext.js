@@ -1,5 +1,6 @@
-import { createContext } from 'react';
+// import { createContext } from 'react';
 
-const DetailContext = createContext();
+// const DetailContext = createContext();
 
-export default DetailContext;
+// export default DetailContext;
+// //
