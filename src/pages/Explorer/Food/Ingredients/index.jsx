@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../../../components/Header/Header';
+import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 import styles from '../../explorerCards.module.scss';
 import { fetchIngredient } from '../../../../services/recipesApi';

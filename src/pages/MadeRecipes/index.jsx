@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+import Header from '../../components/Header';
 import styles from './madeRecipes.module.scss';
 
 const MADE_RECIPES = [
@@ -131,7 +131,7 @@ function MadeRecipes() {
 
   return (
     <>
-      <Header title="Receitas feitas" icon="false" currentPage="" />
+      <Header title="Receitas Feitas" icon="false" currentPage="" />
       {renderMadeRecipes()}
     </>
   );

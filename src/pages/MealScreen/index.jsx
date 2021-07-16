@@ -7,7 +7,7 @@ import { fetchRecipesByCategory } from '../../services/recipesApi';
 
 import data from '../../helpers/apiData';
 import Loading from '../../components/Loading';
-import Header from '../../components/Header/Header';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 const { comidas: { domain, key } } = data;
