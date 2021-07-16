@@ -9,8 +9,8 @@ import Loading from '../../../components/Loading';
 import BasicInfo from '../../../components/RecipeDetails/BasicInfo';
 import InteractiveButtons from '../../../components/RecipeDetails/InteractiveButtons';
 import Instructions from '../../../components/RecipeDetails/Instructions';
+import Button from '../../../components/Button';
 import Steps from './components/Steps';
-import Button from './components/Button';
 
 function DetailScreen() {
   const { id } = useParams();
@@ -79,9 +79,14 @@ function DetailScreen() {
           recipe={ recipeDetails }
         />
         <InteractiveButtons handleStorage={ handleStorage } id={ id } />
+
         <Steps origin={ foodOrDrink } recipe={ recipeDetails } />
+
         <Instructions name={ type.name } recipe={ recipeDetails } />
-        <Button />
+
+        <Button dataTestid="finish-recipe-btn">
+          <span>Finish</span>
+        </Button>
       </>
     );
   }

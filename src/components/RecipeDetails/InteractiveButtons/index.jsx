@@ -6,7 +6,8 @@ import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 
 function InteractiveButtons({ handleStorage, id }) {
-  const { pathname } = useLocation();
+  let { pathname } = useLocation();
+  [pathname] = pathname.split('/in-progress');
   const [isCopy, setIsCopy] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
