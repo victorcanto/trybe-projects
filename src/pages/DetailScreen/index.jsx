@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-// import DetailContext from '../../context/DetailProvider/DetailContext';
-
 import useRecipes from '../../hooks/useRecipes';
 import useRecipeDetails from '../../hooks/useRecipeDetails';
 import data from '../../helpers/apiData';
@@ -16,6 +14,8 @@ import VideoRecipe from '../../components/RecipeDetails/VideoRecipe';
 import Recommendations from '../../components/RecipeDetails/Recommendations';
 import StartRecipe from '../../components/RecipeDetails/StartRecipe';
 
+const RECOMMENDED_RECIPES_AMOUNT = 6;
+
 function DetailScreen() {
   const { id } = useParams();
   const { pathname } = useLocation();
@@ -28,7 +28,7 @@ function DetailScreen() {
   const [
     recommendedRecipes,
     isFetchingRecommended,
-  ] = useRecipes(domainRecommend, keyRecommend);
+  ] = useRecipes(domainRecommend, keyRecommend, RECOMMENDED_RECIPES_AMOUNT);
 
   const type = {
     name: data[foodOrDrink].name,
@@ -96,7 +96,7 @@ function DetailScreen() {
           category={ type.categoryRecommend }
           recommendedRecipes={ recommendedRecipes }
         />
-        <StartRecipe />
+        <StartRecipe id={ id } pathname={ pathname } />
       </>
     );
   }
