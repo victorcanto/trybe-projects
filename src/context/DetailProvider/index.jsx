@@ -1,55 +1,31 @@
-// import React, { useState, useEffect } from 'react';
-// import { node } from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { node } from 'prop-types';
+import DetailContext from './DetailContext';
 
-// import Context from './DetailContext';
-// import useRecipes from '../../hooks/useRecipes';
-// import useRecipeDetails from '../../hooks/useRecipeDetails';
+function DetailProvider({ children }) {
+  const [isInProgress, setIsInProgress] = useState(false);
+  const [isDone, setIsDone] = useState(false);
 
-// const API_INFO_RECOMMENDED = {
-//   domain: 'themealdb',
-//   key: 'meals',
-//   qtdR: 6,
-// };
+  const value = {
+    isInProgress,
+    isDone,
+    setIsInProgress,
+    setIsDone,
+  };
 
-// const API_INFO_DETAILS = {
-//   id: '52977',
-//   key: 'meals',
-//   domain: 'themealdb',
-// };
+  useEffect(() => {
 
-// function DetailProvider({ children }) {
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [infoDetails, setInfoDetails] = useState(API_INFO_DETAILS);
-//   const [recipeDetails, isFetchingDetails] = useRecipeDetails(infoDetails);
-//   const [infoRecommended, setInfoRecommended] = useState(API_INFO_RECOMMENDED);
-//   const { domain, key } = infoRecommended;
-//   const recommendAmount = 6;
-//   const [
-//     recommendedRecipes,
-//     isFetchingRecommended,
-//   ] = useRecipes(domain, key, recommendAmount);
+  }, [isInProgress, isDone]);
 
-//   useEffect(() => {
-//     setIsLoading(isFetchingDetails && isFetchingRecommended);
-//   }, [isFetchingDetails, isFetchingRecommended]);
+  return (
+    <DetailContext.Provider value={ value }>
+      {children}
+    </DetailContext.Provider>
+  );
+}
 
-//   const value = {
-//     setInfoDetails,
-//     setInfoRecommended,
-//     recipeDetails,
-//     recommendedRecipes,
-//     isLoading,
-//   };
+DetailProvider.propTypes = {
+  children: node.isRequired,
+};
 
-//   return (
-//     <Context.Provider value={ value }>
-//       {children}
-//     </Context.Provider>
-//   );
-// }
-
-// export default DetailProvider;
-
-// DetailProvider.propTypes = {
-//   children: node.isRequired,
-// };
+export default DetailProvider;

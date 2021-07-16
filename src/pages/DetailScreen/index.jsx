@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-// import DetailContext from '../../context/DetailProvider/DetailContext';
-
 import useRecipes from '../../hooks/useRecipes';
 import useRecipeDetails from '../../hooks/useRecipeDetails';
 import data from '../../helpers/apiData';
@@ -11,19 +9,14 @@ import Loading from '../../components/Loading';
 import BasicInfo from '../../components/RecipeDetails/BasicInfo';
 import InteractiveButtons from '../../components/RecipeDetails/InteractiveButtons';
 import Ingredients from '../../components/RecipeDetails/Ingredients';
-import Instructions from '../../components/RecipeDetails/Instructions';
 import VideoRecipe from '../../components/RecipeDetails/VideoRecipe';
+import Instructions from '../../components/RecipeDetails/Instructions';
 import Recommendations from '../../components/RecipeDetails/Recommendations';
 import StartRecipe from '../../components/RecipeDetails/StartRecipe';
 
-function DetailScreen() {
-  // const {
-  //   setInfoDetails,
-  //   setInfoRecommended,
-  //   recipeDetails,
-  //   isLoading,
-  // } = useContext(DetailContext);
+const RECOMMENDED_RECIPES_AMOUNT = 6;
 
+function DetailScreen() {
   const { id } = useParams();
   const { pathname } = useLocation();
   const foodOrDrink = pathname.split('/')[1];
@@ -35,7 +28,7 @@ function DetailScreen() {
   const [
     recommendedRecipes,
     isFetchingRecommended,
-  ] = useRecipes(domainRecommend, keyRecommend);
+  ] = useRecipes(domainRecommend, keyRecommend, RECOMMENDED_RECIPES_AMOUNT);
 
   const type = {
     name: data[foodOrDrink].name,
@@ -46,7 +39,6 @@ function DetailScreen() {
 
   useEffect(() => {
     setIsLoading(isFetchingDetails && isFetchingRecommended);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFetchingDetails, isFetchingRecommended]);
 
   function handleStorage() {
@@ -104,7 +96,7 @@ function DetailScreen() {
           category={ type.categoryRecommend }
           recommendedRecipes={ recommendedRecipes }
         />
-        <StartRecipe />
+        <StartRecipe id={ id } pathname={ pathname } />
       </>
     );
   }

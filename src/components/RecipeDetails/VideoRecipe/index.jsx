@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import data from '../../../helpers/apiData';
 
-const { Meal } = data;
+const { comidas: { name: Meal } } = data;
 
 function VideoRecipe(props) {
   const { name, recipe } = props;
