@@ -40,9 +40,8 @@ function StartRecipe({ id, pathname }) {
   function renderStartRecipeBtn(msgStatus) {
     return (
       <div className={ styles.startContainer }>
-        {isDone === false && renderButton(msgStatus)}
+        {!isDone && renderButton(msgStatus)}
       </div>
-
     );
   }
 
