@@ -1,0 +1,21 @@
+.id {
+  margin-bottom: 55px;
+}
+
+.card {
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+border-style: solid;
+border-color: grey;
+}
+
+.img {
+  width: 150px;
+  height: 150px;
+}
+
+.cardName {
+  color: black;
+}
