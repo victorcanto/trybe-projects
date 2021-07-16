@@ -4,8 +4,8 @@ import Footer from '../../components/Footer';
 
 function Profile() {
   function getEmail() {
-    const { email } = JSON.parse(localStorage.getItem('user'));
-    return email;
+    const data = JSON.parse(localStorage.getItem('user'));
+    if (data) return data.email;
   }
 
   return (
