@@ -11,11 +11,12 @@ export default function RenderCards(props) {
     foodApi,
   } = props;
 
+  const MEALS_SIZE = 12;
+
   let recipes = foodRecipes;
   const { meals } = foodApi;
-  console.log(meals);
   if (meals) {
-    recipes = meals;
+    recipes = meals.slice(0, MEALS_SIZE);
     if (meals.length === 1) {
       return <Redirect to={ `/comidas/${meals[0].idMeal}` } />;
     }
