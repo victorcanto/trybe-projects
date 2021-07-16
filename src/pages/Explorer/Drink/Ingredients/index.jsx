@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import Header from '../../../../components/Header/Header';
 import Footer from '../../../../components/Footer';
 import styles from '../../explorerCards.module.scss';
-import { fetchIngredient } from '../../../../services/MainScreenAPI';
-import DrinkContext from '../../../../context/Drink/DrinkContext';
+import { fetchIngredient } from '../../../../services/recipesApi';
+import DrinkContext from '../../../../context/DrinkProvider/DrinkContext';
 
 function ExploreIngredientsDrinks() {
   const [ingredients, setIngredients] = useState('');

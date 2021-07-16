@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import Header from '../../../../components/Header/Header';
 import Footer from '../../../../components/Footer';
 import styles from '../../explorerCards.module.scss';
-import { fetchIngredient } from '../../../../services/MainScreenAPI';
-import FoodContext from '../../../../context/Food/FoodContext';
+import { fetchIngredient } from '../../../../services/recipesApi';
+import FoodContext from '../../../../context/FoodProvider/FoodContext';
 
 function ExploreIngredientsFood() {
   const [ingredients, setIngredients] = useState('');
