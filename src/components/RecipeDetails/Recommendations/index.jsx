@@ -4,6 +4,8 @@ import Cards from './Cards';
 import styles from './recommendations.module.scss';
 
 function Recommendations({ name, category, recommendedRecipes }) {
+  let path = '/comidas';
+  if (name === 'Drink') path = '/bebidas';
   return (
     <div>
       <h2>Recommended</h2>
