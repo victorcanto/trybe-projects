@@ -1,17 +1,15 @@
 import React from 'react';
 
-import FoodProvider from './context/Food';
-import DrinkProvider from './context/Drink';
-import DetailProvider from './context/DetailScreen';
+import FoodProvider from './context/FoodProvider';
+import DrinkProvider from './context/DrinkProvider';
+// import DetailProvider from './context/DetailProvider';
 import Routes from './routes';
 
 function App() {
   return (
     <FoodProvider>
       <DrinkProvider>
-        <DetailProvider>
-          <Routes />
-        </DetailProvider>
+        <Routes />
       </DrinkProvider>
     </FoodProvider>
   );

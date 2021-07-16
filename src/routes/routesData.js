@@ -2,6 +2,7 @@ import Login from '../pages/Login';
 import MealScreen from '../pages/MealScreen';
 import DrinkScreen from '../pages/DrinkScreen';
 import DetailScreen from '../pages/DetailScreen';
+import InProgress from '../pages/DetailScreen/InProgress';
 import Explorer from '../pages/Explorer';
 import ExploreFoods from '../pages/Explorer/Food';
 import ExploreDrinks from '../pages/Explorer/Drink';
@@ -9,6 +10,8 @@ import ExploreIngredientsFood from '../pages/Explorer/Food/Ingredients';
 import ExploreIngredientsDrink from '../pages/Explorer/Drink/Ingredients';
 import FoodOrigins from '../pages/Explorer/Food/Origin';
 import Profile from '../pages/Profile';
+import FavoriteScreen from '../pages/FavoriteScreen';
+import MadeRecipes from '../pages/MadeRecipes';
 
 // component should be the page
 const routes = [
@@ -37,16 +40,16 @@ const routes = [
     exact: true,
     component: DetailScreen,
   },
-  // {
-  //   path: '/comidas/:id/in-progress',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/bebidas/:id/in-progress',
-  //   exact: true,
-  //   component: '',
-  // },
+  {
+    path: '/comidas/:id/in-progress',
+    exact: true,
+    component: InProgress,
+  },
+  {
+    path: '/bebidas/:id/in-progress',
+    exact: true,
+    component: InProgress,
+  },
   {
     path: '/explorar',
     exact: true,
@@ -82,16 +85,16 @@ const routes = [
     exact: true,
     component: Profile,
   },
-  // {
-  //   path: '/receitas-feitas',
-  //   exact: true,
-  //   component: '',
-  // },
-  // {
-  //   path: '/receitas-favoritas',
-  //   exact: true,
-  //   component: '',
-  // },
+  {
+    path: '/receitas-feitas',
+    exact: true,
+    component: MadeRecipes,
+  },
+  {
+    path: '/receitas-favoritas',
+    exact: true,
+    component: FavoriteScreen,
+  },
 ];
 
 export default routes;
