@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 function Profile() {
   function getEmail() {
@@ -10,6 +11,7 @@ function Profile() {
 
   return (
     <div>
+      <Header title="Perfil" icon="false" />
       <p data-testid="profile-email">{getEmail()}</p>
       <div>
         <Link to="/receitas-feitas">
