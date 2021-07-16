@@ -11,10 +11,12 @@ export default function RenderCards(props) {
     drinkApi,
   } = props;
 
+  const DRINKS_SIZE = 12;
+
   let recipes = drinkRecipes;
   const { drinks } = drinkApi;
   if (drinks) {
-    recipes = drinks;
+    recipes = drinks.slice(0, DRINKS_SIZE);
     if (drinks.length === 1) {
       return <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />;
     }
