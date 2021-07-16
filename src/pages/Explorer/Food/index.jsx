@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../../components/Header/Header';
 import Footer from '../../../components/Footer';
-import { fetchRandomApiFood } from '../../../services/MainScreenAPI';
+import { fetchRandomApiFood } from '../../../services/recipesApi';
 
 function ExploreFoods() {
   const [idMeal, setIdMeal] = useState('');

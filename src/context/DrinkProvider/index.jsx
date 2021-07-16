@@ -5,22 +5,18 @@ import {
   filterIngredient,
   filterName,
   filterCategory,
-} from '../../services/MainScreenAPI';
+} from '../../services/recipesApi';
+
+import data from '../../helpers/apiData';
 
 import Context from './DrinkContext';
 import useRecipes from '../../hooks/useRecipes';
 import useCategories from '../../hooks/useCategories';
 
-const API_INFO = {
-  domain: 'thecocktaildb',
-  key: 'drinks',
-  qtdC: 5,
-  qtdR: 12,
-};
-
 function DrinkProvider({ children }) {
-  const [drinkRecipes, isFetching] = useRecipes(API_INFO);
-  const categories = useCategories(API_INFO);
+  const { bebidas: { domain, key: keyName } } = data;
+  const [drinkRecipes, isFetching] = useRecipes(domain, keyName);
+  const categories = useCategories(domain, keyName);
   const [drinkRecipesByCategory, setDrinkRecipesByCategory] = useState({});
   const [isLoading, setIsLoading] = useState(isFetching);
 

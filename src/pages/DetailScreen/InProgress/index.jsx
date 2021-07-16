@@ -1,34 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import useRecipes from '../../hooks/useRecipes';
-import useRecipeDetails from '../../hooks/useRecipeDetails';
-import data from '../../helpers/apiData';
-import '../../styles/global.scss';
 
-import Loading from '../../components/Loading';
-import BasicInfo from '../../components/RecipeDetails/BasicInfo';
-import InteractiveButtons from '../../components/RecipeDetails/InteractiveButtons';
-import Ingredients from '../../components/RecipeDetails/Ingredients';
-import Instructions from '../../components/RecipeDetails/Instructions';
-import VideoRecipe from '../../components/RecipeDetails/VideoRecipe';
-import Recommendations from '../../components/RecipeDetails/Recommendations';
-import StartRecipe from '../../components/RecipeDetails/StartRecipe';
+import useRecipeDetails from '../../../hooks/useRecipeDetails';
+import data from '../../../helpers/apiData';
+import '../../../styles/global.scss';
 
-const RECOMMENDED_RECIPES_AMOUNT = 6;
+import Loading from '../../../components/Loading';
+import BasicInfo from '../../../components/RecipeDetails/BasicInfo';
+import InteractiveButtons from '../../../components/RecipeDetails/InteractiveButtons';
+import Instructions from '../../../components/RecipeDetails/Instructions';
+import Steps from './components/Steps';
+import Button from './components/Button';
 
 function DetailScreen() {
   const { id } = useParams();
   const { pathname } = useLocation();
   const foodOrDrink = pathname.split('/')[1];
   const { domain, key } = data[foodOrDrink];
-  const { domainRecommend, keyRecommend } = data[foodOrDrink];
 
   const [isLoading, setIsLoading] = useState(true);
   const [recipeDetails, isFetchingDetails] = useRecipeDetails(domain, key, id);
-  const [
-    recommendedRecipes,
-    isFetchingRecommended,
-  ] = useRecipes(domainRecommend, keyRecommend, RECOMMENDED_RECIPES_AMOUNT);
 
   const type = {
     name: data[foodOrDrink].name,
@@ -38,8 +29,9 @@ function DetailScreen() {
   };
 
   useEffect(() => {
-    setIsLoading(isFetchingDetails && isFetchingRecommended);
-  }, [isFetchingDetails, isFetchingRecommended]);
+    setIsLoading(isFetchingDetails);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFetchingDetails]);
 
   function handleStorage() {
     let duplicated = false;
@@ -75,8 +67,7 @@ function DetailScreen() {
         .setItem('favoriteRecipes', JSON.stringify([...savedRecipes, favoriteRecipe]));
     }
 
-    localStorage
-      .setItem('favoriteRecipes', JSON.stringify([favoriteRecipe]));
+    localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteRecipe]));
   }
 
   function renderDetails() {
@@ -88,15 +79,9 @@ function DetailScreen() {
           recipe={ recipeDetails }
         />
         <InteractiveButtons handleStorage={ handleStorage } id={ id } />
-        <Ingredients recipe={ recipeDetails } />
+        <Steps origin={ foodOrDrink } recipe={ recipeDetails } />
         <Instructions name={ type.name } recipe={ recipeDetails } />
-        <VideoRecipe name={ type.name } recipe={ recipeDetails } />
-        <Recommendations
-          name={ type.nameRecommend }
-          category={ type.categoryRecommend }
-          recommendedRecipes={ recommendedRecipes }
-        />
-        <StartRecipe id={ id } pathname={ pathname } />
+        <Button />
       </>
     );
   }

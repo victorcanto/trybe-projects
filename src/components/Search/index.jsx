@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import FoodContext from '../../context/Food/FoodContext';
-import DrinkContext from '../../context/Drink/DrinkContext';
+import FoodContext from '../../context/FoodProvider/FoodContext';
+import DrinkContext from '../../context/DrinkProvider/DrinkContext';
 
 function Search({ currentPage }) {
   const { setFilterFood } = useContext(FoodContext);
