@@ -28,26 +28,32 @@ function FoodProvider({ children }) {
     async function connect() {
       if (key === 'ing') {
         const i = await filterIngredient(value, 'Foods');
+        setIsLoading(false);
         return setFoodApi(i);
       }
       if (key === 'name') {
         const n = await filterName(value, 'Foods');
+        setIsLoading(false);
         return setFoodApi(n);
       }
       if (key === 'first') {
         if (value.length > 1) {
           // eslint-disable-next-line no-alert
           alert('Sua busca deve conter somente 1 (um) caracter');
+          setIsLoading(false);
           return;
         }
         const f = await filterFirstLetter(value, 'Foods');
+        setIsLoading(false);
         return setFoodApi(f);
       }
       if (key === 'category') {
         const c = await filterCategory(value, 'Foods');
+        setIsLoading(false);
         return setFoodApi(c);
       }
     }
+    setIsLoading(true);
     connect();
   }, [key, value]);
 

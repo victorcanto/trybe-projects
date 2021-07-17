@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+import Header from '../../components/Header';
 import FilterButtons from './components/FilterButtons';
 import styles from './favorite.module.scss';
 import shareIcon from '../../images/shareIcon.svg';
@@ -8,7 +8,7 @@ import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function FavoriteScreen() {
   const FAVORITE_RECIPES = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  const [filteredRecipes, setFilteredRecipes] = useState(FAVORITE_RECIPES);
+  const [filteredRecipes, setFilteredRecipes] = useState(FAVORITE_RECIPES || []);
   const [isCopy, setIsCopy] = useState(false);
 
   function copyToClipBoard({ type, id }) {
@@ -79,7 +79,7 @@ function FavoriteScreen() {
     return (
       <div className={ styles.favoriteRecipes }>
         <FilterButtons
-          recipes={ FAVORITE_RECIPES }
+          recipes={ filteredRecipes }
           setFilteredRecipes={ setFilteredRecipes }
         />
         {isCopy && <span>Link copiado!</span>}
@@ -92,7 +92,7 @@ function FavoriteScreen() {
 
   return (
     <>
-      <Header title="Receitas Favoritas" icon="false" currentPage="" />
+      <Header title="Receitas Favoritas" icon="false" />
       {renderFavoriteRecipes()}
     </>
   );

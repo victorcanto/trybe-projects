@@ -85,7 +85,6 @@ const routes = [
     exact: true,
     component: Profile,
   },
-
   {
     path: '/receitas-feitas',
     exact: true,

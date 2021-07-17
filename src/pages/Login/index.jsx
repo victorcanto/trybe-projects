@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 
+import Button from '../../components/Button';
+
 import Logo from '../../images/tryFoods.png';
 
 import styles from './login.module.scss';
@@ -36,7 +38,6 @@ function Login() {
 
   return (
     <main className={ styles.container }>
-      {/* <Logo /> */}
       <img src={ Logo } alt="Try Foods" className={ styles.logo } />
 
       <form className={ styles.loginSection }>
@@ -62,16 +63,16 @@ function Login() {
           />
         </label>
 
-        <button
-          data-testid="login-submit-btn"
-          type="submit"
-          onClick={ handleSubmit }
-          disabled={ !isValidated }
+        <Button
+          isSubmit
+          dataTestid="login-submit-btn"
+          handleClick={ handleSubmit }
+          isValidated={ !isValidated }
         >
           <span>ENTRAR</span>
           {' '}
           <FiArrowRight size="1.5rem" />
-        </button>
+        </Button>
       </form>
     </main>
   );

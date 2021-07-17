@@ -7,21 +7,17 @@ import DrinkContext from '../../context/DrinkProvider/DrinkContext';
 import { fetchRecipesByCategory } from '../../services/recipesApi';
 
 import Loading from '../../components/Loading';
-import Header from '../../components/Header/Header';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import data from '../../helpers/apiData';
 
-const dataForDrinkApi = {
-  domain: 'thecocktaildb',
-  key: 'drinks',
-  qtdC: 5,
-  qtdR: 12,
-};
+const { bebidas: { domain, key } } = data;
 
 function DrinkScreen() {
   const {
     categories,
-    drinkRecipes,
     drinkRecipesByCategory,
+    drinkRecipes,
     setDrinkRecipesByCategory,
     isLoading,
     setIsLoading,
@@ -34,11 +30,10 @@ function DrinkScreen() {
     const loadedCategories = Object.keys(drinkRecipesByCategory);
     const getRecipesByCategory = async () => {
       try {
-        const { key, domain, qtdR } = dataForDrinkApi;
-        const data = await fetchRecipesByCategory(key, currentCategory, domain, qtdR);
+        const apiResponse = await fetchRecipesByCategory(domain, key, currentCategory);
         setDrinkRecipesByCategory((prev) => ({
           ...prev,
-          [currentCategory]: data,
+          [currentCategory]: apiResponse,
         }));
         setIsLoading(false);
       } catch (error) {

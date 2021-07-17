@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 function Profile() {
   function getEmail() {
-    const { email } = JSON.parse(localStorage.getItem('user'));
-    return email;
+    const data = JSON.parse(localStorage.getItem('user'));
+    if (data) return data.email;
   }
 
   return (
     <div>
+      <Header title="Perfil" icon="false" />
       <p data-testid="profile-email">{getEmail()}</p>
       <div>
         <Link to="/receitas-feitas">

@@ -9,8 +9,8 @@ import Loading from '../../components/Loading';
 import BasicInfo from '../../components/RecipeDetails/BasicInfo';
 import InteractiveButtons from '../../components/RecipeDetails/InteractiveButtons';
 import Ingredients from '../../components/RecipeDetails/Ingredients';
-import Instructions from '../../components/RecipeDetails/Instructions';
 import VideoRecipe from '../../components/RecipeDetails/VideoRecipe';
+import Instructions from '../../components/RecipeDetails/Instructions';
 import Recommendations from '../../components/RecipeDetails/Recommendations';
 import StartRecipe from '../../components/RecipeDetails/StartRecipe';
 

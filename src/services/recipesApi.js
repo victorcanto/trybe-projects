@@ -15,6 +15,14 @@ export async function fetchCategories(domain, key, amount) {
   return results;
 }
 
+export async function fetchIngredient({ key, domain }) {
+  const response = await fetch(`https://www.${domain}.com/api/json/v1/1/list.php?i=list`);
+  const data = await response.json();
+  const qtd = 12;
+  const results = data[key].slice(0, qtd);
+  return results;
+}
+
 export async function fetchRecipesByCategory(domain, key, category) {
   const RECIPES_AMOUNT = 12;
   const response = await fetch(
@@ -90,3 +98,10 @@ export const filterCategory = async (query, currentPage) => {
   const result = await api.json();
   return result;
 };
+
+export async function fetchArea() {
+  const URL = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+  const response = await fetch(URL);
+  const data = await response.json();
+  return data.meals;
+}
