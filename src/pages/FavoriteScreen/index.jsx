@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
-import FilterButtons from './components/FilterButtons';
+import FilterButtons from '../../components/FilterButtons';
 import styles from './favorite.module.scss';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
@@ -79,7 +79,7 @@ function FavoriteScreen() {
     return (
       <div className={ styles.favoriteRecipes }>
         <FilterButtons
-          recipes={ filteredRecipes }
+          recipes={ FAVORITE_RECIPES }
           setFilteredRecipes={ setFilteredRecipes }
         />
         {isCopy && <span>Link copiado!</span>}

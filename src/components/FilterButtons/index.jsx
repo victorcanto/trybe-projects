@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 
 function FilterButtons(props) {
+  const { pathname } = useLocation();
   const { recipes, setFilteredRecipes } = props;
   function filterRecipes(filter) {
     const filtered = recipes.filter(({ type }) => type === filter);
@@ -19,7 +21,6 @@ function FilterButtons(props) {
       break;
     default:
       setFilteredRecipes(recipes);
-      break;
     }
   }
 
@@ -51,9 +52,15 @@ function FilterButtons(props) {
     );
   }
 
+  function noRecipeFound() {
+    let msgStatus = 'Não há receitas favoritas';
+    if (pathname === '/receitas-feitas') msgStatus = 'Não há receitas feitas';
+    return msgStatus;
+  }
+
   return (
     <div>
-      {recipes.length ? renderFilterButtons() : 'Não há receitas favoritas'}
+      { recipes.length ? renderFilterButtons() : noRecipeFound()}
     </div>
   );
 }
