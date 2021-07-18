@@ -15,7 +15,15 @@ function StartRecipe({ id, pathname }) {
     }
     return checked;
   }
-  const isDone = false;
+
+  function checkRecipesIsDone() {
+    let checked;
+    const recipesIsDone = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (recipesIsDone) {
+      checked = recipesIsDone.some((recipe) => recipe.id === id);
+    }
+    return checked;
+  }
 
   function renderButton() {
     return (
@@ -34,18 +42,10 @@ function StartRecipe({ id, pathname }) {
   function renderStartRecipeBtn() {
     return (
       <div className={ styles.startContainer }>
-        {!isDone && renderButton()}
+        { !checkRecipesIsDone() && renderButton()}
       </div>
     );
   }
-
-  // function statusBtn() {
-  //   const msgStatus = 'Iniciar Receita';
-  //   // if (isInProgress && !isDone) msgStatus = 'Continuar Receita';
-  //   // if (isInProgress) msgStatus = 'Continuar Receita';
-  //   // console.log(msgStatus);
-  //   return renderStartRecipeBtn(msgStatus);
-  // }
 
   return (
     renderStartRecipeBtn()
