@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { string, node } from 'prop-types';
+import { string, node, func } from 'prop-types';
 import { useParams } from 'react-router-dom';
 
 import styles from './steps.module.scss';
 
 import Checkbox from '../Checkbox';
 
-function Steps({ recipe, origin }) {
+function Steps({ recipe, origin, setIsButtonValidated }) {
   const { id } = useParams();
   const pathType = origin === 'comidas' ? 'meals' : 'cocktails';
   // https://github.com/tryber/sd-010-a-project-recipes-app/blob/main-group-15/src/hooks/useRecipeProgress.js
@@ -38,8 +38,8 @@ function Steps({ recipe, origin }) {
       return setStepsInProgress((prev) => prev.concat(name));
     }
 
-    const removed = stepsInProgress.filter((ingredient) => ingredient !== name);
-    return setStepsInProgress(removed);
+    const checkedRemoved = stepsInProgress.filter((ingredient) => ingredient !== name);
+    return setStepsInProgress(checkedRemoved);
   };
 
   const filterIngredients = ([key, value]) => key.includes('strIngredient') && (value);
@@ -57,13 +57,16 @@ function Steps({ recipe, origin }) {
 
   const arrResult = createArrOfIngredientsAndMeasures();
 
+  useEffect(() => {
+    setIsButtonValidated(arrResult.every(([key]) => stepsInProgress.includes(key)));
+  });
+
   return (
     <div>
       <h2>Ingredients</h2>
       <ul className={ styles.steps }>
         {arrResult.map(([key, value], index) => {
           const isChecked = stepsInProgress.includes(key);
-          console.log(stepsInProgress);
           return (
             <li
               key={ index }
@@ -88,4 +91,5 @@ export default Steps;
 Steps.propTypes = {
   recipe: node.isRequired,
   origin: string.isRequired,
+  setIsButtonValidated: func.isRequired,
 };

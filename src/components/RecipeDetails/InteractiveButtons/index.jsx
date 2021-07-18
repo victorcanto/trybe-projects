@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+
 import styles from './buttons.module.scss';
+
 import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 

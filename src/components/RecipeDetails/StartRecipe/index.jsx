@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './start.module.scss';
-import DetailContext from '../../../context/DetailProvider/DetailContext';
 
 function StartRecipe({ id, pathname }) {
   const typeRecipe = pathname.split('/')[1];
-  const { isInProgress, isDone, setIsInProgress } = useContext(DetailContext);
-
+  // const { isInProgress, setIsInProgress } = useContext(DetailContext);
   function checkRecipesInProgress() {
     let keyName = 'meals';
     let checked;
@@ -15,14 +13,11 @@ function StartRecipe({ id, pathname }) {
     if (data) {
       checked = Object.keys(data[keyName]).some((key) => key === id);
     }
-    return checked ? setIsInProgress(true) : setIsInProgress(false);
+    return checked;
   }
+  const isDone = false;
 
-  useEffect(() => {
-    checkRecipesInProgress();
-  });
-
-  function renderButton(msgStatus) {
+  function renderButton() {
     return (
       <Link to={ `${pathname}/in-progress` }>
         <button
@@ -30,29 +25,30 @@ function StartRecipe({ id, pathname }) {
           type="button"
           data-testid="start-recipe-btn"
         >
-          {msgStatus}
+          {checkRecipesInProgress() ? 'Continuar Receita' : 'Iniciar Receita'}
         </button>
-
       </Link>
     );
   }
 
-  function renderStartRecipeBtn(msgStatus) {
+  function renderStartRecipeBtn() {
     return (
       <div className={ styles.startContainer }>
-        {!isDone && renderButton(msgStatus)}
+        {!isDone && renderButton()}
       </div>
     );
   }
 
-  function statusBtn() {
-    let msgStatus = 'Iniciar Receita';
-    if (isInProgress && !isDone) msgStatus = 'Continuar Receita';
-    return renderStartRecipeBtn(msgStatus);
-  }
+  // function statusBtn() {
+  //   const msgStatus = 'Iniciar Receita';
+  //   // if (isInProgress && !isDone) msgStatus = 'Continuar Receita';
+  //   // if (isInProgress) msgStatus = 'Continuar Receita';
+  //   // console.log(msgStatus);
+  //   return renderStartRecipeBtn(msgStatus);
+  // }
 
   return (
-    statusBtn()
+    renderStartRecipeBtn()
   );
 }
 
