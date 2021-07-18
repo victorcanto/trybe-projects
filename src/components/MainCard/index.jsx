@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 
 function MainCard(props) {
-  const { id, index, name, thumb } = props;
+  const { id, index, name, thumb, currentPage } = props;
   const { pathname } = useLocation();
+  const pathArea = `/comidas/${id}`;
   return (
-    <Link to={ `${pathname}/${id}` }>
+    <Link to={ currentPage === 'area' ? pathArea : `${pathname}/${id}` }>
       <div data-testid={ `${index}-recipe-card` }>
         <img
           data-testid={ `${index}-card-img` }
@@ -27,4 +28,5 @@ MainCard.propTypes = {
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   thumb: PropTypes.string.isRequired,
+  currentPage: PropTypes.string.isRequired,
 };
