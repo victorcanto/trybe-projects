@@ -65,12 +65,6 @@ function FavoriteScreen() {
             {' '}
           </button>
         </div>
-
-        <p
-          data-testid={ `${index}-${recipe.tags}-horizontal-tag` }
-        >
-          {recipe.tags !== 'null' && recipe.tags }
-        </p>
       </div>
     ));
   }
@@ -79,7 +73,7 @@ function FavoriteScreen() {
     return (
       <div className={ styles.favoriteRecipes }>
         <FilterButtons
-          recipes={ FAVORITE_RECIPES }
+          recipes={ FAVORITE_RECIPES || [] }
           setFilteredRecipes={ setFilteredRecipes }
         />
         {isCopy && <span>Link copiado!</span>}

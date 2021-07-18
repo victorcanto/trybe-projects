@@ -68,7 +68,7 @@ function MadeRecipes() {
     return (
       <div className={ styles.madeRecipes }>
         <FilterButtons
-          recipes={ MADE_RECIPES }
+          recipes={ MADE_RECIPES || [] }
           setFilteredRecipes={ setFilteredRecipes }
         />
         {isCopy && <span>Link copiado!</span>}
@@ -81,7 +81,7 @@ function MadeRecipes() {
 
   return (
     <>
-      <Header title="Receitas Feitas" icon="false" currentPage="" />
+      <Header title="Receitas Feitas" icon="false" />
       {renderMadeRecipes()}
     </>
   );
