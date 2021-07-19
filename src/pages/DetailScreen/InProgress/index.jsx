@@ -82,45 +82,7 @@ function InProgress() {
     return history.push('/receitas-feitas');
   };
 
-  const handleStorage = () => {
-    let duplicated = false;
-    let savedRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-
-    let alcoholicOrNot = '';
-    let area = '';
-    if (type.category === 'strAlcoholic') alcoholicOrNot = 'Alcoholic';
-    if (recipeDetails.strArea) area = recipeDetails.strArea;
-
-    const favoriteRecipe = {
-      id: recipeDetails[`id${type.name}`],
-      type: foodOrDrink.split('s')[0],
-      area,
-      category: recipeDetails.strCategory,
-      alcoholicOrNot,
-      name: recipeDetails[`str${type.name}`],
-      image: recipeDetails[`str${type.name}Thumb`],
-    };
-
-    if (savedRecipes) {
-      savedRecipes = savedRecipes
-        .filter(({ id: recipeId }) => {
-          const isNotDuplicated = recipeId !== recipeDetails[`id${type.name}`];
-          if (!isNotDuplicated) duplicated = true;
-          return isNotDuplicated;
-        });
-      if (duplicated) {
-        return localStorage
-          .setItem('favoriteRecipes', JSON.stringify(savedRecipes));
-      }
-      return localStorage
-        .setItem('favoriteRecipes', JSON.stringify([...savedRecipes, favoriteRecipe]));
-    }
-
-    localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteRecipe]));
-  };
-
   function renderDetails() {
-    console.log(isButtonValidated);
     return (
       <>
         <BasicInfo
@@ -128,7 +90,12 @@ function InProgress() {
           category={ type.category }
           recipe={ recipeDetails }
         />
-        <InteractiveButtons handleStorage={ handleStorage } id={ id } />
+        <InteractiveButtons
+          recipeDetails={ recipeDetails }
+          foodOrDrink={ foodOrDrink }
+          type={ type }
+          id={ id }
+        />
 
         <Steps
           setIsButtonValidated={ setIsButtonValidated }
