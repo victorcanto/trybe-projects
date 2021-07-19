@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { string, objectOf } from 'prop-types';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
 import styles from './buttons.module.scss';
+import handleStorage from '../../../helpers/handleStorage';
+
 import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 
-function InteractiveButtons({ handleStorage, id }) {
+function InteractiveButtons({ id, recipeDetails, type, foodOrDrink }) {
   let { pathname } = useLocation();
   [pathname] = pathname.split('/in-progress');
   const [isCopy, setIsCopy] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  function favoriteToggle() {
+  const favoriteToggle = () => {
     setIsFavorite(!isFavorite);
-  }
+  };
 
   useEffect(() => {
     const savedRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -23,12 +26,17 @@ function InteractiveButtons({ handleStorage, id }) {
     }
   }, [id]);
 
-  function copyToClipBoard() {
-    const ONE_SECOND = 5000;
+  const copyToClipBoard = () => {
+    const FIVE_SECONDS = 5000;
     setIsCopy(true);
-    setTimeout(() => setIsCopy(false), ONE_SECOND);
+    setTimeout(() => setIsCopy(false), FIVE_SECONDS);
     return navigator.clipboard.writeText(`http://localhost:3000${pathname}`);
-  }
+  };
+
+  const handleClick = () => {
+    handleStorage(recipeDetails, type, foodOrDrink);
+    favoriteToggle();
+  };
 
   let favoriteColor = whiteHeartIcon;
   if (isFavorite) favoriteColor = blackHeartIcon;
@@ -49,7 +57,7 @@ function InteractiveButtons({ handleStorage, id }) {
           type="button"
           id="favorite-btn"
           className={ styles.favoriteButton }
-          onClick={ () => { handleStorage(); favoriteToggle(); } }
+          onClick={ handleClick }
         >
           <img data-testid="favorite-btn" src={ favoriteColor } alt="heart" />
         </button>
@@ -63,8 +71,10 @@ function InteractiveButtons({ handleStorage, id }) {
 export default InteractiveButtons;
 
 InteractiveButtons.propTypes = {
-  id: PropTypes.string.isRequired,
-  handleStorage: PropTypes.func.isRequired,
+  id: string.isRequired,
+  foodOrDrink: string.isRequired,
+  recipeDetails: objectOf(string).isRequired,
+  type: objectOf(string).isRequired,
 };
 
 // Code References:

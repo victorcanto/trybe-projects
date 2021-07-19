@@ -12,6 +12,7 @@ import FoodOrigins from '../pages/Explorer/Food/Origin';
 import Profile from '../pages/Profile';
 import FavoriteScreen from '../pages/FavoriteScreen';
 import MadeRecipes from '../pages/MadeRecipes';
+import NotFound from '../pages/NotFound';
 
 // component should be the page
 const routes = [
@@ -79,6 +80,11 @@ const routes = [
     path: '/explorar/comidas/area',
     exact: true,
     component: FoodOrigins,
+  },
+  {
+    path: '/explorar/bebidas/area',
+    exact: true,
+    component: NotFound,
   },
   {
     path: '/perfil',

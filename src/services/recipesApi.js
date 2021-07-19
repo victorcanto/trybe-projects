@@ -61,6 +61,18 @@ export async function fetchRandomApiDrink() {
   return drinks[0];
 }
 
+export async function fetchCategoriesByArea() {
+  const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+  const { meals } = await response.json();
+  return meals;
+}
+
+export async function filterByArea(area) {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`);
+  const { meals } = await response.json();
+  return meals;
+}
+
 export const filterIngredient = async (query, currentPage) => {
   const INGREDIENT_API = currentPage === 'Drinks'
     ? FILTER_DRINKS_API
