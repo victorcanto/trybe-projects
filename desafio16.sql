@@ -1,7 +1,9 @@
--- 16 - Crie uma função chamada buscar_quantidade_de_empregos_por_funcionario no banco de dados hr que, ao receber o email de uma pessoa funcionária, retorne a quantidade de empregos presentes em seu histórico
 USE hr;
 DELIMITER $ $;
-CREATE FUNCTION buscar_quantidade_de_empregos_por_funcionario(email VARCHAR(50)) RETURNS INT READS SQL DATA BEGIN DECLARE qtd_jobs INT
+CREATE FUNCTION buscar_quantidade_de_empregos_por_funcionario(email VARCHAR(50)) 
+RETURNS INT READS SQL DATA 
+BEGIN 
+DECLARE qtd_jobs INT;
 SELECT
   COUNT(*)
 FROM
