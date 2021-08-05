@@ -18,4 +18,6 @@ GROUP BY
   artista
 ORDER BY
   seguidores DESC,
-  artista;
+  artista
+LIMIT
+  3;
