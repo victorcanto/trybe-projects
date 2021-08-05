@@ -15,4 +15,5 @@ FROM
   INNER JOIN SpotifyClone.albums AS al ON ar.artist_id = al.fk_artist_id
 ORDER BY
   seguidores DESC,
-  artista;
+  artista,
+  album;
