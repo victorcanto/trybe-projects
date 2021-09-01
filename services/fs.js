@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 
 const filename = 'talker.json';
 
-async function getTalkers() {
+async function readTalkers() {
   const talkers = await fs
     .readFile(filename, 'utf8')
     .then((fileContent) => JSON.parse(fileContent))
@@ -13,7 +13,7 @@ async function getTalkers() {
   return talkers;
 }
 
-async function setTalker(updatedTalkers) {
+async function writeTalkers(updatedTalkers) {
   try {
     await fs.writeFile(filename, JSON.stringify(updatedTalkers));
     console.log('Write Sucess');
@@ -22,4 +22,4 @@ async function setTalker(updatedTalkers) {
   }
 }
 
-module.exports = { getTalkers, setTalker };
+module.exports = { readTalkers, writeTalkers };
