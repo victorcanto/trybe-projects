@@ -1,8 +1,8 @@
-const { getTalkers, setTalker } = require('../services/fs');
+const { readTalkers, writeTalkers } = require('../services/fs');
 
 async function addTalker(req, res) {
   const { name, age, talk } = req.body;
-  const talkers = await getTalkers();
+  const talkers = await readTalkers();
   const id = talkers.length + 1;
 
   const newTalker = {
@@ -14,7 +14,7 @@ async function addTalker(req, res) {
   
   talkers.push(newTalker);
 
-  await setTalker(talkers);
+  await writeTalkers(talkers);
   return res.status(201).json(newTalker);
 }
 

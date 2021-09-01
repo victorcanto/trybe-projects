@@ -99,7 +99,7 @@ const allAuths = [
   authRate,
 ];
 
-module.exports = allAuths;
+module.exports = { allAuths };
 
 // Source Ref
 // Regex validate Date : https://stackoverflow.com/questions/5465375/javascript-date-regex-dd-mm-yyyy

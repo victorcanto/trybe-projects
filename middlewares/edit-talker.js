@@ -1,9 +1,9 @@
-const { getTalkers, setTalker } = require('../services/fs');
+const { readTalkers, writeTalkers } = require('../services/fs');
 
 async function editTalker(req, res) {
   const { name, age, talk } = req.body;
   const { id } = req.params;
-  const talkers = await getTalkers();
+  const talkers = await readTalkers();
   const talkerIndex = talkers.findIndex((t) => t.id === parseInt(id, 10));
 
   const editedTalker = {
@@ -15,7 +15,7 @@ async function editTalker(req, res) {
 
   talkers[talkerIndex] = editedTalker;
 
-  await setTalker(talkers);
+  await writeTalkers(talkers);
   return res.status(200).json(editedTalker);
 }
 
