@@ -13,4 +13,13 @@ async function getTalkers() {
   return talkers;
 }
 
-module.exports = { getTalkers };
+async function setTalker(updatedTalkers) {
+  try {
+    await fs.writeFile(filename, JSON.stringify(updatedTalkers));
+    console.log('Write Sucess');
+  } catch (error) {
+    console.error(`Write Failed Error: ${error}`);
+  }
+}
+
+module.exports = { getTalkers, setTalker };
