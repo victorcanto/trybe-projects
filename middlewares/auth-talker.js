@@ -61,14 +61,15 @@ function authWatchedAt(req, res, next) {
 
 function authRate(req, res, next) {
   const { talk: { rate } } = req.body;
+  const rateNotExists = rate === undefined || rate === null;
 
-  if (!rate) {
+  if (rateNotExists) {
     return res.status(STATUS_FAILED).json({
       message: 'O campo "talk" é obrigatório e "watchedAt" e "rate" não podem ser vazios',
     });
   }
 
-  const rateIsValid = Number.isInteger(rate) && rate > 0 && rate < 6;
+  const rateIsValid = rate > 0 && rate < 6;
 
   if (!rateIsValid) {
     return res.status(STATUS_FAILED).json({
