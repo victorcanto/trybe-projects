@@ -43,7 +43,7 @@ function validatePassword(password, res) {
   }
 }
 
-function authLoginMiddleware(req, res) {
+function authLogin(req, res) {
   const { email, password } = req.body;
 
   validateEmail(email, res);
@@ -57,6 +57,6 @@ function authLoginMiddleware(req, res) {
   return res.status(200).json({ token });
 }
 
-module.exports = { authLoginMiddleware };
+module.exports = { authLogin };
 // Source Ref:
 // Validate email: https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
