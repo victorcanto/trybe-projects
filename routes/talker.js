@@ -1,8 +1,11 @@
 const express = require('express');
+const { addNewTalker } = require('../middlewares/add-talker');
+const allAuths = require('../middlewares/auth-talker');
+const { authToken } = require('../middlewares/auth-token');
 
 const router = express.Router();
 
-const { getTalkers } = require('../services/readFile');
+const { getTalkers } = require('../services/fs');
 
 async function getTalkerById(id) {
   const talkers = await getTalkers();
@@ -34,5 +37,9 @@ router.get('/:id', async (req, res) => {
 
   return res.status(200).json(talkerFound);
 });
+
+// 4 - Crie o endpoint POST /talker
+
+router.post('/', authToken, allAuths, addNewTalker);
 
 module.exports = router;
