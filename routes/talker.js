@@ -1,7 +1,8 @@
 const express = require('express');
-const { addNewTalker } = require('../middlewares/add-talker');
+const { addTalker } = require('../middlewares/add-talker');
 const allAuths = require('../middlewares/auth-talker');
 const { authToken } = require('../middlewares/auth-token');
+const { editTalker } = require('../middlewares/edit-talker');
 
 const router = express.Router();
 
@@ -40,6 +41,10 @@ router.get('/:id', async (req, res) => {
 
 // 4 - Crie o endpoint POST /talker
 
-router.post('/', authToken, allAuths, addNewTalker);
+router.post('/', authToken, allAuths, addTalker);
+
+// 5 - Crie o endpoint PUT /talker/:id
+
+router.put('/:id', authToken, allAuths, editTalker);
 
 module.exports = router;
