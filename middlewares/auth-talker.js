@@ -91,7 +91,7 @@ function authTalk(req, res, next) {
   next();
 }
 
-const allAuths = [
+const authTalker = [
   authName,
   authAge,
   authTalk,
@@ -99,7 +99,7 @@ const allAuths = [
   authRate,
 ];
 
-module.exports = { allAuths };
+module.exports = { authTalker };
 
 // Source Ref
 // Regex validate Date : https://stackoverflow.com/questions/5465375/javascript-date-regex-dd-mm-yyyy
