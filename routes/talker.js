@@ -7,12 +7,17 @@ const { allAuths } = require('../middlewares/auth-talker');
 const { authToken } = require('../middlewares/auth-token');
 const { deleteTalker } = require('../middlewares/delete-talker');
 const { editTalker } = require('../middlewares/edit-talker');
+const { searchTalkers } = require('../middlewares/search-talker');
 const { findTalker } = require('../middlewares/find-talker');
 const { getTalkers } = require('../middlewares/get-talkers');
 
 // 1 - Crie o endpoint GET /talker
 
 router.get('/', getTalkers);
+
+// 7 - Crie o endpoint GET /talker/search?q=searchTerm
+
+router.get('/search', authToken, searchTalkers, getTalkers);
 
 // 2 - Crie o endpoint GET /talker/:id
 
