@@ -1,5 +1,7 @@
 const { readTalkers } = require('../services/fs');
 
+const { HTTP_OK_STATUS, HTTP_NOT_FOUND_STATUS } = require('../constants');
+
 async function findTalker(req, res) {
   const { id } = req.params;
   const talkers = await readTalkers();
@@ -7,11 +9,11 @@ async function findTalker(req, res) {
 
   if (!talkerFound) {
     return res
-      .status(404)
+      .status(HTTP_NOT_FOUND_STATUS)
       .json({ message: 'Pessoa palestrante não encontrada' });
   }
 
-  return res.status(200).json(talkerFound);
+  return res.status(HTTP_OK_STATUS).json(talkerFound);
 }
 
 module.exports = { findTalker };

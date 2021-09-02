@@ -1,0 +1,17 @@
+// HTTP STATUS CODE
+const HTTP_OK_STATUS = 200;
+const HTTP_CREATED_STATUS = 201;
+const HTTP_BAD_REQUEST_STATUS = 400;
+const HTTP_UNAUTHORIZED_STATUS = 401;
+const HTTP_NOT_FOUND_STATUS = 404;
+
+module.exports = {
+  HTTP_OK_STATUS,
+  HTTP_CREATED_STATUS,
+  HTTP_BAD_REQUEST_STATUS,
+  HTTP_UNAUTHORIZED_STATUS,
+  HTTP_NOT_FOUND_STATUS,
+};
+
+// Ref Http Status
+// https://www.devmedia.com.br/http-status-code/41222#2-2

@@ -1,5 +1,7 @@
 const { readTalkers, writeTalkers } = require('../services/fs');
 
+const { HTTP_OK_STATUS } = require('../constants');
+
 async function deleteTalker(req, res) {
   const { id } = req.params;
   const talkers = await readTalkers();
@@ -8,7 +10,7 @@ async function deleteTalker(req, res) {
   talkers.splice(talkerIndex, 1);
 
   await writeTalkers(talkers);
-  return res.status(200)
+  return res.status(HTTP_OK_STATUS)
   .json({ message: 'Pessoa palestrante deletada com sucesso' });
 }
 

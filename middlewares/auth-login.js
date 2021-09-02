@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const { HTTP_OK_STATUS, HTTP_BAD_REQUEST_STATUS } = require('../constants');
+
 const qtdOfCaracteresJwt = 16;
 
 function getToken(qtdCaracteres, ...args) {
@@ -13,7 +15,7 @@ function validateEmail(email, res) {
   const regex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
   if (!email || email.length === 0) {
-    return res.status(400).json({
+    return res.status(HTTP_BAD_REQUEST_STATUS).json({
       message: 'O campo "email" é obrigatório',
     });
   }
@@ -21,23 +23,23 @@ function validateEmail(email, res) {
   const emailIsValid = regex.test(email);
 
   if (!emailIsValid) {
-  return res.status(400).json({
-    message: 'O "email" deve ter o formato "email@email.com"',
-    }); 
+    return res.status(HTTP_BAD_REQUEST_STATUS).json({
+      message: 'O "email" deve ter o formato "email@email.com"',
+    });
   }
 }
 
 function validatePassword(password, res) {
   if (!password || password.length === 0) {
-    return res.status(400).json({
-    message: 'O campo "password" é obrigatório',
-    }); 
+    return res.status(HTTP_BAD_REQUEST_STATUS).json({
+      message: 'O campo "password" é obrigatório',
+    });
   }
 
   const passwordIsValid = password.length >= 6;
 
   if (!passwordIsValid) {
-    return res.status(400).json({
+    return res.status(HTTP_BAD_REQUEST_STATUS).json({
       message: 'O "password" deve ter pelo menos 6 caracteres',
     });
   }
@@ -54,7 +56,7 @@ function authLogin(req, res) {
     email,
     password,
   ); /* params => qtdCaracteres, other agurments */
-  return res.status(200).json({ token });
+  return res.status(HTTP_OK_STATUS).json({ token });
 }
 
 module.exports = { authLogin };

@@ -1,5 +1,7 @@
 const { readTalkers, writeTalkers } = require('../services/fs');
 
+const { HTTP_OK_STATUS } = require('../constants');
+
 async function editTalker(req, res) {
   const { name, age, talk } = req.body;
   const { id } = req.params;
@@ -16,7 +18,7 @@ async function editTalker(req, res) {
   talkers[talkerIndex] = editedTalker;
 
   await writeTalkers(talkers);
-  return res.status(200).json(editedTalker);
+  return res.status(HTTP_OK_STATUS).json(editedTalker);
 }
 
 module.exports = { editTalker };
