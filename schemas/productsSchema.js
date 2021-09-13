@@ -1,3 +1,5 @@
+const { createInvalidDataErrorWithMessage } = require('../utils/createError');
+
 const errorMsgs = {
   namelengthMsg: '"name" length must be at least 5 characters long',
   nameAlreadyExistsMsg: 'Product already exists',
@@ -9,8 +11,6 @@ const nameIsNotUnique = (data, name) => data.some((el) => el.name === name);
 const nameLengthIsNotGreaterThan = (value, toCompare) => value.length < toCompare;
 const quantityIsLessThanOrEqualToZero = (value) => value <= 0;
 const quantityIsString = (value) => (typeof value === 'string');
-
-const createError = (code) => (message) => ({ message: { err: { code, message } } });
 
 const validateName = (products, name, callback) => {
   const { namelengthMsg, nameAlreadyExistsMsg } = errorMsgs;
@@ -37,12 +37,9 @@ const validatequantity = (quantity, callback) => {
 };
 
 const validate = (products, name, quantity) => {
-  const code = 'invalid_data';
-  const errorInvalidData = createError(code);
+  let result = validateName(products, name, createInvalidDataErrorWithMessage);
 
-  let result = validateName(products, name, errorInvalidData);
-
-  if (!result) result = validatequantity(quantity, errorInvalidData);
+  if (!result) result = validatequantity(quantity, createInvalidDataErrorWithMessage);
 
   return result;
 };
