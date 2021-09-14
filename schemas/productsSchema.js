@@ -24,7 +24,7 @@ const validateName = (products, name, callback) => {
   }
 };
 
-const validatequantity = (quantity, callback) => {
+const validateQuantify = (quantity, callback) => {
   const { quantityLessThanOrEqualToZeroMsg, quantityIsStringMsg } = errorMsgs;
   switch (true) {
     case quantityIsLessThanOrEqualToZero(quantity):
@@ -37,9 +37,9 @@ const validatequantity = (quantity, callback) => {
 };
 
 const validate = (products, name, quantity) => {
-  let result = validateName(products, name, createInvalidDataErrorWithMessage);
+  let result = validateQuantify(quantity, createInvalidDataErrorWithMessage);
 
-  if (!result) result = validatequantity(quantity, createInvalidDataErrorWithMessage);
+  if (!result) result = validateName(products, name, createInvalidDataErrorWithMessage);
 
   return result;
 };
