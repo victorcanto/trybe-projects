@@ -11,6 +11,14 @@ const register = async (req, res) => {
   res.status(HTTP_CREATED_STATUS).json(createdProduct);
 };
 
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { name, quantity } = req.body;
+
+  const updatedProduct = await productsService.update(id, name, quantity);
+  res.status(HTTP_OK_STATUS).json(updatedProduct);
+};
+
 const getAll = async (_req, res) => {
   const allProducts = await productsService.getAll();
 
@@ -31,4 +39,4 @@ const getById = async (req, res) => {
   res.status(HTTP_OK_STATUS).json(productFound);
 };
 
-module.exports = { register, getAll, getById };
+module.exports = { register, getAll, getById, update };

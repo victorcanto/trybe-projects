@@ -15,4 +15,7 @@ const getById = async (productId) => {
 const create = async (name, quantity) => productsModel.create(name, quantity)
   .then(({ insertedId }) => getNewProduct(insertedId, name, quantity));
 
-module.exports = { create, getAll, getById };
+const update = async (productId, name, quantity) => productsModel.update(productId, name, quantity)
+  .then(({ insertedId }) => getNewProduct(insertedId, name, quantity));
+
+module.exports = { create, update, getAll, getById };
