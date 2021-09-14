@@ -20,10 +20,18 @@ const update = async (id, name, quantity) => {
   if (!ObjectId.isValid(id)) return null;
 
   const updatedProduct = await connection()
-  .then((db) => db.collection('products')
-  .updateOne({ _id: ObjectId(id) }, { $set: { name, quantity } }));
+    .then((db) => db.collection('products')
+    .updateOne({ _id: ObjectId(id) }, { $set: { name, quantity } }));
 
   return updatedProduct;
+};
+
+const remove = async (id) => {
+  if (!ObjectId.isValid(id)) return null;
+
+  return connection()
+    .then((db) => db.collection('products')
+    .deleteOne({ _id: ObjectId(id) }));
 };
 
 module.exports = {
@@ -31,4 +39,5 @@ module.exports = {
   getById,
   create,
   update,
+  remove,
 };

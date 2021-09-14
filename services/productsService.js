@@ -18,4 +18,13 @@ const create = async (name, quantity) => productsModel.create(name, quantity)
 const update = async (productId, name, quantity) => productsModel.update(productId, name, quantity)
   .then(({ insertedId }) => getNewProduct(insertedId, name, quantity));
 
-module.exports = { create, update, getAll, getById };
+const remove = async (productId) => {
+  const removedProduct = await getById(productId);
+  const result = await productsModel.remove(productId);
+
+  if (!result) return null;
+
+  return removedProduct;
+};
+
+module.exports = { create, update, remove, getAll, getById };

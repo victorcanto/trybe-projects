@@ -5,6 +5,8 @@ const { createInvalidDataErrorWithMessage } = require('../utils/createError');
 
 const { HTTP_CREATED_STATUS, HTTP_OK_STATUS, HTTP_UNPROCESSABLE_ENTITY_STATUS } = process.env;
 
+const error = createInvalidDataErrorWithMessage('Wrong id format');
+
 const register = async (req, res) => {
   const { name, quantity } = req.body;
   const createdProduct = await productsService.create(name, quantity);
@@ -17,6 +19,14 @@ const update = async (req, res) => {
 
   const updatedProduct = await productsService.update(id, name, quantity);
   res.status(HTTP_OK_STATUS).json(updatedProduct);
+};
+
+const remove = async (req, res) => {
+  const { id } = req.params;
+  const removedProduct = await productsService.remove(id);
+
+  if (!removedProduct) return res.status(HTTP_UNPROCESSABLE_ENTITY_STATUS).json(error.message);
+  res.status(HTTP_OK_STATUS).json(removedProduct);
 };
 
 const getAll = async (_req, res) => {
@@ -32,11 +42,9 @@ const getById = async (req, res) => {
   const { id } = req.params;
   const productFound = await productsService.getById(id);
 
-  const error = createInvalidDataErrorWithMessage('Wrong id format');
-
   if (!productFound) return res.status(HTTP_UNPROCESSABLE_ENTITY_STATUS).json(error.message);
 
   res.status(HTTP_OK_STATUS).json(productFound);
 };
 
-module.exports = { register, getAll, getById, update };
+module.exports = { register, getAll, getById, update, remove };
