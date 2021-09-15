@@ -3,7 +3,7 @@ const productsService = require('../services/productsService');
 
 require('dotenv').config();
 
-const { HTTP_UNPROCESSABLE_ENTITY_STATUS } = process.env;
+const StatusCode = require('../constants');
 
 const validate = async (req, res, next) => {
   const salesArray = req.body;
@@ -16,7 +16,7 @@ const validate = async (req, res, next) => {
 
   if (validations.message) {
     return res
-      .status(HTTP_UNPROCESSABLE_ENTITY_STATUS)
+      .status(StatusCode.UNPROCESSABLE_ENTITY)
       .json(validations.message);
   }
 };

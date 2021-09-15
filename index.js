@@ -6,17 +6,17 @@ const salesRouter = require('./routes/sales');
 
 require('dotenv').config();
 
-const { PORT } = process.env;
+const PORT = 3000;
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use('/products', productsRouter);
+app.use('/sales', salesRouter);
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
-
-app.use('/products', productsRouter);
-app.use('/sales', salesRouter);
 
 app.listen(PORT, () => console.log(`Applying on port ${PORT}`));

@@ -3,12 +3,12 @@ const { createNotFoundErrorWithMessage,
 const salesService = require('../services/salesService');
 require('dotenv').config();
 
-const { HTTP_OK_STATUS, HTTP_NOT_FOUND_STATUS, HTTP_UNPROCESSABLE_ENTITY_STATUS } = process.env;
+const StatusCode = require('../constants');
 
 const register = async (req, res) => {
   const arrayOfSales = req.body;
   const createdSale = await salesService.create(arrayOfSales);
-  res.status(HTTP_OK_STATUS).json(createdSale);
+  res.status(StatusCode.OK).json(createdSale);
 };
 
 const update = async (req, res) => {
@@ -16,7 +16,7 @@ const update = async (req, res) => {
   const arrayOfSales = req.body;
 
   const updatedProduct = await salesService.update(id, arrayOfSales);
-  res.status(HTTP_OK_STATUS).json(updatedProduct);
+  res.status(StatusCode.OK).json(updatedProduct);
 };
 
 const remove = async (req, res) => {
@@ -25,15 +25,15 @@ const remove = async (req, res) => {
 
   const error = createInvalidDataErrorWithMessage('Wrong sale ID format');
 
-  if (!removedSale) return res.status(HTTP_UNPROCESSABLE_ENTITY_STATUS).json(error.message);
-  res.status(HTTP_OK_STATUS).json(removedSale);
+  if (!removedSale) return res.status(StatusCode.UNPROCESSABLE_ENTITY).json(error.message);
+  res.status(StatusCode.OK).json(removedSale);
 };
 
 const getAll = async (_req, res) => {
   const sales = await salesService.getAll();
 
   const salesData = { sales };
-  res.status(HTTP_OK_STATUS).json(salesData);
+  res.status(StatusCode.OK).json(salesData);
 };
 
 const getById = async (req, res) => {
@@ -42,8 +42,8 @@ const getById = async (req, res) => {
 
   const error = createNotFoundErrorWithMessage('Sale not found');
 
-  if (!salesFound) return res.status(HTTP_NOT_FOUND_STATUS).json(error.message);
-  res.status(HTTP_OK_STATUS).json(salesFound);
+  if (!salesFound) return res.status(StatusCode.NOT_FOUND).json(error.message);
+  res.status(StatusCode.OK).json(salesFound);
 };
 
 module.exports = { register, update, remove, getAll, getById };
