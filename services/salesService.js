@@ -16,11 +16,20 @@ const create = async (salesData) => salesModel.create(salesData)
 const update = async (saleId, salesData) => {
   const { modifiedCount } = await salesModel.update(saleId, salesData);
 
-  let updatedProduct;
+  let updatedSale;
 
-  if (modifiedCount) updatedProduct = await getById(saleId);
+  if (modifiedCount) updatedSale = await getById(saleId);
 
-  return updatedProduct;
+  return updatedSale;
 };
 
-module.exports = { create, update, getAll, getById };
+const remove = async (saleId) => {
+  const removedSale = await getById(saleId);
+  const result = await salesModel.remove(saleId);
+
+  if (!result) return null;
+
+  return removedSale;
+};
+
+module.exports = { create, update, remove, getAll, getById };

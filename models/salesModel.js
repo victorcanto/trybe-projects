@@ -29,4 +29,22 @@ const update = async (saleId, salesData) => {
   return result;
 };
 
-module.exports = { create, update, getAll, getById };
+const remove = async (saleId) => {
+  if (!ObjectId.isValid(saleId)) return null;
+
+  const filter = { _id: ObjectId(saleId) };
+
+  const result = await connection()
+    .then((db) => db.collection('sales')
+    .deleteOne(filter));
+
+  return result;
+};
+
+module.exports = {
+  getAll,
+  getById,
+  create,
+  update,
+  remove,
+};
