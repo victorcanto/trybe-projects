@@ -2,9 +2,6 @@ const salesModel = require('../models/salesModel');
 
 const getAll = async () => salesModel.getAll();
 
-const create = async (salesData) => salesModel.create(salesData)
-  .then(({ ops }) => (ops[0]));
-
 const getById = async (id) => {
   const sale = await salesModel.getById(id);
 
@@ -13,4 +10,17 @@ const getById = async (id) => {
   return sale;
 };
 
-module.exports = { create, getAll, getById };
+const create = async (salesData) => salesModel.create(salesData)
+  .then(({ ops }) => (ops[0]));
+
+const update = async (saleId, salesData) => {
+  const { modifiedCount } = await salesModel.update(saleId, salesData);
+
+  let updatedProduct;
+
+  if (modifiedCount) updatedProduct = await getById(saleId);
+
+  return updatedProduct;
+};
+
+module.exports = { create, update, getAll, getById };

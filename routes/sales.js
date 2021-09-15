@@ -7,5 +7,6 @@ const router = Router();
 router.post('/', salesMiddleware.validate, salesController.register);
 router.get('/', salesController.getAll);
 router.get('/:id', salesController.getById);
+router.put('/:id', salesMiddleware.validate, salesController.update);
 
 module.exports = router;

@@ -10,6 +10,14 @@ const register = async (req, res) => {
   res.status(HTTP_OK_STATUS).json(createdSale);
 };
 
+const update = async (req, res) => {
+  const { id } = req.params;
+  const arrayOfSales = req.body;
+
+  const updatedProduct = await salesService.update(id, arrayOfSales);
+  res.status(HTTP_OK_STATUS).json(updatedProduct);
+};
+
 const getAll = async (_req, res) => {
   const sales = await salesService.getAll();
 
@@ -27,4 +35,4 @@ const getById = async (req, res) => {
   res.status(HTTP_OK_STATUS).json(salesFound);
 };
 
-module.exports = { register, getAll, getById };
+module.exports = { register, update, getAll, getById };

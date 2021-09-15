@@ -16,4 +16,17 @@ const getById = async (id) => {
 const create = async (salesData) => connection()
   .then((db) => db.collection('sales').insertOne({ itensSold: salesData }));
 
-module.exports = { create, getAll, getById };
+const update = async (saleId, salesData) => {
+  if (!ObjectId.isValid(saleId)) return null;
+
+  const filter = { _id: ObjectId(saleId) };
+  const updateDoc = { $set: { itensSold: salesData } };
+
+  const result = await connection()
+    .then((db) => db.collection('sales')
+    .updateOne(filter, updateDoc));
+
+  return result;
+};
+
+module.exports = { create, update, getAll, getById };
