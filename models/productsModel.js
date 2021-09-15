@@ -19,19 +19,26 @@ const create = async (name, quantity) => connection()
 const update = async (id, name, quantity) => {
   if (!ObjectId.isValid(id)) return null;
 
-  const updatedProduct = await connection()
-    .then((db) => db.collection('products')
-    .updateOne({ _id: ObjectId(id) }, { $set: { name, quantity } }));
+  const filter = { _id: ObjectId(id) };
+  const updateDoc = { $set: { name, quantity } };
 
-  return updatedProduct;
+  const result = await connection()
+    .then((db) => db.collection('products')
+    .updateOne(filter, updateDoc));
+
+  return result;
 };
 
 const remove = async (id) => {
   if (!ObjectId.isValid(id)) return null;
 
-  return connection()
+  const filter = { _id: ObjectId(id) };
+
+  const result = await connection()
     .then((db) => db.collection('products')
-    .deleteOne({ _id: ObjectId(id) }));
+    .deleteOne(filter));
+
+  return result;
 };
 
 module.exports = {

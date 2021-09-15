@@ -1,7 +1,5 @@
 const productsModel = require('../models/productsModel');
 
-const getNewProduct = (id, name, quantity) => ({ _id: id, name, quantity });
-
 const getAll = async () => productsModel.getAll();
 
 const getById = async (productId) => {
@@ -13,10 +11,17 @@ const getById = async (productId) => {
 };
 
 const create = async (name, quantity) => productsModel.create(name, quantity)
-  .then(({ insertedId }) => getNewProduct(insertedId, name, quantity));
+  .then(({ ops }) => ops[0]);
 
-const update = async (productId, name, quantity) => productsModel.update(productId, name, quantity)
-  .then(({ insertedId }) => getNewProduct(insertedId, name, quantity));
+const update = async (productId, name, quantity) => {
+  const { modifiedCount } = await productsModel.update(productId, name, quantity);
+
+  let updatedProduct;
+
+  if (modifiedCount) updatedProduct = await getById(productId);
+
+  return updatedProduct;
+};
 
 const remove = async (productId) => {
   const removedProduct = await getById(productId);
