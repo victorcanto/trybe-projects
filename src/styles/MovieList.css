@@ -1,0 +1,52 @@
+:root {
+
+  --card: #4a4e69;
+
+  --hover: #03071e;
+
+  --button: #c9184a;
+
+  --text: #edf2f4;
+
+}
+
+.movie-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 25px 0;
+}
+
+.movie-card h1 {
+  margin: 15px;
+}
+
+.movie-card p {
+  background-color: var(--card);
+  margin: 15px;
+  padding: 20px;
+  text-align: justify;
+  width: 600px;
+}
+
+.btn-details {
+  background-color: var(--button);
+  border: 1px solid #241d13;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 9px 23px;
+  text-decoration: none;
+}
+
+.btn-details:hover {
+  background-color: var(--hover);
+  color: var(--button);
+}
+
+.btn-details:active {
+  position: relative;
+  top: 1px;
+}

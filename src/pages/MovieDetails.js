@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
+import '../styles/MovieDetails.css';
 
 class MovieDetails extends Component {
   constructor() {
@@ -33,16 +34,21 @@ class MovieDetails extends Component {
     if (Object.keys(movie).length === 0) return <Loading />;
     const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
     return (
-      <div data-testid="movie-details">
+      <div className="movie-details-container" data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
         <p>{ `Título: ${title}` }</p>
         <p>{ `Subtitle: ${subtitle}` }</p>
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
-        <Link to={ `${id}/edit` }>EDITAR</Link>
-        <Link to="/">VOLTAR</Link>
-        <Link to="/" onClick={ () => this.onDeleteMovie(id) }>DELETAR</Link>
+        <div className="links-container">
+          <button type="button"><Link to={ `${id}/edit` }>EDITAR</Link></button>
+          <button type="button"><Link to="/">VOLTAR</Link></button>
+          <button type="button">
+            <Link to="/" onClick={ () => this.onDeleteMovie(id) }>DELETAR</Link>
+          </button>
+        </div>
+
       </div>
     );
   }
