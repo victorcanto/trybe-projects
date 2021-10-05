@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { userAction } from '../actions/index';
 
+import '../styles/login.css';
+import TrybeWalletLogo from '../assets/img/trybewallet_logo.png';
+
 class Login extends React.Component {
   constructor() {
     super();
@@ -44,9 +47,11 @@ class Login extends React.Component {
     const disabled = this.validate(email, password);
     const { userActionProp } = this.props;
     return (
-      <div>
+      <div className="login-container">
         <form onSubmit={ this.handleSubmit }>
+          <img src={ TrybeWalletLogo } alt="logo" />
           <input
+            className="form-control"
             data-testid="email-input"
             type="email"
             name="email"
@@ -56,6 +61,7 @@ class Login extends React.Component {
             onChange={ this.handleChange }
           />
           <input
+            className="form-control"
             data-testid="password-input"
             type="password"
             name="password"
@@ -66,6 +72,7 @@ class Login extends React.Component {
           />
           <Link to="/carteira">
             <button
+              className="btn btn-success"
               type="button"
               disabled={ disabled }
               onClick={ () => userActionProp(email) }
