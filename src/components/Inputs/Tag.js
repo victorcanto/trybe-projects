@@ -7,7 +7,13 @@ export default class Tag extends Component {
     return (
       <label htmlFor="select-tag">
         Tag
-        <select name="tag" id="select-tag" value={ tag } onChange={ handleInputChange }>
+        <select
+          className="form-control"
+          name="tag"
+          id="select-tag"
+          value={ tag }
+          onChange={ handleInputChange }
+        >
           <option value="Alimentação">Alimentação</option>
           <option value="Lazer">Lazer</option>
           <option value="Trabalho">Trabalho</option>

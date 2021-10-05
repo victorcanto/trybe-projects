@@ -8,6 +8,7 @@ export default class Currency extends Component {
       <label htmlFor="expense-currency">
         Moeda
         <select
+          className="form-control"
           name="currency"
           id="expense-currency"
           value={ currency }

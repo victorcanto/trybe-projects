@@ -70,7 +70,7 @@ class AddExpenseForm extends Component {
     const { currencies } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
-      <form onSubmit={ this.handleSubmit }>
+      <form className="form-inline wallet-form" onSubmit={ this.handleSubmit }>
         <Value value={ value } handleInputChange={ this.handleInputChange } />
         <Description
           description={ description }

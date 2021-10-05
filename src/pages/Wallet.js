@@ -6,6 +6,8 @@ import { fetchCoins, deleteExpense } from '../actions/index';
 import Header from '../components/Header';
 import ExpenseTable from '../components/ExpenseTable';
 
+import '../styles/wallet.css';
+
 class Wallet extends React.Component {
   constructor() {
     super();
@@ -43,6 +45,7 @@ class Wallet extends React.Component {
         <td>Real</td>
         <td>
           <button
+            className="btn btn-danger"
             type="button"
             data-testid="delete-btn"
             onClick={ () => deleleProp(id) }

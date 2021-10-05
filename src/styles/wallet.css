@@ -1,0 +1,15 @@
+header {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.wallet-form {
+  background-color: #252525;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}

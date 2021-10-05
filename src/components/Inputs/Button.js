@@ -5,7 +5,14 @@ export default class Button extends Component {
   render() {
     const { addExpenses } = this.props;
     return (
-      <button type="submit" onClick={ addExpenses }>Adicionar despesa</button>
+      <button
+        className="btn btn-success"
+        type="submit"
+        onClick={ addExpenses }
+      >
+        Adicionar despesa
+
+      </button>
     );
   }
 }

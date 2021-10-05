@@ -9,16 +9,18 @@ export default class Header extends Component {
         <span style={ { marginRight: '10px' } } data-testid="email-field">
           {email}
         </span>
-        <span
-          data-testid="total-field"
-        >
-          {expenses.length !== 0 ? addTotalValue(expenses).toFixed(2) : '0.00'}
-        </span>
-        <span
-          data-testid="header-currency-field"
-        >
-          BRL
-        </span>
+        <div>
+          <span
+            data-testid="total-field"
+          >
+            {expenses.length !== 0 ? addTotalValue(expenses).toFixed(2) : '0.00'}
+          </span>
+          <span
+            data-testid="header-currency-field"
+          >
+            BRL
+          </span>
+        </div>
       </header>
     );
   }

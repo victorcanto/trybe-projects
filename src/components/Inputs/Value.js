@@ -8,6 +8,7 @@ export default class Value extends Component {
       <label htmlFor="expense-amount">
         Valor
         <input
+          className="form-control"
           type="number"
           id="expense-amount"
           name="value"

@@ -8,6 +8,7 @@ export default class Description extends Component {
       <label htmlFor="expense-description">
         Descrição
         <input
+          className="form-control"
           type="text"
           id="expense-description"
           name="description"

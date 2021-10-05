@@ -8,6 +8,7 @@ export default class Payment extends Component {
       <label htmlFor="payment-method">
         Método de pagamento
         <select
+          className="form-control"
           name="method"
           id="payment-method"
           value={ method }
