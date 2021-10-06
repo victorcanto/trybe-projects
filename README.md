@@ -13,6 +13,16 @@ Este projeto trata-se de uma aplicação simples que simula uma carteira virtual
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
+## Clonando repositório
+> No seu terminal, executar o comando:
+```bash
+git clone git@github.com:victorcanto/trybewallet.git
+``` 
+ou
+```bash
+git clone https://github.com/victorcanto/trybewallet.git
+``` 
+
 ## Instalando Dependências
 
 > Na raiz do projeto, executar o comando:
