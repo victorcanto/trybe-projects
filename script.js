@@ -1,6 +1,6 @@
 const fetchProductList = async (productName) => {
   const response = await fetch(
-    `https://api.mercadolibre.com/sites/MLB/search?q=${productName}`,
+    `https://api.mercadolibre.com/sites/MLB/search?q=${productName}`
   );
   const data = await response.json();
   document.querySelector('.loading').remove();
@@ -35,7 +35,7 @@ function createProductItemElement({ sku, name, image }) {
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(
-    createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'),
+    createCustomElement('button', 'item__add', 'Adicionar ao carrinho!')
   );
 
   return section;
@@ -60,10 +60,9 @@ function getSkuFromProductItem(item) {
 
 const addCartPrice = async () => {
   const totalPrice = document.querySelector('.total-price');
-  const cartItems = await document.querySelectorAll('.cart__item');
+  const cartItems = document.querySelectorAll('.cart__item');
   let total = 0;
   cartItems.forEach((item) => {
-  //  ref: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/split
     const itemSplit = item.innerHTML.split('$')[1];
     total += parseFloat(itemSplit);
   });
@@ -77,16 +76,16 @@ function cartItemClickListener(e) {
 
 const saveShoppingCart = async () => {
   const cartItems = document.querySelector('ol.cart__items');
-  await localStorage.setItem('cart', cartItems.innerHTML);
-  const totalPrice = await document.querySelector('span.total-price');
-  await localStorage.setItem('price', totalPrice.innerHTML);
+  localStorage.setItem('cart', cartItems.innerHTML);
+  const totalPrice = document.querySelector('span.total-price');
+  localStorage.setItem('price', totalPrice.innerHTML);
 };
 
 const loadShoppingCart = async () => {
   const cartItems = document.querySelector('.cart__items');
-    cartItems.innerHTML = await localStorage.getItem('cart');
-  const totalPrice = await document.querySelector('span.total-price');
-    totalPrice.innerHTML = await localStorage.getItem('price');
+  cartItems.innerHTML = localStorage.getItem('cart');
+  const totalPrice = document.querySelector('span.total-price');
+  totalPrice.innerHTML = localStorage.getItem('price');
 };
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -101,13 +100,13 @@ const addElementToCart = async (e) => {
   const idName = getSkuFromProductItem(e.target.parentNode);
   const data = await fetchItemDataById(idName);
   const { id, title, price } = data;
-  
+
   const cartElement = createCartItemElement({
     sku: id,
     name: title,
     salePrice: price,
   });
-  
+
   const cartItems = document.querySelector('.cart__items');
   cartItems.appendChild(cartElement);
   saveShoppingCart();
@@ -119,7 +118,7 @@ const onClickItem = () => {
   addCartButtons.forEach((btn) => {
     btn.addEventListener('click', addElementToCart);
   });
-}; 
+};
 
 const clearShoppingCart = () => {
   const cartItems = document.querySelectorAll('li.cart__item');
