@@ -33,19 +33,26 @@ O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda i
  Cada branch neste repositório pertence a um projeto feito na Trybe. Caso apenas queira avaliar os arquivos dos projeto, basta continuar lendo o README.
 
  ## Clonando o repositório
- No seu terminal, execute o comando:
- >`git clone git@github.com:victorcanto/trybe-projects.git`
+ > No seu terminal, execute o comando:
 
- Entre na pasta raiz do projeto:
+ ```bash
+ git clone git@github.com:victorcanto/trybe-projects.git
+ ```
 
- >`cd trybe-projects`
+ >Entre na pasta raiz do projeto:
+
+ ```bash
+ cd trybe-projects
+ ```
   <br/>
  
  ## Escolhendo projeto local
 
-Você poderá alternar entre os projetos. escolha a branch desejada com os seguintes comandos:
- >`git checkout nome-da-branch`
+>Você poderá alternar entre os projetos. Escolha a branch com o comando:
 
+ ```bash
+ git checkout nome-da-branch-do-projeto
+ ```
  <br/>
 
 Cada projeto tem seu próprio README, com instruções detalhadas de inicialização, desenvolvimento, execução local e realização de testes.
