@@ -1,5 +1,5 @@
 const { CategorySchema } = require('../schemas');
-const ValidateError = require('../utils/ValidateError');
+const { ValidateError } = require('../utils');
 
 module.exports = (req, _res, next) => {
   const { name } = req.body;
