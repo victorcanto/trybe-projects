@@ -1,5 +1,5 @@
 const { PostSchema: { postSchema, postSchemaPut } } = require('../schemas');
-const ValidateError = require('../utils/ValidateError');
+const { ValidateError, ErrorMessages } = require('../utils');
 
 module.exports = {
   isPost(req, _res, next) {
@@ -17,7 +17,7 @@ module.exports = {
     const { title, content, categoryIds } = req.body;
     
     if (categoryIds) {
-      throw ValidateError(400, 'Categories cannot be edited');
+      throw ValidateError(400, ErrorMessages.CATEGORIES_NOT_EDITABLE);
     }
     
     const { error } = postSchemaPut.validate({ title, content });

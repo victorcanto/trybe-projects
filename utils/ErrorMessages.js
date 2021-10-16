@@ -9,6 +9,7 @@ const INVALID_FIELDS = 'Invalid fields';
 const POST_NOT_EXISTS = 'Post does not exist';
 const UNAUTHORIZED_USER = 'Unauthorized user';
 const CATEGORY_IDS_NOT_FOUND = '"categoryIds" not found';
+const CATEGORIES_NOT_EDITABLE = 'Categories cannot be edited';
 const USER_ALREADY_REGISTERED = 'User already registered';
 const USER_NOT_EXISTS = 'User does not exist';
 
@@ -19,6 +20,7 @@ module.exports = {
   POST_NOT_EXISTS,
   UNAUTHORIZED_USER,
   CATEGORY_IDS_NOT_FOUND,
+  CATEGORIES_NOT_EDITABLE,
   USER_ALREADY_REGISTERED,
   USER_NOT_EXISTS,
 };
