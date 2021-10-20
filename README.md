@@ -44,6 +44,7 @@ O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda i
  ```bash
  cd trybe-projects
  ```
+  Caso não tenha o git instalado na sua máquina, [siga essas instruções.](https://git-scm.com/downloads)
   <br/>
  
  ## Escolhendo projeto local
@@ -58,3 +59,148 @@ O programa conta com mais de 1.500 horas de aulas presenciais e online, aborda i
 Cada projeto tem seu próprio README, com instruções detalhadas de inicialização, desenvolvimento, execução local e realização de testes.
 </br>
 
+## Instruções importantes
+
+#### Como alternar entre os projetos remotamente?
+> Basta clicar no nome do projeto da lista abaixo.
+
+#### Como alternar entre os projetos localmente?
+> Dentro do repositório clonado, execute o comando:
+```bash
+  git checkout nome-da-branch-do-projeto
+```
+Para facilitar o acesso, você pode copiar e colar o comando no seu terminal para acessar a branch de cada projeto listado abaixo.
+
+## Sumário
+
+### Projetos do Módulo 1: Fundamentos
+
+1. [Lessons Learned](https://github.com/victorcanto/trybe-projects/tree/victorcanto-lessons-learned-project)
+  ```bash
+   git checkout victorcanto-lessons-learned-project
+  ```
+2. [Playground Functions](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-playground-functions)
+  ```bash
+   git checkout victorcanto-project-playground-functions
+  ```
+3. [Color Guess](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-color-guess)
+  ```bash
+   git checkout victorcanto-project-color-guess
+  ```
+4. [Todo List](https://github.com/victorcanto/trybe-projects/tree/victorcanto-todo-list-project)
+  ```bash
+   git checkout victorcanto-todo-list-project
+  ```
+5. [Meme Generator](https://github.com/victorcanto/trybe-projects/tree/victorcanto-meme-generator-project)
+  ```bash
+   git checkout victorcanto-meme-generator-project
+  ```
+6. [Mistery Letter](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-mistery-letter)
+  ```bash
+   git checkout victorcanto-meme-generator-project
+  ```
+7. [Pixels Art](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-pixels-art)
+  ```bash
+   git checkout victorcanto-project-pixels-art
+  ```
+8. [Facebook Signup](https://github.com/victorcanto/trybe-projects/tree/victorcanto-facebook-project)
+  ```bash
+   git checkout victorcanto-facebook-project
+  ```
+9. [Unit Tests](https://github.com/victorcanto/trybe-projects/tree/victorcanto-js-unit-tests)
+  ```bash
+   git checkout victorcanto-js-unit-tests
+  ```
+10. [Shopping Cart](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-shoppping-cart)
+  ```bash
+   git checkout victorcanto-project-shoppping-cart
+  ```
+11. [Jest](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-jest)
+  ```bash
+   git checkout victorcanto-project-jest
+  ```
+### Projetos do Módulo 2: Desenvolvimento Front-end
+
+1. [Movie Cards Library](https://github.com/victorcanto/trybe-projects/tree/victorcanto-movie-cards-library)
+  ```bash
+   git checkout victorcanto-movie-cards-library
+  ```
+2. [Movie Cards Library Stateful](https://github.com/victorcanto/trybe-projects/tree/victorcanto-movie-cards-library-stateful)
+  ```bash
+   git checkout victorcanto-movie-cards-library-stateful
+  ```
+3. [Movie Cards Library CRUD](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-movie-card-library-crud)
+  ```bash
+   git checkout victorcanto-project-movie-card-library-crud
+  ```
+4. [FrontEnd Online Storie - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/frontend-online-store)
+  ```bash
+   git checkout frontend-online-store
+  ```
+5. [React Testing](https://github.com/victorcanto/trybe-projects/tree/victorcanto-react-testing)
+  ```bash
+   git checkout victorcanto-react-testing
+  ```
+6. [Trybe Wallet](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-trybewallet)
+  ```bash
+   git checkout victorcanto-project-trybewallet
+  ```
+7. [Trivia Game - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/trivia-react-redux)
+  ```bash
+   git checkout trivia-react-redux
+  ```
+8. [StarWars Planets Search](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-starwars-planets-search)
+  ```bash
+   git checkout victorcanto-project-starwars-planets-search
+  ```
+9. [Recipes App - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/recipes-app)
+  ```bash
+   git checkout recipes-app
+  ```
+### Projetos do Módulo 3: Desenvolvimento Back-end
+
+1. [All For One](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mysql-all-for-one)
+  ```bash
+   git checkout victorcanto-mysql-all-for-one
+  ```
+1. [Vocabulary Booster](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mysql-vocabulary-booster)
+  ```bash
+   git checkout victorcanto-mysql-vocabulary-booster
+  ```
+3. [One For All](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mysql-one-for-all)
+  ```bash
+   git checkout victorcanto-mysql-one-for-all
+  ```
+  
+4. [Data Flights](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mongodb-dataflights)
+  ```bash
+   git checkout victorcanto-mongodb-dataflights
+  ```
+5. [Commerce](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mongodb-commerce)
+  ```bash
+   git checkout victorcanto-mongodb-commerce
+  ```
+6. [Commerce](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mongodb-aggregations)
+  ```bash
+   git checkout victorcanto-mongodb-aggregations
+  ```
+7. [Aggregations](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mongodb-aggregations)
+  ```bash
+   git checkout victorcanto-mongodb-aggregations
+  ```
+8. [Talker Manager](https://github.com/victorcanto/trybe-projects/tree/victorcanto-sd-010-a-project-talker-manager)
+  ```bash
+   git checkout victorcanto-sd-010-a-project-talker-manager
+  ```
+9. [Store Manager](https://github.com/victorcanto/trybe-projects/tree/victorcanto-sd-010-a-store-manager)
+  ```bash
+   git checkout victorcanto-sd-010-a-store-manager
+  ```
+10. [Cookmaster](https://github.com/victorcanto/trybe-projects/tree/victorcanto-sd-010-a-cookmaster)
+  ```bash
+   git checkout victorcanto-sd-010-a-cookmaster
+  ```
+11. [Blogs Api](https://github.com/victorcanto/trybe-projects/tree/victorcanto-sd-010-a-project-blogs-api)
+ ```bash
+   git checkout victorcanto-sd-010-a-project-blogs-api
+  ```
