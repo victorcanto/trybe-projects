@@ -19,6 +19,7 @@ class AddExpenseForm extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addExpenses = this.addExpenses.bind(this);
+    this.clearInputData = this.clearInputData.bind(this);
 
     this.state = {
       id: 0,
@@ -42,6 +43,17 @@ class AddExpenseForm extends Component {
     });
   }
 
+  clearInputData() {
+    this.setState({
+      id: 0,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    });
+  }
+
   async addExpenses() {
     const { add } = this.props;
     const exchangeRates = await fetchExchangeRates();
@@ -55,6 +67,8 @@ class AddExpenseForm extends Component {
     this.setState((prevState) => ({
       id: prevState.id + 1,
     }));
+
+    this.clearInputData();
   }
 
   filterCurrencies(currencies) {
