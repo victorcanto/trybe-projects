@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/chat.css">
+    <title>Webchat</title>
+  </head>
+  <body>
+    <header>WebChat</header>
+    <main class="container">
+      <div class="top-container">
+        <div class="user-container">
+          <div class="nickname-container">
+            <form id="nickname-form">
+              <input
+              type="text"
+              id="nickname-box"
+              placeholder="Insira seu nickname"
+              data-testid="nickname-box"
+              />
+              <button id="nickname-button" data-testid="nickname-button" type="submit">
+                Salvar
+              </button>
+            </form>
+          </div>
+          <div class="online-user-container">
+            <ul id="list-users"></ul>
+          </div>
+        </div>
+        <div class="messages-container">
+          <ul id="messages">
+            <%messages.forEach(({timestamp, nickname, message})=> {%>
+            <li data-testid="message">
+              <%=`${timestamp} - ${nickname}: ${message}`%>
+            </li>
+            <%})%>
+          </ul>
+        </div>
+      </div>
+      <div class="down-container">
+        <form id="message-form">
+          <input
+            type="text"
+            id="message-box"
+            data-testid="message-box"
+            placeholder="Digite uma nova mensagem aqui"
+          ></input>
+          <button id="send-button" type="submit" data-testid="send-button">Enviar</button>
+        </form>
+      </div>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/chat.js"></script>
+  </body>
+</html>
