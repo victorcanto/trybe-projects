@@ -5,6 +5,7 @@ const socket = window.io();
 const SS_KEY_NICKNAME = 'nickname';
 const nicknameForm = document.querySelector('#nickname-form');
 const nicknameInput = document.querySelector('#nickname-box');
+const nicknameDiv = document.querySelector('#nickname');
 const messageForm = document.querySelector('#message-form');
 const messageInput = document.querySelector('#message-box');
 const messagesUl = document.querySelector('#messages');
@@ -51,7 +52,6 @@ const getRandomNickname = (fn) => (qtdChar) => {
 };
 
 const addToOnlineUser = (nickname) => {
-  usersUl.innerHTML = '';
   const li = createLiWithDataTestid('online-user');
   li.textContent = nickname;
   usersUl.appendChild(li);
@@ -81,8 +81,10 @@ const chooseNickname = (e) => {
   e.preventDefault();
   if (checkValidInput(nicknameInput)) {
     const newNickname = nicknameInput.value;
+    nicknameDiv.textContent = newNickname;
     saveSessionStorage(SS_KEY_NICKNAME, newNickname);
     nicknameInput.value = '';
+    socket.emit('nickname', loadSessionStorage(SS_KEY_NICKNAME));
   }
 };
 
@@ -90,8 +92,22 @@ nicknameForm.addEventListener('submit', chooseNickname);
 messageForm.addEventListener('submit', handleChatMessage);
 
 socket.on('connect', () => {
-  saveSessionStorage(SS_KEY_NICKNAME, getRandomNickname(getRandomInt)(16));
+  usersUl.innerHTML = '';
+  const randomNickname = getRandomNickname(getRandomInt)(16);
+  nicknameDiv.textContent = randomNickname;
+  saveSessionStorage(SS_KEY_NICKNAME, randomNickname);
   addToOnlineUser(loadSessionStorage(SS_KEY_NICKNAME));
+  socket.emit('nickname', loadSessionStorage(SS_KEY_NICKNAME));
+});
+
+socket.on('nickname', (nicknames) => {
+  usersUl.innerHTML = '';
+  console.log(nicknames);
+  nicknames.forEach((nickname) => {
+    if (nickname !== nicknameDiv.textContent) {
+      addToOnlineUser(nickname);
+    }
+  });
 });
 
 socket.on('message', (message) => addMessageToChat(message));
