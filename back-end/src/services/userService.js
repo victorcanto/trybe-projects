@@ -14,7 +14,7 @@ module.exports = {
       );
     }
 
-    const { dataValues } = await User.create({ name, email, password });
-    return validateResponse(httpStatusCode.created, dataValues, 'user');
+    const { dataValues: { password: _, ...data } } = await User.create({ name, email, password });
+    return validateResponse(httpStatusCode.created, data, 'user');
   },
 };
