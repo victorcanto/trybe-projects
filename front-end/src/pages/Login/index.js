@@ -4,7 +4,7 @@ import Button from '../../components/Button';
 import ButtonLink from '../../components/ButtonLink';
 import ErrorMsg from '../../components/ErrorMsg';
 import Loading from '../../components/Loading';
-import StyledForm from '../../components/Form';
+import Form from '../../components/Form';
 import StyledLogin from './styles';
 import requestLogin from '../../services/api';
 import useForm from '../../hooks/useForm';
@@ -43,7 +43,7 @@ const Login = () => {
       ) : (
         <StyledLogin>
           <img src="" alt="logo" />
-          <StyledForm onSubmit={ handleSubmit(request) }>
+          <Form onSubmit={ handleSubmit(request) }>
             <label htmlFor="email">
               <input
                 ref={ inputEmail }
@@ -75,7 +75,7 @@ const Login = () => {
                 {isError}
               </ErrorMsg>
             )}
-          </StyledForm>
+          </Form>
         </StyledLogin>
       )}
       );
