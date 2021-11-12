@@ -6,6 +6,13 @@ export const INVALID_PASS = '12345';
 export const EMAIL_NOT_EXISTS = 'notexists@gmail.com';
 export const PASS_NOT_EXISTS = '123456';
 
+// DATA-TESTIDS LOGIN
+export const TESTID_LOGIN_EMAIL = 'common_login__input-email';
+export const TESTID_LOGIN_PASS = 'common_login__input-password';
+export const TESTID_LOGIN_BUTTON = 'common_login__button-login';
+export const TESTID_LOGIN_REGISTER = 'common_login__button-register';
+export const TESTID_LOGIN_MSG_ERROR = 'common_login__element-invalid-email';
+
 // ERRORS
 export const ERR_REQUIRED_EMAIL = '"email" is required';
 export const ERR_REQUIRED_PASS = '"password" is required';
