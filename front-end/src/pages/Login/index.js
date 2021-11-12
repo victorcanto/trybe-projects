@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button';
 import ButtonLink from '../../components/ButtonLink';
 import ErrorMsg from '../../components/ErrorMsg';
-import Loading from '../../components/Loading';
 import Form from '../../components/Form';
 import StyledLogin from './styles';
 import requestLogin from '../../services/api';
@@ -11,8 +10,9 @@ import useForm from '../../hooks/useForm';
 
 const Login = () => {
   const history = useHistory();
-  const [{ values, loading }, handleChange, handleSubmit] = useForm();
-  const [isError, setIsError] = useState('');
+  const [{ values }, handleChange, handleSubmit] = useForm();
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const inputEmail = useRef(null);
   const inputPassword = useRef(null);
@@ -22,64 +22,80 @@ const Login = () => {
     inputPassword.current.value = '';
   };
 
-  const request = async () => {
+  const goToProductsPage = async () => {
     const result = await requestLogin(values);
-    if (result.message) {
-      setIsError(result.message);
-      const FIVE_SECONDS = 5000;
-      setTimeout(() => {
-        setIsError('');
-      }, FIVE_SECONDS);
-      clearInputs();
-    } else {
-      history.push('/customer/products');
+    if (!result.token) {
+      return setErrorMsg(result.message);
     }
+    clearInputs();
+    history.push('/customer/products');
   };
 
+  useEffect(() => {
+    const request = async () => {
+      if (Object.keys(values).length) {
+        const result = await requestLogin(values);
+        if (result.message !== 'Invalid fields' && !result.token) {
+          setErrorMsg(result.message);
+          setIsDisabled(true);
+        } else {
+          setErrorMsg('');
+          setIsDisabled(false);
+        }
+      }
+    };
+    request();
+
+    return () => {};
+  }, [values]);
+
   return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <StyledLogin>
-          <img src="" alt="logo" />
-          <Form onSubmit={ handleSubmit(request) }>
-            <label htmlFor="email">
-              <input
-                ref={ inputEmail }
-                data-testid="common_login__input-email"
-                id="email"
-                name="email"
-                type="text"
-                placeholder="email@tryber.com.br"
-                onChange={ handleChange }
-              />
-            </label>
-            <label htmlFor="password">
-              <input
-                ref={ inputPassword }
-                data-testid="common_login__input-password"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="******"
-                onChange={ handleChange }
-              />
-            </label>
-            <Button data-testid="common_login__button-register" type="submit">
-              Login
-            </Button>
-            <ButtonLink url="register">Ainda não tenho conta</ButtonLink>
-            {isError && (
-              <ErrorMsg data-testid="common_login__element-invalid-email">
-                {isError}
-              </ErrorMsg>
-            )}
-          </Form>
-        </StyledLogin>
-      )}
-      );
-    </>
+    <StyledLogin>
+      <img src="" alt="logo" />
+      <Form onSubmit={ handleSubmit(goToProductsPage) }>
+        <label htmlFor="email">
+          <input
+            ref={ inputEmail }
+            data-testid="common_login__input-email"
+            id="email"
+            name="email"
+            type="text"
+            placeholder="email@tryber.com.br"
+            onChange={ handleChange }
+          />
+        </label>
+        <label htmlFor="password">
+          <input
+            ref={ inputPassword }
+            data-testid="common_login__input-password"
+            id="password"
+            name="password"
+            type="password"
+            placeholder="******"
+            onChange={ handleChange }
+          />
+        </label>
+        <Button
+          disabled={ isDisabled }
+          data-testid="common_login__button-login"
+          type="submit"
+        >
+          Login
+        </Button>
+        <ButtonLink
+          data-testid="common_login__button-register"
+          url="register"
+        >
+          Ainda não tenho conta
+        </ButtonLink>
+        {errorMsg && (
+          <ErrorMsg data-testid="common_login__element-invalid-email">
+            {errorMsg}
+          </ErrorMsg>
+        )}
+      </Form>
+    </StyledLogin>
+
   );
 };
 
