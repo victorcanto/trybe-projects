@@ -1,4 +1,4 @@
-const { User } = require('../database/models');
+const { user: User } = require('../database/models');
 const { loginSchema } = require('../schemas/loginSchema');
 const {
   jwt: { createToken },
@@ -22,7 +22,7 @@ module.exports = {
     const user = await User.findOne({ where: { email, password } });
 
     if (!user) {
-      return validateResponse(httpStatusCode.badRequest, errors.INVALID_FIELDS, 'error');
+      return validateResponse(httpStatusCode.notFound, errors.INVALID_FIELDS, 'error');
     }
 
     const {

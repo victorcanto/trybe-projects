@@ -1,5 +1,5 @@
 const { userSchema } = require('../schemas/userSchema');
-const { User } = require('../database/models');
+const { user: User } = require('../database/models');
 const { httpStatusCode, validateResponse } = require('../utils');
 
 module.exports = {
