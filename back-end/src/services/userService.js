@@ -1,6 +1,10 @@
+const bcrypt = require('bcrypt');
+
 const { userSchema } = require('../schemas/userSchema');
 const { User } = require('../database/models');
 const { httpStatusCode, validateResponse } = require('../utils');
+
+const SALT_ROUNDS = 5;
 
 module.exports = {
   async create({ name, email, password }) {
@@ -13,8 +17,12 @@ module.exports = {
         'error',
       );
     }
-
-    const { dataValues } = await User.create({ name, email, password });
+    
+    const salt = bcrypt.genSaltSync(SALT_ROUNDS);
+    const hash = bcrypt.hashSync(password, salt);
+   
+    const { dataValues } = await User.create({ name, email, password: hash });
+ 
     return validateResponse(httpStatusCode.created, dataValues, 'user');
   },
 };
