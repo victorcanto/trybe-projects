@@ -1,9 +1,9 @@
 // INPUTS
-export const VALID_EMAIL = 'example@gmail.com';
-export const VALID_PASS = '123456';
-export const INVALID_EMAIL = 'example@com';
+export const VALID_EMAIL = 'zebirita@email.com';
+export const VALID_PASS = '$#zebirita#$';
+export const INVALID_EMAIL = 'zebirita@com';
 export const INVALID_PASS = '12345';
-export const EMAIL_NOT_EXISTS = 'notexists@gmail.com';
+export const EMAIL_NOT_EXISTS = 'notexists@email.com';
 export const PASS_NOT_EXISTS = '123456';
 
 // DATA-TESTIDS LOGIN
