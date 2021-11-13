@@ -1,5 +1,5 @@
 const { productSchema } = require('../schemas/productSchema');
-const { Product } = require('../database/models');
+const { product: Product } = require('../database/models');
 const { httpStatusCode, validateResponse } = require('../utils');
 
 module.exports = {
