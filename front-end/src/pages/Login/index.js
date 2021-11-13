@@ -32,21 +32,23 @@ const Login = () => {
   };
 
   useEffect(() => {
+    let message = '';
+    let disabled = true;
     const request = async () => {
       if (Object.keys(values).length) {
         const result = await requestLogin(values);
         if (result.message !== 'Invalid fields' && !result.token) {
-          setErrorMsg(result.message);
-          setIsDisabled(true);
+          message = result.message;
+          disabled = true;
         } else {
-          setErrorMsg('');
-          setIsDisabled(false);
+          message = '';
+          disabled = false;
         }
       }
+      setErrorMsg(message);
+      setIsDisabled(disabled);
     };
     request();
-
-    return () => {};
   }, [values]);
 
   return (
@@ -82,10 +84,7 @@ const Login = () => {
         >
           Login
         </Button>
-        <ButtonLink
-          data-testid="common_login__button-register"
-          url="register"
-        >
+        <ButtonLink data-testid="common_login__button-register" url="register">
           Ainda não tenho conta
         </ButtonLink>
         {errorMsg && (
@@ -95,7 +94,6 @@ const Login = () => {
         )}
       </Form>
     </StyledLogin>
-
   );
 };
 
