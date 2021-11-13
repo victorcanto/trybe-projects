@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
 const { userSchema } = require('../schemas/userSchema');
-const { User } = require('../database/models');
+const { user: User } = require('../database/models');
 const { httpStatusCode, validateResponse } = require('../utils');
 
 const SALT_ROUNDS = 5;
