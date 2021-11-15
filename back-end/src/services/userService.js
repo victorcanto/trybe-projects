@@ -1,6 +1,7 @@
+const md5 = require('md5');
 const { userSchema } = require('../schemas/userSchema');
 const { user: User } = require('../database/models');
-const { httpStatusCode, validateResponse } = require('../utils');
+const { httpStatusCode, validateResponse, errors } = require('../utils');
 
 module.exports = {
   async create({ name, email, password }) {
@@ -14,7 +15,17 @@ module.exports = {
       );
     }
 
-    const { dataValues: { password: _, ...data } } = await User.create({ name, email, password });
+    const userAlreadyExists = await User.findOne({ where: { email } });
+
+    if (userAlreadyExists) {
+      return validateResponse(httpStatusCode.conflit, errors.USER_EXISTS, 'error');
+    }
+
+    const hash = md5(password);
+
+    const { 
+      dataValues: { password: _, ...data } } = await User.create({ name, email, password: hash });
+
     return validateResponse(httpStatusCode.created, data, 'user');
   },
 };

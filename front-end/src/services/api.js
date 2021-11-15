@@ -1,18 +1,32 @@
 import axios from 'axios';
 
-const URL_API = 'http://localhost:3001/login';
+const URL_API = 'http://localhost:3001';
 
 const requestLogin = async ({ email, password }) => {
-  console.log(email, password);
   try {
-    const response = await axios.post(URL_API, {
+    const response = await axios.post(`${URL_API}/login`, {
       email,
       password,
     });
+
     return response.data;
   } catch (error) {
     return error.response.data;
   }
 };
 
-export default requestLogin;
+const requestRegisterUser = async ({ name, email, password }) => {
+  try {
+    const response = await axios.post(`${URL_API}/user`, {
+      name,
+      email,
+      password,
+    });
+
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export { requestLogin, requestRegisterUser };

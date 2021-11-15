@@ -5,7 +5,7 @@ import ButtonLink from '../../components/ButtonLink';
 import ErrorMsg from '../../components/ErrorMsg';
 import Form from '../../components/Form';
 import StyledLogin from './styles';
-import requestLogin from '../../services/api';
+import { requestLogin } from '../../services/api';
 import useForm from '../../hooks/useForm';
 
 const Login = () => {
