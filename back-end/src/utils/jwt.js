@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
+const getSecretKey = require('./getSecretKey');
 
 require('dotenv/config');
 
-const SECRET = process.env.JWT_SECRET;
+const SECRET = getSecretKey();
 
 const createToken = (payload) => {
   const jwtConfig = {
