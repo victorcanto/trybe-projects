@@ -1,9 +1,36 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import StyledProductItem from './styles';
+import { useProduct } from '../../../../../contexts/productContext';
 
 function ProductItem({ product }) {
   const [quantity, setQuantity] = useState(0);
+
+  const { products, setProducts } = useProduct();
+
+  const handleProductQuantityChange = useCallback(
+    () => {
+      const newProductArray = { ...products };
+      const key = product.id;
+
+      newProductArray[key] = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity,
+      };
+
+      setProducts(newProductArray);
+    },
+    [product.id, product.name, product.price, products, quantity, setProducts],
+  );
+
+  useEffect(() => {
+    if (quantity !== 0) {
+      handleProductQuantityChange();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quantity]);
 
   function formatPrice(price) {
     return price.replace(/\./, ',');
@@ -52,7 +79,9 @@ function ProductItem({ product }) {
         <input
           data-testid={ `customer_products__input-card-quantity-${product.id}` }
           value={ quantity }
-          onChange={ (event) => setQuantity(event.target.value) }
+          onChange={ (event) => {
+            setQuantity(event.target.value);
+          } }
         />
 
         <button
@@ -61,7 +90,6 @@ function ProductItem({ product }) {
           onClick={ decreaseQuantity }
         >
           -
-
         </button>
       </div>
 
