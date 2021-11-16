@@ -4,6 +4,7 @@ import Products from './pages/Customer/Products';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
+import Orders from './pages/Orders';
 
 const App = () => (
   <Switch>
@@ -11,6 +12,7 @@ const App = () => (
     <Route path="/login" component={ Login } />
     <Route path="/register" component={ Register } />
     <Route path="/customer/products" component={ Products } />
+    <Route path="/customer/orders" component={ Orders } />
     <Route component={ NotFound } />
   </Switch>
 );
