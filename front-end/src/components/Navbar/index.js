@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StyledNavbar from './styles';
+
 import { useUser } from '../../contexts/userContext';
 
 const Navbar = ({ productPath, orderPath, username }) => {
