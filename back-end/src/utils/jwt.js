@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
+const getSecretKey = require('./getSecretKey');
 
-const JWT_SECRET = fs.readFileSync('jwt.evaluation.key');
+const SECRET = getSecretKey();
 
 const createToken = (payload) => {
   const jwtConfig = {
@@ -9,12 +9,12 @@ const createToken = (payload) => {
     algorithm: 'HS256',
   };
 
-  const token = jwt.sign({ data: payload }, JWT_SECRET, jwtConfig);
+  const token = jwt.sign({ data: payload }, SECRET, jwtConfig);
   return token;
 };
 
 const checkToken = (token) => {
-  const decoded = jwt.verify(token, JWT_SECRET);
+  const decoded = jwt.verify(token, SECRET);
   return decoded;
 };
 

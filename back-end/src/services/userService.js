@@ -2,6 +2,7 @@ const md5 = require('md5');
 const { userSchema } = require('../schemas/userSchema');
 const { user: User } = require('../database/models');
 const { httpStatusCode, validateResponse, errors } = require('../utils');
+const { checkToken } = require('../utils/jwt');
 
 module.exports = {
   async create({ name, email, password }) {
@@ -27,5 +28,11 @@ module.exports = {
       dataValues: { password: _, ...data } } = await User.create({ name, email, password: hash });
 
     return validateResponse(httpStatusCode.created, data, 'user');
+  },
+
+  async show({ token }) {
+    const decodedUser = checkToken(token);
+
+    return validateResponse(httpStatusCode.created, decodedUser.data, 'user');
   },
 };

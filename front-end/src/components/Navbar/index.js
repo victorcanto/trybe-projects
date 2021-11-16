@@ -3,32 +3,52 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StyledNavbar from './styles';
 
-const Navbar = ({ productPath, orderPath, username }) => (
-  <StyledNavbar>
-    {productPath && (
-      <NavLink
-        data-testid="customer_products__element-navbar-link-products"
-        to={ productPath }
+import { useUser } from '../../contexts/userContext';
+
+const Navbar = ({ productPath, orderPath, username }) => {
+  const { setUser } = useUser();
+
+  function handleLogout() {
+    localStorage.removeItem('user');
+
+    setUser(null);
+  }
+
+  return (
+
+    <StyledNavbar>
+      { productPath && (
+        <NavLink
+          data-testid="customer_products__element-navbar-link-products"
+          to={ productPath }
+        >
+          PRODUTOS
+        </NavLink>)}
+      { orderPath && (
+        <NavLink
+          to={ orderPath }
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          PEDIDOS
+        </NavLink>
+      )}
+      <span
+        data-testid="customer_products__element-navbar-user-full-name"
       >
-        PRODUTOS
-      </NavLink>
-    )}
-    {orderPath && (
-      <NavLink
-        data-testid="customer_products__element-navbar-link-orders"
-        to={ orderPath }
+        {username}
+
+      </span>
+      <button
+        data-testid="customer_products__element-navbar-link-logout"
+        type="button"
+        onClick={ handleLogout }
       >
-        PEDIDOS
-      </NavLink>
-    )}
-    <span data-testid="customer_products__element-navbar-user-full-name">
-      {username}
-    </span>
-    <NavLink data-testid="customer_products__element-navbar-link-logout" to="/">
-      Sair
-    </NavLink>
-  </StyledNavbar>
-);
+        Sair
+      </button>
+
+    </StyledNavbar>
+  );
+};
 
 Navbar.defaultProps = {
   productPath: '',

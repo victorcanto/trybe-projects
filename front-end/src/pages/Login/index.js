@@ -5,17 +5,20 @@ import ButtonLink from '../../components/ButtonLink';
 import ErrorMsg from '../../components/ErrorMsg';
 import Form from '../../components/Form';
 import StyledLogin from './styles';
-import { requestLogin } from '../../services/api';
+import { requestLogin, requestUserInfo } from '../../services/api';
 import useForm from '../../hooks/useForm';
+import { useUser } from '../../contexts/userContext';
 
 const Login = () => {
   const history = useHistory();
   const [{ values }, handleChange, handleSubmit] = useForm();
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
   const inputEmail = useRef(null);
   const inputPassword = useRef(null);
+
+  const { user, setUser } = useUser();
 
   const clearInputs = () => {
     inputEmail.current.value = '';
@@ -23,13 +26,26 @@ const Login = () => {
   };
 
   const goToProductsPage = async () => {
-    const result = await requestLogin(values);
-    if (!result.token) {
+    const requestToken = await requestLogin(values);
+    const requestUser = await requestUserInfo(requestToken.token);
+
+    const userInfo = { ...requestUser.user, token: requestToken.token };
+
+    localStorage.setItem('user', JSON.stringify(userInfo));
+
+    setUser(userInfo);
+
+    if (!requestToken.token) {
       return setErrorMsg(result.message);
     }
     clearInputs();
-    history.push('/customer/products');
   };
+
+  useEffect(() => {
+    if (user && user.token) {
+      history.push('/customer/products');
+    }
+  }, [history, user]);
 
   useEffect(() => {
     let message = '';
@@ -37,6 +53,7 @@ const Login = () => {
     const request = async () => {
       if (Object.keys(values).length) {
         const result = await requestLogin(values);
+
         if (result.message !== 'Invalid fields' && !result.token) {
           message = result.message;
           disabled = true;

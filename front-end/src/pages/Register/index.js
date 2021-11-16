@@ -6,6 +6,7 @@ import Form from '../../components/Form';
 import useForm from '../../hooks/useForm';
 import StyledRegister from './styles';
 import { requestRegisterUser } from '../../services/api';
+import { useUser } from '../../contexts/userContext';
 
 const NAME_LENGTH = 12;
 const PASSWORD_LENGTH = 6;
@@ -20,6 +21,8 @@ const Register = () => {
   const inputEmail = useRef(null);
   const inputPassword = useRef(null);
 
+  const { user, setUser } = useUser();
+
   const clearInputs = () => {
     inputName.current.value = '';
     inputEmail.current.value = '';
@@ -29,15 +32,25 @@ const Register = () => {
   const handleRegister = async () => {
     clearInputs();
 
-    const result = await requestRegisterUser(values);
+    const registerUserResponse = await requestRegisterUser(values);
 
-    if (result.message) {
+    localStorage.setItem('user', JSON.stringify(registerUserResponse));
+
+    setUser(userInfo);
+
+    if (registerUserResponse.message) {
       clearInputs();
       setErrorMsg(result.message);
-    } else {
+    }
+
+    setUser(result);
+  };
+
+  useEffect(() => {
+    if (user && user.token) {
       history.push('/customer/products');
     }
-  };
+  }, [history, user]);
 
   const request = useCallback(
     async () => {
