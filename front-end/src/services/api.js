@@ -29,4 +29,19 @@ const requestRegisterUser = async ({ name, email, password }) => {
   }
 };
 
-export { requestLogin, requestRegisterUser };
+const requestSales = async (token) => {
+  try {
+    const response = await axios.get(`${URL_API}/sales`, {
+      headers: { authorization: token },
+    });
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export {
+  requestLogin,
+  requestRegisterUser,
+  requestSales,
+};
