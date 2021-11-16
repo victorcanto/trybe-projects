@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       quantity: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.INTEGER
       },
       sale_id: {
         type: Sequelize.INTEGER,
