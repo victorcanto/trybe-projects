@@ -4,12 +4,15 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import GlobalStyle from './styles/global';
 import { BrowserRouter } from 'react-router-dom';
+import { UserContextProvider } from './contexts/userContext';
 
 ReactDOM.render(
   <BrowserRouter>
    <React.StrictMode>
-    <GlobalStyle/>
-    <App />
+   <UserContextProvider>
+      <GlobalStyle/>
+      <App />
+   </UserContextProvider>
   </React.StrictMode>
   </BrowserRouter>,
   document.getElementById('root'),
