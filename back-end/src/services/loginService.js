@@ -1,3 +1,4 @@
+const md5 = require('md5');
 const { user: User } = require('../database/models');
 const { loginSchema } = require('../schemas/loginSchema');
 const {
@@ -19,7 +20,9 @@ module.exports = {
       );
     }
 
-    const user = await User.findOne({ where: { email, password } });
+    const hash = md5(password);
+
+    const user = await User.findOne({ where: { email, password: hash } });
 
     if (!user) {
       return validateResponse(httpStatusCode.notFound, errors.INVALID_FIELDS, 'error');
