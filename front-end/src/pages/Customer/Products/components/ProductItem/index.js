@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import StyledProductItem from './styles';
 
 function ProductItem({ product }) {
+  const [quantity, setQuantity] = useState(0);
+
+  function formatPrice(price) {
+    return price.replace(/\./, ',');
+  }
+
+  function decreaseQuantity() {
+    if (quantity !== 0) { setQuantity(Number(quantity) - 1); }
+  }
+
+  function increaseQuantity() {
+    setQuantity(Number(quantity) + 1);
+  }
+
   return (
     <StyledProductItem>
       <img
@@ -23,26 +37,28 @@ function ProductItem({ product }) {
         data-testid={ `customer_products__element-card-price-${product.id}` }
         className="product-price"
       >
-        R$
-        {product.price}
+        {formatPrice(product.price)}
       </span>
 
       <div className="quantity-buttons">
         <button
           type="button"
           data-testid={ `customer_products__button-card-add-item-${product.id}` }
+          onClick={ increaseQuantity }
         >
           +
         </button>
 
         <input
           data-testid={ `customer_products__input-card-quantity-${product.id}` }
-          value={ 0 }
+          value={ quantity }
+          onChange={ (event) => setQuantity(event.target.value) }
         />
 
         <button
           type="button"
           data-testid={ `customer_products__button-card-rm-item-${product.id}` }
+          onClick={ decreaseQuantity }
         >
           -
 

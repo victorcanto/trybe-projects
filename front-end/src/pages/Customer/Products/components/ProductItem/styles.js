@@ -19,6 +19,7 @@ const StyledProductItem = styled.div`
 
   .product-price {
     font-weight: 700;
+    font-family: sans-serif;
   }
 
   .quantity-buttons button {
@@ -26,6 +27,12 @@ const StyledProductItem = styled.div`
 
     margin:0 0.3rem;
     cursor: pointer;
+  }
+
+  input {
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
   }
 `;
 
