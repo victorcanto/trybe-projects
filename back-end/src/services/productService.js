@@ -14,7 +14,23 @@ module.exports = {
       );
     }
 
-    const { dataValues } = await Product.create({ name, price, urlImage });
+    const IMAGE = 'url_image';
+
+    const { dataValues } = await Product.create({ name, price, [IMAGE]: urlImage });
     return validateResponse(httpStatusCode.created, dataValues, 'product');
+  },
+
+  async index() {
+    try {
+      const products = await Product.findAll();
+
+      return products;
+    } catch (err) {
+      return validateResponse(
+        httpStatusCode.badRequest,
+        err.message,
+        'error',
+      );
+    }
   },
 };

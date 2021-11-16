@@ -3,7 +3,9 @@ const fs = require('fs');
 const getSecretKey = () => {
   const keyFile = fs.readFileSync('jwt.evaluation.key', 'utf-8');
 
-  return keyFile;
+  console.log('key', keyFile);
+
+  return keyFile.trim();
 };
 
 module.exports = getSecretKey;

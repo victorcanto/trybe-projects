@@ -1,12 +1,9 @@
-const bcrypt = require('bcrypt');
-
 const { user: User } = require('../database/models');
 const { loginSchema } = require('../schemas/loginSchema');
 const {
   jwt: { createToken },
   validateResponse,
   httpStatusCode,
-  errors,
 } = require('../utils');
 
 module.exports = {
@@ -22,18 +19,10 @@ module.exports = {
     }
 
     const user = await User.findOne({ where: { email } });
-
-    if (!user) return validateResponse(httpStatusCode.notFound, errors.INVALID_FIELDS, 'error');
-
-    const passwordCheck = bcrypt.compareSync(password, user.password);
-
-    if (passwordCheck) {
-      const { dataValues: { password: _, ...payload } } = user;
   
-      const token = createToken(payload);
-      return validateResponse(httpStatusCode.ok, token, 'token');
-    }
-     
-    return validateResponse(httpStatusCode.badRequest, errors.INVALID_PASSWORD, 'error');
+    const { dataValues: { password: _, ...payload } } = user;
+  
+    const token = createToken(payload);
+    return validateResponse(httpStatusCode.ok, token, 'token');
   },
 };
