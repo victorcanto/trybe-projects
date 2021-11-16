@@ -5,10 +5,28 @@ import StyledNavbar from './styles';
 
 const Navbar = ({ productPath, orderPath, username }) => (
   <StyledNavbar>
-    { productPath && <NavLink to={ productPath }>PRODUTOS</NavLink>}
-    { orderPath && <NavLink to={ orderPath }>PEDIDOS</NavLink>}
-    <span>{username}</span>
-    <NavLink to="/">Sair</NavLink>
+    { productPath && (
+      <NavLink
+        data-testid="customer_products__element-navbar-link-products"
+        to={ productPath }
+      >
+        PRODUTOS
+      </NavLink>)}
+    { orderPath && (
+      <NavLink
+        to={ orderPath }
+        data-testid="customer_products__element-navbar-link-orders"
+      >
+        PEDIDOS
+      </NavLink>
+    )}
+    <span data-testid="customer_products__element-navbar-user-full-name">{username}</span>
+    <NavLink
+      to="/"
+      data-testid="customer_products__element-navbar-link-logout"
+    >
+      Sair
+    </NavLink>
   </StyledNavbar>
 );
 
