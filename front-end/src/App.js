@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 import Orders from './pages/Orders';
-import Checkout from './pages/Customer/Products/Checkout';
+import Checkout from './pages/Customer/Checkout';
 import OrderDetails from './pages/OrderDetails';
 
 const App = () => (
