@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import moment from 'moment';
 import Navbar from '../../components/Navbar';
 import { requestSales } from '../../services/api';
 import OrderCard from './components/OrderCard';
@@ -12,29 +13,37 @@ const Orders = () => {
   const { pathname } = useLocation();
   const [orders, setOrders] = useState([]);
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
   useEffect(() => {
     const request = async () => {
-      const result = await requestSales();
-      return result.sales && setOrders(result.sales);
+      const result = await requestSales(user.token);
+      setOrders(result.sales);
     };
 
     request();
-  }, []);
+  }, [user.token]);
 
   return (
     <>
       {pathname !== sellerOrdersUrl ? (
         <Navbar
-          productPath="/customer/products"
+          productPath={ customerOrdersUrl }
           orderPath={ customerOrdersUrl }
-          username="Example username"
+          username={ user.name }
         />
       ) : (
         <Navbar orderPath={ sellerOrdersUrl } username="Example username" />
       )}
       <StyledOrders>
-        {orders.map(({ id, status, sale_date: date }) => (
-          <OrderCard key={ id } id={ id } status={ status } date={ date } />
+        {orders.map(({ id, status, sale_date: saleDate, total_price: totalPrice }) => (
+          <OrderCard
+            key={ id }
+            id={ id }
+            status={ status }
+            saleDate={ moment(saleDate).format('DD/MM/YY') }
+            totalPrice={ totalPrice }
+          />
         ))}
       </StyledOrders>
     </>
