@@ -8,5 +8,6 @@ module.exports = (status, data, keyName) => {
   }
 
   obj.status = status;
+
   return obj;
 };

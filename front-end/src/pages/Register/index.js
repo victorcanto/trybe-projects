@@ -6,6 +6,7 @@ import Form from '../../components/Form';
 import useForm from '../../hooks/useForm';
 import StyledRegister from './styles';
 import { requestRegisterUser } from '../../services/api';
+import { useUser } from '../../contexts/userContext';
 
 const NAME_LENGTH = 12;
 const PASSWORD_LENGTH = 6;
@@ -20,6 +21,8 @@ const Register = () => {
   const inputEmail = useRef(null);
   const inputPassword = useRef(null);
 
+  const { user, setUser } = useUser();
+
   const clearInputs = () => {
     inputName.current.value = '';
     inputEmail.current.value = '';
@@ -29,15 +32,23 @@ const Register = () => {
   const handleRegister = async () => {
     clearInputs();
 
-    const result = await requestRegisterUser(values);
+    const registerUserResponse = await requestRegisterUser(values);
 
-    if (result.message) {
+    if (registerUserResponse.message) {
       clearInputs();
-      setErrorMsg(result.message);
+      setErrorMsg(registerUserResponse.message);
     } else {
-      history.push('/customer/products');
+      localStorage.setItem('user', JSON.stringify(registerUserResponse));
+
+      setUser(registerUserResponse);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      history.push('/customer/products');
+    }
+  }, [history, user]);
 
   const request = useCallback(
     async () => {
@@ -50,7 +61,7 @@ const Register = () => {
           message = result.message;
           disabled = true;
         } else {
-          message = '';
+          message = result.message || '';
           disabled = false;
         }
       }
