@@ -16,7 +16,7 @@ module.exports = {
       );
     }
 
-    const userAlreadyExists = await User.findOne({ where: { email } });
+    const userAlreadyExists = await User.findOne({ where: { email, name } });
 
     if (userAlreadyExists) {
       return validateResponse(httpStatusCode.conflit, errors.USER_EXISTS, 'error');
