@@ -7,7 +7,7 @@ import { useProduct } from '../../../contexts/productContext';
 
 const Checkout = () => {
   console.log('');
-  const { products } = useProduct();
+  const { products, total } = useProduct();
   return (
     <StyledCheckout>
       <Navbar />
@@ -16,7 +16,12 @@ const Checkout = () => {
         <ProductTable products={ products } />
 
         <div className="total-container">
-          <span>Total: R$28,46</span>
+          <span>
+            Total: R$
+            <span data-testid="customer_checkout__element-order-total-price">
+              {total}
+            </span>
+          </span>
         </div>
       </div>
 
