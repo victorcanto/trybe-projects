@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StyledTableRow from './styles';
+import { useProduct } from '../../../../../../../contexts/productContext';
 
 const TableRow = ({ product }) => {
+  const { products, setProducts } = useProduct();
+  const removeProductOrder = () => {
+    const updatedProduct = { ...products };
+    delete updatedProduct[product.id];
+    setProducts(updatedProduct);
+  };
   const calculateSubtotal = () => Number(product.price) * Number(product.quantity);
   return (
     <StyledTableRow>
@@ -36,11 +43,14 @@ const TableRow = ({ product }) => {
       >
         {calculateSubtotal()}
       </td>
-      <td
-        data-testid={ `customer_checkout__element-order-table-remove-${product.id}` }
-        className="remove"
-      >
-        Remover
+      <td className="remove">
+        <button
+          type="button"
+          data-testid={ `customer_checkout__element-order-table-remove-${product.id}` }
+          onClick={ removeProductOrder }
+        >
+          Remover
+        </button>
       </td>
     </StyledTableRow>
   );
