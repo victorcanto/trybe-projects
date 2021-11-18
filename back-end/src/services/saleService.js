@@ -2,6 +2,10 @@ const { sale: Sale } = require('../database/models');
 const { validateResponse, httpStatusCode, errors } = require('../utils');
 
 module.exports = {
+  async create(user_id, seller_id, products, total) {
+    
+  },
+
   async getAll(filter) {
     const sales = await Sale.findAll(filter);
 
