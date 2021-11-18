@@ -5,7 +5,6 @@ import StyledProductList from './styles';
 
 const ProductList = ({ products }) => (
   <StyledProductList>
-    <h1>Produtos</h1>
     {products.map((product) => (
       <ProductItem product={ product } key={ product.id } />
     ))}
