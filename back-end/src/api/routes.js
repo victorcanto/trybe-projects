@@ -9,6 +9,8 @@ const authToken = require('../middlewares/authToken');
 const router = Router();
 
 // User
+router.get('/users/:role', userController.getAll);
+router.get('/users', userController.getAll);
 router.post('/user', userController.create);
 router.get('/user', userController.show);
 // Login

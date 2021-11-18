@@ -4,13 +4,19 @@ import AddressInfo from './components/AddressInfo';
 import Navbar from '../../../components/Navbar';
 import StyledCheckout from './styles';
 import { useProduct } from '../../../contexts/productContext';
+import { useUser } from '../../../contexts/userContext';
 
 const Checkout = () => {
+  const { user } = useUser();
   console.log('');
   const { products, total } = useProduct();
   return (
     <StyledCheckout>
-      <Navbar />
+      <Navbar
+        productPath="/customer/products"
+        orderPath="/customer/orders"
+        username={ user.name }
+      />
 
       <div className="product-table-container">
         <ProductTable products={ products } />

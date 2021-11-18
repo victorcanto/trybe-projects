@@ -9,6 +9,8 @@ const WRONG_PASSWORD = 'Invalid Password';
 // USER
 const USER_EXISTS = 'User already exists';
 
+const USERS_NOT_FOUND = 'Not have register of users';
+
 // SALES
 const NO_SALES_FOUND = 'No sales found';
 
@@ -19,4 +21,5 @@ module.exports = {
   WRONG_PASSWORD,
   USER_EXISTS,
   NO_SALES_FOUND,
+  USERS_NOT_FOUND,
 };

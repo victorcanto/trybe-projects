@@ -30,6 +30,19 @@ module.exports = {
     return validateResponse(httpStatusCode.created, data, 'user');
   },
 
+  async getAll(filter) {
+    const users = await User.findAll(filter);
+
+    if (!users) {
+      return validateResponse(
+        httpStatusCode.notFound,
+        errors.USERS_NOT_FOUND,
+        'error',
+      );
+    }
+    return validateResponse(httpStatusCode.ok, users, 'users');
+  },
+
   async show({ token }) {
     const decodedUser = checkToken(token);
 
