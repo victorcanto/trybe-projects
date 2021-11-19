@@ -3,7 +3,7 @@ module.exports = (status, data, keyName) => {
 
   if (keyName === 'error') {
     obj.error = { message: data };
-  } else {
+  } else if (data) {
     obj[keyName] = { [keyName]: data };
   }
 
