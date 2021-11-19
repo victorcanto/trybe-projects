@@ -13,6 +13,7 @@ const USERS_NOT_FOUND = 'Not have register of users';
 
 // SALES
 const NO_SALES_FOUND = 'No sales found';
+const SALE_NOT_FOUND = 'sale not found';
 
 module.exports = {
   TOKEN_NOT_FOUND,
@@ -22,4 +23,5 @@ module.exports = {
   USER_EXISTS,
   NO_SALES_FOUND,
   USERS_NOT_FOUND,
+  SALE_NOT_FOUND,
 };
