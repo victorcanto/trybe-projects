@@ -13,8 +13,8 @@ const ProductTable = ({ products }) => (
       <th>Sub-total</th>
       <th>Remover Item</th>
     </tr>
-    {Object.values(products).map((product) => (
-      <TableRow key={ product.id } product={ product } />
+    {Object.values(products).map((product, index) => (
+      <TableRow key={ product.id } product={ product } index={ index + 1 } />
     ))}
   </StyledProductTable>
 );

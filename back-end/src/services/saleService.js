@@ -1,39 +1,33 @@
-const { 
+const {
   sale: Sale,
   saleProduct: SaleProduct,
-  product: Product, sequelize } = require('../database/models');
+  product: Product,
+  sequelize,
+} = require('../database/models');
 const { saleSchema } = require('../schemas/saleSchema');
 const { validateResponse, httpStatusCode, errors } = require('../utils');
-const { serializeSale } = require('../utils/serializeSale');
-
-const serializeProduct = (product, createdSaleId) => {
-  const productId = 'product_id';
-  const saleIdKey = 'sale_id';
-
-  return {
-    [productId]: product.id, [saleIdKey]: createdSaleId, quantity: product.quantity,
-  };
-};
+const { serialize } = require('../utils');
 
 const createSaleTransaction = async (sale, products) => {
-  const serializedSale = serializeSale(sale);
-
+  const serializedSale = serialize.sale(sale);
   try {
     const result = await sequelize.transaction(async (transaction) => {
-      const { 
-        dataValues: { id: createdSaleId } } = await Sale.create(serializedSale, { transaction });
-  
-      await Promise.all(products.map(async (product) => {
-        const serializedProduct = serializeProduct(product, createdSaleId);
+      const {
+        dataValues: { id: createdSaleId },
+      } = await Sale.create(serializedSale, { transaction });
 
-        await SaleProduct
-          .create(serializedProduct, { transaction });
-      }));
+      await Promise.all(
+        products.map(async (product) => {
+          const serializedProduct = serialize.product(product, createdSaleId);
+          await SaleProduct.create(serializedProduct, { transaction });
+        }),
+      );
+      return createdSaleId;
     });
-  
+
     return result;
   } catch (error) {
-    console.log(error);
+    return { message: error.message };
   }
 };
 
@@ -49,28 +43,17 @@ module.exports = {
       );
     }
 
-    const createSaleError = await createSaleTransaction(sale, products);
+    const createSale = await createSaleTransaction(sale, products);
 
-    if (createSaleError) {
-      return validateResponse(httpStatusCode.badRequest, error.details[0].message, 'error');
+    if (createSale.message) {
+      return validateResponse(
+        httpStatusCode.internalServerError,
+        null,
+        'error',
+      );
     }
 
-     return validateResponse(
-      httpStatusCode.created, null, 'sales',
-    );
-  },
-
-  async show(id) {
-    const sale = await Sale
-      .findOne({ where: { id }, include: [{ model: Product, as: 'products' }] });
-    
-    if (!sale) {
-      return validateResponse(httpStatusCode.badRequest, 'num quis vir nao', 'error');
-    }
-
-    return validateResponse(
-      httpStatusCode.ok, sale, 'sale',
-    );
+    return validateResponse(httpStatusCode.created, createSale, 'saleId');
   },
 
   async getAll(filter) {
@@ -84,5 +67,22 @@ module.exports = {
       );
     }
     return validateResponse(httpStatusCode.ok, sales, 'sales');
+  },
+
+  async show(id) {
+    const sale = await Sale.findOne({
+      where: { id },
+      include: [{ model: Product, as: 'products' }],
+    });
+
+    if (!sale) {
+      return validateResponse(
+        httpStatusCode.badRequest,
+        errors.SALE_NOT_FOUND,
+        'error',
+      );
+    }
+
+    return validateResponse(httpStatusCode.ok, sale, 'sale');
   },
 };

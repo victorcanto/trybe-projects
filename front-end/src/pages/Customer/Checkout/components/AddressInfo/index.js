@@ -1,22 +1,39 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { requestUsersByRole } from '../../../../../services/api';
+import { useHistory } from 'react-router-dom';
+import { requestRegisterSale, requestUsersByRole } from '../../../../../services/api';
 import { useUser } from '../../../../../contexts/userContext';
 import StyledAddressInfo from './styles';
 import { useProduct } from '../../../../../contexts/productContext';
 import Form from '../../../../../components/Form';
 import useForm from '../../../../../hooks/useForm';
+import validateSaleData from '../../../../../utils/validateSaleData';
+import ErrorMsg from '../../../../../components/ErrorMsg';
 
 const AddressInfo = () => {
+  const history = useHistory();
   const [{ values }, handleChange, handleSubmit] = useForm();
   const { products, total } = useProduct();
 
   const [sellers, setSellers] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState();
+  const [errorMsg, setErrorMsg] = useState('');
   const { user } = useUser();
 
-  const handleCreateSale = () => {
-    console.log({ values, products, total, selectedSeller });
-    // handle create a sale
+  const handleCreateSale = async () => {
+    const validatedSale = validateSaleData(
+      { values, products, total, selectedSeller }, user.id,
+    );
+
+    console.log(validatedSale);
+    console.log(user.token);
+
+    const result = await requestRegisterSale(user.token, validatedSale, products);
+    console.log(result);
+
+    if (result.message) {
+      return setErrorMsg(result.message);
+    }
+    history.push(`/customer/orders/${result.saleId}`);
   };
 
   const getAllSellers = useCallback(
@@ -87,6 +104,7 @@ const AddressInfo = () => {
             FINALIZAR PEDIDO
           </button>
         </div>
+        {errorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
       </Form>
     </StyledAddressInfo>
   );

@@ -4,7 +4,7 @@ const {
   userController, 
   saleController, 
   productController } = require('../controllers');
-const authToken = require('../middlewares/authToken');
+const { authToken } = require('../middlewares');
 
 const router = Router();
 

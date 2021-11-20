@@ -3,42 +3,42 @@ import PropTypes from 'prop-types';
 import StyledTableRow from './styles';
 import { useProduct } from '../../../../../../../contexts/productContext';
 
-const TableRow = ({ product }) => {
+const TableRow = ({ product, index }) => {
   const { products, setProducts } = useProduct();
   const removeProductOrder = () => {
     const updatedProduct = { ...products };
-    delete updatedProduct[product.id];
+    delete updatedProduct[index];
     setProducts(updatedProduct);
   };
   const calculateSubtotal = () => Number(product.price) * Number(product.quantity);
   return (
     <StyledTableRow>
       <td
-        data-testid={ `customer_checkout__element-order-table-item-number-${product.id}` }
+        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
         className="item"
       >
-        {product.id}
+        {index}
       </td>
       <td
-        data-testid={ `customer_checkout__element-order-table-name-${product.id}` }
+        data-testid={ `customer_checkout__element-order-table-name-${index}` }
         className="description"
       >
         {product.name}
       </td>
       <td
-        data-testid={ `cutomer_checkout__element-order-table-quantity-${product.id}` }
+        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
         className="quantity"
       >
         {product.quantity}
       </td>
       <td
-        data-testid={ `customer_checkout__element-order-table-unit-price-${product.id}` }
+        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
         className="unit-value"
       >
         {product.price}
       </td>
       <td
-        data-testid={ `customer_checkout__element-order-table-sub-total-${product.id}` }
+        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
         className="sub-total"
       >
         {calculateSubtotal()}
@@ -46,7 +46,7 @@ const TableRow = ({ product }) => {
       <td className="remove">
         <button
           type="button"
-          data-testid={ `customer_checkout__element-order-table-remove-${product.id}` }
+          data-testid={ `customer_checkout__element-order-table-remove-${index}` }
           onClick={ removeProductOrder }
         >
           Remover
@@ -63,6 +63,7 @@ TableRow.propTypes = {
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default TableRow;
