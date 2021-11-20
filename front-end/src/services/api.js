@@ -52,8 +52,9 @@ const requestGetAllProducts = async () => {
 
 const requestUserInfo = async (token) => {
   try {
-    const response = await axios
-      .get(`${URL_API}/user`, { headers: { Authorization: token } });
+    const response = await axios.get(`${URL_API}/user`, {
+      headers: { Authorization: token },
+    });
 
     return response.data;
   } catch (error) {
@@ -63,8 +64,22 @@ const requestUserInfo = async (token) => {
 
 const requestUsersByRole = async (token, role) => {
   try {
-    const response = await axios
-      .get(`${URL_API}/users/${role}`, { headers: { Authorization: token } });
+    const response = await axios.get(`${URL_API}/users/${role}`, {
+      headers: { Authorization: token },
+    });
+
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+const requestRegisterSale = async (token, sale, products) => {
+  try {
+    const response = await axios.post(`${URL_API}/sales`, {
+      headers: { Authorization: token },
+      data: { sale, products: Object.values(products) },
+    });
 
     return response.data;
   } catch (error) {
@@ -79,4 +94,5 @@ export {
   requestUserInfo,
   requestSales,
   requestUsersByRole,
+  requestRegisterSale,
 };
