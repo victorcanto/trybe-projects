@@ -14,6 +14,10 @@ const Products = () => {
   const { user } = useUser();
   const { total } = useProduct();
 
+  function handleNavigateToCheckout() {
+    history.push('/customer/checkout');
+  }
+
   const getAllProducts = useCallback(
     async () => {
       const result = await requestGetAllProducts();
@@ -22,10 +26,6 @@ const Products = () => {
     },
     [],
   );
-
-  function handleNavigateToCheckout() {
-    history.push('/customer/checkout');
-  }
 
   useEffect(() => {
     getAllProducts();

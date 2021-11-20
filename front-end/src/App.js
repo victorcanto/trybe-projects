@@ -4,7 +4,8 @@ import Products from './pages/Customer/Products';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
-import Checkout from './pages/Customer/Products/Checkout';
+import Checkout from './pages/Customer/Checkout';
+import OrderDetails from './pages/OrderDetails';
 
 const App = () => (
   <Switch>
@@ -13,6 +14,7 @@ const App = () => (
     <Route path="/register" component={ Register } />
     <Route path="/customer/products" component={ Products } />
     <Route path="/customer/checkout" component={ Checkout } />
+    <Route path="/customer/orders/:id" component={ OrderDetails } />
     <Route component={ NotFound } />
   </Switch>
 );
