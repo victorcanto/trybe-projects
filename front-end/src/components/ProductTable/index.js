@@ -18,18 +18,24 @@ const ProductTable = ({ page, userRole, products }) => (
         key={ product.id }
         page={ page }
         userRole={ userRole }
-        data={ product }
-        number={ index + 1 }
-        quantity={ quantity }
+        product={ product }
+        number={ index }
       />
     ))}
   </StyledProductTable>
 );
 
 ProductTable.propTypes = {
-  page: PropTypes.string.isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   userRole: PropTypes.string.isRequired,
-  products: PropTypes.shape([{}]).isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 export default ProductTable;
