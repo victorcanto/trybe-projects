@@ -13,14 +13,14 @@ const ProductTable = ({ products }) => (
       <th>Sub-total</th>
       <th>Remover Item</th>
     </tr>
-    {Object.values(products).map((product, index) => (
+    {products.map((product, index) => (
       <TableRow key={ product.id } product={ product } index={ index } />
     ))}
   </StyledProductTable>
 );
 
 ProductTable.propTypes = {
-  products: PropTypes.objectOf(
+  products: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,

@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StyledTableRow from './styles';
-import { useProduct } from '../../../../../../../contexts/productContext';
-import convertPrice from '../../../../../../../utils/convertPrice';
+import { useProduct } from '../../../../contexts/productContext';
+import convertPrice from '../../../../utils/convertPrice';
 
 const TableRow = ({ product, index }) => {
   const { products, setProducts } = useProduct();
-
   const removeProductOrder = () => {
     const updatedProduct = { ...products };
     delete updatedProduct[product.id];

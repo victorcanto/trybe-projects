@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { useEffect } from 'react/cjs/react.development';
-import ProductTable from './components/ProductTable';
+import ProductTable from '../../../components/ProductTable';
 import AddressInfo from './components/AddressInfo';
 import Navbar from '../../../components/Navbar';
 import StyledCheckout from './styles';
@@ -30,7 +30,7 @@ const Checkout = () => {
           />
 
           <div className="product-table-container">
-            <ProductTable products={ products } />
+            <ProductTable products={ Object.values(products) } />
 
             <div className="total-container">
               <span>
