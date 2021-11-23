@@ -16,8 +16,8 @@ router.get('/user', userController.show);
 // Login
 router.post('/login', loginController.login);
 // Products
-router.post('/products', productController.create);
-router.get('/products', productController.index);
+router.post('/products', authToken, productController.create);
+router.get('/products', authToken, productController.index);
 // Sales
 router.get('/sales', authToken, saleController.getAll);
 router.get('/sales/:id', authToken, saleController.show);
