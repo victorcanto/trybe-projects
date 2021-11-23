@@ -16,37 +16,37 @@ const Navbar = ({ productPath, orderPath, username }) => {
   };
 
   return (
-
     <StyledNavbar>
-      { productPath && (
-        <NavLink
-          data-testid="customer_products__element-navbar-link-products"
-          to={ productPath }
+      <div className="container-links">
+        {productPath && (
+          <NavLink
+            data-testid="customer_products__element-navbar-link-products"
+            to={ productPath }
+          >
+            PRODUTOS
+          </NavLink>
+        )}
+        {orderPath && (
+          <NavLink
+            to={ orderPath }
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            {orderPath.includes('customer') ? 'MEUS PEDIDOS' : 'PEDIDOS'}
+          </NavLink>
+        )}
+      </div>
+      <div>
+        <span data-testid="customer_products__element-navbar-user-full-name">
+          {username}
+        </span>
+        <button
+          data-testid="customer_products__element-navbar-link-logout"
+          type="button"
+          onClick={ handleLogout }
         >
-          PRODUTOS
-        </NavLink>)}
-      { orderPath && (
-        <NavLink
-          to={ orderPath }
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          PEDIDOS
-        </NavLink>
-      )}
-      <span
-        data-testid="customer_products__element-navbar-user-full-name"
-      >
-        {username}
-
-      </span>
-      <button
-        data-testid="customer_products__element-navbar-link-logout"
-        type="button"
-        onClick={ handleLogout }
-      >
-        Sair
-      </button>
-
+          Sair
+        </button>
+      </div>
     </StyledNavbar>
   );
 };
