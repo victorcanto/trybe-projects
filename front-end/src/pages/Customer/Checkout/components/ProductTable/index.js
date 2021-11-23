@@ -14,7 +14,7 @@ const ProductTable = ({ products }) => (
       <th>Remover Item</th>
     </tr>
     {Object.values(products).map((product, index) => (
-      <TableRow key={ product.id } product={ product } index={ index + 1 } />
+      <TableRow key={ product.id } product={ product } index={ index } />
     ))}
   </StyledProductTable>
 );
