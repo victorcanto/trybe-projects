@@ -24,16 +24,15 @@ const AddressInfo = () => {
       { values, products, total, selectedSeller }, user.id,
     );
 
-    console.log(validatedSale);
-    console.log(user.token);
-
     const result = await requestRegisterSale(user.token, validatedSale, products);
-    console.log(result);
 
     if (result.message) {
-      return setErrorMsg(result.message);
+      const THREE_SECONDS = 3000;
+      setErrorMsg(result.message);
+      setTimeout(() => setErrorMsg(''), THREE_SECONDS);
+    } else {
+      history.push(`/customer/orders/${result.saleId}`);
     }
-    history.push(`/customer/orders/${result.saleId}`);
   };
 
   const getAllSellers = useCallback(
@@ -98,6 +97,7 @@ const AddressInfo = () => {
         </label>
         <div>
           <button
+            disabled={ total === '0,00' }
             data-testid="customer_checkout__button-submit-order"
             type="submit"
           >
