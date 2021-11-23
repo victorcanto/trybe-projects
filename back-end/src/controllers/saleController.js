@@ -2,7 +2,7 @@ const { saleService } = require('../services');
 
 module.exports = {
   async create(req, res) {
-    const { data: { sale, products } } = req.body;
+    const { sale, products } = req.body;
     const { status, saleId, error } = await saleService.create(sale, products);
     const response = error || saleId;
     return res.status(status).json(response);
