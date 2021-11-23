@@ -5,6 +5,7 @@ import { useProduct } from '../../../contexts/productContext';
 import { useUser } from '../../../contexts/userContext';
 import { requestGetAllProducts } from '../../../services/api';
 import ProductList from './components/ProductList';
+import StyledTotalButton from './styles';
 
 const Products = () => {
   const history = useHistory();
@@ -46,13 +47,16 @@ const Products = () => {
             productPath="/customer/products"
             orderPath="/customer/cart"
           />
+
+          <h1>Produtos</h1>
           <ProductList products={ products } />
 
-          <button
+          <StyledTotalButton
             type="button"
             disabled={ total === 0 }
             onClick={ handleNavigateToCheckout }
             data-testid="customer_products__button-cart"
+            className="total"
           >
             <span
               type="button"
@@ -60,7 +64,7 @@ const Products = () => {
             >
               {total}
             </span>
-          </button>
+          </StyledTotalButton>
 
         </>
       )}

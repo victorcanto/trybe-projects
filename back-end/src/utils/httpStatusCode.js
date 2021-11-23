@@ -6,6 +6,7 @@ const httpStatusCode = {
   notFound: 404,
   conflit: 409,
   notContent: 204,
+  internalServerError: 500,
   };
   
 module.exports = httpStatusCode; 

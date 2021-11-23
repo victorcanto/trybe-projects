@@ -1,29 +1,32 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import StyledOrderDetails from './styles';
 import ProductTable from '../../components/ProductTable';
 import Navbar from '../../components/Navbar';
 import Details from './components/Details';
+import { requestSale } from '../../services/api';
 
 const OrderDetails = () => {
-  const [sale, setSales] = useState({});
+  const { id } = useParams();
+  const [seller, setSeller] = useState('');
+  const [sale, setSale] = useState({});
+  const [products, setProducts] = useState([]);
 
   const getSale = useCallback(
-    async () => {
-      const result = await (() => ({
-        orderId: 'id do pedido, salesID? delivery_number?(tabela sales?)',
-        sellerName: 'Nome do vendedor(tabelas users pelo id de sales?)',
-        saleDate: 'sale_date(tabela sales)',
-        status: 'status da tabela sales',
-        totalPrice: 'total price sales',
-      }));
+    async (token) => {
+      const result = await requestSale(token, id);
+      console.log(result);
 
-      setSales(result);
+      setSale(result.sale.sale);
+      setProducts(result.sale.sale.products);
+      setSeller(result.sale.user.name);
     },
-    [],
+    [id],
   );
 
   useEffect(() => {
-    getSale();
+    const { token } = JSON.parse(localStorage.user);
+    getSale(token);
   }, [getSale]);
 
   return (
@@ -35,14 +38,14 @@ const OrderDetails = () => {
           orderPath="/customer/orders"
         />
 
-        <Details sale={ sale } userRole="customer" />
+        <Details sale={ sale } sellerName={ seller } />
 
         <div className="product-table-container">
-          <ProductTable page="order_details" />
+          <ProductTable page="order_details" userRole="customer" products={ products } />
 
           <div className="total-container">
             <span>
-              { sale.totalPrice }
+              { sale.total_price }
             </span>
           </div>
         </div>

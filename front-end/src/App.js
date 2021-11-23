@@ -4,6 +4,7 @@ import Products from './pages/Customer/Products';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
+import Orders from './pages/Orders';
 import Checkout from './pages/Customer/Checkout';
 import OrderDetails from './pages/OrderDetails';
 
@@ -13,8 +14,10 @@ const App = () => (
     <Route path="/login" component={ Login } />
     <Route path="/register" component={ Register } />
     <Route path="/customer/products" component={ Products } />
-    <Route path="/customer/checkout" component={ Checkout } />
     <Route path="/customer/orders/:id" component={ OrderDetails } />
+    <Route path="/customer/orders" component={ Orders } />
+    <Route path="/seller/orders/" component={ Orders } />
+    <Route path="/customer/checkout" component={ Checkout } />
     <Route component={ NotFound } />
   </Switch>
 );

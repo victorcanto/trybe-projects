@@ -1,12 +1,15 @@
 import React from 'react';
-// import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StyledTableRow from './styles';
 
-const TableRow = ({ data, page, userRole }) => {
-  // const [, user, page] = useLocation().pathname.split('/');
-  const { id, number, name, quantity, unitPrice, subTotal } = data;
-  // const isDetailPage = page === 'checkout' ? page : 'order_details';
+const TableRow = ({ data, page, userRole, number }) => {
+  const {
+    id,
+    name,
+    saleProduct: { quantity },
+    price,
+  } = data;
+
   return (
     <StyledTableRow>
       <td
@@ -31,13 +34,13 @@ const TableRow = ({ data, page, userRole }) => {
         data-testid={ `${userRole}_${page}__element-order-table-unit-price-${id}` }
         className="unit-value"
       >
-        {unitPrice}
+        {price}
       </td>
       <td
         data-testid={ `${userRole}_${page}__element-order-table-sub-total-${id}` }
         className="sub-total"
       >
-        {subTotal}
+        {Number(quantity * price)}
       </td>
       {page === 'checkout' ? (
         <td
@@ -54,12 +57,13 @@ const TableRow = ({ data, page, userRole }) => {
 TableRow.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.number,
-    number: PropTypes.number,
     name: PropTypes.string,
-    quantity: PropTypes.number,
-    unitPrice: PropTypes.number,
-    subTotal: PropTypes.number,
+    saleProduct: PropTypes.shape({
+      quantity: PropTypes.number,
+    }).isRequired,
+    price: PropTypes.string,
   }).isRequired,
+  number: PropTypes.number.isRequired,
   page: PropTypes.string.isRequired,
   userRole: PropTypes.string.isRequired,
 };

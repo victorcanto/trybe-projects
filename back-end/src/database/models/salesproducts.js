@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.DECIMAL, 
   },{
     timestamps: true,
-    tableName: "salesproducts"
+    tableName: "salesProducts"
   } )
 
   SaleProduct.associate = (models) => {
