@@ -49,7 +49,7 @@ module.exports = {
         {
           name: 'Becks 330ml',
           price: 4.99,
-          url_image: 'hhttp://localhost:3001/images/becks_330ml.jpg',
+          url_image: 'http://localhost:3001/images/becks_330ml.jpg',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
