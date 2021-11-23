@@ -15,10 +15,17 @@ const OrderDetails = () => {
   const getSale = useCallback(
     async (token) => {
       const result = await requestSale(token, id);
-      console.log(result);
+      console.log('product', result.sale.sale.products);
+      const mappedProducts = result.sale.sale.products.map(
+        ({ name, saleProduct: { quantity }, price }) => ({
+          name,
+          quantity,
+          price,
+        }),
+      );
 
       setSale(result.sale.sale);
-      setProducts(result.sale.sale.products);
+      setProducts(mappedProducts);
       setSeller(result.sale.user.name);
     },
     [id],
@@ -41,12 +48,14 @@ const OrderDetails = () => {
         <Details sale={ sale } sellerName={ seller } />
 
         <div className="product-table-container">
-          <ProductTable page="order_details" userRole="customer" products={ products } />
+          <ProductTable
+            page="order_details"
+            userRole="customer"
+            products={ products }
+          />
 
           <div className="total-container">
-            <span>
-              { sale.total_price }
-            </span>
+            <span>{sale.total_price}</span>
           </div>
         </div>
       </div>
