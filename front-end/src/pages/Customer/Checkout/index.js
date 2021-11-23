@@ -12,7 +12,7 @@ const Checkout = () => {
   const history = useHistory();
   const { user } = useUser();
   const { products, total } = useProduct();
-
+  console.log('products in checkout: ', products);
   useEffect(() => {
     if (!user) {
       history.push('/login');
@@ -30,7 +30,11 @@ const Checkout = () => {
           />
 
           <div className="product-table-container">
-            <ProductTable products={ products } />
+            <ProductTable
+              products={ Object.values(products) }
+              page="checkout"
+              userRole="customer"
+            />
 
             <div className="total-container">
               <span>

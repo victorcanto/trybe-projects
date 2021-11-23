@@ -21,11 +21,11 @@ const Products = () => {
 
   const getAllProducts = useCallback(
     async () => {
-      const result = await requestGetAllProducts();
+      const result = await requestGetAllProducts(user.token);
 
       setProducts(result);
     },
-    [],
+    [user.token],
   );
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Products = () => {
           <Navbar
             username={ user.name }
             productPath="/customer/products"
-            orderPath="/customer/cart"
+            orderPath="/customer/orders"
           />
 
           <h1>Produtos</h1>

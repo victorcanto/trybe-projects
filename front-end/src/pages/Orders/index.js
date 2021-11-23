@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import moment from 'moment';
 import Navbar from '../../components/Navbar';
+import { useUser } from '../../contexts/userContext';
 import { requestSales } from '../../services/api';
 import OrderCard from './components/OrderCard';
 import StyledOrders from './styles';
 
 const customerOrdersUrl = '/customer/orders';
+const customerProductsUrl = '/customer/products';
 const sellerOrdersUrl = '/seller/orders';
 
 const Orders = () => {
   const { pathname } = useLocation();
   const [orders, setOrders] = useState([]);
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { user } = useUser();
 
   useEffect(() => {
     const request = async () => {
@@ -28,7 +29,7 @@ const Orders = () => {
     <>
       {pathname !== sellerOrdersUrl ? (
         <Navbar
-          productPath={ customerOrdersUrl }
+          productPath={ customerProductsUrl }
           orderPath={ customerOrdersUrl }
           username={ user.name }
         />
@@ -41,7 +42,7 @@ const Orders = () => {
             key={ id }
             id={ id }
             status={ status }
-            saleDate={ moment(saleDate).format('DD/MM/YY') }
+            saleDate={ saleDate }
             totalPrice={ totalPrice }
           />
         ))}

@@ -17,6 +17,14 @@ const GlobalStyle = createGlobalStyle`
     border: none;
   }
 
+  h1, h2, h3, h4 {
+    font-family: 'Ubuntu', sans-serif;
+  }
+
+  a, p, span, div, button {
+    font-family: 'Poppins', sans-serif;
+  }
+
   body {
     background-color: var(--beer);
   }

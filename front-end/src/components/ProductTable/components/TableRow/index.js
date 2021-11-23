@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StyledTableRow from './styles';
 
-const TableRow = ({ data, page, userRole, number }) => {
+const TableRow = ({ data, page, userRole, number, quantity }) => {
   const {
     id,
     name,
-    saleProduct: { quantity },
     price,
   } = data;
-
   return (
     <StyledTableRow>
       <td
@@ -59,10 +57,10 @@ TableRow.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     saleProduct: PropTypes.shape({
-      quantity: PropTypes.number,
     }).isRequired,
     price: PropTypes.string,
   }).isRequired,
+  quantity: PropTypes.number.isRequired,
   number: PropTypes.number.isRequired,
   page: PropTypes.string.isRequired,
   userRole: PropTypes.string.isRequired,
