@@ -17,16 +17,16 @@ const Products = () => {
 
   const getAllProducts = useCallback(
     async () => {
-      const result = await requestGetAllProducts();
+      const result = await requestGetAllProducts(user.token);
 
       setProducts(result);
     },
-    [],
+    [user.token],
   );
 
-  function handleNavigateToCheckout() {
+  const handleNavigateToCheckout = () => {
     history.push('/customer/checkout');
-  }
+  };
 
   useEffect(() => {
     getAllProducts();
@@ -45,7 +45,7 @@ const Products = () => {
           <Navbar
             username={ user.name }
             productPath="/customer/products"
-            orderPath="/customer/cart"
+            orderPath="/customer/orders"
           />
 
           <h1>Produtos</h1>
