@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import StyledOrderDetails from './styles';
 import ProductTable from '../../components/ProductTable';
 import Navbar from '../../components/Navbar';
-import Details from './components/Details';
+import SellerDetails from './components/SellerDetails';
 import { requestSale } from '../../services/api';
+import convertPrice from '../../utils/convertPrice';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -45,7 +46,7 @@ const OrderDetails = () => {
           orderPath="/customer/orders"
         />
 
-        <Details sale={ sale } sellerName={ seller } />
+        <SellerDetails sale={ sale } sellerName={ seller } />
 
         <div className="product-table-container">
           <ProductTable
@@ -55,7 +56,12 @@ const OrderDetails = () => {
           />
 
           <div className="total-container">
-            <span>{sale.total_price}</span>
+            <span
+              data-testid="customer_order_details__element-order-total-price"
+            >
+              {convertPrice(sale.total_price)}
+
+            </span>
           </div>
         </div>
       </div>
