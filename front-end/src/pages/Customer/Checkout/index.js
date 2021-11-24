@@ -1,6 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router';
-import { useEffect } from 'react/cjs/react.development';
 import ProductTable from '../../../components/ProductTable';
 import AddressInfo from './components/AddressInfo';
 import Navbar from '../../../components/Navbar';
@@ -9,15 +7,8 @@ import StyledCheckout from './styles';
 import { useProduct } from '../../../contexts/productContext';
 
 const Checkout = () => {
-  const history = useHistory();
   const { user } = useUser();
   const { products, total } = useProduct();
-  console.log('products in checkout: ', products);
-  useEffect(() => {
-    if (!user) {
-      history.push('/login');
-    }
-  }, [history, user]);
 
   return (
     <StyledCheckout>

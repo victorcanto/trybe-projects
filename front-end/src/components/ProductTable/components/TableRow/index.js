@@ -4,7 +4,7 @@ import StyledTableRow from './styles';
 import { useProduct } from '../../../../contexts/productContext';
 import convertPrice from '../../../../utils/convertPrice';
 
-const TableRow = ({ product, page, userRole, number }) => {
+const TableRow = ({ product, page, userRole, orderNumber }) => {
   const { products, setProducts } = useProduct();
   const removeProductOrder = () => {
     const updatedProduct = { ...products };
@@ -17,31 +17,37 @@ const TableRow = ({ product, page, userRole, number }) => {
   return (
     <StyledTableRow>
       <td
-        data-testid={ `${userRole}_${page}__element-order-table-item-number-${number}` }
+        data-testid={
+          `${userRole}_${page}__element-order-table-item-number-${orderNumber}`
+        }
         className="item"
       >
-        {number + 1}
+        {orderNumber + 1}
       </td>
       <td
-        data-testid={ `${userRole}_${page}__element-order-table-name-${number}` }
+        data-testid={ `${userRole}_${page}__element-order-table-name-${orderNumber}` }
         className="description"
       >
         {product.name}
       </td>
       <td
-        data-testid={ `${userRole}_${page}__element-order-table-quantity-${number}` }
+        data-testid={ `${userRole}_${page}__element-order-table-quantity-${orderNumber}` }
         className="quantity"
       >
         {product.quantity}
       </td>
       <td
-        data-testid={ `${userRole}_${page}__element-order-table-unit-price-${number}` }
+        data-testid={
+          `${userRole}_${page}__element-order-table-unit-price-${orderNumber}`
+        }
         className="unit-value"
       >
         {convertPrice(product.price)}
       </td>
       <td
-        data-testid={ `${userRole}_${page}__element-order-table-sub-total-${number}` }
+        data-testid={
+          `${userRole}_${page}__element-order-table-sub-total-${orderNumber}`
+        }
         className="sub-total"
       >
         {convertPrice(calculateSubtotal())}
@@ -49,7 +55,9 @@ const TableRow = ({ product, page, userRole, number }) => {
       {page === 'checkout' ? (
         <td className="remove">
           <button
-            data-testid={ `${userRole}_${page}__element-order-table-remove-${number}` }
+            data-testid={
+              `${userRole}_${page}__element-order-table-remove-${orderNumber}`
+            }
             onClick={ removeProductOrder }
             type="button"
           >
@@ -68,7 +76,7 @@ TableRow.propTypes = {
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
   }).isRequired,
-  number: PropTypes.number.isRequired,
+  orderNumber: PropTypes.number.isRequired,
   userRole: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
 };

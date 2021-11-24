@@ -19,7 +19,7 @@ const ProductTable = ({ page, userRole, products }) => (
         page={ page }
         userRole={ userRole }
         product={ product }
-        number={ index }
+        orderNumber={ index }
       />
     ))}
   </StyledProductTable>
