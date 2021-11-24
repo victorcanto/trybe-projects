@@ -27,7 +27,7 @@ const Login = () => {
 
   const goToProductsPage = async () => {
     const requestToken = await requestLogin(values);
-    
+
     if (requestToken.message) {
       return setErrorMsg(requestToken.message);
     }
