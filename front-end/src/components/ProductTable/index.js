@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TableRow from './components/TableRow';
 import StyledProductTable from './styles';
 
-const ProductTable = ({ products }) => (
+const ProductTable = ({ page, userRole, products }) => (
   <StyledProductTable>
     <tr>
       <th>Item</th>
@@ -11,10 +11,16 @@ const ProductTable = ({ products }) => (
       <th>Quantidade</th>
       <th>Valor Unitário</th>
       <th>Sub-total</th>
-      <th>Remover Item</th>
+      {page === 'checkout' ? <th>Remover Item</th> : null}
     </tr>
     {products.map((product, index) => (
-      <TableRow key={ product.id } product={ product } index={ index } />
+      <TableRow
+        key={ product.id }
+        page={ page }
+        userRole={ userRole }
+        product={ product }
+        orderNumber={ index }
+      />
     ))}
   </StyledProductTable>
 );
@@ -28,6 +34,8 @@ ProductTable.propTypes = {
       quantity: PropTypes.number.isRequired,
     }),
   ).isRequired,
+  userRole: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 export default ProductTable;

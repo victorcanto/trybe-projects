@@ -2,9 +2,9 @@ import React from 'react';
 import ProductTable from '../../../components/ProductTable';
 import AddressInfo from './components/AddressInfo';
 import Navbar from '../../../components/Navbar';
+import { useUser } from '../../../contexts/userContext';
 import StyledCheckout from './styles';
 import { useProduct } from '../../../contexts/productContext';
-import { useUser } from '../../../contexts/userContext';
 
 const Checkout = () => {
   const { user } = useUser();
@@ -21,7 +21,11 @@ const Checkout = () => {
           />
 
           <div className="product-table-container">
-            <ProductTable products={ Object.values(products) } />
+            <ProductTable
+              products={ Object.values(products) }
+              page="checkout"
+              userRole="customer"
+            />
 
             <div className="total-container">
               <span>
@@ -36,7 +40,6 @@ const Checkout = () => {
           <AddressInfo />
         </>
       )}
-
     </StyledCheckout>
   );
 };

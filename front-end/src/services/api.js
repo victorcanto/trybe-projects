@@ -41,6 +41,17 @@ const requestSales = async (token) => {
   }
 };
 
+const requestSale = async (token, id) => {
+  try {
+    const response = await axios.get(`${URL_API}/sales/${id}`, {
+      headers: { authorization: token },
+    });
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
 const requestGetAllProducts = async (token) => {
   try {
     const response = await axios.get(`${URL_API}/products`, {
@@ -95,6 +106,7 @@ export {
   requestRegisterUser,
   requestGetAllProducts,
   requestUserInfo,
+  requestSale,
   requestSales,
   requestUsersByRole,
   requestRegisterSale,

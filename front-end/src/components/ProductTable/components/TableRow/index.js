@@ -4,7 +4,7 @@ import StyledTableRow from './styles';
 import { useProduct } from '../../../../contexts/productContext';
 import convertPrice from '../../../../utils/convertPrice';
 
-const TableRow = ({ product, index }) => {
+const TableRow = ({ product, page, userRole, orderNumber }) => {
   const { products, setProducts } = useProduct();
   const removeProductOrder = () => {
     const updatedProduct = { ...products };
@@ -17,44 +17,54 @@ const TableRow = ({ product, index }) => {
   return (
     <StyledTableRow>
       <td
-        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+        data-testid={
+          `${userRole}_${page}__element-order-table-item-number-${orderNumber}`
+        }
         className="item"
       >
-        {index + 1}
+        {orderNumber + 1}
       </td>
       <td
-        data-testid={ `customer_checkout__element-order-table-name-${index}` }
+        data-testid={ `${userRole}_${page}__element-order-table-name-${orderNumber}` }
         className="description"
       >
         {product.name}
       </td>
       <td
-        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+        data-testid={ `${userRole}_${page}__element-order-table-quantity-${orderNumber}` }
         className="quantity"
       >
         {product.quantity}
       </td>
       <td
-        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+        data-testid={
+          `${userRole}_${page}__element-order-table-unit-price-${orderNumber}`
+        }
         className="unit-value"
       >
         {convertPrice(product.price)}
       </td>
       <td
-        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+        data-testid={
+          `${userRole}_${page}__element-order-table-sub-total-${orderNumber}`
+        }
         className="sub-total"
       >
         {convertPrice(calculateSubtotal())}
       </td>
-      <td className="remove">
-        <button
-          type="button"
-          data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-          onClick={ removeProductOrder }
-        >
-          Remover
-        </button>
-      </td>
+      {page === 'checkout' ? (
+        <td className="remove">
+          <button
+            data-testid={
+              `${userRole}_${page}__element-order-table-remove-${orderNumber}`
+            }
+            onClick={ removeProductOrder }
+            type="button"
+          >
+            Remover
+          </button>
+        </td>
+      ) : null}
     </StyledTableRow>
   );
 };
@@ -66,7 +76,9 @@ TableRow.propTypes = {
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
   }).isRequired,
-  index: PropTypes.number.isRequired,
+  orderNumber: PropTypes.number.isRequired,
+  userRole: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 export default TableRow;

@@ -1,4 +1,5 @@
 const {
+  user: User,
   sale: Sale,
   saleProduct: SaleProduct,
   product: Product,
@@ -69,10 +70,30 @@ module.exports = {
     return validateResponse(httpStatusCode.ok, sales, 'sales');
   },
 
+  // async show(id) {
+  //   const sale = await Sale.findOne({
+  //     where: { id },
+  //     include: [{ model: Product, as: 'products' }],
+  //   });
+
+  //   if (!sale) {
+  //     return validateResponse(
+  //       httpStatusCode.badRequest,
+  //       errors.SALE_NOT_FOUND,
+  //       'error',
+  //     );
+  //   }
+
+  //   return validateResponse(httpStatusCode.ok, sale, 'sale');
+  // },
   async show(id) {
     const sale = await Sale.findOne({
       where: { id },
       include: [{ model: Product, as: 'products' }],
+    });
+
+    const user = await User.findOne({
+      where: { id: sale.seller_id },
     });
 
     if (!sale) {
@@ -83,6 +104,6 @@ module.exports = {
       );
     }
 
-    return validateResponse(httpStatusCode.ok, sale, 'sale');
+    return validateResponse(httpStatusCode.ok, { sale, user }, 'sale');
   },
 };
