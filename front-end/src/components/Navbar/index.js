@@ -1,51 +1,52 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StyledNavbar from './styles';
 
 import { useUser } from '../../contexts/userContext';
 
 const Navbar = ({ productPath, orderPath, username }) => {
+  const history = useHistory();
   const { setUser } = useUser();
 
-  function handleLogout() {
+  const handleLogout = () => {
     localStorage.removeItem('user');
-
     setUser(null);
-  }
+    history.push('/');
+  };
 
   return (
-
     <StyledNavbar>
-      { productPath && (
-        <NavLink
-          data-testid="customer_products__element-navbar-link-products"
-          to={ productPath }
+      <div className="container-links">
+        {productPath && (
+          <NavLink
+            data-testid="customer_products__element-navbar-link-products"
+            to={ productPath }
+          >
+            PRODUTOS
+          </NavLink>
+        )}
+        {orderPath && (
+          <NavLink
+            to={ orderPath }
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            {orderPath.includes('customer') ? 'MEUS PEDIDOS' : 'PEDIDOS'}
+          </NavLink>
+        )}
+      </div>
+      <div>
+        <span data-testid="customer_products__element-navbar-user-full-name">
+          {username}
+        </span>
+        <button
+          data-testid="customer_products__element-navbar-link-logout"
+          type="button"
+          onClick={ handleLogout }
         >
-          PRODUTOS
-        </NavLink>)}
-      { orderPath && (
-        <NavLink
-          to={ orderPath }
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          PEDIDOS
-        </NavLink>
-      )}
-      <span
-        data-testid="customer_products__element-navbar-user-full-name"
-      >
-        {username}
-
-      </span>
-      <button
-        data-testid="customer_products__element-navbar-link-logout"
-        type="button"
-        onClick={ handleLogout }
-      >
-        Sair
-      </button>
-
+          Sair
+        </button>
+      </div>
     </StyledNavbar>
   );
 };

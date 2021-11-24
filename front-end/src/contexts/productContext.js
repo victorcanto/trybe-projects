@@ -27,6 +27,10 @@ export const ProductContextProvider = ({ children }) => {
     handleCalculateTotal();
   }, [handleCalculateTotal, products]);
 
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
+
   return (
     <ProductContext.Provider
       value={ { products, setProducts, total, setTotal } }

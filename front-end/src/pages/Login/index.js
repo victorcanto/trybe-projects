@@ -28,6 +28,10 @@ const Login = () => {
   const goToProductsPage = async () => {
     const requestToken = await requestLogin(values);
 
+    if (requestToken.message) {
+      return setErrorMsg(requestToken.message);
+    }
+
     const requestUser = await requestUserInfo(requestToken.token);
 
     const userInfo = { ...requestUser.user, token: requestToken.token };
@@ -65,6 +69,13 @@ const Login = () => {
     };
     request();
   }, [values]);
+
+  useEffect(() => {
+    const storageUser = JSON.parse(localStorage.getItem('user'));
+    if (storageUser) {
+      setUser(storageUser);
+    }
+  }, [setUser]);
 
   return (
     <StyledLogin>

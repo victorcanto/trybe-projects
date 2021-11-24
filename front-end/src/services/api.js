@@ -29,9 +29,23 @@ const requestRegisterUser = async ({ name, email, password }) => {
   }
 };
 
-const requestGetAllProducts = async () => {
+const requestSales = async (token) => {
   try {
-    const response = await axios.get(`${URL_API}/products`);
+    const response = await axios.get(`${URL_API}/sales`, {
+      headers: { Authorization: token },
+    });
+
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+const requestGetAllProducts = async (token) => {
+  try {
+    const response = await axios.get(`${URL_API}/products`, {
+      headers: { Authorization: token },
+    });
 
     return response.data;
   } catch (error) {
@@ -41,8 +55,9 @@ const requestGetAllProducts = async () => {
 
 const requestUserInfo = async (token) => {
   try {
-    const response = await axios
-      .get(`${URL_API}/user`, { headers: { Authorization: token } });
+    const response = await axios.get(`${URL_API}/user`, {
+      headers: { Authorization: token },
+    });
 
     return response.data;
   } catch (error) {
@@ -50,4 +65,37 @@ const requestUserInfo = async (token) => {
   }
 };
 
-export { requestLogin, requestRegisterUser, requestGetAllProducts, requestUserInfo };
+const requestUsersByRole = async (token, role) => {
+  try {
+    const response = await axios.get(`${URL_API}/users/${role}`, {
+      headers: { Authorization: token },
+    });
+
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+const requestRegisterSale = async (token, sale, products) => {
+  try {
+    const data = { sale, products: Object.values(products) };
+    const response = await axios.post(`${URL_API}/sales`, data, {
+      headers: { Authorization: token },
+    });
+
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export {
+  requestLogin,
+  requestRegisterUser,
+  requestGetAllProducts,
+  requestUserInfo,
+  requestSales,
+  requestUsersByRole,
+  requestRegisterSale,
+};

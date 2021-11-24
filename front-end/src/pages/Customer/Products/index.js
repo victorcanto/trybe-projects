@@ -5,6 +5,7 @@ import { useProduct } from '../../../contexts/productContext';
 import { useUser } from '../../../contexts/userContext';
 import { requestGetAllProducts } from '../../../services/api';
 import ProductList from './components/ProductList';
+import StyledTotalButton from './styles';
 
 const Products = () => {
   const history = useHistory();
@@ -16,26 +17,20 @@ const Products = () => {
 
   const getAllProducts = useCallback(
     async () => {
-      const result = await requestGetAllProducts();
+      const result = await requestGetAllProducts(user.token);
 
       setProducts(result);
     },
-    [],
+    [user.token],
   );
 
-  function handleNavigateToCheckout() {
+  const handleNavigateToCheckout = () => {
     history.push('/customer/checkout');
-  }
+  };
 
   useEffect(() => {
     getAllProducts();
   }, [getAllProducts]);
-
-  useEffect(() => {
-    if (!user) {
-      history.push('/login');
-    }
-  }, [history, user]);
 
   return (
     <div>
@@ -44,15 +39,18 @@ const Products = () => {
           <Navbar
             username={ user.name }
             productPath="/customer/products"
-            orderPath="/customer/cart"
+            orderPath="/customer/orders"
           />
+
+          <h1>Produtos</h1>
           <ProductList products={ products } />
 
-          <button
+          <StyledTotalButton
             type="button"
             disabled={ total === 0 }
             onClick={ handleNavigateToCheckout }
             data-testid="customer_products__button-cart"
+            className="total"
           >
             <span
               type="button"
@@ -60,7 +58,7 @@ const Products = () => {
             >
               {total}
             </span>
-          </button>
+          </StyledTotalButton>
 
         </>
       )}
