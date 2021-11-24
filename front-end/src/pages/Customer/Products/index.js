@@ -32,12 +32,6 @@ const Products = () => {
     getAllProducts();
   }, [getAllProducts]);
 
-  useEffect(() => {
-    if (!user) {
-      history.push('/login');
-    }
-  }, [history, user]);
-
   return (
     <div>
       {user && (

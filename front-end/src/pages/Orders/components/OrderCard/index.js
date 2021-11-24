@@ -13,7 +13,7 @@ const OrderCard = ({ id, status, saleDate, totalPrice }) => {
   };
 
   const validateTotalPrice = () => `R$ ${totalPrice.replace('.', ',')}`;
-  const validateSaleDate = () => `${moment(saleDate).format('DD/MM/YY')}`;
+  const validateSaleDate = () => `${moment(saleDate).format('DD/MM/YYYY')}`;
 
   return (
     <StyledOrderCard onClick={ goToOrderDetails }>
@@ -24,11 +24,8 @@ const OrderCard = ({ id, status, saleDate, totalPrice }) => {
         <span
           data-testid={ `customer_orders__element-order-id-${id}` }
         >
-          000
           {id}
-
         </span>
-
       </div>
       <OrderStatus
         colorStatus={ status }
@@ -37,9 +34,7 @@ const OrderCard = ({ id, status, saleDate, totalPrice }) => {
           data-testid={ `customer_orders__element-delivery-status-${id}` }
         >
           { status }
-
         </span>
-
       </OrderStatus>
       <div>
         <div
@@ -49,12 +44,12 @@ const OrderCard = ({ id, status, saleDate, totalPrice }) => {
             data-testid={ `customer_orders__element-order-date-${id}` }
           >
             {validateSaleDate()}
-
           </span>
-
         </div>
         <div className="order-total">
-          {validateTotalPrice()}
+          <span data-testid={ `customer_orders__element-card-price-${id}` }>
+            {validateTotalPrice()}
+          </span>
         </div>
       </div>
 

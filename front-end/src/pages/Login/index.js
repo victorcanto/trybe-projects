@@ -73,6 +73,13 @@ const Login = () => {
     request();
   }, [values]);
 
+  useEffect(() => {
+    const storageUser = JSON.parse(localStorage.getItem('user'));
+    if (storageUser) {
+      setUser(storageUser);
+    }
+  }, [setUser]);
+
   return (
     <StyledLogin>
       <img src="" alt="logo" />

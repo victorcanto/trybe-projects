@@ -10,7 +10,6 @@ const OrderStatus = styled.div`
   }};
   border-radius: 8px;
   font-weight: 600;
-  text-transform: uppercase;
 `;
 
 export default OrderStatus;
