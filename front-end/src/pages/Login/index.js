@@ -27,7 +27,7 @@ const Login = () => {
 
   const goToProductsPage = async () => {
     const requestToken = await requestLogin(values);
-
+    
     if (requestToken.message) {
       return setErrorMsg(requestToken.message);
     }
@@ -40,9 +40,6 @@ const Login = () => {
 
     setUser(userInfo);
 
-    if (!requestToken.token) {
-      return setErrorMsg(result.message);
-    }
     clearInputs();
   };
 
@@ -63,7 +60,7 @@ const Login = () => {
           message = result.message;
           disabled = true;
         } else {
-          message = '';
+          message = result.message || '';
           disabled = false;
         }
       }

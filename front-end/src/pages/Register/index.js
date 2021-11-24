@@ -34,20 +34,18 @@ const Register = () => {
 
     const registerUserResponse = await requestRegisterUser(values);
 
-    localStorage.setItem('user', JSON.stringify(registerUserResponse));
-
-    setUser(userInfo);
-
     if (registerUserResponse.message) {
       clearInputs();
-      setErrorMsg(result.message);
-    }
+      setErrorMsg(registerUserResponse.message);
+    } else {
+      localStorage.setItem('user', JSON.stringify(registerUserResponse));
 
-    setUser(result);
+      setUser(registerUserResponse);
+    }
   };
 
   useEffect(() => {
-    if (user && user.token) {
+    if (user) {
       history.push('/customer/products');
     }
   }, [history, user]);
@@ -63,7 +61,7 @@ const Register = () => {
           message = result.message;
           disabled = true;
         } else {
-          message = '';
+          message = result.message || '';
           disabled = false;
         }
       }
