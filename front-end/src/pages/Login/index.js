@@ -44,8 +44,14 @@ const Login = () => {
   };
 
   useEffect(() => {
+    const pathName = {
+      customer: '/customer/products',
+      seller: '/seller/orders',
+      administrator: '/admin/manager',
+    };
+
     if (user && user.token) {
-      history.push('/customer/products');
+      history.push(pathName[user.role]);
     }
   }, [history, user]);
 

@@ -9,9 +9,14 @@ module.exports = {
   },
   
   async getAll(req, res) {
-    const { id } = req.user;
-    const userId = 'user_id';
-    const filter = { where: { [userId]: id } };
+    const { id, role } = req.user;
+    let roleId;
+    if (role === 'customer') {
+        roleId = 'user_id';
+    } else {
+      roleId = 'seller_id';
+    }
+    const filter = { where: { [roleId]: id } };
     const { status, sales, error } = await saleService.getAll(filter);
     const response = error || sales;
     return res.status(status).json(response);
