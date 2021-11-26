@@ -35,17 +35,25 @@ const Orders = () => {
           username={ user.name }
         />
       ) : (
-        <Navbar orderPath={ sellerOrdersUrl } username="Example username" />
+        <Navbar orderPath={ sellerOrdersUrl } username={ user.name } />
       )}
       <StyledOrders>
         {orders && orders
-          .map(({ id, status, sale_date: saleDate, total_price: totalPrice }) => (
+          .map(({
+            id,
+            status,
+            sale_date: saleDate,
+            total_price: totalPrice,
+            delivery_address: deliveryAddress,
+          }) => (
             <OrderCard
               key={ id }
               id={ id }
               status={ status }
               saleDate={ saleDate }
               totalPrice={ totalPrice }
+              userRole={ user.role }
+              deliveryAddress={ deliveryAddress }
             />
           ))}
       </StyledOrders>
