@@ -21,11 +21,13 @@ const Products = () => {
 
   const getAllProducts = useCallback(
     async () => {
-      const result = await requestGetAllProducts(user.token);
+      if (user && user.token) {
+        const result = await requestGetAllProducts(user.token);
 
-      setProducts(result);
+        setProducts(result);
+      }
     },
-    [user.token],
+    [user],
   );
 
   useEffect(() => {

@@ -15,6 +15,7 @@ const App = () => (
     <Route path="/register" component={ Register } />
     <Route path="/customer/products" component={ Products } />
     <Route path="/customer/orders/:id" component={ OrderDetails } />
+    <Route path="/seller/orders/:id" component={ OrderDetails } />
     <Route path="/customer/orders" component={ Orders } />
     <Route path="/seller/orders/" component={ Orders } />
     <Route path="/customer/checkout" component={ Checkout } />

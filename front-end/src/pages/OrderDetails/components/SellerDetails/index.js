@@ -6,32 +6,66 @@ import SectionDetails from './styles';
 const SellerDetails = ({
   sale: { id, sale_date: saleDate, status },
   sellerName,
-}) => (
-  <SectionDetails>
-    <span data-testid="customer_order_details__element-order-details-label-order-id">
-      {id}
-    </span>
-    <span data-testid="customer_order_details__element-order-details-label-seller-name">
-      {sellerName}
-    </span>
-    <span data-testid="customer_order_details__element-order-details-label-order-date">
-      {moment(saleDate).format('DD/MM/YYYY')}
-    </span>
-    <button
-      data-testid="customer_order_details__element-order-details-label-delivery-status"
-      type="button"
-    >
-      {status}
-    </button>
-    <button
-      data-testid="customer_order_details__button-delivery-check"
-      disabled
-      type="button"
-    >
-      Marcar como entregue
-    </button>
-  </SectionDetails>
-);
+  userRole,
+  socket,
+}) => {
+  const changeState = (orderState) => {
+    console.log(orderState);
+
+    console.log(`socketID de sellerDetails: ${socket.id}`);
+
+    socket.emit('updateOrderState', { id, orderState });
+  };
+
+  return (
+    <SectionDetails>
+      <span
+        data-testid={ `${userRole}_order_details__element-order-details-label-order-id` }
+      >
+        {id}
+      </span>
+      <span
+        data-testid={
+          `${userRole}_order_details__element-order-details-label-seller-name`
+        }
+      >
+        {sellerName}
+      </span>
+      <span
+        data-testid={
+          `${userRole}_order_details__element-order-details-label-order-date`
+        }
+      >
+        {moment(saleDate).format('DD/MM/YYYY')}
+      </span>
+      <span
+        data-testid={
+          `${userRole}_order_details__element-order-details-label-delivery-status`
+        }
+      >
+        {status}
+      </span>
+      {userRole === 'customer' ? (
+        <button
+          data-testid={ `${userRole}_order_details__button-delivery-check` }
+          disabled
+          type="button"
+        >
+          Marcar como entregue
+        </button>
+      ) : (
+        <>
+          <button type="button" onClick={ () => changeState('preparando') }>
+            Preparar pedido
+          </button>
+          <button type="button" onClick={ () => changeState('pendente') }>
+            Saiu para entrega
+          </button>
+        </>
+      )}
+    </SectionDetails>
+  );
+};
 
 SellerDetails.propTypes = {
   sale: PropTypes.shape({
@@ -40,6 +74,8 @@ SellerDetails.propTypes = {
     status: PropTypes.string,
   }).isRequired,
   sellerName: PropTypes.string.isRequired,
+  userRole: PropTypes.string.isRequired,
+  socket: PropTypes.func.isRequired,
 };
 
 export default SellerDetails;

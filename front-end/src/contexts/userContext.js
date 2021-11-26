@@ -8,9 +8,11 @@ export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // console.log so para ver o user
-    console.log('user', user);
-  }, [user]);
+    const userClient = JSON.parse(localStorage.getItem('user'));
+    if (userClient) {
+      setUser(userClient);
+    }
+  }, []);
 
   return (
     <UserContext.Provider value={ { user, setUser } }>{children}</UserContext.Provider>

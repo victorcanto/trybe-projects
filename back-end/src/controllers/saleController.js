@@ -9,9 +9,14 @@ module.exports = {
   },
   
   async getAll(req, res) {
-    const { id } = req.user;
-    const userId = 'user_id';
-    const filter = { where: { [userId]: id } };
+    const { id, role } = req.user;
+    let roleId;
+    if (role === 'customer') {
+        roleId = 'user_id';
+    } else {
+      roleId = 'seller_id';
+    }
+    const filter = { where: { [roleId]: id } };
     const { status, sales, error } = await saleService.getAll(filter);
     const response = error || sales;
     return res.status(status).json(response);
@@ -21,6 +26,15 @@ module.exports = {
     const { id } = req.params;
 
     const { status, sale, error } = await saleService.show(id);
+    const response = error || sale;
+    return res.status(status).json(response);
+  },
+
+  async update(req, res) {
+    const { id } = req.params;
+    const { sale2dot0 } = req.body;
+
+    const { status, sale, error } = await saleService.update(id, sale2dot0);
     const response = error || sale;
     return res.status(status).json(response);
   },

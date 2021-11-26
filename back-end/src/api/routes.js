@@ -21,6 +21,7 @@ router.get('/products', authToken, productController.index);
 // Sales
 router.get('/sales', authToken, saleController.getAll);
 router.get('/sales/:id', authToken, saleController.show);
+router.put('/sales/:id', authToken, saleController.update);
 router.post('/sales', authToken, saleController.create);
 
 module.exports = router;
