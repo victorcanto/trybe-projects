@@ -47,18 +47,29 @@ const SellerDetails = ({
       </span>
       {userRole === 'customer' ? (
         <button
-          data-testid={ `${userRole}_order_details__button-delivery-check` }
-          disabled
+          disabled={ status !== 'Em Trânsito' }
+          data-testid="customer_order_details__button-delivery-check"
           type="button"
+          onClick={ () => changeState('Entregue') }
         >
           Marcar como entregue
         </button>
       ) : (
         <>
-          <button type="button" onClick={ () => changeState('preparando') }>
+          <button
+            disabled={ status !== 'Pendente' }
+            data-testid="seller_order_details__button-preparing-check"
+            type="button"
+            onClick={ () => changeState('Preparando') }
+          >
             Preparar pedido
           </button>
-          <button type="button" onClick={ () => changeState('pendente') }>
+          <button
+            disabled={ status !== 'Preparando' }
+            data-testid="seller_order_details__button-dispatch-check"
+            type="button"
+            onClick={ () => changeState('Em Trânsito') }
+          >
             Saiu para entrega
           </button>
         </>

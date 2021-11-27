@@ -24,7 +24,7 @@ const Orders = () => {
       };
       request();
     }
-  }, [user]);
+  }, [user, orders]);
 
   return (
     <>

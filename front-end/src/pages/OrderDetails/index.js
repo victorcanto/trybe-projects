@@ -8,12 +8,17 @@ import SellerDetails from './components/SellerDetails';
 import { requestSale } from '../../services/api';
 import convertPrice from '../../utils/convertPrice';
 
+const customerOrdersUrl = '/customer/orders';
+const customerProductsUrl = '/customer/products';
+const sellerOrdersUrl = '/seller/orders';
+
 const OrderDetails = () => {
   const { id } = useParams();
   const [seller, setSeller] = useState('');
   const [sale, setSale] = useState({});
   const [products, setProducts] = useState([]);
   const [userRole, setRole] = useState('');
+  const [username, setUsername] = useState('');
   const socket = io('http://localhost:3001');
 
   const getSale = useCallback(
@@ -41,9 +46,10 @@ const OrderDetails = () => {
       console.log('updated sale:', updatedSale);
       setSale(updatedSale);
     });
-    const { token, role } = JSON.parse(localStorage.user);
+    const { token, role, name: userName } = JSON.parse(localStorage.user);
     setRole(role);
     getSale(token);
+    setUsername(userName);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getSale]);
 
@@ -52,11 +58,15 @@ const OrderDetails = () => {
       {sale ? (
         <StyledOrderDetails>
           <div>
-            <Navbar
-              username="Mockranio"
-              productPath="/customer/products"
-              orderPath="/customer/orders"
-            />
+            {userRole === 'customer' ? (
+              <Navbar
+                productPath={ customerProductsUrl }
+                orderPath={ customerOrdersUrl }
+                username={ username }
+              />
+            ) : (
+              <Navbar orderPath={ sellerOrdersUrl } username={ username } />
+            )}
 
             <SellerDetails
               sale={ sale }
