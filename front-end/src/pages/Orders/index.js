@@ -17,13 +17,14 @@ const Orders = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    const request = async () => {
-      const result = await requestSales(user.token);
-      setOrders(result.sales);
-    };
-
-    request();
-  }, [user.token]);
+    if (user && user.token) {
+      const request = async () => {
+        const result = await requestSales(user.token);
+        setOrders(result.sales);
+      };
+      request();
+    }
+  }, [user, orders]);
 
   return (
     <>

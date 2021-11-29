@@ -29,4 +29,13 @@ module.exports = {
     const response = error || sale;
     return res.status(status).json(response);
   },
+
+  async update(req, res) {
+    const { id } = req.params;
+    const { sale2dot0 } = req.body;
+
+    const { status, sale, error } = await saleService.update(id, sale2dot0);
+    const response = error || sale;
+    return res.status(status).json(response);
+  },
 };
