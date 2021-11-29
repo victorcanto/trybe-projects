@@ -16,11 +16,21 @@ class Wallet extends React.Component {
     this.sum = this.sum.bind(this);
     this.addExpenseToTable = this.addExpenseToTable.bind(this);
     this.expenseInfo = this.expenseInfo.bind(this);
+    this.setIsEditable = this.setIsEditable.bind(this);
+
+    this.state = {
+      isEditable: { status: false, id: '' },
+    };
   }
 
   componentDidMount() {
     const { fetchCoinsProp } = this.props;
     fetchCoinsProp();
+  }
+
+  setIsEditable(id) {
+    const { isEditable: { status } } = this.state;
+    this.setState({ isEditable: { status: !status, id } });
   }
 
   sum(acc, { value, currency, exchangeRates }) {
@@ -32,6 +42,7 @@ class Wallet extends React.Component {
   }
 
   expenseInfo({ id, value, description, currency, method, tag, exchangeRates }) {
+    const { isEditable: { status } } = this.state;
     const { deleleProp } = this.props;
     return (
       <tr key={ id }>
@@ -44,6 +55,14 @@ class Wallet extends React.Component {
         <td>{(value * exchangeRates[currency].ask).toFixed(2)}</td>
         <td>Real</td>
         <td>
+          <button
+            className={ `btn btn-${status ? 'info' : 'warning'}` }
+            type="button"
+            data-testid="edit-btn"
+            onClick={ () => this.setIsEditable(id) }
+          >
+            Editar
+          </button>
           <button
             className="btn btn-danger"
             type="button"
@@ -64,6 +83,7 @@ class Wallet extends React.Component {
 
   render() {
     const loading = <span>Buscando moedas...</span>;
+    const { isEditable } = this.state;
     const { email, currencies, isFetching, expenses } = this.props;
     return (
       <>
@@ -72,7 +92,10 @@ class Wallet extends React.Component {
           expenses={ expenses }
           addTotalValue={ this.addTotalValue }
         />
-        {isFetching ? loading : <AddExpenseForm currencies={ currencies } /> }
+        {isFetching ? loading : <AddExpenseForm
+          isEditable={ isEditable }
+          currencies={ currencies }
+        /> }
         <ExpenseTable addExpenseToTable={ this.addExpenseToTable } />
       </>
     );

@@ -7,7 +7,7 @@ import Currency from './Inputs/Currency';
 import Payment from './Inputs/Payment';
 import Tag from './Inputs/Tag';
 import Button from './Inputs/Button';
-import { addExpense } from '../actions/index';
+import { addExpense, editExpense } from '../actions/index';
 import fetchExchangeRates from '../services/API';
 
 class AddExpenseForm extends Component {
@@ -18,7 +18,7 @@ class AddExpenseForm extends Component {
     this.filterCurrencies = this.filterCurrencies.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.addExpenses = this.addExpenses.bind(this);
+    this.handleExpense = this.handleExpense.bind(this);
     this.clearInputData = this.clearInputData.bind(this);
 
     this.state = {
@@ -45,7 +45,6 @@ class AddExpenseForm extends Component {
 
   clearInputData() {
     this.setState({
-      id: 0,
       value: '',
       description: '',
       currency: 'USD',
@@ -54,21 +53,28 @@ class AddExpenseForm extends Component {
     });
   }
 
-  async addExpenses() {
-    const { add } = this.props;
-    const exchangeRates = await fetchExchangeRates();
+  handleExpense(type, callback, expenseId) {
+    return async () => {
+      const { id, ...data } = this.state;
 
-    this.setState({
-      exchangeRates,
-    });
+      const exchangeRates = await fetchExchangeRates();
 
-    add(this.state);
+      this.setState({
+        exchangeRates,
+      });
 
-    this.setState((prevState) => ({
-      id: prevState.id + 1,
-    }));
+      if (type === 'add') {
+        callback({ id, ...data, exchangeRates });
 
-    this.clearInputData();
+        this.setState((prevState) => ({
+          id: prevState.id + 1,
+        }));
+      } else {
+        callback({ id: expenseId, data: { ...data, exchangeRates } });
+      }
+
+      this.clearInputData();
+    };
   }
 
   filterCurrencies(currencies) {
@@ -81,7 +87,7 @@ class AddExpenseForm extends Component {
   }
 
   render() {
-    const { currencies } = this.props;
+    const { currencies, isEditable: { status, id }, add, edit } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
       <form className="form-inline wallet-form" onSubmit={ this.handleSubmit }>
@@ -98,7 +104,13 @@ class AddExpenseForm extends Component {
         />
         <Payment method={ method } handleInputChange={ this.handleInputChange } />
         <Tag tag={ tag } handleInputChange={ this.handleInputChange } />
-        <Button addExpenses={ this.addExpenses } />
+        <Button
+          disabled={ !(value.length && description.length) }
+          onClick={ status
+            ? this.handleExpense('edit', edit, id) : this.handleExpense('add', add) }
+        >
+          {status ? 'Editar despesa' : 'Adicionar despesa'}
+        </Button>
       </form>
     );
   }
@@ -106,6 +118,7 @@ class AddExpenseForm extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   add: (expense) => dispatch(addExpense(expense)),
+  edit: (expense) => dispatch(editExpense(expense)),
 });
 
 export default connect(null, mapDispatchToProps)(AddExpenseForm);
@@ -113,4 +126,6 @@ export default connect(null, mapDispatchToProps)(AddExpenseForm);
 AddExpenseForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   add: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
+  isEditable: PropTypes.bool.isRequired,
 };
