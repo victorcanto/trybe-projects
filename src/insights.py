@@ -1,4 +1,4 @@
-import jobs
+from src import jobs
 
 
 def get_unique_job_types(path):
@@ -40,8 +40,9 @@ def get_max_salary(path):
     jobs_list = jobs.read(path)
     salaries = []
     for job in jobs_list:
-        if job["max_salary"]:
+        if job["max_salary"] and job["max_salary"] != "invalid":
             salaries.append(int(job["max_salary"]))
+            print(salaries)
     return max(salaries)
 
 
@@ -49,7 +50,7 @@ def get_min_salary(path):
     jobs_list = jobs.read(path)
     salaries = []
     for job in jobs_list:
-        if job["min_salary"]:
+        if job["min_salary"] and job["min_salary"] != "invalid":
             salaries.append(int(job["min_salary"]))
     return min(salaries)
 
