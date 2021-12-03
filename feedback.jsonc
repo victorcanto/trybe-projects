@@ -1,12 +1,12 @@
 {
     // Coloque seu nome para sabermos de quem foi o comentário =D (opcional)
-    "nome": "",
+    "nome": "Victor Canto",
     // Dê uma nota ao projeto *^* (int de 0 a 10) (obrigatório)
-    "nota": ,
+    "nota": 9,
     // O que você mais gostou no projeto? (obrigatório, mas pode colocar "não há")
-    "pontos_positivos": "",
+    "pontos_positivos": "Trabalhar com essa linguagem clean",
     // O que você menos gostou no projeto? (obrigatório, mas pode colocar "não há")
-    "pontos_negativos": "",
+    "pontos_negativos": "Interpretar erros do avaliador",
     // Comentário livre sobre o que você achou do projeto (opcional)
     "comentário": ""
 }
