@@ -10,12 +10,12 @@ def get_unique_job_types(path):
 
 
 def filter_by_job_type(jobs, job_type):
-    filtered_job_type = []
+    filtered_jobs = []
     for job in jobs:
         if job["job_type"] == job_type:
-            filtered_job_type.append(job)
+            filtered_jobs.append(job)
 
-    return filtered_job_type
+    return filtered_jobs
 
 
 def get_unique_industries(path):
@@ -28,19 +28,23 @@ def get_unique_industries(path):
 
 
 def filter_by_industry(jobs, industry):
-    filtered_industry = []
+    filtered_jobs = []
     for job in jobs:
         if job["industry"] == industry:
-            filtered_industry.append(job)
+            filtered_jobs.append(job)
 
-    return filtered_industry
+    return filtered_jobs
+
+
+def salary_is_valid(salary):
+    return True if salary and salary.isnumeric() else False
 
 
 def get_max_salary(path):
     jobs_list = jobs.read(path)
     salaries = []
     for job in jobs_list:
-        if job["max_salary"] and job["max_salary"] != "invalid":
+        if salary_is_valid(job["max_salary"]):
             salaries.append(int(job["max_salary"]))
     return max(salaries)
 
@@ -49,7 +53,7 @@ def get_min_salary(path):
     jobs_list = jobs.read(path)
     salaries = []
     for job in jobs_list:
-        if job["min_salary"] and job["min_salary"] != "invalid":
+        if salary_is_valid(job["min_salary"]):
             salaries.append(int(job["min_salary"]))
     return min(salaries)
 
@@ -70,12 +74,12 @@ def matches_salary_range(job, salary):
 
 
 def filter_by_salary_range(jobs, salary):
-    filtered_jobs_by_salary = []
+    filtered_jobs = []
     for job in jobs:
         try:
             if matches_salary_range(job, salary):
-                filtered_jobs_by_salary.append(job)
+                filtered_jobs.append(job)
         except ValueError:
             pass
 
-    return filtered_jobs_by_salary
+    return filtered_jobs
