@@ -21,7 +21,7 @@ class SimpleReport:
             if element["nome_da_empresa"]:
                 companies.append(element["nome_da_empresa"])
 
-        # Fiz dessa forma devido devido ao número caracxtéres por linha
+        # Fiz dessa forma abaixo devido a restrição de caractéres por linha
         counter = Counter(companies)
         result = max(counter)
 
