@@ -1,7 +1,8 @@
-# https://docs.python.org/3/library/datetime.html
+# Feito pela minha dupla: Carlos Sá
 from datetime import datetime
-# https://docs.python.org/2/library/collections.html#collections.Counter
+# https://docs.python.org/3/library/datetime.html
 from collections import Counter
+# https://docs.python.org/2/library/collections.html#collections.Counter
 
 
 class SimpleReport:

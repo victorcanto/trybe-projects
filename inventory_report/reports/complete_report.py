@@ -1,3 +1,4 @@
+# Feito pela minha dupla: Carlos Sá
 from inventory_report.reports.simple_report import SimpleReport
 from collections import Counter
 
