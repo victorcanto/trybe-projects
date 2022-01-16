@@ -32,7 +32,35 @@ def scrape_next_page_link(html_content):
 
 # Requisito 4
 def scrape_noticia(html_content):
-    """Seu código deve vir aqui"""
+    def get_clean_str_list(str_list):
+        return [item.strip() for item in str_list]
+
+    sel = Selector(html_content)
+
+    url = sel.css("meta[property='og:url']::attr(content)").get()
+    title = sel.css("#js-article-title::text").get()
+    timestamp = sel.css("#js-article-date::attr(datetime)").get()
+    writer = (
+        sel.css("a.tec--author__info__link::text").get()
+        or sel.css(".z--font-bold ::text").get()
+    )
+    shares_count = sel.css(".tec--toolbar__item::text").get()
+    comments_count = sel.css("#js-comments-btn::attr(data-count)").get()
+    summary = sel.css(".tec--article__body p:first-child *::text").getall()
+    sources = sel.css(".z--mb-16 .tec--badge::text").getall()
+    categories = sel.css("#js-categories a::text").getall()
+
+    return {
+        "url": url,
+        "title": title,
+        "timestamp": timestamp,
+        "writer": writer.strip() if writer else None,
+        "shares_count": int(shares_count.split()[0]) if shares_count else 0,
+        "comments_count": int(comments_count) if comments_count else 0,
+        "summary": "".join(summary).strip(),
+        "sources": get_clean_str_list(sources),
+        "categories": get_clean_str_list(categories),
+    }
 
 
 # Requisito 5
