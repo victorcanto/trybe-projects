@@ -35,7 +35,7 @@ def test_validar_se_as_palavras_nao_sao_um_anagrama():
 def test_validar_se_as_palavras_sao_um_anagrama():
     valida_se_nao_foi_usado_sort_padrao()
     test_validar_se_as_palavras_nao_sao_um_anagrama()
-    
+
     first_string = "pedra"
     second_string = "perda"
     assert is_anagram(first_string, second_string) is True
