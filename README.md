@@ -68,8 +68,8 @@ O projeto está estruturado em duas etapas obrigatórias, e a tarefa bônus, tam
 
 ## Data de Entrega
 
-  - Serão `X` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+  - Será `1` dia de projeto.
+  - Data de entrega para avaliação final do projeto: `04/02/2022 - 14:00h`.
 
 ---
 
