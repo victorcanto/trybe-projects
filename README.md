@@ -47,132 +47,132 @@ Para facilitar o acesso, você pode copiar e colar o comando no seu terminal par
 
 1. [Lessons Learned](https://github.com/victorcanto/trybe-projects/tree/victorcanto-lessons-learned-project)
   ```bash
-   git checkout victorcanto-lessons-learned-project
+   git checkout p01-lessons-learned
   ```
 2. [Playground Functions](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-playground-functions)
   ```bash
-   git checkout victorcanto-project-playground-functions
+   git checkout p02-playground-functions
   ```
 3. [Color Guess](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-color-guess)
   ```bash
-   git checkout victorcanto-project-color-guess
+   git checkout p03-color-guess
   ```
 4. [Todo List](https://github.com/victorcanto/trybe-projects/tree/victorcanto-todo-list-project)
   ```bash
-   git checkout victorcanto-todo-list-project
+   git checkout p04-todo-list
   ```
 5. [Meme Generator](https://github.com/victorcanto/trybe-projects/tree/victorcanto-meme-generator-project)
   ```bash
-   git checkout victorcanto-meme-generator-project
+   git checkout p05-meme-generator
   ```
 6. [Mistery Letter](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-mistery-letter)
   ```bash
-   git checkout victorcanto-meme-generator-project
+   git checkout p06-meme-generator
   ```
 7. [Pixels Art](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-pixels-art)
   ```bash
-   git checkout victorcanto-project-pixels-art
+   git checkout p07-pixels-art
   ```
 8. [Facebook Signup](https://github.com/victorcanto/trybe-projects/tree/victorcanto-facebook-project)
   ```bash
-   git checkout victorcanto-facebook-project
+   git checkout p08-facebook-signup
   ```
 9. [Unit Tests](https://github.com/victorcanto/trybe-projects/tree/victorcanto-js-unit-tests)
   ```bash
-   git checkout victorcanto-js-unit-tests
+   git checkout p09-js-unit-tests
   ```
 10. [Shopping Cart](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-shoppping-cart)
   ```bash
-   git checkout victorcanto-project-shoppping-cart
+   git checkout p10-shoppping-cart
   ```
 11. [Jest](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-jest)
   ```bash
-   git checkout victorcanto-project-jest
+   git checkout p11-jest
   ```
 ### Projetos do Módulo 2: Desenvolvimento Front-end
 
 1. [Movie Cards Library](https://github.com/victorcanto/trybe-projects/tree/victorcanto-movie-cards-library)
   ```bash
-   git checkout victorcanto-movie-cards-library
+   git checkout p12-movie-cards-library
   ```
 2. [Movie Cards Library Stateful](https://github.com/victorcanto/trybe-projects/tree/victorcanto-movie-cards-library-stateful)
   ```bash
-   git checkout victorcanto-movie-cards-library-stateful
+   git checkout p13-movie-cards-library-stateful
   ```
 3. [Movie Cards Library CRUD](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-movie-card-library-crud)
   ```bash
-   git checkout victorcanto-project-movie-card-library-crud
+   git checkout p14-movie-card-library-crud
   ```
 4. [FrontEnd Online Storie - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/frontend-online-store)
   ```bash
-   git checkout frontend-online-store
+   git checkout p15-frontend-online-store
   ```
 5. [React Testing](https://github.com/victorcanto/trybe-projects/tree/victorcanto-react-testing)
   ```bash
-   git checkout victorcanto-react-testing
+   git checkout p16-react-testing
   ```
 6. [Trybe Wallet](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-trybewallet)
   ```bash
-   git checkout victorcanto-project-trybewallet
+   git checkout p17-trybewallet
   ```
 7. [Trivia Game - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/trivia-react-redux)
   ```bash
-   git checkout trivia-react-redux
+   git checkout p18-trivia-react-redux
   ```
 8. [StarWars Planets Search](https://github.com/victorcanto/trybe-projects/tree/victorcanto-project-starwars-planets-search)
   ```bash
-   git checkout victorcanto-project-starwars-planets-search
+   git checkout p19-starwars-planets-search
   ```
 9. [Recipes App - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/recipes-app)
   ```bash
-   git checkout recipes-app
+   git checkout p20-recipes-app
   ```
 ### Projetos do Módulo 3: Desenvolvimento Back-end
 
 1. [All For One](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mysql-all-for-one)
   ```bash
-   git checkout victorcanto-mysql-all-for-one
+   git checkout p21-mysql-all-for-one
   ```
 1. [Vocabulary Booster](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mysql-vocabulary-booster)
   ```bash
-   git checkout victorcanto-mysql-vocabulary-booster
+   git checkout p22-mysql-vocabulary-booster
   ```
 3. [One For All](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mysql-one-for-all)
   ```bash
-   git checkout victorcanto-mysql-one-for-all
+   git checkout p23-mysql-one-for-all
   ```
   
 4. [Data Flights](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mongodb-dataflights)
   ```bash
-   git checkout victorcanto-mongodb-dataflights
+   git checkout p24-mongodb-dataflights
   ```
 5. [Commerce](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mongodb-commerce)
   ```bash
-   git checkout victorcanto-mongodb-commerce
+   git checkout p25-mongodb-commerce
   ```
 6. [Commerce](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mongodb-aggregations)
   ```bash
-   git checkout victorcanto-mongodb-aggregations
+   git checkout p26-mongodb-aggregations
   ```
 7. [Aggregations](https://github.com/victorcanto/trybe-projects/tree/victorcanto-mongodb-aggregations)
   ```bash
-   git checkout victorcanto-mongodb-aggregations
+   git checkout p27-mongodb-aggregations
   ```
 8. [Talker Manager](https://github.com/victorcanto/trybe-projects/tree/victorcanto-sd-010-a-project-talker-manager)
   ```bash
-   git checkout victorcanto-sd-010-a-project-talker-manager
+   git checkout p28-talker-manager
   ```
 9. [Store Manager](https://github.com/victorcanto/trybe-projects/tree/victorcanto-sd-010-a-store-manager)
   ```bash
-   git checkout victorcanto-sd-010-a-store-manager
+   git checkout p29-store-manager
   ```
 10. [Cookmaster](https://github.com/victorcanto/trybe-projects/tree/victorcanto-sd-010-a-cookmaster)
   ```bash
-   git checkout victorcanto-sd-010-a-cookmaster
+   git checkout p30-cookmaster
   ```
 11. [Blogs Api](https://github.com/victorcanto/trybe-projects/tree/victorcanto-sd-010-a-project-blogs-api)
  ```bash
-   git checkout victorcanto-sd-010-a-project-blogs-api
+   git checkout p31-blogs-api
   ```
 
 # Projetos feitos na Trybe
