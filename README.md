@@ -91,96 +91,122 @@ Para facilitar o acesso, você pode copiar e colar o comando no seu terminal par
   ```
 ### Projetos do Módulo 2: Desenvolvimento Front-end
 
-1. [Movie Cards Library](https://github.com/victorcanto/trybe-projects/tree/p12-movie-cards-library)
+12. [Movie Cards Library](https://github.com/victorcanto/trybe-projects/tree/p12-movie-cards-library)
   ```bash
    git checkout p12-movie-cards-library
   ```
-2. [Movie Cards Library Stateful](https://github.com/victorcanto/trybe-projects/tree/p13-movie-cards-library-stateful)
+13. [Movie Cards Library Stateful](https://github.com/victorcanto/trybe-projects/tree/p13-movie-cards-library-stateful)
   ```bash
    git checkout p13-movie-cards-library-stateful
   ```
-3. [Movie Cards Library CRUD](https://github.com/victorcanto/trybe-projects/tree/p14-movie-card-library-crud)
+14. [Movie Cards Library CRUD](https://github.com/victorcanto/trybe-projects/tree/p14-movie-card-library-crud)
   ```bash
    git checkout p14-movie-card-library-crud
   ```
-4. [FrontEnd Online Storie - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/p15-frontend-online-store)
+15. [FrontEnd Online Storie - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/p15-frontend-online-store)
   ```bash
    git checkout p15-frontend-online-store
   ```
-5. [React Testing](https://github.com/victorcanto/trybe-projects/tree/p16-react-testing)
+16. [React Testing](https://github.com/victorcanto/trybe-projects/tree/p16-react-testing)
   ```bash
    git checkout p16-react-testing
   ```
-6. [Trybe Wallet](https://github.com/victorcanto/trybe-projects/tree/p17-trybewallet)
+17. [Trybe Wallet](https://github.com/victorcanto/trybe-projects/tree/p17-trybewallet)
   ```bash
    git checkout p17-trybewallet
   ```
-7. [Trivia Game - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/p18-trivia-react-redux)
+18. [Trivia Game - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/p18-trivia-react-redux)
   ```bash
    git checkout p18-trivia-react-redux
   ```
-8. [StarWars Planets Search](https://github.com/victorcanto/trybe-projects/tree/p19-starwars-planets-search)
+19. [StarWars Planets Search](https://github.com/victorcanto/trybe-projects/tree/p19-starwars-planets-search)
   ```bash
    git checkout p19-starwars-planets-search
   ```
-9. [Recipes App - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/p20-recipes-app)
+20. [Recipes App - Projeto em Grupo](https://github.com/victorcanto/trybe-projects/tree/p20-recipes-app)
   ```bash
    git checkout p20-recipes-app
   ```
 ### Projetos do Módulo 3: Desenvolvimento Back-end
 
-1. [All For One](https://github.com/victorcanto/trybe-projects/tree/p21-mysql-all-for-one)
+21. [All For One](https://github.com/victorcanto/trybe-projects/tree/p21-mysql-all-for-one)
   ```bash
    git checkout p21-mysql-all-for-one
   ```
-1. [Vocabulary Booster](https://github.com/victorcanto/trybe-projects/tree/p22-mysql-vocabulary-booster)
+22. [Vocabulary Booster](https://github.com/victorcanto/trybe-projects/tree/p22-mysql-vocabulary-booster)
   ```bash
    git checkout p22-mysql-vocabulary-booster
   ```
-3. [One For All](https://github.com/victorcanto/trybe-projects/tree/p23-mysql-one-for-all)
+23. [One For All](https://github.com/victorcanto/trybe-projects/tree/p23-mysql-one-for-all)
   ```bash
    git checkout p23-mysql-one-for-all
   ```
   
-4. [Data Flights](https://github.com/victorcanto/trybe-projects/tree/p24-mongodb-dataflights)
+24. [Data Flights](https://github.com/victorcanto/trybe-projects/tree/p24-mongodb-dataflights)
   ```bash
    git checkout p24-mongodb-dataflights
   ```
-5. [Commerce](https://github.com/victorcanto/trybe-projects/tree/p25-mongodb-commerce)
+25. [Commerce](https://github.com/victorcanto/trybe-projects/tree/p25-mongodb-commerce)
   ```bash
    git checkout p25-mongodb-commerce
   ```
-6. [Commerce](https://github.com/victorcanto/trybe-projects/tree/p26-mongodb-aggregations)
+26. [Commerce](https://github.com/victorcanto/trybe-projects/tree/p26-mongodb-aggregations)
   ```bash
    git checkout p26-mongodb-aggregations
   ```
-7. [Aggregations](https://github.com/victorcanto/trybe-projects/tree/p27-mongodb-aggregations)
+27. [Aggregations](https://github.com/victorcanto/trybe-projects/tree/p27-mongodb-aggregations)
   ```bash
    git checkout p27-mongodb-aggregations
   ```
-8. [Talker Manager](https://github.com/victorcanto/trybe-projects/tree/p28-talker-manager)
+28. [Talker Manager](https://github.com/victorcanto/trybe-projects/tree/p28-talker-manager)
   ```bash
    git checkout p28-talker-manager
   ```
-9. [Store Manager](https://github.com/victorcanto/trybe-projects/tree/p29-store-manager)
+29. [Store Manager](https://github.com/victorcanto/trybe-projects/tree/p29-store-manager)
   ```bash
    git checkout p29-store-manager
   ```
-10. [Cookmaster](https://github.com/victorcanto/trybe-projects/tree/p30-cookmaster)
+30. [Cookmaster](https://github.com/victorcanto/trybe-projects/tree/p30-cookmaster)
   ```bash
    git checkout p30-cookmaster
   ```
-11. [Blogs Api](https://github.com/victorcanto/trybe-projects/tree/p31-blogs-api)
+31. [Blogs Api](https://github.com/victorcanto/trybe-projects/tree/p31-blogs-api)
  ```bash
    git checkout p31-blogs-api
   ```
-12. [Webchat](https://github.com/victorcanto/trybe-projects/tree/p32-webchat)
+32. [Webchat](https://github.com/victorcanto/trybe-projects/tree/p32-webchat)
  ```bash
    git checkout p32-webchat
   ```
-13. [Delivery App](https://github.com/victorcanto/trybe-projects/tree/p33-delivery-app)
+33. [Delivery App](https://github.com/victorcanto/trybe-projects/tree/p33-delivery-app)
  ```bash
    git checkout p33-delivery-app
+  ```
+### Projetos do Módulo 4: Ciência da Computação
+
+34. [Jobs Insights](https://github.com/victorcanto/trybe-projects/tree/p34-job-insights)
+  ```bash
+   git checkout p34-job-insights
+  ```
+35. [Inventory Report](https://github.com/victorcanto/trybe-projects/tree/p35-inventory-report)
+  ```bash
+   git checkout p35-inventory-report
+  ```
+36. [Tech News](https://github.com/victorcanto/trybe-projects/tree/p36-tech-news)
+  ```bash
+   git checkout p36-tech-news
+  ```
+37. [Algorithms](https://github.com/victorcanto/trybe-projects/tree/p37-algorithms)
+  ```bash
+   git checkout p37-algorithms
+  ```
+38. [Restaurant Orders](https://github.com/victorcanto/trybe-projects/tree/p38-restaurant-orders)
+  ```bash
+   git checkout p38-restaurant-orders
+  ```
+39. [TING](https://github.com/victorcanto/trybe-projects/tree/p39-ting)
+  ```bash
+   git checkout p39-ting
   ```
 
 # Projetos feitos na Trybe
